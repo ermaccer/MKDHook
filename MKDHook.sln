@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MKDHook", "MKDHook\MKDHook.vcxproj", "{9C8C2B9D-8885-4AEF-B1B7-2F749D0F2AFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|MIPS = Debug|MIPS
+		Release|MIPS = Release|MIPS
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C8C2B9D-8885-4AEF-B1B7-2F749D0F2AFB}.Debug|MIPS.ActiveCfg = Release|x64
+		{9C8C2B9D-8885-4AEF-B1B7-2F749D0F2AFB}.Debug|MIPS.Build.0 = Release|x64
+		{9C8C2B9D-8885-4AEF-B1B7-2F749D0F2AFB}.Release|MIPS.ActiveCfg = Release|x64
+		{9C8C2B9D-8885-4AEF-B1B7-2F749D0F2AFB}.Release|MIPS.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {84CEF056-3F29-4FC5-B3DB-132CE6671E58}
+	EndGlobalSection
+EndGlobal

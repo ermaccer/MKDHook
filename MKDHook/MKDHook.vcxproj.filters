@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{000BCD17-6C75-818E-B5B3-3234215D5FE3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{76FF3A1C-62A1-65F2-4B5C-7946379DEC42}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="ps2mem.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="mkdeception.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="mkdplrinfo.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="mkdhook.c">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ps2mem.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="mkdeception.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="mkdplrinfo.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="mkdhook.h">
+      <Filter>source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="makefile">
+      <Filter>Resources</Filter>
+    </None>
+  </ItemGroup>
+</Project>
