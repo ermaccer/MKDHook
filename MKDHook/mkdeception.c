@@ -14,6 +14,14 @@ void(*mko_push)(int script, int command_id);
 void(*mko_run)(int script);
 int(*mko_get_function_id)(int script, char* name);
 void(*mko_player_call)();
+void(*update_string)(int string, int font, char* newText);
+void(*string_set_alpha)(int id, int alpha);
+void(*pause)(int i);
+
+void(*set_cam_pos)(struct CVector* pos);
+void(*set_cam_rot)(struct CVector* rot);
+
+void(*get_bone_pos)(int obj, int id, struct CVector* pos);
 
 int get_game_state()
 {
@@ -22,8 +30,56 @@ int get_game_state()
 
 int get_game_tick()
 {
-	int* gp = (int*)0x5EA000;
-	return (*(gp + 5));
+	return *(int*)(0x5EA02C);
+}
+
+struct CQuat* get_bone_rot(int obj, int id)
+{
+	int skeleton;
+	struct CQuat* v3; 
+	struct CQuat* result; 
+
+	skeleton = *(int*)(obj + 72);
+	v3 = *(struct CQuat**)(skeleton + 4 * id);
+	if (v3 || (v3 = *(struct CQuat**)(skeleton + 4 * *(int*)(obj + 80))) != 0)
+		result = v3 + 13;
+	else
+		result = 0;
+	return result;
+}
+
+#define M_PI           3.14159265358979323846f
+
+#define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
+#define radToDeg(angleInRadians) ((angleInRadians) * 180.0 / M_PI)
+
+struct CVector get_bone_rot_vec(struct CQuat q)
+{
+	struct CQuat qrot = { -q.x, -q.y,-q.z,q.w };
+	struct CVector tmprot;
+
+
+	float ysqr = q.y * q.y;
+
+	float t0 = +2.0f * (q.w * q.x + q.y * q.z);
+	float t1 = +1.0f - 2.0f * (q.x * q.x + ysqr);
+	float roll = atan2(t0, t1);
+
+	float t2 = +2.0f * (q.w * q.y - q.z * q.x);
+	t2 = ((t2 > 1.0f) ? 1.0f : t2);
+	t2 = ((t2 < -1.0f) ? -1.0f : t2);
+
+	float pitch = asin(t2);
+	float t3 = +2.0f * (q.w * q.z + q.x * q.y);
+	float t4 = +1.0f - 2.0f * (ysqr + q.z * q.z);
+	float yaw = atan2(t3, t4);
+
+	tmprot.x = roll / M_PI * 180;
+	tmprot.y = pitch / M_PI * 180;
+	tmprot.z = yaw / M_PI * 180;
+
+	struct CVector rot = { degToRad(tmprot.x), degToRad(tmprot.y) ,degToRad(tmprot.z) };
+	return rot;
 }
 
 void call_script(char* name)
@@ -60,4 +116,13 @@ void MKDeception_Init()
 	mko_run = (void*)0x21C290;
 	mko_get_function_id = (void*)0x21BAF0;
 	mko_player_call = (void*)0x2118C0;
+
+	update_string = (void*)0x1760C0;
+	string_set_alpha = (void*)0x18C110;
+
+	pause = (void*)0x18B0C0;
+
+	set_cam_pos = (void*)0x187D30;
+	set_cam_rot  =(void*)0x187CE0;
+	get_bone_pos = (void*)0x138A80;
 }

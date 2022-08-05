@@ -24,6 +24,9 @@
     <ClCompile Include="mkdhook.c">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="mkdmenu.c">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ps2mem.h">
@@ -36,6 +39,9 @@
       <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="mkdhook.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="mkdmenu.h">
       <Filter>source</Filter>
     </ClInclude>
   </ItemGroup>

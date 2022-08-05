@@ -1,7 +1,10 @@
 #include "mkdhook.h"
 #include "mkdplrinfo.h"
+#include "mkdmenu.h"
 
 int  bSwapStatus = 0;
+int  menu_string = 0;
+
 
 struct select_screen_entry pSelectTable[] = {
 	{KENSHI	, 86	, "HEAD_KENSHI"	, "HEAD_KENSHI_LOCKED"	, "BODY_KENSHI"	, "body_kenshi_alt.sec"	, "4"	, "TAI CHI"	, "JUDO"	, "KATANA"},
@@ -120,26 +123,25 @@ void hook_render()
 	render();
 }
 
-int test_print(int id, int font, char* text, int y, int x, int unk)
-{
-	string_left_xy(8421, 5, "MKDHOOK TEST", y, x + 20, 88);
-	return string_left_xy(id, font, text, y, x, unk);
-}
-
 void process_mkdhook()
 {
 	// select screen stuff
 	{
 		if (get_game_state() == STATE_SELECT)
 		{
-			if (pressed_button(0, 7))
+			if (pressed_button(0, PAD_L3))
 				hook_new_select_table(0);
 
-			if (pressed_button(0, 2))
+			if (pressed_button(0, PAD_R3))
 				hook_new_select_table(1);
 		}
 		else
 			restore_select_screen();
 	}
 	
+
+ 	if (get_game_state() == STATE_GAME)
+	{
+		Menu_Process();
+	}
 }

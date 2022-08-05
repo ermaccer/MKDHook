@@ -3,9 +3,9 @@
 #include "mkdeception.h"
 #include "mkdplrinfo.h"
 #include "mkdhook.h"
+#include "mkdmenu.h"
 
 int CompatibleCRCList[] = { 0x43341C03 };
-
 void init()
 {
     MKDeception_Init();
@@ -40,8 +40,11 @@ void init()
 
    makeJal(0x1238FC, hook_render);
    
-   //makeJal(0x1A50FC, test_print);
+   makeJal(0x1A50FC, Menu_Init);
    game_printf("MKDHook init!\n");
+  // *(float*)(0x5E8C60) = 16 / 9;
+  // *(float*)(0x5E8C64) = 110.0f;
+
 }
 
 int main()
