@@ -10,9 +10,9 @@ void init()
 {
     MKDeception_Init();
 
-    //calculate_custom_toc();
-    //set_char_table();
-    //dump_char_table();
+    calculate_custom_toc();
+    set_char_table();
+    dump_char_table();
 
 
    // skip intro

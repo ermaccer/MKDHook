@@ -31,7 +31,8 @@ enum eMenuDefault {
 enum eMenuPlayer {
 	PLAYER1_SCALE,
 	PLAYER2_SCALE,
-	PLAYER_POS_READ,
+	SCALE_MODIFIER,
+	SCALE_RESET_VALUES,
 	TOTAL_PLAYER
 };
 
@@ -72,3 +73,8 @@ void Menu_ProcessPlayer();
 void Menu_ProcessPlayerReverse();
 void Menu_ProcessCamera();
 void Menu_ClearStrings();
+
+// funcs
+
+void update_player1_scale();
+void update_player2_scale();

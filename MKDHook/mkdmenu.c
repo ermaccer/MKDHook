@@ -8,20 +8,12 @@ int m_nCurrentPos = 0;
 int m_nCurrentMenuOpen = MENU_DEFAULT;
 int m_nTimer = 0;
 
-int m_nP1Scale = 0;
-int m_nP2Scale = 0;
+int m_bScaleModifier = 0;
+float m_nP1Scale = 1.0;
+float m_nP2Scale = 1.0;
 
 int m_bThirdPersonCam = 0;
 int m_bThirdPersonCamMid = 0;
-
-char* scaleNames[TOTAL_SCALE_VALUES] =
-{
-	"Off",
-	"Small",
-	"Large",
-	"XL",
-	"2D"
-};
 
 int menuAssoc[MENU_MAX_STRINGS * 2] =
 {
@@ -48,12 +40,12 @@ char* menuNamesPlayer[MENU_MAX_STRINGS] =
 {
 	"P1 Scale Modifier",
 	"P2 Scale Modifier",
-	"Player Pos",
+	"Enable Scale Modifier",
+	"Reset Scale Values"
 };
 char* menuNamesCamera[MENU_MAX_STRINGS] =
 {
-	"Third Person",
-	"Third Person Mid",
+	"todo",
 };
 
 struct Menu GetMenu()
@@ -80,6 +72,7 @@ int Menu_Init(int id, int font, char* text, int x, int y, int unk)
 	TheMenu.plrPos.z = 0;
 	m_nTimer = get_game_tick();
 	m_nCurrentPos = 0;
+	m_bScaleModifier = 0;
 	return result;
 }
 
@@ -109,13 +102,13 @@ void Menu_Draw()
 				switch (m_nCurrentPos)
 				{
 				case 0:
-					sprintf(tmp, "%s %s", "Value - ", scaleNames[m_nP1Scale]);
+					sprintf(tmp, "%s %d", "Value - ", (int)(m_nP1Scale * 100));
 					break;
 				case 1:
-					sprintf(tmp, "%s %s", "Value - ", scaleNames[m_nP2Scale]);
+					sprintf(tmp, "%s %d", "Value - ", (int)(m_nP2Scale * 100));
 					break;
 				case 2:
-					sprintf(tmp, "%s %.2f %.2f %.2f", "Value - ", TheMenu.plrPos.x, TheMenu.plrPos.y, TheMenu.plrPos.z);
+					sprintf(tmp, "%s %s", "Value - ", TRUE_FALSE(m_bScaleModifier));
 					break;
 				}
 
@@ -195,78 +188,10 @@ void Menu_Process()
 
 void Menu_Process_Toggles()
 {
-	struct player_info plr1 = *(struct player_info*)PLAYER1_INFO;
-	struct player_info plr2 = *(struct player_info*)PLAYER2_INFO;
-	if (plr1.pObject)
+	if (m_bScaleModifier)
 	{
-		int obj = plr1.pObject;
-		float scale = 1.0f;
-
-		//TheMenu.plrPos = *(struct CVector*)(obj + 160);
-
-		//TheMenu.plrPos.x
-		if (m_bThirdPersonCam)
-		{
-			struct CVector headPos;
-			struct CVector rot = get_bone_rot_vec(*get_bone_rot(plr1.pObject, 16));
-			get_bone_pos(plr1.pObject, 16, &headPos);
-			set_cam_pos(&headPos);
-
-			struct CVector camRot = rot;
-			camRot.y = 33.0f + rot.y;
-			set_cam_rot(&camRot);
-		}
-
-
-		if (m_nP1Scale)
-		{
-			if (m_nP1Scale == SMALL)
-				scale = 0.5f;
-			if (m_nP1Scale == LARGE)
-				scale = 1.5f;
-			if (m_nP1Scale == XL)
-				scale = 2.0f;
-			//*(char*)(obj + 8) = *(char*)(obj + 8) & 0xFFFFFFFF;
-
-			if (m_nP1Scale == TWOD)
-			{
-				*(float*)(obj + 240) = 1.0f;
-				*(float*)(obj + 244) = 1.0f;
-				*(float*)(obj + 248) = 0.1f;
-			}
-			else
-			{
-				*(float*)(obj + 240) = scale;
-				*(float*)(obj + 244) = scale;
-				*(float*)(obj + 248) = scale;
-			}
-		}
-
-
-
-
-
-	}
-	
-
-	if (plr2.pObject)
-	{
-		int obj = plr2.pObject;
-		float scale = 1.0f;
-		if (m_nP2Scale)
-		{
-			if (m_nP2Scale == SMALL)
-				scale = 0.5f;
-			if (m_nP2Scale == LARGE)
-				scale = 1.5f;
-			if (m_nP2Scale == XL)
-				scale = 2.0f;
-		}
-
-		//*(char*)(obj + 8) = *(char*)(obj + 8) & 0xFFFFFFBF | 0x40;
-		*(float*)(obj + 240) = scale;
-		*(float*)(obj + 244) = scale;
-		*(float*)(obj + 248) = scale;
+		update_player1_scale();
+		update_player2_scale();
 	}
 }
 
@@ -298,16 +223,19 @@ void Menu_KeyDown()
 
 void Menu_KeyCross()
 {
-	if (get_game_tick() - m_nTimer <= 15) return;
+	if (get_game_tick() - m_nTimer <= 10) return;
 	m_nTimer = get_game_tick();
 	Menu_ClearStrings();
 	if (m_nCurrentMenuOpen == MENU_DEFAULT)
 		m_nCurrentMenuOpen = m_nCurrentPos;
+	else
+	{
+		if (m_nCurrentMenuOpen == MENU_PLAYER)
+			Menu_ProcessPlayer();
+		if (m_nCurrentMenuOpen == MENU_CAMERA)
+			Menu_ProcessCamera();
+	}
 
-	if (m_nCurrentMenuOpen == MENU_PLAYER)
-		Menu_ProcessPlayer();
-	if (m_nCurrentMenuOpen == MENU_CAMERA)
-		Menu_ProcessCamera();
 }
 
 void Menu_KeyCircle()
@@ -321,7 +249,7 @@ void Menu_KeyCircle()
 
 void Menu_KeyTriangle()
 {
-	if (get_game_tick() - m_nTimer <= 15) return;
+	if (get_game_tick() - m_nTimer <= 10) return;
 	m_nTimer = get_game_tick();
 
 	if (m_nCurrentMenuOpen == MENU_PLAYER)
@@ -333,16 +261,17 @@ void Menu_ProcessPlayer()
 	switch (m_nCurrentPos)
 	{
 	case 0:
-		m_nP1Scale++;
-
-		if (m_nP1Scale >= TOTAL_SCALE_VALUES)
-			m_nP1Scale = 0;
+		m_nP1Scale += 0.1f;
 		break;
 	case 1:
-		m_nP2Scale++;
-
-		if (m_nP2Scale >= TOTAL_SCALE_VALUES)
-			m_nP2Scale = 0;
+		m_nP2Scale += 0.1f;
+		break;
+	case 2:
+		m_bScaleModifier= !m_bScaleModifier;
+		break;
+	case 3:
+		m_nP1Scale = 1.0f;
+		m_nP2Scale = 1.0f;
 		break;
 	default:
 		break;
@@ -354,16 +283,15 @@ void Menu_ProcessPlayerReverse()
 	switch (m_nCurrentPos)
 	{
 	case 0:
-		m_nP1Scale--;
-
+		m_nP1Scale -= 0.1f;
 		if (m_nP1Scale < 0)
-			m_nP1Scale = TOTAL_SCALE_VALUES - 1;
+			m_nP1Scale = 0;
 		break;
 	case 1:
-		m_nP2Scale--;
+		m_nP1Scale -= 0.1f;
 
 		if (m_nP2Scale < 0)
-			m_nP2Scale = TOTAL_SCALE_VALUES - 1;
+			m_nP2Scale = 0;
 		break;
 	default:
 		break;
@@ -389,5 +317,45 @@ void Menu_ClearStrings()
 	for (int i = 0; i < MENU_MAX_STRINGS; i++)
 	{
 		string_set_alpha(menuAssoc[i], 0);
+	}
+}
+
+void update_player1_scale()
+{
+	struct player_info plr1 = *(struct player_info*)PLAYER1_INFO;
+	if (plr1.pObject)
+	{
+		int obj = plr1.pObject;
+		float scale = m_nP1Scale;
+
+		{
+			*(char*)(obj + 8) = *(char*)(obj + 8) & 0xFFFFFFBF | 0x40;
+
+			{
+				*(float*)(obj + 240) = scale;
+				*(float*)(obj + 244) = scale;
+				*(float*)(obj + 248) = scale;
+			}
+		}
+	}
+}
+
+void update_player2_scale()
+{
+	struct player_info plr2 = *(struct player_info*)PLAYER2_INFO;
+	if (plr2.pObject)
+	{
+		int obj = plr2.pObject;
+		float scale = m_nP2Scale;
+
+		{
+			*(char*)(obj + 8) = *(char*)(obj + 8) & 0xFFFFFFBF | 0x40;
+
+			{
+				*(float*)(obj + 240) = scale;
+				*(float*)(obj + 244) = scale;
+				*(float*)(obj + 248) = scale;
+			}
+		}
 	}
 }
