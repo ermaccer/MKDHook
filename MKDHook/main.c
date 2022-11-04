@@ -4,46 +4,66 @@
 #include "mkdplrinfo.h"
 #include "mkdhook.h"
 #include "mkdmenu.h"
+#include "stage.h"
 
-int CompatibleCRCList[] = { 0x43341C03 };
+void dummy() {}
+
+
+
+int CompatibleCRCList[] = { 0x7C22850A };
 void init()
 {
     MKDeception_Init();
 
-    calculate_custom_toc();
-    set_char_table();
-    dump_char_table();
+    //calculate_custom_toc();
+    //set_char_table();
+    //dump_char_table();
 
 
    // skip intro
-   *(int*)0x1980F8 = 0;
-   *(int*)0x197DF8 = 0;
+   *(int*)0x197258 = 0;
+   *(int*)0x196F58 = 0;
 
-   makeJal(0x1328E0, hook_character_lock_status);
-   makeJal(0x134278, hook_character_lock_status);
-   makeJal(0x15DE88, hook_character_lock_status);
-   makeJal(0x191AB4, hook_character_lock_status);
-   makeJal(0x191B60, hook_character_lock_status);
-   makeJal(0x191E84, hook_character_lock_status);
-   makeJal(0x1944E0, hook_character_lock_status);
-   makeJal(0x194C98, hook_character_lock_status);
-   makeJal(0x19508C, hook_character_lock_status);
-   makeJal(0x195730, hook_character_lock_status);
-   makeJal(0x196FE8, hook_character_lock_status);
-   makeJal(0x197074, hook_character_lock_status);
-   makeJal(0x2DB048, hook_character_lock_status);
-   makeJal(0x387264, hook_character_lock_status);
-   makeJal(0x3873F4, hook_character_lock_status);
-   makeJal(0x3ED1FC, hook_character_lock_status);
-   makeJal(0x3ED398, hook_character_lock_status);
-   makeJal(0x3EDEEC, hook_character_lock_status);
 
-   makeJal(0x1238FC, hook_render);
+   makeJal(0x132750, hook_character_lock_status);
+   makeJal(0x1340E8, hook_character_lock_status);
+   makeJal(0x15D3E8, hook_character_lock_status);
+   makeJal(0x190CF4, hook_character_lock_status);
+   makeJal(0x190DA0, hook_character_lock_status);
+   makeJal(0x191074, hook_character_lock_status);
+   makeJal(0x193690, hook_character_lock_status);
+   makeJal(0x193DE8, hook_character_lock_status);
+   makeJal(0x1941DC, hook_character_lock_status);
+   makeJal(0x194880, hook_character_lock_status);
+   makeJal(0x196138, hook_character_lock_status);
+   makeJal(0x1961C4, hook_character_lock_status);
+   makeJal(0x2D8878, hook_character_lock_status);
+   makeJal(0x3827A4, hook_character_lock_status);
+   makeJal(0x382934, hook_character_lock_status);
+   makeJal(0x3E835C, hook_character_lock_status);
+   makeJal(0x3E84F8, hook_character_lock_status);
+   makeJal(0x3E8F8C, hook_character_lock_status);
+  
+   makeJal(0x1238C4, hook_render);
    
-   makeJal(0x1A50FC, Menu_Init);
+   makeJal(0x1A3EFC, Menu_Init);
+
+  // patch_stage_data();
+   // fatality camera
+   // 
+  //nop(0x26E1FC);
+  //nop(0x26E1E0);
+  //
+  //nop(0x26D9C8);
+  //nop(0x26D9AC);
+
+
+  // init_stage_hook();
+    
+
    game_printf("MKDHook init!\n");
   // *(float*)(0x5E8C60) = 16 / 9;
-  // *(float*)(0x5E8C64) = 110.0f;
+   //*(float*)(0x5D4DD4) = 95.0f;
 
 }
 

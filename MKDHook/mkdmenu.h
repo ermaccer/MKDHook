@@ -1,6 +1,6 @@
 #pragma once
 #include "mkdeception.h"
-
+#include "mouse.h"
 
 enum eMenuStringIDs
 {
@@ -12,19 +12,23 @@ enum eMenuStringIDs
 	MENU_BAR_5,
 	MENU_BAR_6,
 	MENU_BAR_7,
+	MENU_BAR_8,
+	MENU_BAR_9,
 
-	MENU_MAX_STRINGS = 8
+	MENU_MAX_STRINGS = 10
 };
 
 enum eMenuPages {
 	MENU_DEFAULT = -1,
 	MENU_PLAYER,
-	MENU_CAMERA
+	MENU_CAMERA,
+	MENU_MISC
 };
 
 enum eMenuDefault {
 	DEFAULT_PLAYER,
 	DEFAULT_CAMERA,
+	DEFAULT_MISC,
 	TOTAL_MENU_DEFAULT
 };
 
@@ -36,9 +40,20 @@ enum eMenuPlayer {
 	TOTAL_PLAYER
 };
 
+enum eMenuMisc {
+	KILL_HUD,
+	TOTAL_MISC
+};
+
 enum eMenuCamera {
+	FIRST_PERSON,
 	THIRD_PERSON,
-	THIRD_PERSON_LOWER,
+	FOV_72,
+	FOV_90,
+	FOV_95,
+	FOV_110,
+	FOV_120,
+	FREE_CAMERA,
 	TOTAL_CAMERA
 };
 
@@ -54,6 +69,7 @@ enum eScaleValue {
 
 struct Menu {
 	char m_bActive;
+	char m_bIsReady;
 	struct CVector plrPos;
 };
 
@@ -71,8 +87,14 @@ void Menu_KeyCircle();
 void Menu_KeyTriangle();
 void Menu_ProcessPlayer();
 void Menu_ProcessPlayerReverse();
+void Menu_ProcessMisc();
 void Menu_ProcessCamera();
 void Menu_ClearStrings();
+void Menu_Unset();
+void Menu_ProcessCustomCams();
+void Menu_ProcessFreeCamera();
+void Menu_Toggle_FreeCam();
+void setFov(float value);
 
 // funcs
 

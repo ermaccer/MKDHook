@@ -27,6 +27,15 @@
     <ClCompile Include="mkdmenu.c">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="stage.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="mouse.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="mips.c">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ps2mem.h">
@@ -42,6 +51,18 @@
       <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="mkdmenu.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="stage.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="toc.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="mouse.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="mips.h">
       <Filter>source</Filter>
     </ClInclude>
   </ItemGroup>

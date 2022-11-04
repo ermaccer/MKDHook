@@ -73,7 +73,7 @@ void hook_new_select_table(int status)
 {
 	bSwapStatus = status;
 
-	int select_addr = 0x5084F0;
+	int select_addr = 0x4FEF40;
 	char msgBuffer[1256];
 	for (int i = 0; i < 24; i++)
 	{
@@ -144,4 +144,6 @@ void process_mkdhook()
 	{
 		Menu_Process();
 	}
+	else
+		Menu_Unset();
 }

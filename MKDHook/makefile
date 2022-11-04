@@ -1,5 +1,5 @@
 EE_BIN = ../scripts/MKDHook.elf
-EE_OBJS = main.o mkdeception.o ps2mem.o mkdplrinfo.o mkdhook.o mkdmenu.o
+EE_OBJS = main.o mkdeception.o ps2mem.o mkdplrinfo.o mkdhook.o mkdmenu.o stage.o mouse.o mips.o
 
 BASE_ADDRESS = 0x02020000
 EE_LINKFILE = linkfile
