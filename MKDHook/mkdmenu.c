@@ -1,5 +1,7 @@
 #include "mkdmenu.h"
 #include <stdio.h>
+#include "mips.h"
+#include "ps2mem.h"
 #define TRUE_FALSE(x) x ? "true" : "false"
 
 struct CVector camPos;
@@ -71,6 +73,8 @@ const char* menuNamesCamera[MENU_MAX_STRINGS] =
 const char* menuNamesMisc[MENU_MAX_STRINGS] =
 {
 	"Kill HUD",
+	"Disable Fatality Camera",
+	"Enable Fatality Camera"
 };
 
 struct Menu GetMenu()
@@ -362,6 +366,12 @@ void Menu_ProcessMisc()
 	case 0:
 		setup_fatality_scene();
 		break;
+	case 1:
+		disable_fatality_camera();
+		break;
+	case 2:
+		enable_fatality_camera();
+		break;
 	default:
 		break;
 	}
@@ -532,6 +542,22 @@ void Menu_Toggle_FreeCam()
 void setFov(float value)
 {
 	*(float*)(0x5D4DD4) = value;
+}
+
+void disable_fatality_camera()
+{
+	NOP(0x26E1FC);
+	NOP(0x26E1E0);
+	NOP(0x26D9C8);
+	NOP(0x26D9AC);
+}
+
+void enable_fatality_camera()
+{
+	patchInt(0x26E1FC, jal(0x12C3E0));
+	patchInt(0x26E1E0, jal(0x17CF00));
+	patchInt(0x26D9C8, jal(0x12C3E0));
+	patchInt(0x26D9AC, jal(0x17CF00));
 }
 
 void update_player1_scale()

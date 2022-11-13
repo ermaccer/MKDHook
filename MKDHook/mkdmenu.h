@@ -42,6 +42,8 @@ enum eMenuPlayer {
 
 enum eMenuMisc {
 	KILL_HUD,
+	DISABLE_FAT_CAMERA,
+	ENABLE_FAT_CAMERA,
 	TOTAL_MISC
 };
 
@@ -95,6 +97,9 @@ void Menu_ProcessCustomCams();
 void Menu_ProcessFreeCamera();
 void Menu_Toggle_FreeCam();
 void setFov(float value);
+
+void disable_fatality_camera();
+void enable_fatality_camera();
 
 // funcs
 

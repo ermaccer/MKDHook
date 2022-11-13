@@ -8,8 +8,6 @@
 
 void dummy() {}
 
-
-
 int CompatibleCRCList[] = { 0x7C22850A };
 void init()
 {
@@ -48,17 +46,7 @@ void init()
    
    makeJal(0x1A3EFC, Menu_Init);
 
-  // patch_stage_data();
-   // fatality camera
-   // 
-  //nop(0x26E1FC);
-  //nop(0x26E1E0);
-  //
-  //nop(0x26D9C8);
-  //nop(0x26D9AC);
-
-
-  // init_stage_hook();
+   //patch_stage_data();
     
 
    game_printf("MKDHook init!\n");

@@ -125,29 +125,81 @@ void patch_stage_data()
 	patchShort(0x192E50, selectSize);
 	patchShort(0x193180, selectSize);
 
+
 	int val = 0;
 	int output = 0;
+	int jump = 0;
 
 	// stage selection
 	val = (int)&pStageSelectNormal[0];
 
-	output = li(a0, val);
+	jump = 0x191E3C;
+
+	static int hook[3];
+	hook[0] = lui(a0, HIWORD(val));
+	hook[1] = ori(a0, a0, HIWORD(val));
+	hook[2] = j(jump);
+
+
+	output = j((int)&hook[0]);
 	patchInt(0x191E24, output);
 
-	output = li(a0, val);
+
+	jump = 0x191ECC;
+	static int hook2[3];
+	hook2[0] = lui(a0, HIWORD(val));
+	hook2[1] = ori(a0, a0, HIWORD(val));
+	hook2[2] = j(jump);
+
+	output = j((int)&hook2[0]);
 	patchInt(0x191EB4, output);
 
-	output = li(a0, val);
+
+	jump = 0x191F5C;
+	static int hook3[3];
+	hook3[0] = lui(a0, HIWORD(val));
+	hook3[1] = ori(a0, a0, HIWORD(val));
+	hook3[2] = j(jump);
+
+	output = j((int)&hook3[0]);
 	patchInt(0x191F44, output);
 
-	output = li(a1, val);
+
+	jump = 0x192D9C;
+	static int hook4[3];
+	hook4[0] = lui(a1, HIWORD(val));
+	hook4[1] = ori(a1, a1, HIWORD(val));
+	hook4[2] = j(jump);
+
+	output = j((int)&hook4[0]);
 	patchInt(0x192D84, output);
 
-	output = li(s2, val);
+
+	jump = 0x192E84;
+	static int hook5[3];
+	hook5[0] = lui(s2, HIWORD(val));
+	hook5[1] = ori(s2, s2, HIWORD(val));
+	hook5[2] = j(jump);
+
+	output = j((int)&hook5[0]);
 	patchInt(0x192E58, output);
 
-	output = li(s2, val);
+	jump = 0x1931A4;
+	static int hook6[3];
+	hook6[0] = lui(s2, HIWORD(val));
+	hook6[1] = ori(s2, s2, HIWORD(val));
+	hook6[2] = j(jump);
+
+	output = j((int)&hook6[0]);
 	patchInt(0x193188, output);
+
+
+	//
+	//output = li(s2, val);
+	//patchInt(0x192E58, output);
+	//
+	//output = li(s2, val);
+	//patchInt(0x193188, output);
 }
 void init_stage_hook()
 {
