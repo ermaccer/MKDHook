@@ -1,5 +1,6 @@
 #pragma once
 #include "mkdeception.h"
+//#define KONQUEST_FP
 
 int hook_character_lock_status(int id, int param);
 

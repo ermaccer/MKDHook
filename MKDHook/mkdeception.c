@@ -27,6 +27,7 @@ void(*get_bone_pos)(int obj, int id, struct CVector* pos);
 void(*hide_limb)(int obj, int id, int unk);
 void(*setup_fatality_scene)();
 void(*split_in_half)(int obj);
+void(*konquest_hide_hud)(int status);
 
 int get_game_state()
 {
@@ -162,4 +163,15 @@ void MKDeception_Init()
 	setup_fatality_scene = (void*)0x25D250;
 	split_in_half = (void*)0x3C0840;
 	hide_limb = (void*)0x262A10;
+
+	konquest_hide_hud = (void*)0x2F8260;
+}
+
+int get_monk()
+{
+	int p_konquest_data = *(int*)(0x5D6F40);
+	int obj = *(int*)(p_konquest_data + 248);
+	if (*(int*)(obj + 4) != *(int*)(p_konquest_data + 252))
+		obj = 0;
+	return obj;
 }

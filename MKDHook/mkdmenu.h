@@ -105,3 +105,7 @@ void enable_fatality_camera();
 
 void update_player1_scale();
 void update_player2_scale();
+
+// konquest 
+void konquest_camera();
+

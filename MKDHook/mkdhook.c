@@ -146,4 +146,13 @@ void process_mkdhook()
 	}
 	else
 		Menu_Unset();
+
+#ifdef KONQUEST_FP
+	if (get_game_state() == STATE_KONQUEST)
+	{
+		konquest_camera();
+	}
+#endif // KONQUEST_FP
+
+
 }

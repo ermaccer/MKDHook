@@ -7,7 +7,7 @@
 #include "stage.h"
 
 void dummy() {}
-
+int dummy_true() { return 1; }
 int CompatibleCRCList[] = { 0x7C22850A };
 void init()
 {
@@ -52,7 +52,6 @@ void init()
    game_printf("MKDHook init!\n");
   // *(float*)(0x5E8C60) = 16 / 9;
    //*(float*)(0x5D4DD4) = 95.0f;
-
 }
 
 int main()

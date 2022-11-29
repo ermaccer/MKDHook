@@ -45,6 +45,8 @@ extern void(*sever_limb)(int obj, int id, int unk, int unk2);
 extern void(*split_in_half)(int obj);
 extern void(*hide_limb)(int obj, int id, int unk);
 
+extern void(*konquest_hide_hud)(int status);
+
 int get_game_state();
 int get_game_tick();
 void xfer_proc(int proc, int function);
@@ -69,7 +71,9 @@ enum game_state {
 	STATE_GAME,
 	STATE_8,
 	STATE_MENU,
-
+	STATE_10,
+	STATE_KRYPT,
+	STATE_KONQUEST = 19
 };
 
 enum characters
@@ -2264,3 +2268,15 @@ struct player_data
 	char field_7FE;
 	char field_7FF;
 };
+
+
+// konquest
+
+enum monk_state {
+	MONK_IDLE,
+	MONK_WALK,
+	MONK_RUN,
+	MONK_ATTACK
+};
+
+int get_monk();

@@ -599,3 +599,23 @@ void update_player2_scale()
 		}
 	}
 }
+void konquest_camera()
+{
+	int monk = get_monk();
+	int camera = *(int*)0x5D6698;
+	if (monk)
+	{
+		static struct CVector k_camRot;
+		struct CVector pos = *(struct CVector*)(monk + 160);
+		get_bone_pos(monk, 10, &pos);
+		setFov(100.0f);
+		set_cam_pos(&pos);
+		if (camera && !pressed_button(0, PAD_R3))
+			k_camRot = *(struct CVector*)(camera + 208);
+		else if (pressed_button(0, PAD_R3))
+			set_cam_rot(&k_camRot);
+
+		if (pressed_button(0,PAD_L3))
+			konquest_hide_hud(0);
+	}
+}
