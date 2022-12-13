@@ -53,7 +53,7 @@ enum backgrounds {
 	BGS_NEXUS,
 	BGS_NEXUS_NIS,
 	// new
-
+	BGS_KATAKOMBS,
 	TOTAL_BACKGROUNDS
 };
 
@@ -61,7 +61,8 @@ enum backgrounds {
 void dump_stage_table(unsigned int addr);
 void dump_select_stable(unsigned int addr);
 void patch_stage_data();
+int hook_bgnd_locked(int id);
+
+void play_kon_music();
 
 void init_stage_hook();
-
-char* get_arena_name();

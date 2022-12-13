@@ -147,12 +147,12 @@ void process_mkdhook()
 	else
 		Menu_Unset();
 
-#ifdef KONQUEST_FP
+
 	if (get_game_state() == STATE_KONQUEST)
 	{
-		konquest_camera();
+		Konquest_Process_Cameras();
 	}
-#endif // KONQUEST_FP
-
+	else
+		Menu_K_Reset();
 
 }

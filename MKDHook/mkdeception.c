@@ -1,5 +1,6 @@
 #include "mkdeception.h"
 
+int(*is_bgnd_locked)(int id);
 int(*is_char_locked)(int id, int param);
 int(*load_hero_model)(int ptr);
 
@@ -18,7 +19,7 @@ void(*mko_player_call)();
 void(*update_string)(int string, int font, char* newText);
 void(*string_set_alpha)(int id, int alpha);
 void(*pause)(int i);
-
+int(*randu)(int max);
 void(*set_cam_pos)(struct CVector* pos);
 void(*set_cam_rot)(struct CVector* rot);
 void(*set_cam_target)(struct CVector* rot);
@@ -28,7 +29,10 @@ void(*hide_limb)(int obj, int id, int unk);
 void(*setup_fatality_scene)();
 void(*split_in_half)(int obj);
 void(*konquest_hide_hud)(int status);
-
+int(*snd_req)(int id);
+void(*music_proc)();
+int(*get_stick)(int player, int which, float* x, float* y);
+void(*update_camera)();
 int get_game_state()
 {
 	return *(int*)0x612E14;
@@ -104,7 +108,9 @@ void get_obj_matrix_right(int obj, struct CVector* mat)
 
 void get_matrix_right(int obj, struct CVector* mat)
 {
-
+	mat->x = *(float*)(*(int*)(obj + 36) + 0);
+	mat->y = *(float*)(*(int*)(obj + 36) + 4);
+	mat->z = *(float*)(*(int*)(obj + 36) + 8);
 }
 
 void get_matrix_forward(int obj, struct CVector* mat)
@@ -131,6 +137,11 @@ void call_script(char* name)
 	//mko_clear();
 	//mko_push(script, id);
 	//mko_run(script);
+}
+
+void set_music(int id)
+{
+	*(int*)0x5D62EC = snd_req(id);
 }
 
 
@@ -165,6 +176,13 @@ void MKDeception_Init()
 	hide_limb = (void*)0x262A10;
 
 	konquest_hide_hud = (void*)0x2F8260;
+
+	is_bgnd_locked = (void*)0x13DF20;
+	snd_req = (void*)0x12B2B0;
+	randu = (void*)0x18D1D0;
+	music_proc = (void*)0x129860;
+	update_camera = (void*)0x1833C0;
+	get_stick = (void*)0x16A8B0;
 }
 
 int get_monk()

@@ -5,6 +5,7 @@
 #include "ps2mem.h"
 #include "mips.h"
 
+
 struct mk_file_entry katakombs_entry_table[] = {
 	{"katakombs.ssf"	,0, 4},
 	{"katakombs.sec"	,0, 1},
@@ -57,31 +58,41 @@ struct stage_info_entry pStageTable[] = {
 	{0x5A4ED0	, "edenia_1.mko"	, 0	,4,},
 	{0x5A5DC0	, "nexus_1.mko"	, 0	,4,},
 	{0x5A60C0	, "nexus_nis.mko"	, 0	,0,},
+	// new
+	{(int)&katakombs_file_table[0]	, "katakombs.mko"	, 0	,0,},
 };
 
 struct stage_select_entry pStageSelectNormal[] = {
-	{0	, "BEETLE LAIR"	,"BGS_BEETLE"	, 6	},
-	{19	, "SLAUGHTERHOUSE"	,"BGS_SLAUGHTER"	, 7	},
-	{18	, "SKY TEMPLE"	,"BGS_SKYTEMPLE"	, 7	},
-	{21	, "YIN YANG ISLAND"	,"BGS_YINYANG"	, 1	},
-	{17	, "CHAMBER OF ARTIFACTS"	,"BGS_REDDRAGON"	, 6	},
-	{14	, "NETHERSHIP INTERIOR"	,"BGS_NETHERBELLY"	, 2	},
-	{8	, "HELL'S FOUNDRY"	,"BGS_FOUNDRY"	, 3	},
-	{6	, "FALLING CLIFFS"	,"BGS_CLIFF"	, 1	},
-	{12	, "GOLDEN DESERT"	,"BGS_LOSTWARRIORS"	, 3	},
-	{2	, "DARK PRISON"	,"BGS_PRISON"	, 3	},
-	{13	, "LOWER MINES"	,"BGS_MINES"	, 3	},
-	{5	, "DRAGON MOUNTAIN"	,"BGS_DRAGON"	, 2	},
-	{9	, "LIU KANG'S TOMB"	,"BGS_KANGTOMB"	, 4	},
-	{1	, "COURTYARD"	,"BGS_COURTYARD"	, 0	},
-	{16	, "PORTAL"	,"BGS_PORTAL"	, 0	},
-	{20	, "THE PIT"	,"BGS_THEPIT"	, 1	},
-	{3	, "DEAD POOL"	,"BGS_DEADPOOL"	, 1	},
-	{7	, "QUAN CHI'S FORTRESS"	,"BGS_FORTRESS"	, 1	},
-	{10	, "KUATAN PALACE"	,"BGS_KUATAN"	, 1	},
-	{11	, "LIVING FOREST"	,"BGS_FOREST"	, 0	},
-	{4	, "DRAGON KING'S TEMPLE"	,"BGS_DKA"	, 1	},
-	{15	, "NEXUS ARENA"	,"BGS_NEXUS"	, 1	},
+	{BGS_BEETLELAIR	, "BEETLE LAIR"	,"BGS_BEETLE"	, 6	},
+	{BGS_SLAUGHTERHOUSE	, "SLAUGHTERHOUSE"	,"BGS_SLAUGHTER"	, 7	},
+	{BGS_SKYTEMPLE	, "SKY TEMPLE"	,"BGS_SKYTEMPLE"	, 7	},
+	{BGS_YINYANG	, "YIN YANG ISLAND"	,"BGS_YINYANG"	, 1	},
+	{BGS_REDDRAGON	, "CHAMBER OF ARTIFACTS"	,"BGS_REDDRAGON"	, 6	},
+	{BGS_NETHERBELLY	, "NETHERSHIP INTERIOR"	,"BGS_NETHERBELLY"	, 2	},
+	{BGS_HELLSFOUNDRY	, "HELL'S FOUNDRY"	,"BGS_FOUNDRY"	, 3	},
+	{BGS_FALLINGCLIFF	, "FALLING CLIFFS"	,"BGS_CLIFF"	, 1	},
+	{BGS_LOSTWARRIORS	, "GOLDEN DESERT"	,"BGS_LOSTWARRIORS"	, 3	},
+	{BGS_DARKPRISON	, "DARK PRISON"	,"BGS_PRISON"	, 3	},
+	{BGS_LOWERMINES	, "LOWER MINES"	,"BGS_MINES"	, 3	},
+	{BGS_DRAGONMOUNTAIN	, "DRAGON MOUNTAIN"	,"BGS_DRAGON"	, 2	},
+	{BGS_KANGTOMB	, "LIU KANG'S TOMB"	,"BGS_KANGTOMB"	, 4	},
+	{BGS_COURTYARD	, "COURTYARD"	,"BGS_COURTYARD"	, 0	},
+	{BGS_PORTAL	, "PORTAL"	,"BGS_PORTAL"	, 0	},
+	{BGS_THEPIT	, "THE PIT"	,"BGS_THEPIT"	, 1	},
+	{BGS_DEADPOOL	, "DEAD POOL"	,"BGS_DEADPOOL"	, 1	},
+	{BGS_FORTRESS	, "QUAN CHI'S FORTRESS"	,"BGS_FORTRESS"	, 1	},
+	{BGS_KUATANPALACE	, "KUATAN PALACE"	,"BGS_KUATAN"	, 1	},
+	{BGS_LIVINGFOREST	, "LIVING FOREST"	,"BGS_FOREST"	, 0	},
+	{BGS_DKA	, "DRAGON KING'S TEMPLE"	,"BGS_DKA"	, 1	},
+	{BGS_NEXUS_ARENA	, "NEXUS ARENA"	,"BGS_NEXUS"	, 1	},
+	// NEW
+	{BGS_KATAKOMBS,	"KATAKOMBS", "NULL"	, 0},
+	{BGS_EARTH_1,	"EARTHREALM", "NULL"	, 0},
+	{BGS_NETHERREALM,	"NETHERREALM", "NULL"	, 0	},
+	{BGS_CHAOSREALM,"CHAOSRREALM"	, "NULL"	, 0	},
+	{BGS_OUTWORLD,"ORDERREALM"	, "NULL"	, 0	},
+	{BGS_ORDERREALM	,"OUTWORLD", "NULL"	, 0	},
+	{BGS_EDENIA,	"EDENIA", "NULL"	, 0	},
 };
 
 
@@ -119,90 +130,50 @@ void dump_select_stable(unsigned int addr)
 }
 void patch_stage_data()
 {
+	int val = 0;
+	// SELECT
 	short selectSize = sizeof(pStageSelectNormal) / sizeof(pStageSelectNormal[0]);
 	patchShort(0x191EAC, selectSize);
 	patchShort(0x192D7C, selectSize);
 	patchShort(0x192E50, selectSize);
 	patchShort(0x193180, selectSize);
+	patchShort(0x193070, selectSize);
 
 
-	int val = 0;
-	int output = 0;
-	int jump = 0;
 
-	// stage selection
 	val = (int)&pStageSelectNormal[0];
 
-	jump = 0x191E3C;
 
-	static int hook[3];
-	hook[0] = lui(a0, HIWORD(val));
-	hook[1] = ori(a0, a0, HIWORD(val));
-	hook[2] = j(jump);
+	patchInt(0x191E10, lui(a0, HIWORD(val)));
+	patchInt(0x191E24, ori(a0, a0, LOWORD(val)));
 
-
-	output = j((int)&hook[0]);
-	patchInt(0x191E24, output);
-
-
-	jump = 0x191ECC;
-	static int hook2[3];
-	hook2[0] = lui(a0, HIWORD(val));
-	hook2[1] = ori(a0, a0, HIWORD(val));
-	hook2[2] = j(jump);
-
-	output = j((int)&hook2[0]);
-	patchInt(0x191EB4, output);
+	patchInt(0x191EA0, lui(a0, HIWORD(val)));
+	patchInt(0x191EB4, ori(a0, a0, LOWORD(val)));
+	
+	patchInt(0x191F30, lui(a0, HIWORD(val)));
+	patchInt(0x191F44, ori(a0, a0, LOWORD(val)));
 
 
-	jump = 0x191F5C;
-	static int hook3[3];
-	hook3[0] = lui(a0, HIWORD(val));
-	hook3[1] = ori(a0, a0, HIWORD(val));
-	hook3[2] = j(jump);
-
-	output = j((int)&hook3[0]);
-	patchInt(0x191F44, output);
+	patchInt(0x192D70, lui(a1, HIWORD(val)));
+	patchInt(0x192D84, ori(a1, a1, LOWORD(val)));
 
 
-	jump = 0x192D9C;
-	static int hook4[3];
-	hook4[0] = lui(a1, HIWORD(val));
-	hook4[1] = ori(a1, a1, HIWORD(val));
-	hook4[2] = j(jump);
-
-	output = j((int)&hook4[0]);
-	patchInt(0x192D84, output);
+	patchInt(0x192E4C, lui(s2, HIWORD(val)));
+	patchInt(0x192E58, ori(s2, s2, LOWORD(val)));
 
 
-	jump = 0x192E84;
-	static int hook5[3];
-	hook5[0] = lui(s2, HIWORD(val));
-	hook5[1] = ori(s2, s2, HIWORD(val));
-	hook5[2] = j(jump);
+	patchInt(0x193174, lui(s2, HIWORD(val)));
+	patchInt(0x193188, ori(s2, s2, LOWORD(val)));
 
-	output = j((int)&hook5[0]);
-	patchInt(0x192E58, output);
-
-	jump = 0x1931A4;
-	static int hook6[3];
-	hook6[0] = lui(s2, HIWORD(val));
-	hook6[1] = ori(s2, s2, HIWORD(val));
-	hook6[2] = j(jump);
-
-	output = j((int)&hook6[0]);
-	patchInt(0x193188, output);
+	// NAME
+	val += 4;
+	patchInt(0x19380C, lui(v0, HIWORD(val)));
+	patchInt(0x19380C + 4, ori(v0, v0, LOWORD(val)));
 
 
-	//
-	//output = li(s2, val);
-	//patchInt(0x192E58, output);
-	//
-	//output = li(s2, val);
-	//patchInt(0x193188, output);
-}
-void init_stage_hook()
-{
+	// STAGE DATA
+
+	// toc
 	for (int i = 0; i < 4; i++)
 	{
 		katakombs_entry_table[i].belong = &katakombs_file_table[0];
@@ -214,6 +185,74 @@ void init_stage_hook()
 		katakombs_file_table[i].previousSize = baseSize;
 		baseSize += (katakombs_file_table[i].size + 2048 - 1) & -2048;
 	}
+
+	// code
+	patchShort(0x13DF28, TOTAL_BACKGROUNDS + 1);
+	patchShort(0x16F098, TOTAL_BACKGROUNDS);
+	patchShort(0x16F07C, TOTAL_BACKGROUNDS);
+	patchShort(0x16F054, TOTAL_BACKGROUNDS);
+	patchShort(0x129884, TOTAL_BACKGROUNDS);
+
+	val = (int)&pStageTable[0];
+	patchInt(0x15A668, lui(v0, HIWORD(val)));
+	patchInt(0x15A670, ori(v0, v0, LOWORD(val)));
+
+	// script
+	val += 4;
+	patchInt(0x15A680, lui(v0, HIWORD(val)));
+	patchInt(0x15A680 + 4, ori(v0, v0, LOWORD(val)));
+
+	// unk2
+	val += 8;
+	patchInt(0x15A76C, lui(v1, HIWORD(val)));
+	patchInt(0x15A76C + 4, ori(v1, v1, LOWORD(val)));
+
+	patchInt(0x15A7E8, lui(v1, HIWORD(val)));
+	patchInt(0x15A818, ori(v1, v1, LOWORD(val)));
+
+	// unk
+	val -= 4;
+	patchInt(0x3E7D94, lui(v0, HIWORD(val)));
+	patchInt(0x3E7D94 + 4, ori(v0, v0, LOWORD(val)));
+
+	// lock status
+
+	makeJal(0x13DFE8, hook_bgnd_locked);
+	makeJal(0x13E058, hook_bgnd_locked);
+	makeJal(0x192EF8, hook_bgnd_locked);
+	makeJal(0x3E7BD8, hook_bgnd_locked);
+	makeJal(0x3E7C5C, hook_bgnd_locked);
+	makeJal(0x3E7D5C, hook_bgnd_locked);
+	makeJal(0x3E840C, hook_bgnd_locked);
+	makeJal(0x3E857C, hook_bgnd_locked);
+
+	// music
+
+	//makeJal(0x16ED7C, play_kon_music);
+	//makeJal(0x3C722C, play_kon_music);
+	//makeJal(0x3F3638, play_kon_music);
+}
+int hook_bgnd_locked(int id)
+{
+	id = BGS_THEPIT;
+	return is_bgnd_locked(id);;
+}
+void play_kon_music()
+{
+	int cur_bgnd = *(int*)0x5E4368;
+
+	if (cur_bgnd >= BGS_EARTH_1 && cur_bgnd <= BGS_EDENIA)
+	{
+		int p_data= *(int*)(0x5E435C);
+		int music = randu(24);
+		set_music(6939);
+	}
+	else
+		music_proc();
+}
+void init_stage_hook()
+{
+
 	int stage_addr = 0x4FBFA0;
 	*(int*)(stage_addr) = (int)&katakombs_file_table[0];
 	*(int*)(stage_addr + 4) = (int)&script_name[0];

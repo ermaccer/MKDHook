@@ -96,8 +96,12 @@ void Menu_Unset();
 void Menu_ProcessCustomCams();
 void Menu_ProcessFreeCamera();
 void Menu_Toggle_FreeCam();
+void Menu_Toggle_KFP();
+void Menu_Toggle_KFP_Look();
+void Menu_Toggle_KHud();
 void setFov(float value);
-
+void Menu_Init_Vars();
+void Menu_K_Reset();
 void disable_fatality_camera();
 void enable_fatality_camera();
 
@@ -108,4 +112,6 @@ void update_player2_scale();
 
 // konquest 
 void konquest_camera();
+void Konquest_Process_Cameras();
+
 

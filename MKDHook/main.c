@@ -12,7 +12,7 @@ int CompatibleCRCList[] = { 0x7C22850A };
 void init()
 {
     MKDeception_Init();
-
+    Menu_Init_Vars();
     //calculate_custom_toc();
     //set_char_table();
     //dump_char_table();
@@ -46,7 +46,7 @@ void init()
    
    makeJal(0x1A3EFC, Menu_Init);
 
-   //patch_stage_data();
+   patch_stage_data();
     
 
    game_printf("MKDHook init!\n");

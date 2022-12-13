@@ -16,12 +16,16 @@ struct CQuat
 // plr obj
 // 20 - visible
 
+extern int(*is_bgnd_locked)(int id);
 extern int(*is_char_locked)(int id, int param);
 extern int(*load_hero_model)(int ptr);
-
+extern int(*randu)(int max);
 extern int(*pressed_button)(int player, int id);
+extern int(*get_stick)(int player, int which, float* x, float* y);
+extern void(*update_camera)(); 
 extern void (*game_printf)(char* format, ...);
 extern void(*render)();
+extern void(*music_proc)();
 extern void(*refresh_screen)();
 extern int(*string_left_xy)(int id, int font, char* text, int y, int x, int unk);
 extern void(*mko_push)(int script, int command_id);
@@ -47,6 +51,8 @@ extern void(*hide_limb)(int obj, int id, int unk);
 
 extern void(*konquest_hide_hud)(int status);
 
+extern int(*snd_req)(int id);
+
 int get_game_state();
 int get_game_tick();
 void xfer_proc(int proc, int function);
@@ -58,6 +64,8 @@ void get_matrix_right(int obj, struct CVector* mat);
 void get_matrix_forward(int obj, struct CVector* mat);
 
 void call_script(char* func);
+
+void set_music(int id);
 
 
 enum game_state {

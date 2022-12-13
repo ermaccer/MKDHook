@@ -25,6 +25,8 @@ float m_nP2Scale = 1.0;
 int m_bFirstPersonCam = 0;
 int m_bThirdPersonCam = 0;
 int m_bFreeCamera = 0;
+int m_bKonquestFPCam = 0;
+int m_bKonquestFPCamView = 0;
 
 int menuAssoc[MENU_MAX_STRINGS * 2] =
 {
@@ -165,7 +167,7 @@ void Menu_Draw()
 					sprintf(tmp, "%s %s", "Value - ", TRUE_FALSE(m_bFreeCamera));
 					break;
 				default:
-					sprintf(tmp, "Restart match for FOV changes to apply.");
+					sprintf(tmp, "Changes current field of view.");
 					break;
 				}
 				update_string(menuStrings[TOTAL_CAMERA + 1], 0, tmp);
@@ -389,18 +391,23 @@ void Menu_ProcessCamera()
 		break;
 	case FOV_72:
 		setFov(72.0f);
+		update_camera();
 		break;
 	case FOV_90:
 		setFov(90.0f);
+		update_camera();
 		break;
 	case FOV_95:
 		setFov(95.0f);
+		update_camera();
 		break;
 	case FOV_110:
 		setFov(110.0f);
+		update_camera();
 		break;
 	case FOV_120:
 		setFov(120.0f);
+		update_camera();
 		break;
 	case FREE_CAMERA:
 		m_bFreeCamera = !m_bFreeCamera;
@@ -474,51 +481,74 @@ void Menu_ProcessCustomCams()
 void Menu_ProcessFreeCamera()
 {
 	int camera = *(int*)0x5D6698;
-
 	if (m_bFreeCamera)
 	{
-		static float camSpeed = 0.15f;
+		if (camera)
+		{
+			static float camSpeed = 0.15f;
 
-		if (GetAsyncKeyState(90))
-			camSpeed = 0.07f;
-		else
-			camSpeed = 0.15f;
+			struct CVector rightMat;
+			struct CVector forwardMat;
 
-		if (GetAsyncKeyState(87))
-			camPos.z -= camSpeed;
-		if (GetAsyncKeyState(83))
-			camPos.z += camSpeed;
+			get_matrix_right(camera, &rightMat);
+			get_matrix_forward(camera, &forwardMat);
 
-		if (GetAsyncKeyState(65))
-			camPos.x -= camSpeed;
-		if (GetAsyncKeyState(68))
-			camPos.x += camSpeed;
+			if (GetAsyncKeyState(90))
+				camSpeed = 0.07f;
+			else
+				camSpeed = 0.15f;
 
-		if (GetAsyncKeyState(81))
-			camPos.y += camSpeed;
-		if (GetAsyncKeyState(69))
-			camPos.y -= camSpeed;
+			if (GetAsyncKeyState(87))
+			{
+				camPos.x += camSpeed * forwardMat.x;
+				camPos.y += camSpeed * forwardMat.y;
+				camPos.z += camSpeed * forwardMat.z;
+			}
 
-		if (GetAsyncKeyState(37))
-			camRot.y += camSpeed / 4.0f;
-		if (GetAsyncKeyState(39))
-			camRot.y -= camSpeed / 4.0f;
+			if (GetAsyncKeyState(83))
+			{
+				camPos.x -= camSpeed * forwardMat.x;
+				camPos.y -= camSpeed * forwardMat.y;
+				camPos.z -= camSpeed * forwardMat.z;
+			}
+			if (GetAsyncKeyState(65))
+			{
+				camPos.x += camSpeed * rightMat.x;
+				camPos.y += camSpeed * rightMat.y;
+				camPos.z += camSpeed * rightMat.z;
+			}
+			if (GetAsyncKeyState(68))
+			{
+				camPos.x -= camSpeed * rightMat.x;
+				camPos.y -= camSpeed * rightMat.y;
+				camPos.z -= camSpeed * rightMat.z;
+			}
+			if (GetAsyncKeyState(81))
+				camPos.y += camSpeed;
+			if (GetAsyncKeyState(69))
+				camPos.y -= camSpeed;
 
-		if (GetAsyncKeyState(38))
-			camRot.x -= camSpeed / 4.0f;
-		if (GetAsyncKeyState(40))
-			camRot.x += camSpeed / 4.0f;
+			if (GetAsyncKeyState(37))
+				camRot.y += camSpeed / 4.0f;
+			if (GetAsyncKeyState(39))
+				camRot.y -= camSpeed / 4.0f;
 
-		if (GetAsyncKeyState(88))
-			camRot.z -= camSpeed / 4.0f;
-		if (GetAsyncKeyState(67))
-			camRot.z += camSpeed / 4.0f;
+			if (GetAsyncKeyState(38))
+				camRot.x -= camSpeed / 4.0f;
+			if (GetAsyncKeyState(40))
+				camRot.x += camSpeed / 4.0f;
 
-		set_cam_pos(&camPos);
-		set_cam_rot(&camRot);
+			if (GetAsyncKeyState(88))
+				camRot.z -= camSpeed / 4.0f;
+			if (GetAsyncKeyState(67))
+				camRot.z += camSpeed / 4.0f;
+
+			set_cam_pos(&camPos);
+			set_cam_rot(&camRot);
 
 
 
+		}
 	}
 	else
 	{
@@ -539,9 +569,44 @@ void Menu_Toggle_FreeCam()
 	m_bFreeCamera = !m_bFreeCamera;
 }
 
+void Menu_Toggle_KFP()
+{
+	if (get_game_tick() - m_nTimer <= 15) return;
+	m_nTimer = get_game_tick();
+	m_bKonquestFPCam = !m_bKonquestFPCam;
+	setFov(100.0f);
+}
+
+void Menu_Toggle_KFP_Look()
+{
+	if (get_game_tick() - m_nTimer <= 15) return;
+	m_nTimer = get_game_tick();
+	m_bKonquestFPCamView = !m_bKonquestFPCamView;
+}
+
+void Menu_Toggle_KHud()
+{
+	if (get_game_tick() - m_nTimer <= 15) return;
+	m_nTimer = get_game_tick();
+	konquest_hide_hud(0);
+}
+
 void setFov(float value)
 {
 	*(float*)(0x5D4DD4) = value;
+}
+
+void Menu_Init_Vars()
+{
+	m_bFreeCamera = 0;
+	m_bKonquestFPCam = 0;
+	m_bKonquestFPCamView = 0;
+}
+
+void Menu_K_Reset()
+{
+	m_bKonquestFPCam = 0;
+	m_bKonquestFPCamView = 0;
 }
 
 void disable_fatality_camera()
@@ -610,12 +675,36 @@ void konquest_camera()
 		get_bone_pos(monk, 10, &pos);
 		setFov(100.0f);
 		set_cam_pos(&pos);
-		if (camera && !pressed_button(0, PAD_R3))
-			k_camRot = *(struct CVector*)(camera + 208);
-		else if (pressed_button(0, PAD_R3))
-			set_cam_rot(&k_camRot);
 
-		if (pressed_button(0,PAD_L3))
-			konquest_hide_hud(0);
+		if (pressed_button(0, PAD_R3))
+			Menu_Toggle_KFP_Look();
+
+		if (camera && !m_bKonquestFPCamView)
+			k_camRot = *(struct CVector*)(camera + 208);
+		else if (m_bKonquestFPCamView)
+		{
+			float x, y;
+			get_stick(0, 1, &x, &y);
+			k_camRot.y += -x * 0.065f;
+			k_camRot.x += y * 0.065f;
+			set_cam_rot(&k_camRot);
+		}
 	}
+}
+
+void Konquest_Process_Cameras()
+{
+	if (GetAsyncKeyState(71))
+		Menu_Toggle_FreeCam();
+	if (GetAsyncKeyState(70))
+		Menu_Toggle_KFP();
+
+	if (pressed_button(0, PAD_L3))
+		Menu_Toggle_KHud();
+
+
+	if (m_bKonquestFPCam)
+		konquest_camera();
+
+	Menu_ProcessFreeCamera();
 }
