@@ -33,6 +33,8 @@ int(*snd_req)(int id);
 void(*music_proc)();
 int(*get_stick)(int player, int which, float* x, float* y);
 void(*update_camera)();
+int(*load_background)(int id);
+
 int get_game_state()
 {
 	return *(int*)0x612E14;
@@ -183,6 +185,8 @@ void MKDeception_Init()
 	music_proc = (void*)0x129860;
 	update_camera = (void*)0x1833C0;
 	get_stick = (void*)0x16A8B0;
+
+	load_background = (void*)0x15A620;
 }
 
 int get_monk()

@@ -7,6 +7,9 @@
     <Filter Include="source">
       <UniqueIdentifier>{76FF3A1C-62A1-65F2-4B5C-7946379DEC42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\stages">
+      <UniqueIdentifier>{8cd8a819-1d7b-48bc-9c00-5205b3b9c530}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -36,6 +39,12 @@
     <ClCompile Include="mips.c">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="stages\acidbath.c">
+      <Filter>source\stages</Filter>
+    </ClCompile>
+    <ClCompile Include="stages\katakombs.c">
+      <Filter>source\stages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ps2mem.h">
@@ -64,6 +73,12 @@
     </ClInclude>
     <ClInclude Include="mips.h">
       <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="stages\acidbath.h">
+      <Filter>source\stages</Filter>
+    </ClInclude>
+    <ClInclude Include="stages\katakombs.h">
+      <Filter>source\stages</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

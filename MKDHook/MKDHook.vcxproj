@@ -52,6 +52,8 @@
     <ClCompile Include="mouse.c" />
     <ClCompile Include="ps2mem.c" />
     <ClCompile Include="stage.c" />
+    <ClCompile Include="stages\acidbath.c" />
+    <ClCompile Include="stages\katakombs.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mips.h" />
@@ -62,6 +64,8 @@
     <ClInclude Include="mouse.h" />
     <ClInclude Include="ps2mem.h" />
     <ClInclude Include="stage.h" />
+    <ClInclude Include="stages\acidbath.h" />
+    <ClInclude Include="stages\katakombs.h" />
     <ClInclude Include="toc.h" />
   </ItemGroup>
   <ItemGroup>

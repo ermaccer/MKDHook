@@ -5,21 +5,10 @@
 #include "ps2mem.h"
 #include "mips.h"
 
+// stage incldues
 
-struct mk_file_entry katakombs_entry_table[] = {
-	{"katakombs.ssf"	,0, 4},
-	{"katakombs.sec"	,0, 1},
-	{"katakombs.mko"	,0, 3},
-	{"katakombs_fx.mko"	,0, 3},
-};
-
-struct mk_toc_entry katakombs_file_table[] = {
-		{&katakombs_entry_table[0]	,0,0 },
-		{&katakombs_entry_table[1]	,0,2983296},
-		{&katakombs_entry_table[2]	,0,2264},
-		{&katakombs_entry_table[3]	,0,1576},
-		{0,0,0}
-};
+#include "stages/acidbath.h"
+#include "stages/katakombs.h"
 
 
 struct stage_info_entry pStageTable[] = {
@@ -60,6 +49,13 @@ struct stage_info_entry pStageTable[] = {
 	{0x5A60C0	, "nexus_nis.mko"	, 0	,0,},
 	// new
 	{(int)&katakombs_file_table[0]	, "katakombs.mko"	, 0	,0,},
+	// clones for dojo
+	{0x5A4790	, "earth_1.mko"	, 0	,0,},
+	{0x5A5AC0	, "netherrealm_1.mko"	, 0	,4,},
+	{0x5A3B40	, "chaosrealm_1.mko"	, 0	,4,},
+	{0x5A6730	, "outworld_1.mko"	, 0	,4,},
+	{0x5A6380	, "orderrealm_1.mko"	, 0	,4,},
+
 };
 
 struct stage_select_entry pStageSelectNormal[] = {
@@ -86,17 +82,23 @@ struct stage_select_entry pStageSelectNormal[] = {
 	{BGS_DKA	, "DRAGON KING'S TEMPLE"	,"BGS_DKA"	, 1	},
 	{BGS_NEXUS_ARENA	, "NEXUS ARENA"	,"BGS_NEXUS"	, 1	},
 	// NEW
-	{BGS_KATAKOMBS,	"KATAKOMBS", "NULL"	, 0},
+	{BGS_KATAKOMBS,	"KATAKOMBS", "NULL"	, 7},
+	// KONQUEST DOJOS
+	{BGS_EARTH_1_DOJO,	"EARTH DOJO", "NULL"	, 0},
+	{BGS_NETHERREALM_DOJO,	"NETHERREALM DOJO", "NULL"	, 0},
+	{BGS_CHAOSREALM_DOJO,	"CHAOSREALM DOJO", "NULL"	, 0},
+	{BGS_OUTWORLD_DOJO,	"OUTWORLD DOJO", "NULL"	, 0},
+	{BGS_ORDERREALM_DOJO,	"ORDERREALM DOJO", "NULL"	, 0},
+	// KONQUEST
 	{BGS_EARTH_1,	"EARTHREALM", "NULL"	, 0},
 	{BGS_NETHERREALM,	"NETHERREALM", "NULL"	, 0	},
 	{BGS_CHAOSREALM,"CHAOSRREALM"	, "NULL"	, 0	},
-	{BGS_OUTWORLD,"ORDERREALM"	, "NULL"	, 0	},
-	{BGS_ORDERREALM	,"OUTWORLD", "NULL"	, 0	},
+	{BGS_OUTWORLD,"OUTWORLD"	, "NULL"	, 0	},
+	{BGS_ORDERREALM	,"ORDERREALM", "NULL"	, 0	},
 	{BGS_EDENIA,	"EDENIA", "NULL"	, 0	},
 };
 
 
-char* script_name = "katakombs.mko";
 void dump_stage_table(unsigned int addr)
 {
 	int stage_addr = 0x4FBFA0;
@@ -128,7 +130,62 @@ void dump_select_stable(unsigned int addr)
 		game_printf(msgBuffer);
 	}
 }
-void patch_stage_data()
+
+int hook_bgnd_locked(int id)
+{
+	id = BGS_THEPIT;
+	return is_bgnd_locked(id);;
+}
+void play_kon_music()
+{
+	int cur_bgnd = *(int*)0x5E4368;
+
+	if (cur_bgnd >= BGS_EARTH_1 && cur_bgnd <= BGS_EDENIA)
+	{
+		int p_data= *(int*)(0x5E435C);
+		int music = randu(24);
+		set_music(6939);
+	}
+	else
+		music_proc();
+}
+
+int load_background_hook(int id)
+{
+	int* cur_bgnd = (int*)0x5E4368;
+	konquest_mission_info* mission_info = (konquest_mission_info*)MISSION_INFO;
+
+	if (id == BGS_EARTH_1_DOJO)
+	{
+		mission_info->field_14 = 65536;
+		*cur_bgnd = BGS_EARTH_1;
+	}
+	else if (id == BGS_NETHERREALM_DOJO)
+	{
+		mission_info->field_14 = 65536;
+		*cur_bgnd = BGS_NETHERREALM;
+	}
+	else if (id == BGS_CHAOSREALM_DOJO)
+	{
+		mission_info->field_14 = 65536;
+		*cur_bgnd = BGS_CHAOSREALM;
+	}
+	else if (id == BGS_OUTWORLD_DOJO)
+	{
+		mission_info->field_14 = 65536;
+		*cur_bgnd = BGS_OUTWORLD;
+	}
+	else if (id == BGS_ORDERREALM_DOJO)
+	{
+		mission_info->field_14 = 65536;
+		*cur_bgnd = BGS_ORDERREALM;
+	}
+
+
+	return load_background(id);
+}
+
+void init_stage_hook()
 {
 	int val = 0;
 	// SELECT
@@ -149,7 +206,7 @@ void patch_stage_data()
 
 	patchInt(0x191EA0, lui(a0, HIWORD(val)));
 	patchInt(0x191EB4, ori(a0, a0, LOWORD(val)));
-	
+
 	patchInt(0x191F30, lui(a0, HIWORD(val)));
 	patchInt(0x191F44, ori(a0, a0, LOWORD(val)));
 
@@ -174,17 +231,8 @@ void patch_stage_data()
 	// STAGE DATA
 
 	// toc
-	for (int i = 0; i < 4; i++)
-	{
-		katakombs_entry_table[i].belong = &katakombs_file_table[0];
-	}
+	init_stage_tocs();
 
-	int baseSize = 2048;
-	for (int i = 1; i < 4; i++)
-	{
-		katakombs_file_table[i].previousSize = baseSize;
-		baseSize += (katakombs_file_table[i].size + 2048 - 1) & -2048;
-	}
 
 	// code
 	patchShort(0x13DF28, TOTAL_BACKGROUNDS + 1);
@@ -231,34 +279,21 @@ void patch_stage_data()
 	//makeJal(0x16ED7C, play_kon_music);
 	//makeJal(0x3C722C, play_kon_music);
 	//makeJal(0x3F3638, play_kon_music);
-}
-int hook_bgnd_locked(int id)
-{
-	id = BGS_THEPIT;
-	return is_bgnd_locked(id);;
-}
-void play_kon_music()
-{
-	int cur_bgnd = *(int*)0x5E4368;
 
-	if (cur_bgnd >= BGS_EARTH_1 && cur_bgnd <= BGS_EDENIA)
-	{
-		int p_data= *(int*)(0x5E435C);
-		int music = randu(24);
-		set_music(6939);
-	}
-	else
-		music_proc();
+
+	// loading
+
+	makeJal(0x16F0B4, load_background_hook);
+	makeJal(0x382EB0, load_background_hook);
+	makeJal(0x383A90, load_background_hook);
+	makeJal(0x3C70FC, load_background_hook);
+	makeJal(0x3E8298, load_background_hook);
+	makeJal(0x3E82A8, load_background_hook);
+	makeJal(0x3F35BC, load_background_hook);
 }
-void init_stage_hook()
+
+void init_stage_tocs()
 {
-
-	int stage_addr = 0x4FBFA0;
-	*(int*)(stage_addr) = (int)&katakombs_file_table[0];
-	*(int*)(stage_addr + 4) = (int)&script_name[0];
-	*(int*)(stage_addr + 4 + 4) = 0x24;
-	*(int*)(stage_addr + 4 + 4 + 4) = 1;
-
-	//*(int*)(0x4FBFA0) = (int)0x4FBFA0;
-	//*(int*)(0x4FC1B0 + 4) = (int)&script_name[0];
+	init_katakombs_toc();
+	init_acidbath_toc();
 }

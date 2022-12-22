@@ -46,7 +46,7 @@ void init()
    
    makeJal(0x1A3EFC, Menu_Init);
 
-   patch_stage_data();
+   init_stage_hook();
     
 
    game_printf("MKDHook init!\n");

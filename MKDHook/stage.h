@@ -54,15 +54,23 @@ enum backgrounds {
 	BGS_NEXUS_NIS,
 	// new
 	BGS_KATAKOMBS,
+	// fake clones
+	BGS_EARTH_1_DOJO,
+	BGS_NETHERREALM_DOJO,
+	BGS_CHAOSREALM_DOJO,
+	BGS_OUTWORLD_DOJO,
+	BGS_ORDERREALM_DOJO,
 	TOTAL_BACKGROUNDS
 };
 
 // from mkuhook
 void dump_stage_table(unsigned int addr);
 void dump_select_stable(unsigned int addr);
-void patch_stage_data();
+
 int hook_bgnd_locked(int id);
 
 void play_kon_music();
+int load_background_hook(int id);
 
 void init_stage_hook();
+void init_stage_tocs();
