@@ -1,6 +1,7 @@
 #include "mkdhook.h"
 #include "mkdplrinfo.h"
 #include "mkdmenu.h"
+#include "stage.h"
 
 int  bSwapStatus = 0;
 int  menu_string = 0;
@@ -136,8 +137,17 @@ void process_mkdhook()
 				hook_new_select_table(1);
 		}
 		else
+		{
 			restore_select_screen();
+		}
+
 	}
+
+	// stage things
+	if (get_game_mode() == MODE_PUZZLE || get_game_mode() == MODE_CHESS)
+		restore_stage_luis();
+	else
+		hook_stage_select();
 	
 
  	if (get_game_state() == STATE_GAME)

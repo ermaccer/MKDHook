@@ -45,6 +45,9 @@
     <ClCompile Include="stages\katakombs.c">
       <Filter>source\stages</Filter>
     </ClCompile>
+    <ClCompile Include="ladder.c">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ps2mem.h">
@@ -79,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="stages\katakombs.h">
       <Filter>source\stages</Filter>
+    </ClInclude>
+    <ClInclude Include="ladder.h">
+      <Filter>source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

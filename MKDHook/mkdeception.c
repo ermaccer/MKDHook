@@ -34,10 +34,15 @@ void(*music_proc)();
 int(*get_stick)(int player, int which, float* x, float* y);
 void(*update_camera)();
 int(*load_background)(int id);
-
+char* (*get_string)(int id);
 int get_game_state()
 {
 	return *(int*)0x612E14;
+}
+
+int get_game_mode()
+{
+	return *(int*)(0x5D629C);
 }
 
 int get_game_tick()
@@ -65,40 +70,6 @@ struct CQuat* get_bone_rot(int obj, int id)
 	else
 		result = 0;
 	return result;
-}
-
-#define M_PI           3.14159265358979323846f
-
-#define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
-#define radToDeg(angleInRadians) ((angleInRadians) * 180.0 / M_PI)
-
-struct CVector get_bone_rot_vec(struct CQuat q)
-{
-	struct CQuat qrot = { -q.x, -q.y,-q.z,q.w };
-	struct CVector tmprot;
-
-
-	float ysqr = q.y * q.y;
-
-	float t0 = +2.0f * (q.w * q.x + q.y * q.z);
-	float t1 = +1.0f - 2.0f * (q.x * q.x + ysqr);
-	float roll = atan2(t0, t1);
-
-	float t2 = +2.0f * (q.w * q.y - q.z * q.x);
-	t2 = ((t2 > 1.0f) ? 1.0f : t2);
-	t2 = ((t2 < -1.0f) ? -1.0f : t2);
-
-	float pitch = asin(t2);
-	float t3 = +2.0f * (q.w * q.z + q.x * q.y);
-	float t4 = +1.0f - 2.0f * (ysqr + q.z * q.z);
-	float yaw = atan2(t3, t4);
-
-	tmprot.x = roll / M_PI * 180;
-	tmprot.y = pitch / M_PI * 180;
-	tmprot.z = yaw / M_PI * 180;
-
-	struct CVector rot = { degToRad(tmprot.x), degToRad(tmprot.y) ,degToRad(tmprot.z) };
-	return rot;
 }
 
 void get_obj_matrix_right(int obj, struct CVector* mat)
@@ -187,6 +158,8 @@ void MKDeception_Init()
 	get_stick = (void*)0x16A8B0;
 
 	load_background = (void*)0x15A620;
+
+	get_string = (void*)0x219CE0;
 }
 
 int get_monk()

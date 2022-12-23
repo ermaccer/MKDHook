@@ -5,6 +5,7 @@
 #include "mkdhook.h"
 #include "mkdmenu.h"
 #include "stage.h"
+#include "ladder.h"
 
 void dummy() {}
 int dummy_true() { return 1; }
@@ -21,7 +22,7 @@ void init()
    // skip intro
    *(int*)0x197258 = 0;
    *(int*)0x196F58 = 0;
-
+   makeJmp(0x197698, (void*)0x19776C);
 
    makeJal(0x132750, hook_character_lock_status);
    makeJal(0x1340E8, hook_character_lock_status);
@@ -47,7 +48,7 @@ void init()
    makeJal(0x1A3EFC, Menu_Init);
 
    init_stage_hook();
-    
+   init_ladder_hook();
 
    game_printf("MKDHook init!\n");
   // *(float*)(0x5E8C60) = 16 / 9;

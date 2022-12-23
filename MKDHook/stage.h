@@ -71,6 +71,12 @@ int hook_bgnd_locked(int id);
 
 void play_kon_music();
 int load_background_hook(int id);
+void hook_stage_select();
+char* hook_ladder_stage_name(int id);
+
 
 void init_stage_hook();
 void init_stage_tocs();
+
+
+void restore_stage_luis();

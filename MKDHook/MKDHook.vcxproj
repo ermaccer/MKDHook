@@ -43,6 +43,7 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ladder.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mips.c" />
     <ClCompile Include="mkdeception.c" />
@@ -56,6 +57,7 @@
     <ClCompile Include="stages\katakombs.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ladder.h" />
     <ClInclude Include="mips.h" />
     <ClInclude Include="mkdeception.h" />
     <ClInclude Include="mkdhook.h" />

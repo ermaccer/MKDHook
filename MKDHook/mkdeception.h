@@ -55,12 +55,13 @@ extern void(*konquest_hide_hud)(int status);
 
 extern int(*snd_req)(int id);
 extern int(*load_background)(int id);
+extern char*(*get_string)(int id);
 int get_game_state();
+int get_game_mode();
 int get_game_tick();
 void xfer_proc(int proc, int function);
 
 struct CQuat* get_bone_rot(int obj, int id);
-struct CVector  get_bone_rot_vec(struct CQuat base);
 
 void get_matrix_right(int obj, struct CVector* mat);
 void get_matrix_forward(int obj, struct CVector* mat);
@@ -76,7 +77,7 @@ enum game_state {
 	STATE_2,
 	STATE_ATTRACT,
 	STATE_SELECT,
-	STATE_5,
+	STATE_LADDER,
 	STATE_6,
 	STATE_GAME,
 	STATE_8,
@@ -84,6 +85,21 @@ enum game_state {
 	STATE_10,
 	STATE_KRYPT,
 	STATE_KONQUEST = 19
+};
+
+
+enum game_mode {
+	MODE_ARCADE,
+	MODE_VERSUS,
+	MODE_2,
+	MODE_PRACTICE,
+	MODE_4,
+	MODE_PUZZLE,
+	MODE_KONQUEST,
+	MODE_7,
+	MODE_8,
+	MODE_CHESS,
+	MODE_FRONTEND = 13,
 };
 
 enum characters
@@ -154,15 +170,6 @@ enum pad_button {
 	PAD_L2R2,
 
 };
-
-struct ladder_entry
-{
-	int background;
-	int backgroundLocked;
-	int character;
-	int characterLocked;
-};
-
 
 struct player_info
 {
