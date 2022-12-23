@@ -99,6 +99,7 @@ void Menu_Toggle_FreeCam();
 void Menu_Toggle_KFP();
 void Menu_Toggle_KFP_Look();
 void Menu_Toggle_KHud();
+void Menu_Toggle_FreezeWorld();
 void setFov(float value);
 void Menu_Init_Vars();
 void Menu_K_Reset();

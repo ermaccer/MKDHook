@@ -2,7 +2,6 @@
 #include "mkdeception.h"
 //#define KONQUEST_FP
 
-int hook_character_lock_status(int id, int param);
 
 void hook_new_select_table(int status);
 void restore_select_screen();

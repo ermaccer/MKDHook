@@ -43,27 +43,56 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="character.c" />
+    <ClCompile Include="characters\ashrah.c" />
+    <ClCompile Include="characters\baraka.c" />
+    <ClCompile Include="characters\ermac.c" />
+    <ClCompile Include="characters\liukang.c" />
+    <ClCompile Include="characters\mkda_blaze.c" />
+    <ClCompile Include="characters\mkda_kano.c" />
+    <ClCompile Include="characters\mkda_kung_lao.c" />
+    <ClCompile Include="characters\mkda_mokap.c" />
+    <ClCompile Include="characters\mkda_raiden.c" />
+    <ClCompile Include="characters\noob.c" />
+    <ClCompile Include="characters\scorpion.c" />
+    <ClCompile Include="characters\smoke.c" />
+    <ClCompile Include="characters\subzero.c" />
     <ClCompile Include="ladder.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mips.c" />
     <ClCompile Include="mkdeception.c" />
     <ClCompile Include="mkdhook.c" />
     <ClCompile Include="mkdmenu.c" />
-    <ClCompile Include="mkdplrinfo.c" />
     <ClCompile Include="mouse.c" />
+    <ClCompile Include="moves.c" />
     <ClCompile Include="ps2mem.c" />
     <ClCompile Include="stage.c" />
     <ClCompile Include="stages\acidbath.c" />
     <ClCompile Include="stages\katakombs.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="character.h" />
+    <ClInclude Include="characters\ashrah.h" />
+    <ClInclude Include="characters\baraka.h" />
+    <ClInclude Include="characters\character_list.h" />
+    <ClInclude Include="characters\ermac.h" />
+    <ClInclude Include="characters\liukang.h" />
+    <ClInclude Include="characters\mkda_blaze.h" />
+    <ClInclude Include="characters\mkda_kano.h" />
+    <ClInclude Include="characters\mkda_kung_lao.h" />
+    <ClInclude Include="characters\mkda_mokap.h" />
+    <ClInclude Include="characters\mkda_raiden.h" />
+    <ClInclude Include="characters\noob.h" />
+    <ClInclude Include="characters\scorpion.h" />
+    <ClInclude Include="characters\smoke.h" />
+    <ClInclude Include="characters\subzero.h" />
     <ClInclude Include="ladder.h" />
     <ClInclude Include="mips.h" />
     <ClInclude Include="mkdeception.h" />
     <ClInclude Include="mkdhook.h" />
     <ClInclude Include="mkdmenu.h" />
-    <ClInclude Include="mkdplrinfo.h" />
     <ClInclude Include="mouse.h" />
+    <ClInclude Include="moves.h" />
     <ClInclude Include="ps2mem.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="stages\acidbath.h" />

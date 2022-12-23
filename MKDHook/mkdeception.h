@@ -1,4 +1,5 @@
 #pragma once
+#include "character.h"
 
 #define PLAYER1_INFO   0x5E43F4 
 #define PLAYER2_INFO   0x5E4460
@@ -56,6 +57,11 @@ extern void(*konquest_hide_hud)(int status);
 extern int(*snd_req)(int id);
 extern int(*load_background)(int id);
 extern char*(*get_string)(int id);
+
+// scan related
+extern int(*my_joypad_state_5)();
+
+
 int get_game_state();
 int get_game_mode();
 int get_game_tick();
@@ -69,6 +75,7 @@ void get_matrix_forward(int obj, struct CVector* mat);
 void call_script(char* func);
 
 void set_music(int id);
+void set_game_speed(float speed);
 
 
 enum game_state {
@@ -101,53 +108,6 @@ enum game_mode {
 	MODE_CHESS,
 	MODE_FRONTEND = 13,
 };
-
-enum characters
-{
-	SCORPION,
-	BARAKA,
-	NOOB,
-	SUBZERO,
-	MILEENA,
-	NIGHTWOLF,
-	ERMAC,
-	ASHRAH,
-	SINDEL,
-	LI_MEI,
-	BORAICHO,
-	HOTARU,
-	KENSHI,
-	SMOKE,
-	HAVIK,
-	TANYA,
-	LIU_KANG,
-	GHOST,
-	KIRA,
-	KABAL,
-	KOBRA,
-	JADE,
-	DAIROU,
-	RAIDEN,
-	DARRIUS,
-	SHUJINKO,
-	SHUJINKO_13,
-	NOOBSMOKE,
-	MONSTER,
-	ONAGA,
-	MKDA_JAX,
-	MKDA_RAIDEN,
-	MKDA_QUAN_CHI,
-	MKDA_KUNG_LAO,
-	MKDA_CAGE,
-	MKDA_SONYA,
-	MKDA_NITARA,
-	MKDA_SHANG_TSUNG,
-	MKDA_FROST,
-	MKDA_KITANA,
-	MKDA_DRAHMIN,
-	RANDOM
-};
-
 
 enum pad_button {
 	PAD_L2,
@@ -667,10 +627,7 @@ struct player_data
 	char field_1A9;
 	char field_1AA;
 	char field_1AB;
-	char field_1AC;
-	char field_1AD;
-	char field_1AE;
-	char field_1AF;
+	int  characterID;
 	char field_1B0;
 	char field_1B1;
 	char field_1B2;

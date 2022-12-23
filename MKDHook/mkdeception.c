@@ -35,6 +35,9 @@ int(*get_stick)(int player, int which, float* x, float* y);
 void(*update_camera)();
 int(*load_background)(int id);
 char* (*get_string)(int id);
+int(*my_joypad_state_5)();
+
+
 int get_game_state()
 {
 	return *(int*)0x612E14;
@@ -117,6 +120,11 @@ void set_music(int id)
 	*(int*)0x5D62EC = snd_req(id);
 }
 
+void set_game_speed(float speed)
+{
+	*(float*)(0x5D628C) = speed;
+}
+
 
 void MKDeception_Init()
 {
@@ -160,6 +168,8 @@ void MKDeception_Init()
 	load_background = (void*)0x15A620;
 
 	get_string = (void*)0x219CE0;
+
+	my_joypad_state_5 = (void*)0x1F8390;
 }
 
 int get_monk()

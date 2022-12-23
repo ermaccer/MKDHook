@@ -1,5 +1,20 @@
 EE_BIN = ../scripts/MKDHook.elf
-EE_OBJS = main.o mkdeception.o ps2mem.o mkdplrinfo.o mkdhook.o mkdmenu.o stage.o mouse.o mips.o ladder.o stages\acidbath.o stages\katakombs.o
+EE_OBJS = main.o mkdeception.o ps2mem.o character.o mkdhook.o mkdmenu.o stage.o mouse.o mips.o ladder.o moves.o \
+stages\acidbath.o \
+stages\katakombs.o \
+characters\mkda_kano.o \
+characters\mkda_mokap.o \
+characters\mkda_blaze.o \
+characters\mkda_raiden.o \
+characters\mkda_kung_lao.o \
+characters\subzero.o	\
+characters\smoke.o \
+characters\liukang.o \
+characters\scorpion.o \
+characters\baraka.o \
+characters\ashrah.o \
+characters\ermac.o \
+characters\noob.o
 
 BASE_ADDRESS = 0x02020000
 EE_LINKFILE = linkfile

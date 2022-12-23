@@ -27,6 +27,7 @@ int m_bThirdPersonCam = 0;
 int m_bFreeCamera = 0;
 int m_bKonquestFPCam = 0;
 int m_bKonquestFPCamView = 0;
+int m_bFreezeWorld = 0;
 
 int menuAssoc[MENU_MAX_STRINGS * 2] =
 {
@@ -205,6 +206,9 @@ void Menu_Process()
 {
 	if (pressed_button(0, PAD_L3))
 		Menu_Toggle();
+
+	if (GetAsyncKeyState(72))
+		Menu_Toggle_FreezeWorld();
 
 	if (GetAsyncKeyState(71))
 		Menu_Toggle_FreeCam();
@@ -589,6 +593,18 @@ void Menu_Toggle_KHud()
 	if (get_game_tick() - m_nTimer <= 15) return;
 	m_nTimer = get_game_tick();
 	konquest_hide_hud(0);
+}
+
+void Menu_Toggle_FreezeWorld()
+{
+	if (get_game_tick() - m_nTimer <= 15) return;
+	m_nTimer = get_game_tick();
+	m_bFreezeWorld = !m_bFreezeWorld;
+
+	if (m_bFreezeWorld)
+		set_game_speed(0.0f);
+	else
+		set_game_speed(1.0f);
 }
 
 void setFov(float value)
