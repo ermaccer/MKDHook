@@ -40,10 +40,10 @@ struct scan_action_fatality {
 	unsigned int directions[2]; // -1 ends
 
 	// fatality part
-	int unkf;
+	float unkf;
 	int unk2f;
 	int function;
-	unsigned int fdirections[5]; // -1 ends
+	unsigned int fdirections[8]; // -1 ends
 };
 
 

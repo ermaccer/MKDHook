@@ -1,5 +1,16 @@
 EE_BIN = ../scripts/MKDHook.elf
-EE_OBJS = main.o mkdeception.o ps2mem.o character.o mkdhook.o mkdmenu.o stage.o mouse.o mips.o ladder.o moves.o \
+EE_OBJS = main.o\
+scripthook.o \
+mkd\core.o \
+mkd\object.o \
+mkd\camera.o \
+mkd\input.o \
+mkd\konquest.o \
+mkd\screen.o \
+mkd\string.o \
+mkd\content.o \
+mkd\script.o \
+ps2mem.o character.o mkdhook.o mkdmenu.o stage.o mouse.o mips.o ladder.o moves.o \
 stages\acidbath.o \
 stages\katakombs.o \
 characters\mkda_kano.o \
@@ -14,7 +25,10 @@ characters\scorpion.o \
 characters\baraka.o \
 characters\ashrah.o \
 characters\ermac.o \
-characters\noob.o
+characters\noob.o \
+characters\sonya.o \
+characters\character_list.o \
+misc\pselect.o
 
 BASE_ADDRESS = 0x02020000
 EE_LINKFILE = linkfile

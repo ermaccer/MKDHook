@@ -28,7 +28,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <NMakeOutput>$(OutDir)MKAHook.elf</NMakeOutput>
+    <NMakeOutput>$(OutDir)MKDHook.elf</NMakeOutput>
     <NMakeBuildCommandLine>rebuild.bat</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>rebuild.bat</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>del /s *.o</NMakeCleanCommandLine>
@@ -46,6 +46,7 @@
     <ClCompile Include="character.c" />
     <ClCompile Include="characters\ashrah.c" />
     <ClCompile Include="characters\baraka.c" />
+    <ClCompile Include="characters\character_list.c" />
     <ClCompile Include="characters\ermac.c" />
     <ClCompile Include="characters\liukang.c" />
     <ClCompile Include="characters\mkda_blaze.c" />
@@ -56,16 +57,27 @@
     <ClCompile Include="characters\noob.c" />
     <ClCompile Include="characters\scorpion.c" />
     <ClCompile Include="characters\smoke.c" />
+    <ClCompile Include="characters\sonya.c" />
     <ClCompile Include="characters\subzero.c" />
     <ClCompile Include="ladder.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mips.c" />
-    <ClCompile Include="mkdeception.c" />
+    <ClCompile Include="misc\pselect.c" />
     <ClCompile Include="mkdhook.c" />
     <ClCompile Include="mkdmenu.c" />
+    <ClCompile Include="mkd\camera.c" />
+    <ClCompile Include="mkd\content.c" />
+    <ClCompile Include="mkd\core.c" />
+    <ClCompile Include="mkd\input.c" />
+    <ClCompile Include="mkd\konquest.c" />
+    <ClCompile Include="mkd\object.c" />
+    <ClCompile Include="mkd\screen.c" />
+    <ClCompile Include="mkd\script.c" />
+    <ClCompile Include="mkd\string.c" />
     <ClCompile Include="mouse.c" />
     <ClCompile Include="moves.c" />
     <ClCompile Include="ps2mem.c" />
+    <ClCompile Include="scripthook.c" />
     <ClCompile Include="stage.c" />
     <ClCompile Include="stages\acidbath.c" />
     <ClCompile Include="stages\katakombs.c" />
@@ -85,19 +97,33 @@
     <ClInclude Include="characters\noob.h" />
     <ClInclude Include="characters\scorpion.h" />
     <ClInclude Include="characters\smoke.h" />
+    <ClInclude Include="characters\sonya.h" />
     <ClInclude Include="characters\subzero.h" />
     <ClInclude Include="ladder.h" />
     <ClInclude Include="mips.h" />
+    <ClInclude Include="misc\pselect.h" />
     <ClInclude Include="mkdeception.h" />
     <ClInclude Include="mkdhook.h" />
     <ClInclude Include="mkdmenu.h" />
+    <ClInclude Include="mkd\camera.h" />
+    <ClInclude Include="mkd\content.h" />
+    <ClInclude Include="mkd\core.h" />
+    <ClInclude Include="mkd\input.h" />
+    <ClInclude Include="mkd\konquest.h" />
+    <ClInclude Include="mkd\object.h" />
+    <ClInclude Include="mkd\plr_info.h" />
+    <ClInclude Include="mkd\screen.h" />
+    <ClInclude Include="mkd\script.h" />
+    <ClInclude Include="mkd\string.h" />
     <ClInclude Include="mouse.h" />
     <ClInclude Include="moves.h" />
     <ClInclude Include="ps2mem.h" />
+    <ClInclude Include="scripthook.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="stages\acidbath.h" />
     <ClInclude Include="stages\katakombs.h" />
     <ClInclude Include="toc.h" />
+    <ClInclude Include="types.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />

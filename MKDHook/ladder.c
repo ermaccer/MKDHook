@@ -2,6 +2,7 @@
 #include "mkdeception.h"
 #include "stage.h"
 #include "ps2mem.h"
+#include "character.h"
 
 struct ladder_entry my_ladder[8];
 
@@ -33,11 +34,11 @@ short characters[] = {
 	RAIDEN,
 	DARRIUS,
 	SHUJINKO,
+	SONYA,
 	MONSTER,
 	MKDA_JAX,
 	MKDA_KUNG_LAO,
 	MKDA_CAGE,
-	MKDA_SONYA,
 	MKDA_NITARA,
 	MKDA_SHANG_TSUNG,
 	MKDA_KITANA,
@@ -119,7 +120,7 @@ void make_custom_tower()
 		}
 	
 
-		game_printf("Setting %d as %d on %d\n", i, fighter_id, background_id);
+		_printf("Setting %d as %d on %d\n", i, fighter_id, background_id);
 		my_ladder[i].background = my_ladder[i].backgroundLocked = background_id;
 		my_ladder[i].character = my_ladder[i].characterLocked = fighter_id;
 }

@@ -7,6 +7,8 @@
 #include "stage.h"
 #include "ladder.h"
 #include "moves.h"
+#include "scripthook.h"
+#include "misc/pselect.h"
 
 int CompatibleCRCList[] = { 0x7C22850A };
 
@@ -15,9 +17,8 @@ int dummy_true() { return 1; }
 
 void init()
 {
-    MKDeception_Init();
-    Menu_Init_Vars();
-
+   Menu_Init_Vars();
+   init_mkdhook_vars();
 
    // skip intro
    *(int*)0x197258 = 0;
@@ -27,12 +28,14 @@ void init()
    makeJal(0x1238C4, hook_render);
    makeJal(0x1A3EFC, Menu_Init);
 
+   init_pselect_hook();
    init_character_hook();
    init_stage_hook();
    init_ladder_hook();
    init_moves_hook();
+   init_script_hook();
 
-   game_printf("MKDHook init!\n");
+   _printf("MKDHook init!\n");
 }
 
 int main()

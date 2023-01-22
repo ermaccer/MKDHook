@@ -1,7 +1,6 @@
 #pragma once
 #include "toc.h"
 
-
 enum characters
 {
 	SCORPION,
@@ -45,10 +44,13 @@ enum characters
 	MKDA_FROST,
 	MKDA_KITANA,
 	MKDA_DRAHMIN,
-	// NEW
+	// restored npcs
 	MKDA_KANO,
 	MKDA_MOKAP,
 	MKDA_BLAZE,
+
+	// new characters
+	SONYA,
 	TOTAL_CHARACTERS
 };
 
@@ -61,7 +63,7 @@ struct char_info_entry {
 };
 
 
-struct select_screen_entry {
+typedef struct {
 	int characterID;
 	int soundID;
 	char* headName;
@@ -72,7 +74,7 @@ struct select_screen_entry {
 	char* style1;
 	char* style2;
 	char* style3;
-};
+}select_screen_entry;
 
 
 

@@ -13,15 +13,18 @@
     <Filter Include="source\characters">
       <UniqueIdentifier>{7b0a77d4-bd94-459e-b49c-731c81cceb54}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\misc">
+      <UniqueIdentifier>{ddb36d8d-5b82-4a90-90e1-1daf15a87383}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\mkd">
+      <UniqueIdentifier>{f4bb26db-cff1-41bf-9daa-808c7d9a255f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="ps2mem.c">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="mkdeception.c">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="mkdhook.c">
@@ -92,6 +95,45 @@
     </ClCompile>
     <ClCompile Include="characters\mkda_kung_lao.c">
       <Filter>source\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\sonya.c">
+      <Filter>source\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\character_list.c">
+      <Filter>source\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="misc\pselect.c">
+      <Filter>source\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="mkd\core.c">
+      <Filter>source\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="mkd\input.c">
+      <Filter>source\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="mkd\camera.c">
+      <Filter>source\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="mkd\string.c">
+      <Filter>source\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="mkd\konquest.c">
+      <Filter>source\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="mkd\screen.c">
+      <Filter>source\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="mkd\object.c">
+      <Filter>source\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="mkd\script.c">
+      <Filter>source\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="mkd\content.c">
+      <Filter>source\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="scripthook.c">
+      <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +217,48 @@
     </ClInclude>
     <ClInclude Include="characters\mkda_kung_lao.h">
       <Filter>source\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\sonya.h">
+      <Filter>source\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="misc\pselect.h">
+      <Filter>source\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="mkd\core.h">
+      <Filter>source\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="mkd\input.h">
+      <Filter>source\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="mkd\camera.h">
+      <Filter>source\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="mkd\string.h">
+      <Filter>source\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="mkd\konquest.h">
+      <Filter>source\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="mkd\screen.h">
+      <Filter>source\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="mkd\object.h">
+      <Filter>source\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="mkd\plr_info.h">
+      <Filter>source\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="mkd\script.h">
+      <Filter>source\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="mkd\content.h">
+      <Filter>source\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="scripthook.h">
+      <Filter>source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

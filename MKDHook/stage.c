@@ -5,7 +5,7 @@
 #include "ps2mem.h"
 #include "mips.h"
 #include "ladder.h"
-
+#include "character.h"
 // stage incldues
 
 #include "stages/acidbath.h"
@@ -86,27 +86,27 @@ struct stage_select_entry pStageSelectNormal[] = {
 	{BGS_DKA	, "DRAGON KING'S TEMPLE"	,"BGS_DKA"	, 1	},
 	{BGS_NEXUS_ARENA	, "NEXUS ARENA"	,"BGS_NEXUS"	, 1	},
 	// NEW
-	{BGS_KATAKOMBS,	"KATAKOMBS", "NULL"	, 7},
+	{BGS_KATAKOMBS,	"KATAKOMBS", "BGS_KATAKOMBS"	, 0},
 	// KONQUEST DOJOS
-	{BGS_EARTH_1_DOJO,	"EARTH DOJO", "NULL"	, 0},
-	{BGS_NETHERREALM_DOJO,	"NETHERREALM DOJO", "NULL"	, 0},
-	{BGS_CHAOSREALM_DOJO,	"CHAOSREALM DOJO", "NULL"	, 0},
-	{BGS_OUTWORLD_DOJO,	"OUTWORLD DOJO", "NULL"	, 0},
-	{BGS_ORDERREALM_DOJO,	"ORDERREALM DOJO", "NULL"	, 0},
+	{BGS_EARTH_1_DOJO,	"EARTH DOJO", "BGS_EARTHDOJO"	, 0},
+	{BGS_NETHERREALM_DOJO,	"NETHERREALM DOJO", "BGS_NETHERDOJO"	, 0},
+	{BGS_CHAOSREALM_DOJO,	"CHAOSREALM DOJO", "BGS_CHAOSDOJO"	, 0},
+	{BGS_OUTWORLD_DOJO,	"OUTWORLD DOJO", "BGS_OUTWRDOJO"	, 0},
+	{BGS_ORDERREALM_DOJO,	"ORDERREALM DOJO", "BGS_ORDERDOJO"	, 0},
 	// KONQUEST
-	{BGS_EARTH_1,	"EARTHREALM", "NULL"	, 0},
-	{BGS_NETHERREALM,	"NETHERREALM", "NULL"	, 0	},
-	{BGS_CHAOSREALM,"CHAOSRREALM"	, "NULL"	, 0	},
-	{BGS_OUTWORLD,"OUTWORLD"	, "NULL"	, 0	},
-	{BGS_ORDERREALM	,"ORDERREALM", "NULL"	, 0	},
-	{BGS_EDENIA,	"EDENIA", "NULL"	, 0	},
+	{BGS_EARTH_1,	"EARTHREALM", "BGS_EARTH"	, 0},
+	{BGS_NETHERREALM,	"NETHERREALM", "BGS_NETHER"	, 0	},
+	{BGS_CHAOSREALM,"CHAOSRREALM"	, "BGS_CHAOS"	, 0	},
+	{BGS_OUTWORLD,"OUTWORLD"	, "BGS_OUTWORLD"	, 0	},
+	{BGS_ORDERREALM	,"ORDERREALM", "BGS_ORDER"	, 0	},
+	{BGS_EDENIA,	"EDENIA", "BGS_EDENIA"	, 0	},
 };
 
 
 void dump_stage_table(unsigned int addr)
 {
 	int stage_addr = 0x4FBFA0;
-	game_printf("STAGE DATA\n");
+	_printf("STAGE DATA\n");
 	char msgBuffer[1256];
 	for (int i = 0; i < 35; i++)
 	{
@@ -116,7 +116,7 @@ void dump_stage_table(unsigned int addr)
 			stage.scriptName,
 			stage.stringID,
 			stage.unk2);
-		game_printf(msgBuffer);
+		_printf(msgBuffer);
 	}
 }
 void dump_select_stable(unsigned int addr)
@@ -131,27 +131,18 @@ void dump_select_stable(unsigned int addr)
 			stage.name,
 			stage.previewImage,
 			stage.unk);
-		game_printf(msgBuffer);
+		_printf(msgBuffer);
 	}
 }
 
 int hook_bgnd_locked(int id)
 {
 	id = BGS_THEPIT;
-	return is_bgnd_locked(id);;
+	return is_bgnd_locked(id);
 }
 void play_kon_music()
 {
 	int cur_bgnd = *(int*)0x5E4368;
-
-	if (cur_bgnd >= BGS_EARTH_1 && cur_bgnd <= BGS_EDENIA)
-	{
-		int p_data= *(int*)(0x5E435C);
-		int music = randu(24);
-		set_music(6939);
-	}
-	else
-		music_proc();
 }
 
 int load_background_hook(int id)
@@ -241,7 +232,7 @@ char* hook_ladder_stage_name(int id)
 
 	int stage_id = current_ladder[cur_ladder_pos].background;
 	if (stage_id < BGS_LADDER)
-		return get_string(pStageTable[stage_id].stringID | 0x10000);
+		return get_string_by_id(pStageTable[stage_id].stringID | 0x10000);
 	else
 	{
 		switch (stage_id)
@@ -342,12 +333,12 @@ void restore_stage_luis()
 	int val = 0x50;
 	//if (!reset_changes)
 	{
-		patchInt(0x191E10, lui(a0, HIWORD(val)));
-		patchInt(0x191EA0, lui(a0, HIWORD(val)));
-		patchInt(0x191F30, lui(a0, HIWORD(val)));
-		patchInt(0x192D70, lui(a1, HIWORD(val)));
-		patchInt(0x192E4C, lui(s2, HIWORD(val)));
-		patchInt(0x193174, lui(s2, HIWORD(val)));
+		patchInt(0x191E10, lui(a0, 0x50));
+		patchInt(0x191EA0, lui(a0, 0x50));
+		patchInt(0x191F30, lui(a0, 0x50));
+		patchInt(0x192D70, lui(a1, 0x50));
+		patchInt(0x192E4C, lui(s2, 0x50));
+		patchInt(0x193174, lui(s2, 0x50));
 		//hook_changes = 0;
 		//reset_changes = 1;
 	}

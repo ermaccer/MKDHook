@@ -13,3 +13,9 @@
 #include "ashrah.h"
 #include "ermac.h"
 #include "noob.h"
+
+
+// all NEW!
+#include "sonya.h"
+
+extern struct scan_action scan_null;

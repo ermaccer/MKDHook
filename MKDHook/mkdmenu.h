@@ -1,6 +1,7 @@
 #pragma once
 #include "mkdeception.h"
 #include "mouse.h"
+#include "types.h"
 
 enum eMenuStringIDs
 {
@@ -72,7 +73,7 @@ enum eScaleValue {
 struct Menu {
 	char m_bActive;
 	char m_bIsReady;
-	struct CVector plrPos;
+	CVector plrPos;
 };
 
 struct Menu GetMenu();

@@ -1,11 +1,22 @@
 #pragma once
 #include "mkdeception.h"
-//#define KONQUEST_FP
 
+#define SELECT_SCREEN_SWAP_SOUND 7024
+#define SELECT_SCREEN_ALT_PAL_SOUND 7020
 
-void hook_new_select_table(int status);
+enum ECurrentSelect {
+	Select_Default,
+	Select_UMKD,
+	Select_NPC,
+};
+extern int sound;
+
+void init_mkdhook_vars();
+
+void process_swap_select_screen();
+void swap_select_screen();
+
 void restore_select_screen();
 void hook_render();
-int test_print(int id, int font, char* text, int y, int x, int unk);
 
 void process_mkdhook();

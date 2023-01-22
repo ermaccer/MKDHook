@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include "mips.h"
 #include "ps2mem.h"
-#define TRUE_FALSE(x) x ? "true" : "false"
 
-struct CVector camPos;
-struct CVector camRot;
+
+CVector camPos;
+CVector camRot;
 
 struct Menu TheMenu;
 float headOffset = 0.0f;
@@ -16,7 +16,7 @@ float headDistance3 = -2.15f;
 
 int m_nCurrentPos = 0;
 int m_nCurrentMenuOpen = MENU_DEFAULT;
-int m_nTimer = 0;
+int hook_timer = 0;
 
 int m_bScaleModifier = 0;
 float m_nP1Scale = 1.0;
@@ -106,7 +106,7 @@ int Menu_Init(int id, int font, char* text, int x, int y, int unk)
 	m_bFirstPersonCam = 0;
 	m_bFreeCamera = 0;
 	m_bThirdPersonCam = 0;
-	m_nTimer = get_game_tick();
+	hook_timer = get_game_tick();
 	m_nCurrentPos = 0;
 	m_bScaleModifier = 0;
 	return result;
@@ -119,7 +119,7 @@ void Menu_Draw()
 
 	if (TheMenu.m_bActive)
 	{
-		string_set_alpha(MENU_BAR_0 - 1, 255);
+		pfx_2d_obj_set_alpha_by_id(MENU_BAR_0 - 1, 255);
 
 		int str = TOTAL_MENU_DEFAULT;
 		if (m_nCurrentMenuOpen == MENU_DEFAULT)
@@ -133,7 +133,7 @@ void Menu_Draw()
 		for (int i = 0; i < str; i++)
 		{
 			if (m_nCurrentMenuOpen == MENU_DEFAULT)
-				update_string(menuStrings[i], 0, menuNames[i]);
+				update_string_obj(menuStrings[i], 0, menuNames[i]);
 			if (m_nCurrentMenuOpen == MENU_PLAYER)
 			{
 				char tmp[256] = {};
@@ -150,8 +150,8 @@ void Menu_Draw()
 					break;
 				}
 			
-				update_string(menuStrings[i], 0, menuNamesPlayer[i]);
-				update_string(menuStrings[TOTAL_PLAYER + 1], 0, tmp);
+				update_string_obj(menuStrings[i], 0, menuNamesPlayer[i]);
+				update_string_obj(menuStrings[TOTAL_PLAYER + 1], 0, tmp);
 			}
 			if (m_nCurrentMenuOpen == MENU_CAMERA)
 			{
@@ -171,20 +171,20 @@ void Menu_Draw()
 					sprintf(tmp, "Changes current field of view.");
 					break;
 				}
-				update_string(menuStrings[TOTAL_CAMERA + 1], 0, tmp);
-				update_string(menuStrings[i], 0, menuNamesCamera[i]);
+				update_string_obj(menuStrings[TOTAL_CAMERA + 1], 0, tmp);
+				update_string_obj(menuStrings[i], 0, menuNamesCamera[i]);
 			}
 			if (m_nCurrentMenuOpen == MENU_MISC)
 			{
 				char tmp[256] = {};
-				update_string(menuStrings[TOTAL_PLAYER + 1], 0, tmp);
-				update_string(menuStrings[i], 0, menuNamesMisc[i]);
+				update_string_obj(menuStrings[TOTAL_PLAYER + 1], 0, tmp);
+				update_string_obj(menuStrings[i], 0, menuNamesMisc[i]);
 			}
 
 			if (m_nCurrentPos == i)
-				string_set_alpha(menuAssoc[i], 255);
+				pfx_2d_obj_set_alpha_by_id(menuAssoc[i], 255);
 			else
-				string_set_alpha(menuAssoc[i], 128);
+				pfx_2d_obj_set_alpha_by_id(menuAssoc[i], 128);
 		
 		
 		
@@ -192,11 +192,11 @@ void Menu_Draw()
 	}
 	else
 	{
-		string_set_alpha(MENU_BAR_0 - 1, 0);
+		pfx_2d_obj_set_alpha_by_id(MENU_BAR_0 - 1, 0);
 	
 		for (int i = 0; i < MENU_MAX_STRINGS; i++)
 		{
-			string_set_alpha(menuAssoc[i], 0);
+			pfx_2d_obj_set_alpha_by_id(menuAssoc[i], 0);
 		}
 	}
 
@@ -204,7 +204,7 @@ void Menu_Draw()
 
 void Menu_Process()
 {
-	if (pressed_button(0, PAD_L3))
+	if (check_switch(0, PAD_L3))
 		Menu_Toggle();
 
 	if (GetAsyncKeyState(72))
@@ -216,19 +216,19 @@ void Menu_Process()
 
 	if (TheMenu.m_bActive)
 	{
-		if (pressed_button(0, PAD_CROSS))
+		if (check_switch(0, PAD_CROSS))
 			Menu_KeyCross();
 		
-		if (pressed_button(0, PAD_TRIANGLE))
+		if (check_switch(0, PAD_TRIANGLE))
 			Menu_KeyTriangle();
 	
-		if (pressed_button(0, PAD_CIRCLE))
+		if (check_switch(0, PAD_CIRCLE))
 			Menu_KeyCircle();
 	
-		if (pressed_button(0, PAD_UP))
+		if (check_switch(0, PAD_UP))
 			Menu_KeyUp();
 	
-		if (pressed_button(0, PAD_DOWN))
+		if (check_switch(0, PAD_DOWN))
 			Menu_KeyDown();
 	
 		int str = TOTAL_MENU_DEFAULT;
@@ -262,8 +262,8 @@ void Menu_Process_Toggles()
 
 void Menu_Toggle()
 {
-	if (get_game_tick() - m_nTimer <= 15) return;
-	m_nTimer = get_game_tick();
+	if (get_game_tick() - hook_timer <= 15) return;
+	hook_timer = get_game_tick();
 	TheMenu.m_bActive = !TheMenu.m_bActive;
 
 	if (TheMenu.m_bActive)
@@ -274,22 +274,22 @@ void Menu_Toggle()
 
 void Menu_KeyUp()
 {
-	if (get_game_tick() - m_nTimer <= 10) return;
-	m_nTimer = get_game_tick();
+	if (get_game_tick() - hook_timer <= 10) return;
+	hook_timer = get_game_tick();
 	m_nCurrentPos -= 1;
 }
 
 void Menu_KeyDown()
 {
-	if (get_game_tick() - m_nTimer <= 10) return;
-	m_nTimer = get_game_tick();
+	if (get_game_tick() - hook_timer <= 10) return;
+	hook_timer = get_game_tick();
 	m_nCurrentPos += 1;
 }
 
 void Menu_KeyCross()
 {
-	if (get_game_tick() - m_nTimer <= 10) return;
-	m_nTimer = get_game_tick();
+	if (get_game_tick() - hook_timer <= 10) return;
+	hook_timer = get_game_tick();
 	Menu_ClearStrings();
 	if (m_nCurrentMenuOpen == MENU_DEFAULT)
 		m_nCurrentMenuOpen = m_nCurrentPos;
@@ -307,8 +307,8 @@ void Menu_KeyCross()
 
 void Menu_KeyCircle()
 {
-	if (get_game_tick() - m_nTimer <= 10) return;
-	m_nTimer = get_game_tick();
+	if (get_game_tick() - hook_timer <= 10) return;
+	hook_timer = get_game_tick();
 	if (!(m_nCurrentMenuOpen == MENU_DEFAULT))
 	m_nCurrentMenuOpen = MENU_DEFAULT;
 	Menu_ClearStrings();
@@ -316,8 +316,8 @@ void Menu_KeyCircle()
 
 void Menu_KeyTriangle()
 {
-	if (get_game_tick() - m_nTimer <= 10) return;
-	m_nTimer = get_game_tick();
+	if (get_game_tick() - hook_timer <= 10) return;
+	hook_timer = get_game_tick();
 
 	if (m_nCurrentMenuOpen == MENU_PLAYER)
 		Menu_ProcessPlayerReverse();
@@ -370,7 +370,7 @@ void Menu_ProcessMisc()
 	switch (m_nCurrentPos)
 	{
 	case 0:
-		setup_fatality_scene();
+		init_fatality_world();
 		break;
 	case 1:
 		disable_fatality_camera();
@@ -395,23 +395,23 @@ void Menu_ProcessCamera()
 		break;
 	case FOV_72:
 		setFov(72.0f);
-		update_camera();
+		cam_recalc_midpoint();
 		break;
 	case FOV_90:
 		setFov(90.0f);
-		update_camera();
+		cam_recalc_midpoint();
 		break;
 	case FOV_95:
 		setFov(95.0f);
-		update_camera();
+		cam_recalc_midpoint();
 		break;
 	case FOV_110:
 		setFov(110.0f);
-		update_camera();
+		cam_recalc_midpoint();
 		break;
 	case FOV_120:
 		setFov(120.0f);
-		update_camera();
+		cam_recalc_midpoint();
 		break;
 	case FREE_CAMERA:
 		m_bFreeCamera = !m_bFreeCamera;
@@ -423,11 +423,11 @@ void Menu_ProcessCamera()
 
 void Menu_ClearStrings()
 {
-	string_set_alpha(MENU_BAR_0 - 1, 0);
+	pfx_2d_obj_set_alpha_by_id(MENU_BAR_0 - 1, 0);
 
 	for (int i = 0; i < MENU_MAX_STRINGS; i++)
 	{
-		string_set_alpha(menuAssoc[i], 0);
+		pfx_2d_obj_set_alpha_by_id(menuAssoc[i], 0);
 	}
 }
 
@@ -438,14 +438,14 @@ void Menu_Unset()
 
 void Menu_ProcessCustomCams()
 {
-	struct player_info plr1 = *(struct player_info*)PLAYER1_INFO;
-	struct player_info plr2 = *(struct player_info*)PLAYER2_INFO;
+	player_info plr1 = *(player_info*)PLAYER1_INFO;
+	player_info plr2 = *(player_info*)PLAYER2_INFO;
 	if (plr1.pObject && plr2.pObject)
 	{
-		struct CVector headPos;
-		struct CVector rightMat;
-		struct CVector forwardMat;
-		struct CVector headPosP2;
+		CVector headPos;
+		CVector rightMat;
+		CVector forwardMat;
+		CVector headPosP2;
 		static int id = 16;
 		if (m_bThirdPersonCam)
 			id = 14;
@@ -477,7 +477,7 @@ void Menu_ProcessCustomCams()
 			headPos.z += forwardMat.z * headDistance3;
 		}
 
-		set_cam_pos(&headPos);
+		set_cam_position(&headPos);
 		set_cam_target(&headPosP2);
 	}
 }
@@ -491,8 +491,8 @@ void Menu_ProcessFreeCamera()
 		{
 			static float camSpeed = 0.15f;
 
-			struct CVector rightMat;
-			struct CVector forwardMat;
+			CVector rightMat;
+			CVector forwardMat;
 
 			get_matrix_right(camera, &rightMat);
 			get_matrix_forward(camera, &forwardMat);
@@ -547,8 +547,8 @@ void Menu_ProcessFreeCamera()
 			if (GetAsyncKeyState(67))
 				camRot.z += camSpeed / 4.0f;
 
-			set_cam_pos(&camPos);
-			set_cam_rot(&camRot);
+			set_cam_position(&camPos);
+			set_cam_rotation(&camRot);
 
 
 
@@ -558,8 +558,8 @@ void Menu_ProcessFreeCamera()
 	{
 		if (camera)
 		{
-			camPos = *(struct CVector*)(camera + 160);
-			camRot = *(struct CVector*)(camera + 208);
+			camPos = *(CVector*)(camera + 160);
+			camRot = *(CVector*)(camera + 208);
 		}
 
 	}
@@ -568,37 +568,37 @@ void Menu_ProcessFreeCamera()
 
 void Menu_Toggle_FreeCam()
 {
-	if (get_game_tick() - m_nTimer <= 15) return;
-	m_nTimer = get_game_tick();
+	if (get_game_tick() - hook_timer <= 15) return;
+	hook_timer = get_game_tick();
 	m_bFreeCamera = !m_bFreeCamera;
 }
 
 void Menu_Toggle_KFP()
 {
-	if (get_game_tick() - m_nTimer <= 15) return;
-	m_nTimer = get_game_tick();
+	if (get_game_tick() - hook_timer <= 15) return;
+	hook_timer = get_game_tick();
 	m_bKonquestFPCam = !m_bKonquestFPCam;
 	setFov(100.0f);
 }
 
 void Menu_Toggle_KFP_Look()
 {
-	if (get_game_tick() - m_nTimer <= 15) return;
-	m_nTimer = get_game_tick();
+	if (get_game_tick() - hook_timer <= 15) return;
+	hook_timer = get_game_tick();
 	m_bKonquestFPCamView = !m_bKonquestFPCamView;
 }
 
 void Menu_Toggle_KHud()
 {
-	if (get_game_tick() - m_nTimer <= 15) return;
-	m_nTimer = get_game_tick();
-	konquest_hide_hud(0);
+	if (get_game_tick() - hook_timer <= 15) return;
+	hook_timer = get_game_tick();
+	konquest_hide_hud();
 }
 
 void Menu_Toggle_FreezeWorld()
 {
-	if (get_game_tick() - m_nTimer <= 15) return;
-	m_nTimer = get_game_tick();
+	if (get_game_tick() - hook_timer <= 15) return;
+	hook_timer = get_game_tick();
 	m_bFreezeWorld = !m_bFreezeWorld;
 
 	if (m_bFreezeWorld)
@@ -643,7 +643,7 @@ void enable_fatality_camera()
 
 void update_player1_scale()
 {
-	struct player_info plr1 = *(struct player_info*)PLAYER1_INFO;
+	player_info plr1 = *(player_info*)PLAYER1_INFO;
 	if (plr1.pObject)
 	{
 		int obj = plr1.pObject;
@@ -663,7 +663,7 @@ void update_player1_scale()
 
 void update_player2_scale()
 {
-	struct player_info plr2 = *(struct player_info*)PLAYER2_INFO;
+	player_info plr2 = *(player_info*)PLAYER2_INFO;
 	if (plr2.pObject)
 	{
 		int obj = plr2.pObject;
@@ -686,24 +686,24 @@ void konquest_camera()
 	int camera = *(int*)0x5D6698;
 	if (monk)
 	{
-		static struct CVector k_camRot;
-		struct CVector pos = *(struct CVector*)(monk + 160);
+		static CVector k_camRot;
+		CVector pos = *(CVector*)(monk + 160);
 		get_bone_pos(monk, 10, &pos);
 		setFov(100.0f);
-		set_cam_pos(&pos);
+		set_cam_position(&pos);
 
-		if (pressed_button(0, PAD_R3))
+		if (check_switch(0, PAD_R3))
 			Menu_Toggle_KFP_Look();
 
 		if (camera && !m_bKonquestFPCamView)
-			k_camRot = *(struct CVector*)(camera + 208);
+			k_camRot = *(CVector*)(camera + 208);
 		else if (m_bKonquestFPCamView)
 		{
 			float x, y;
-			get_stick(0, 1, &x, &y);
+			get_stick_pos(0, 1, &x, &y);
 			k_camRot.y += -x * 0.065f;
 			k_camRot.x += y * 0.065f;
-			set_cam_rot(&k_camRot);
+			set_cam_rotation(&k_camRot);
 		}
 	}
 }
@@ -715,7 +715,7 @@ void Konquest_Process_Cameras()
 	if (GetAsyncKeyState(70))
 		Menu_Toggle_KFP();
 
-	if (pressed_button(0, PAD_L3))
+	if (check_switch(0, PAD_L3))
 		Menu_Toggle_KHud();
 
 

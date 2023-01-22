@@ -19,7 +19,6 @@ struct mk_file_entry mkda_kano_entry_table[MKDA_KANO_FILES] = {
 	{"karate_anims.sec"	,0, 2},
 	{"jeetkunedo_anims.sec"	,0, 2},
 	{"nunchaku_anims.sec"	,0, 2},
-
 };
 
 struct mk_toc_entry mkda_kano_file_table[MKDA_KANO_FILES + 1] = {

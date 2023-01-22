@@ -3,11 +3,11 @@
 #include "mkdmenu.h"
 #include "stage.h"
 
-int  bSwapStatus = 0;
-int  menu_string = 0;
+int  current_select = 0;
+int  select_timer = 0;
+int sound;
 
-
-struct select_screen_entry pSelectTable[] = {
+select_screen_entry pSelectTable[] = {
 	{KENSHI	, 86	, "HEAD_KENSHI"	, "HEAD_KENSHI_LOCKED"	, "BODY_KENSHI"	, "body_kenshi_alt.sec"	, "4"	, "TAI CHI"	, "JUDO"	, "KATANA"},
 	{JADE	, 84	, "HEAD_JADE"	, "HEAD_JADE_LOCKED"	, "BODY_JADE"	, "body_jade_alt.sec"	, "5"	, "FAN ZI"	, "KUO SHOU"	, "BOJUTSU"},
 	{SCORPION	, 95	, "HEAD_SCORPION"	, "HEAD_SCORPION"	, "BODY_SCORPION"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
@@ -34,14 +34,42 @@ struct select_screen_entry pSelectTable[] = {
 	{LIU_KANG	, 90	, "HEAD_LIUKANG"	, "HEAD_LIUKANG_LOCKED"	, "BODY_LIUKANG"	, "body_liukang_alt.sec"	, "5"	, "JUN FAN"	, "PAO CHUI"	, "NUNCHAKU"},
 };
 
-struct select_screen_entry pSelectTableNew[] = {
+select_screen_entry pSelectTableNew[] = {
+		{SONYA,  -1	, "HEAD_SONYA"	, "HEAD_RANDOM"	, "BODY_SONYA"	, "body_sonya_alt.sec"	, "1"	, "KENPO"	, "TAE KWON DO"	, "KALI STICKS"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{ONAGA,  13	, "HEAD_KOBRA_LOCKED"	, "HEAD_KOBRA_LOCKED"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	,  "1"	, "DRAGON"	, ""	, ""},
+		{ONAGA,  13	, "HEAD_KOBRA_LOCKED"	, "HEAD_KOBRA_LOCKED"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	,  "1"	, "DRAGON"	, ""	, ""},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+};
+
+select_screen_entry pSelectTableNPC[] = {
 		{MONSTER, -1	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
 		{ONAGA,  13	, "HEAD_KOBRA_LOCKED"	, "HEAD_KOBRA_LOCKED"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	,  "1"	, "DRAGON"	, ""	, ""},
 		{SHUJINKO_13	, 96	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "5"	, "MANTIS"	, "SHAOLIN FIST"	, "DAN TIEN DAO"},
 		{MKDA_QUAN_CHI	, -1	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "4"	, "TANG SOO DO"	, "ESCRIMA"	, "BROADSWORD"},
 		{MKDA_SHANG_TSUNG	, -1	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "3"	, "SNAKE"	, "MANTIS"	, ""},
 		{MKDA_NITARA	, -1, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "5"	, "LEOPARD"	, "FU JOW PAI"	, "DRAGON TEETH"},
-		{MKDA_SONYA	, -1	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "1"	, "KENPO"	, "TAE KWON DO"	, "KALI STICKS"},
+		{MKDA_SONYA,  -1	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	,  "1"	, "KENPO"	, "TAE KWON DO"	, "KALI STICKS"},
 		{MKDA_CAGE	, -1	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "3"	, "SHINTO RYU"	, "JEET KUNE DO"	, "NUNCHAKU"},
 		{MKDA_KUNG_LAO	, -1	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "MANTIS"	, "SHAOLIN FIST"	, "BROADSWORD"},
 		{MKDA_DRAHMIN	, -1	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "5"	, ""	, ""	, "IRON CLUB"},
@@ -64,52 +92,67 @@ struct select_screen_entry pSelectTableNew[] = {
 
 
 
+void init_mkdhook_vars()
+{
+	select_timer = get_game_tick();
+	current_select = Select_Default;
+	sound = 6824;
+}
+
 void hook_new_select_table(int status)
 {
-	bSwapStatus = status;
+	current_select = status;
+	refresh_screen();
+}
 
+void process_swap_select_screen()
+{
+	if (get_game_tick() - select_timer <= 15) return;
+	select_timer = get_game_tick();
+	snd_req(SELECT_SCREEN_SWAP_SOUND);
+	current_select++;
+
+	if (current_select > Select_NPC)
+		current_select = Select_Default;
+
+	swap_select_screen();
+}
+
+void swap_select_screen()
+{
 	int select_addr = 0x4FEF40;
-	char msgBuffer[1256];
 	for (int i = 0; i < 24; i++)
 	{
-		int sel = (select_addr + (sizeof(struct select_screen_entry) * i));
-		if (bSwapStatus)
-		{
-			*(int*)(sel + 0) = pSelectTable[i].characterID;
-			*(int*)(sel + 4) = pSelectTable[i].soundID;
-			*(int*)(sel + 8) = (int)&pSelectTable[i].headName[0];
-			*(int*)(sel + 12) = (int)&pSelectTable[i].headLockedName[0];
-			*(int*)(sel + 16) = (int)&pSelectTable[i].bodyName[0];
-			*(int*)(sel + 20) = (int)&pSelectTable[i].bodyArchiveName[0];
-			*(int*)(sel + 24) = (int)&pSelectTable[i].difficulty[0];
-			*(int*)(sel + 28) = (int)&pSelectTable[i].style1[0];
-			*(int*)(sel + 32) = (int)&pSelectTable[i].style2[0];
-			*(int*)(sel + 36) = (int)&pSelectTable[i].style3[0];
+		int sel = (select_addr + (sizeof(select_screen_entry) * i));
 
-		}
-		else
-		{
-			*(int*)(sel + 0) = pSelectTableNew[i].characterID;
-			*(int*)(sel + 4) = pSelectTableNew[i].soundID;
-			*(int*)(sel + 8) = (int)&pSelectTableNew[i].headName[0];
-			*(int*)(sel + 12) = (int)&pSelectTableNew[i].headLockedName[0];
-			*(int*)(sel + 16) = (int)&pSelectTableNew[i].bodyName[0];
-			*(int*)(sel + 20) = (int)&pSelectTableNew[i].bodyArchiveName[0];
-			*(int*)(sel + 24) = (int)&pSelectTableNew[i].difficulty[0];
-			*(int*)(sel + 28) = (int)&pSelectTableNew[i].style1[0];
-			*(int*)(sel + 32) = (int)&pSelectTableNew[i].style2[0];
-			*(int*)(sel + 36) = (int)&pSelectTableNew[i].style3[0];
-		}
+		select_screen_entry ent = pSelectTable[i];
 
+		if (current_select == Select_UMKD)
+			ent = pSelectTableNew[i];
+		
+		if (current_select == Select_NPC)
+			ent = pSelectTableNPC[i];
 
+		*(int*)(sel + 0) = ent.characterID;
+		*(int*)(sel + 4) = ent.soundID;
+		*(int*)(sel + 8) =  (int)&ent.headName[0];
+		*(int*)(sel + 12) = (int)&ent.headLockedName[0];
+		*(int*)(sel + 16) = (int)&ent.bodyName[0];
+		*(int*)(sel + 20) = (int)&ent.bodyArchiveName[0];
+		*(int*)(sel + 24) = (int)&ent.difficulty[0];
+		*(int*)(sel + 28) = (int)&ent.style1[0];
+		*(int*)(sel + 32) = (int)&ent.style2[0];
+		*(int*)(sel + 36) = (int)&ent.style3[0];
 	}
-	game_printf("screen swapped\n");
-	refresh_screen();
+
+	if (get_game_state() == STATE_SELECT)
+		refresh_screen();
 }
 
 void restore_select_screen()
 {
-	hook_new_select_table(1);
+	current_select = Select_Default;
+	swap_select_screen();
 }
 
 void hook_render()
@@ -124,11 +167,14 @@ void process_mkdhook()
 	{
 		if (get_game_state() == STATE_SELECT)
 		{
-			if (pressed_button(0, PAD_L3))
-				hook_new_select_table(0);
+			if (!(get_game_mode() == MODE_PUZZLE || get_game_mode() == MODE_CHESS))
+			{
+				if (check_switch(0, PAD_L3))
+					process_swap_select_screen();
 
-			if (pressed_button(0, PAD_R3))
-				hook_new_select_table(1);
+				if (check_switch(1, PAD_L3))
+					process_swap_select_screen();
+			}
 		}
 		else
 		{

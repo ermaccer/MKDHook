@@ -1,11 +1,12 @@
 #include "character.h"
 #include "mkdeception.h"
+
 #include <stdio.h>
 #include "ps2mem.h"
 #include "mips.h"
-
 // characters
 #include "characters/character_list.h"
+#include "data.h"
 
 struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"SCORPION"	, 0x5A1900	, 0x5A1A70	,"scorpion.mko"},
@@ -16,7 +17,7 @@ struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"NIGHTWOLF"	, 0x5A0CF0	, 0x5A0E80	,"nightwolf.mko"},
 	{"ERMAC"	, 0x59C730	, 0x59C8B0	,"ermac.mko"},
 	{"ASHRAH"	, 0x59AFE0	, 0x59B150	,"ashrah.mko"},
-	{"SINDEL"	, 0x5A2220	, 0x5A2390	,"sindel.mko"},
+	{"SEINFELD"	, 0x5A2220	, 0x5A2390	,"sindel.mko"},
 	{"LI MEI"	, 0x59E820	, 0x59E6B0	,"limei.mko"},
 	{"BO' RAI CHO"	, 0x59B870	, 0x59BA00	,"boraicho.mko"},
 	{"HOTARU"	, 0x59CDE0	, 0x59CF50	,"hotaru.mko"},
@@ -52,6 +53,8 @@ struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"KANO"	, (int)&mkda_kano_file_table	, (int)&mkda_kano_file_table		,"mkda_kano.mko"},
 	{"MOKAP"	, (int)&mkda_mokap_file_table	, (int)&mkda_mokap_file_table		,"mkda_mokap.mko"},
 	{"BLAZE"	, (int)&mkda_blaze_file_table	, (int)&mkda_blaze_file_table		,"mkda_blaze.mko"},
+	// new
+	{"SONYA"	,(int)&sonya_file_table	, (int)&sonya_alt_file_table	,"kira.mko"},
 };
 
 void dump_char_table()
@@ -66,7 +69,7 @@ void dump_char_table()
 			chr.file_table,
 			chr.alt_file_table,
 			chr.scriptName);
-		game_printf(msgBuffer);
+		_printf(msgBuffer);
 	}
 }
 
@@ -167,6 +170,7 @@ void init_character_tocs()
 	init_mkda_kano_toc();
 	init_mkda_mokap_toc();
 	init_mkda_blaze_toc();
+	init_sonya_toc();
 }
 
 int hook_character_lock_status(int id, int param)
@@ -175,8 +179,3 @@ int hook_character_lock_status(int id, int param)
 	return is_char_locked(id, param);
 }
 
-
-void calculate_custom_toc()
-{
-
-}

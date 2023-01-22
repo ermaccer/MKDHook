@@ -2,6 +2,7 @@
 #include "mkdeception.h"
 #include "mips.h"
 #include "ps2mem.h"
+#include "character.h"
 
 // use someone else scan jump for others
 #define SCAN1_UNIVERSAL_JUMP 0x2026E8
@@ -48,6 +49,17 @@ int scan_table_1_jump_table[] = {
 	SCAN1_UNIVERSAL_JUMP, //	MKDA_RAIDEN,
 	0x2028B4, //	MKDA_QUAN_CHI,
 	SCAN1_UNIVERSAL_JUMP, //	MKDA_KUNG_LAO,
+	0x2028B4, //  MKDA_CAGE,
+	0x2028B4, //  MKDA_SONYA,
+	0x2028B4, //  MKDA_NITARA,
+	0x2028B4, //  MKDA_SHANG_TSUNG,
+	0x2028B4, //  MKDA_FROST,
+	0x2028B4, //  MKDA_KITANA,
+	0x2028B4, //  MKDA_DRAHMIN,
+	0x2028B4, //  MKDA_KANO,
+	0x2028B4, //  MKDA_MOKAP,
+	0x2028B4, //  MKDA_BLAZE,
+	SCAN1_UNIVERSAL_JUMP, //  UMKD_SONYA,
 };
 
 
@@ -86,6 +98,17 @@ int scan_table_2_jump_table[] = {
 	SCAN2_UNIVERSAL_JUMP, //	MKDA_RAIDEN,
 	0x20239C, //	MKDA_QUAN_CHI,
 	0x20239C, //	MKDA_KUNG_LAO,
+	0x20239C, //  MKDA_CAGE,
+	0x20239C, //  MKDA_SONYA,
+	0x20239C, //  MKDA_NITARA,
+	0x20239C, //  MKDA_SHANG_TSUNG,
+	0x20239C, //  MKDA_FROST,
+	0x20239C, //  MKDA_KITANA,
+	0x20239C, //  MKDA_DRAHMIN,
+	0x20239C, //  MKDA_KANO,
+	0x20239C, //  MKDA_MOKAP,
+	0x20239C, //  MKDA_BLAZE,
+	SCAN2_UNIVERSAL_JUMP, //  UMKD_SONYA,
 };
 
 int scan_table_3_jump_table[] = {
@@ -123,13 +146,24 @@ int scan_table_3_jump_table[] = {
 	SCAN3_UNIVERSAL_JUMP, //	MKDA_RAIDEN,
 	0x201F64, //	MKDA_QUAN_CHI,
 	0x201F64, //	MKDA_KUNG_LAO,
+	0x201F64, //  MKDA_CAGE,
+	0x201F64, //  MKDA_SONYA,
+	0x201F64, //  MKDA_NITARA,
+	0x201F64, //  MKDA_SHANG_TSUNG,
+	0x201F64, //  MKDA_FROST,
+	0x201F64, //  MKDA_KITANA,
+	0x201F64, //  MKDA_DRAHMIN,
+	0x201F64, //  MKDA_KANO,
+	0x201F64, //  MKDA_MOKAP,
+	0x201F64, //  MKDA_BLAZE,
+	SCAN3_UNIVERSAL_JUMP, //  UMKD_SONYA,
 };
 
 int scan_table_4_jump_table[] = {
-	0x0,	  //	SCORPION,
-	0x0,	  //	BARAKA,
-	0x0,	  //	NOOB,
-	SCAN4_UNIVERSAL_JUMP, //	SUBZERO,
+	0x201B0C,	  //	SCORPION,
+	0x201B0C,	  //	BARAKA,
+	0x201B0C,	  //	NOOB,
+	0x201B0C, //	SUBZERO,
 	0x201928, //	MILEENA,
 	0x201900, //	NIGHTWOLF,
 	0x2018A8, //	ERMAC,
@@ -160,6 +194,17 @@ int scan_table_4_jump_table[] = {
 	SCAN4_UNIVERSAL_JUMP, //	MKDA_RAIDEN,
 	0x201B0C, //	MKDA_QUAN_CHI,
 	0x2018EC, //	MKDA_KUNG_LAO,
+	0x201B0C, //  MKDA_CAGE,
+	0x201B0C, //  MKDA_SONYA,
+	0x201B0C, //  MKDA_NITARA,
+	0x201B0C, //  MKDA_SHANG_TSUNG,
+	0x201B0C, //  MKDA_FROST,
+	0x201B0C, //  MKDA_KITANA,
+	0x201B0C, //  MKDA_DRAHMIN,
+	0x201B0C, //  MKDA_KANO,
+	0x201B0C, //  MKDA_MOKAP,
+	0x201B0C, //  MKDA_BLAZE,
+	0x201B0C, //  UMKD_SONYA,
 };
 
 
@@ -214,7 +259,8 @@ void init_moves_hook()
 
 int swap_scan_table_1()
 {
-	struct player_data* plyr_data = *(struct player_data**)(PLAYER_DATA);
+	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
+	int p2_pdata = *(int*)(P2_PROC_DATA);
 	static int scan_action_set = 0;
 	switch (plyr_data->characterID)
 	{
@@ -233,6 +279,12 @@ int swap_scan_table_1()
 	case MKDA_RAIDEN:
 		scan_action_set = (int)&scan_mkda_raiden_1;
 		break;
+	case SONYA:
+		if (*(int*)(p2_pdata + 544) < 2)
+			scan_action_set = (int)&scan_sonya_1;
+		else
+			scan_action_set = (int)&scan_null;
+		break;
 	default:
 		break;
 	}
@@ -244,12 +296,15 @@ int swap_scan_table_1()
 
 int swap_scan_table_2()
 {
-	struct player_data* plyr_data = *(struct player_data**)(PLAYER_DATA);
+	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
 	static int scan_action_set = 0;
 	switch (plyr_data->characterID)
 	{
 	case ERMAC:
 		scan_action_set = (int)&scan_ermac_2;
+		break;
+	case SONYA:
+		scan_action_set = (int)&scan_sonya_2;
 		break;
 	case MKDA_RAIDEN:
 		scan_action_set = (int)&scan_mkda_raiden_2;
@@ -265,7 +320,7 @@ int swap_scan_table_2()
 
 int swap_scan_table_3()
 {
-	struct player_data* plyr_data = *(struct player_data**)(PLAYER_DATA);
+	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
 	static int scan_action_set = 0;
 	switch (plyr_data->characterID)
 	{
@@ -274,6 +329,9 @@ int swap_scan_table_3()
 		break;
 	case MKDA_RAIDEN:
 		scan_action_set = (int)&scan_mkda_raiden_3;
+		break;
+	case SONYA:
+		scan_action_set = (int)&scan_sonya_3;
 		break;
 	default:
 		break;
@@ -286,7 +344,7 @@ int swap_scan_table_3()
 
 int swap_scan_table_4()
 {
-	struct player_data* plyr_data = *(struct player_data**)(PLAYER_DATA);
+	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
 	static int scan_action_set = 0;
 	switch (plyr_data->characterID)
 	{
@@ -311,43 +369,43 @@ int swap_scan_table_4()
 void dump_scan_table_1()
 {
 	int select_addr = 0x595AD0;
-	char msgBuffer[1256];
+
 	for (int i = 0; i < 30; i++)
 	{
 		int jmp = *(int*)(select_addr + (sizeof(int) * i));
-		game_printf("0x%X,\n", jmp);
+		_printf("0x%X,\n", jmp);
 	}
 }
 
 void dump_scan_table_2()
 {
 	int select_addr = 0x595A50;
-	char msgBuffer[1256];
+
 	for (int i = 0; i < 30; i++)
 	{
 		int jmp = *(int*)(select_addr + (sizeof(int) * i));
-		game_printf("0x%X,\n", jmp);
+		_printf("0x%X,\n", jmp);
 	}
 }
 
 void dump_scan_table_3()
 {
 	int select_addr = 0x5959D0;
-	char msgBuffer[1256];
+
 	for (int i = 0; i < 30; i++)
 	{
 		int jmp = *(int*)(select_addr + (sizeof(int) * i));
-		game_printf("0x%X,\n", jmp);
+		_printf("0x%X,\n", jmp);
 	}
 }
 
 void dump_scan_table_4()
 {
 	int select_addr = 0x595944;
-	char msgBuffer[1256];
+
 	for (int i = 0; i < 31 + 3; i++)
 	{
 		int jmp = *(int*)(select_addr + (sizeof(int) * i));
-		game_printf("0x%X,\n", jmp);
+		_printf("0x%X,\n", jmp);
 	}
 }
