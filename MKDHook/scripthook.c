@@ -5,16 +5,21 @@
 #include "mips.h"
 
 int script_function_table[TOTAL_COMMANDS];
+int debugVar[2];
 
 void init_script_hook()
 {
 	int val = (int)&script_function_table;
+	debugVar[0] = -1;
+	debugVar[1] = 2;
 
 	init_script_function_table();
 
 	patchInt(0x21B5E0, 0x24030834);
 	patchInt(0x21B5A0, lui(a2, HIWORD(val)));
 	patchInt(0x21B5AC, ori(a2, a2, LOWORD(val)));
+
+	makeJal(0x1FB948, fix_kitana_fan_lift);
 
 }
 
@@ -1732,6 +1737,9 @@ void init_script_function_table()
 void init_script_custom_function_table()
 {
 	script_function_table[_umkd_sonya_runtime] = (int)&umkd_sonya_runtime;
+	script_function_table[mku_kitana_pfx] = (int)&mku_kitana_curl_fx;
+	script_function_table[mku_kitana_pfx_destroy] = (int)&_null;
+
 }
 
 void dump_script_table()
@@ -1747,9 +1755,39 @@ void dump_script_table()
 	}
 }
 
+void _null()
+{
+}
+
 void umkd_sonya_runtime()
 {
 	blend_to_ani(403, 3, 0.2f);
 	sleep(5000);
+}
+
+void mku_kitana_curl_fx()
+{
+	call_script_function(1485);
+}
+
+void fix_kitana_fan_lift(int id, int a2, float a3)
+{
+	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
+	
+
+	// mku kitana fan lift hack
+	// fixes a bug where fan lift hits like 10 times
+	// doesnt xfer if the lifted flag is set
+	// also an issue in real mku
+	if (id == 318)
+	{
+		int p2_pdata = *(int*)(P2_PROC_DATA);
+		int flags = *(int*)(p2_pdata + 532);
+		if (flags & 0x4000)
+			return;
+
+	}
+
+	reaction_xfer_him(id, a2, a3);
 }
 

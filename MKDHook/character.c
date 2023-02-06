@@ -6,7 +6,6 @@
 #include "mips.h"
 // characters
 #include "characters/character_list.h"
-#include "data.h"
 
 struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"SCORPION"	, 0x5A1900	, 0x5A1A70	,"scorpion.mko"},
@@ -17,7 +16,7 @@ struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"NIGHTWOLF"	, 0x5A0CF0	, 0x5A0E80	,"nightwolf.mko"},
 	{"ERMAC"	, 0x59C730	, 0x59C8B0	,"ermac.mko"},
 	{"ASHRAH"	, 0x59AFE0	, 0x59B150	,"ashrah.mko"},
-	{"SEINFELD"	, 0x5A2220	, 0x5A2390	,"sindel.mko"},
+	{"SINDEL"	, 0x5A2220	, 0x5A2390	,"sindel.mko"},
 	{"LI MEI"	, 0x59E820	, 0x59E6B0	,"limei.mko"},
 	{"BO' RAI CHO"	, 0x59B870	, 0x59BA00	,"boraicho.mko"},
 	{"HOTARU"	, 0x59CDE0	, 0x59CF50	,"hotaru.mko"},
@@ -55,6 +54,8 @@ struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"BLAZE"	, (int)&mkda_blaze_file_table	, (int)&mkda_blaze_file_table		,"mkda_blaze.mko"},
 	// new
 	{"SONYA"	,(int)&sonya_file_table	, (int)&sonya_alt_file_table	,"kira.mko"},
+	// mku
+	{"KITANA"	, (int)&kitana_file_table	, (int)&kitana_file_table	,"kitana.mko"},
 };
 
 void dump_char_table()
@@ -171,6 +172,7 @@ void init_character_tocs()
 	init_mkda_mokap_toc();
 	init_mkda_blaze_toc();
 	init_sonya_toc();
+	init_kitana_toc();
 }
 
 int hook_character_lock_status(int id, int param)

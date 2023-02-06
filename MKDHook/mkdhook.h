@@ -1,5 +1,7 @@
 #pragma once
 #include "mkdeception.h"
+#include "character.h"
+#include "sound.h"
 
 #define SELECT_SCREEN_SWAP_SOUND 7024
 #define SELECT_SCREEN_ALT_PAL_SOUND 7020
@@ -9,7 +11,7 @@ enum ECurrentSelect {
 	Select_UMKD,
 	Select_NPC,
 };
-extern int sound;
+extern select_screen_entry pSelectTableNew[27];
 
 void init_mkdhook_vars();
 

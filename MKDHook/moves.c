@@ -60,6 +60,7 @@ int scan_table_1_jump_table[] = {
 	0x2028B4, //  MKDA_MOKAP,
 	0x2028B4, //  MKDA_BLAZE,
 	SCAN1_UNIVERSAL_JUMP, //  UMKD_SONYA,
+	SCAN1_UNIVERSAL_JUMP, //  KITANA
 };
 
 
@@ -157,6 +158,7 @@ int scan_table_3_jump_table[] = {
 	0x201F64, //  MKDA_MOKAP,
 	0x201F64, //  MKDA_BLAZE,
 	SCAN3_UNIVERSAL_JUMP, //  UMKD_SONYA,
+	SCAN3_UNIVERSAL_JUMP, //  KITANA
 };
 
 int scan_table_4_jump_table[] = {
@@ -285,6 +287,12 @@ int swap_scan_table_1()
 		else
 			scan_action_set = (int)&scan_null;
 		break;
+	case KITANA:
+		if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
+			scan_action_set = (int)&scan_kitana_1;
+		else
+			scan_action_set = (int)&scan_null;
+		break;
 	default:
 		break;
 	}
@@ -332,6 +340,9 @@ int swap_scan_table_3()
 		break;
 	case SONYA:
 		scan_action_set = (int)&scan_sonya_3;
+		break;
+	case KITANA:
+		scan_action_set = (int)&scan_kitana_3;
 		break;
 	default:
 		break;

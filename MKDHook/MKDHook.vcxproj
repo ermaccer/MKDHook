@@ -48,6 +48,7 @@
     <ClCompile Include="characters\baraka.c" />
     <ClCompile Include="characters\character_list.c" />
     <ClCompile Include="characters\ermac.c" />
+    <ClCompile Include="characters\kitana.c" />
     <ClCompile Include="characters\liukang.c" />
     <ClCompile Include="characters\mkda_blaze.c" />
     <ClCompile Include="characters\mkda_kano.c" />
@@ -62,6 +63,7 @@
     <ClCompile Include="ladder.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mips.c" />
+    <ClCompile Include="misc\misc_anims.c" />
     <ClCompile Include="misc\pselect.c" />
     <ClCompile Include="mkdhook.c" />
     <ClCompile Include="mkdmenu.c" />
@@ -77,7 +79,9 @@
     <ClCompile Include="mouse.c" />
     <ClCompile Include="moves.c" />
     <ClCompile Include="ps2mem.c" />
+    <ClCompile Include="reactions.c" />
     <ClCompile Include="scripthook.c" />
+    <ClCompile Include="sound.c" />
     <ClCompile Include="stage.c" />
     <ClCompile Include="stages\acidbath.c" />
     <ClCompile Include="stages\katakombs.c" />
@@ -88,6 +92,7 @@
     <ClInclude Include="characters\baraka.h" />
     <ClInclude Include="characters\character_list.h" />
     <ClInclude Include="characters\ermac.h" />
+    <ClInclude Include="characters\kitana.h" />
     <ClInclude Include="characters\liukang.h" />
     <ClInclude Include="characters\mkda_blaze.h" />
     <ClInclude Include="characters\mkda_kano.h" />
@@ -101,6 +106,7 @@
     <ClInclude Include="characters\subzero.h" />
     <ClInclude Include="ladder.h" />
     <ClInclude Include="mips.h" />
+    <ClInclude Include="misc\misc_anims.h" />
     <ClInclude Include="misc\pselect.h" />
     <ClInclude Include="mkdeception.h" />
     <ClInclude Include="mkdhook.h" />
@@ -118,7 +124,9 @@
     <ClInclude Include="mouse.h" />
     <ClInclude Include="moves.h" />
     <ClInclude Include="ps2mem.h" />
+    <ClInclude Include="reactions.h" />
     <ClInclude Include="scripthook.h" />
+    <ClInclude Include="sound.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="stages\acidbath.h" />
     <ClInclude Include="stages\katakombs.h" />

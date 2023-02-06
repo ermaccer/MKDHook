@@ -1,5 +1,7 @@
 EE_BIN = ../scripts/MKDHook.elf
 EE_OBJS = main.o\
+sound.o \
+reactions.o \
 scripthook.o \
 mkd\core.o \
 mkd\object.o \
@@ -27,8 +29,10 @@ characters\ashrah.o \
 characters\ermac.o \
 characters\noob.o \
 characters\sonya.o \
+characters\kitana.o \
 characters\character_list.o \
-misc\pselect.o
+misc\pselect.o \
+misc\misc_anims.o 
 
 BASE_ADDRESS = 0x02020000
 EE_LINKFILE = linkfile

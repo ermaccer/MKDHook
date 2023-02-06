@@ -47,6 +47,7 @@ enum game_mode {
 
 
 void _printf(char* format, ...);
+void _sprintf(char* dest, char* format, ...);
 void render();
 void pause(int status);
 void init_fatality_world();

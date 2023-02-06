@@ -22,6 +22,11 @@ void call_script_function(int id)
 	((void(*)())script_function_table[id])();
 }
 
+void reaction_xfer_him(int id, int a2, float a3)
+{
+	((void(*)(int, int, float))0x20E9D0)(id, a2, a3);
+}
+
 void sleep(int time)
 {
 	push_arg(0, time);

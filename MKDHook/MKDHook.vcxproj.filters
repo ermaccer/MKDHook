@@ -135,6 +135,18 @@
     <ClCompile Include="scripthook.c">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="characters\kitana.c">
+      <Filter>source\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="sound.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="reactions.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="misc\misc_anims.c">
+      <Filter>source\misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ps2mem.h">
@@ -259,6 +271,18 @@
     </ClInclude>
     <ClInclude Include="scripthook.h">
       <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\kitana.h">
+      <Filter>source\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="sound.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="reactions.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="misc\misc_anims.h">
+      <Filter>source\misc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

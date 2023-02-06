@@ -9,6 +9,9 @@
 #include "moves.h"
 #include "scripthook.h"
 #include "misc/pselect.h"
+#include "misc/misc_anims.h"
+#include "sound.h"
+#include "reactions.h"
 
 int CompatibleCRCList[] = { 0x7C22850A };
 
@@ -34,8 +37,13 @@ void init()
    init_ladder_hook();
    init_moves_hook();
    init_script_hook();
+   init_sound_hook();
+   init_reactions_hook();
+   patch_misc_anims_toc();
 
-   _printf("MKDHook init!\n");
+   dump_reactions_table();
+
+   _printf("MKDHook init! %x\n", &debugVar[0]);
 }
 
 int main()

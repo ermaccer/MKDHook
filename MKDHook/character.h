@@ -51,6 +51,8 @@ enum characters
 
 	// new characters
 	SONYA,
+	// mku
+	KITANA,
 	TOTAL_CHARACTERS
 };
 

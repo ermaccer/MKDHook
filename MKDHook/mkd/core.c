@@ -5,6 +5,11 @@ void _printf(char* format, ...)
 	((void(*)(const char*, ...))0x1E7CF0)(format);
 }
 
+void _sprintf(char* dest, char* format, ...)
+{
+	((void(*)(const char*, ...))0x1E9660)(format);
+}
+
 void render()
 {
 	((void(*)())0x127090)();

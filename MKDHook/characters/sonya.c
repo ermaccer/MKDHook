@@ -1,6 +1,6 @@
 #include "sonya.h"
 
-// kiss of death
+ // kiss of death
 struct scan_action scan_sonya_1 = {
 	16933,
 	0x3000019,
@@ -63,7 +63,6 @@ struct mk_file_entry sonya_entry_table[SONYA_FILES] = {
 // I:\ps2dvd\art\sonya.ssf
 struct mk_toc_entry sonya_file_table[SONYA_FILES + 1] = {
 		{&sonya_entry_table[0]	,0,0 },
-
 		{&sonya_entry_table[1]	,0,461056}, // kira.sec
 		{&sonya_entry_table[2]	,0,461056}, // kira_ap.sec
 		{&sonya_entry_table[3]	,0,42048}, // kira.mko
@@ -71,22 +70,18 @@ struct mk_toc_entry sonya_file_table[SONYA_FILES + 1] = {
 		{&sonya_entry_table[5]	,0,10164}, // fight_fx.mko
 		{&sonya_entry_table[6]	,0,8860}, // kira_fx.mko
 		{&sonya_entry_table[7]	,0,237952 }, // sh_kira.sec
-
 		{&sonya_entry_table[8]	,0,15716  }, // kenpo.mko
 		{&sonya_entry_table[9]	,0,10112  }, // style_kenpo.sec
 		{&sonya_entry_table[10]	,0,17500  }, // taekwondo.mko
 		{&sonya_entry_table[11]	,0,10112  }, // style_taekwondo.sec
 		{&sonya_entry_table[12]	,0,18756  }, // kali.mko
 		{&sonya_entry_table[13]	,0,10112  }, // style_kali.sec
-
 		{&sonya_entry_table[14]	,0,163712 }, // kenpo_anims.sec
 		{&sonya_entry_table[15]	,0,166656 }, // taekwondo_anims.sec
 		{&sonya_entry_table[16]	,0,189312 }, // kali_anims.sec
 		{&sonya_entry_table[17]	,0,156280 }, // kira_anims.sec
-
 		{&sonya_entry_table[18]	,0,120192 }, // fat_anims_kira_1.sec
 		{&sonya_entry_table[19]	,0,106596  }, // fat_anims_kira_2.sec
-
 		{&sonya_entry_table[20]	,0,63104  }, // pz_mileena_anims.sec
 
 		{0,0,0}

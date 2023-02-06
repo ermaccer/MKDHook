@@ -17,5 +17,7 @@
 
 // all NEW!
 #include "sonya.h"
+// mku ports
+#include "kitana.h"
 
 extern struct scan_action scan_null;

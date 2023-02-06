@@ -7,7 +7,7 @@ int  current_select = 0;
 int  select_timer = 0;
 int sound;
 
-select_screen_entry pSelectTable[] = {
+select_screen_entry pSelectTable[27] = {
 	{KENSHI	, 86	, "HEAD_KENSHI"	, "HEAD_KENSHI_LOCKED"	, "BODY_KENSHI"	, "body_kenshi_alt.sec"	, "4"	, "TAI CHI"	, "JUDO"	, "KATANA"},
 	{JADE	, 84	, "HEAD_JADE"	, "HEAD_JADE_LOCKED"	, "BODY_JADE"	, "body_jade_alt.sec"	, "5"	, "FAN ZI"	, "KUO SHOU"	, "BOJUTSU"},
 	{SCORPION	, 95	, "HEAD_SCORPION"	, "HEAD_SCORPION"	, "BODY_SCORPION"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
@@ -34,9 +34,9 @@ select_screen_entry pSelectTable[] = {
 	{LIU_KANG	, 90	, "HEAD_LIUKANG"	, "HEAD_LIUKANG_LOCKED"	, "BODY_LIUKANG"	, "body_liukang_alt.sec"	, "5"	, "JUN FAN"	, "PAO CHUI"	, "NUNCHAKU"},
 };
 
-select_screen_entry pSelectTableNew[] = {
-		{SONYA,  -1	, "HEAD_SONYA"	, "HEAD_RANDOM"	, "BODY_SONYA"	, "body_sonya_alt.sec"	, "1"	, "KENPO"	, "TAE KWON DO"	, "KALI STICKS"},
-		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
+select_screen_entry pSelectTableNew[27] = {
+		{SONYA,  SOUND_SONYA_SELECT	, "HEAD_SONYA"	, "HEAD_RANDOM"	, "BODY_SONYA"	, "body_sonya_alt.sec"	, "1"	, "KENPO"	, "TAE KWON DO"	, "KALI STICKS"},
+		{KITANA,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "4"	, "EAGLE CLAW"	, "BA GUA"	, "STEEL FAN"},
 		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
 		{ONAGA,  13	, "HEAD_KOBRA_LOCKED"	, "HEAD_KOBRA_LOCKED"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	,  "1"	, "DRAGON"	, ""	, ""},
 		{ONAGA,  13	, "HEAD_KOBRA_LOCKED"	, "HEAD_KOBRA_LOCKED"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	,  "1"	, "DRAGON"	, ""	, ""},
@@ -62,7 +62,7 @@ select_screen_entry pSelectTableNew[] = {
 		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
 };
 
-select_screen_entry pSelectTableNPC[] = {
+select_screen_entry pSelectTableNPC[27] = {
 		{MONSTER, -1	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
 		{ONAGA,  13	, "HEAD_KOBRA_LOCKED"	, "HEAD_KOBRA_LOCKED"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	,  "1"	, "DRAGON"	, ""	, ""},
 		{SHUJINKO_13	, 96	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "5"	, "MANTIS"	, "SHAOLIN FIST"	, "DAN TIEN DAO"},
