@@ -6,6 +6,8 @@
 #define EXTRA_REACTIONS 17
 
 
+
+
 enum eReactionType {
 	TYPE_FUNCTION_CALL = 1, // custom function
 	TYPE_2,
@@ -25,5 +27,8 @@ typedef struct{
 
 extern reaction_table_entry reaction_table[TOTAL_REACTIONS];
 
+extern int onaga_remap_table[TOTAL_REACTIONS];
+
 void init_reactions_hook();
 void dump_reactions_table();
+void dump_onaga_remap_table();

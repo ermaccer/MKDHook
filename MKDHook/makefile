@@ -1,6 +1,7 @@
 EE_BIN = ../scripts/MKDHook.elf
 EE_OBJS = main.o\
 sound.o \
+sound_bank.o \
 reactions.o \
 scripthook.o \
 mkd\core.o \
@@ -30,14 +31,20 @@ characters\ermac.o \
 characters\noob.o \
 characters\sonya.o \
 characters\kitana.o \
+characters\jax.o \
+characters\dragonking.o \
 characters\character_list.o \
 misc\pselect.o \
-misc\misc_anims.o 
+misc\misc_anims.o \
+misc\fatalityanims.o \
+pcsx2\rini.o \
+pcsx2\inireader.o \
+settings.o
 
 BASE_ADDRESS = 0x02020000
 EE_LINKFILE = linkfile
 
-EE_LDFLAGS = -Wl,--entry=init -Wl,-Map,../scripts/MKDHook.map -Wl,'--defsym=BASE_ADDRESS=$(BASE_ADDRESS)'
+EE_LDFLAGS = -Wl,--entry=init -Wl,-Map,../scripts/MKDHook.map -Wl,'--defsym=BASE_ADDRESS=$(BASE_ADDRESS)' -O3
 
 all: $(EE_BIN)
 

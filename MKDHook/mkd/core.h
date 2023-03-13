@@ -11,6 +11,8 @@ typedef struct {
 #define PLAYER_DATA    0x5D63A4 
 #define MISSION_INFO   0x642C08
 #define P2_PROC_DATA   0x5D6398
+#define PLAYER2_OBJ    0x5D639C
+#define PLAYER_OBJ     0x5D63A0
 
 
 enum game_state {
@@ -55,7 +57,11 @@ int randu(int max);
 int get_game_state();
 int get_game_mode();
 int get_game_tick();
+void xfer_proc(int obj, int proc);
+
 void set_game_speed(float speed);
+
+int get_character_id(int plr);
 
 
 // loaders

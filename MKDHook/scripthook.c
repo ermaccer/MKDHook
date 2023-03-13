@@ -3,15 +3,20 @@
 #include <stdio.h>
 #include "ps2mem.h"
 #include "mips.h"
+#include "sound.h"
+#include "characters/character_list.h"
 
 int script_function_table[TOTAL_COMMANDS];
 int debugVar[2];
+int cached_aux_weapon[2];
 
 void init_script_hook()
 {
 	int val = (int)&script_function_table;
-	debugVar[0] = -1;
-	debugVar[1] = 2;
+	debugVar[0] = 7233;
+	debugVar[1] = 3;
+	cached_aux_weapon[0] = 0;
+	cached_aux_weapon[1] = 0;
 
 	init_script_function_table();
 
@@ -20,13 +25,16 @@ void init_script_hook()
 	patchInt(0x21B5AC, ori(a2, a2, LOWORD(val)));
 
 	makeJal(0x1FB948, fix_kitana_fan_lift);
+	makeJal(0x268D74, mku_kitana_curl_pos_fix);
+	makeJal(0x268954, mku_kitana_sfx_fix);
+	makeJal(0x134B5C, cache_loaded_aux_weapon);
 
 }
 
 void init_script_function_table()
 {
 	for (int i = 0; i < TOTAL_COMMANDS; i++)
-		script_function_table[i] = 0;
+		script_function_table[i] = (int)&_null;
 
 	// original functions
 	{
@@ -1739,7 +1747,12 @@ void init_script_custom_function_table()
 	script_function_table[_umkd_sonya_runtime] = (int)&umkd_sonya_runtime;
 	script_function_table[mku_kitana_pfx] = (int)&mku_kitana_curl_fx;
 	script_function_table[mku_kitana_pfx_destroy] = (int)&_null;
-
+	script_function_table[mku_kitana_kod_stretcher] = (int)&_kitana_kod_stretcher;
+	script_function_table[mku_jax_grab_weapon] = (int)&_jax_grab_aux_weapon;
+	script_function_table[mku_jax_pfx] = (int)&_jax_do_ground_blast;
+	script_function_table[1470] = (int)&pfxhandle_spawn_at_bid_next_aux_fix;
+	script_function_table[1473] = (int)&pfxhandle_spawn_at_bid_next_bind_render_aux_fix;
+	script_function_table[jax_taunt] = (int)&_jax_taunt;
 }
 
 void dump_script_table()
@@ -1757,6 +1770,7 @@ void dump_script_table()
 
 void _null()
 {
+
 }
 
 void umkd_sonya_runtime()
@@ -1765,29 +1779,170 @@ void umkd_sonya_runtime()
 	sleep(5000);
 }
 
+void _kitana_kod_stretcher()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	kitana_kod_stretcher(*(int*)(args + 4), *(float*)(args + 8));
+}
+
+void _jax_grab_aux_weapon()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	int result = jax_grab_aux_weapon(*(int*)(args + 4), *(int*)(args + 8));
+	int* ac = (int*)ACTIVE_SCRIPT;
+	ac[11] = result;
+}
+
+void _jax_do_ground_blast()
+{
+	jax_start_blast();
+}
+
+void _jax_taunt()
+{
+	random_jax_taunt();
+}
+
 void mku_kitana_curl_fx()
 {
 	call_script_function(1485);
 }
 
-void fix_kitana_fan_lift(int id, int a2, float a3)
+void mku_kitana_curl_pos_fix(int obj, int id, CVector* pos)
+{
+	int plrID = get_id_from_object(obj);
+	int charID = get_character_id(plrID);
+
+	if (charID >= 0)
+	{
+		if (charID == SINDEL)
+		{
+			id = 16;
+			patchFloat(0x5D50AC, 5.0f);
+			patchFloat(0x5D50A8, 8.0f);
+		}
+		else if (charID == KITANA)
+		{
+			id = 26;
+			if (am_i_flipped_direct(obj))
+				id = 27;
+			patchFloat(0x5D50AC, 3.45f);
+			patchFloat(0x5D50A8, 4.0f);
+		}
+	}
+
+	get_bone_pos(obj, id, pos);
+}
+
+int mku_kitana_sfx_fix(int id)
 {
 	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
-	
+	int chr = plyr_data->characterID;
 
+	if (id == 754)
+	{
+		if (chr == KITANA)
+			id = SOUND_KITANA_FANLIFT;
+	}
+	return snd_req(id);
+}
+
+
+void fix_kitana_fan_lift(int id, int a2, float a3)
+{
 	// mku kitana fan lift hack
-	// fixes a bug where fan lift hits like 10 times
+	// fixes a bug where fan lift hits like 10-50 times
 	// doesnt xfer if the lifted flag is set
 	// also an issue in real mku
+
+	int p2_pdata = *(int*)(P2_PROC_DATA);
+
+
+	int flags = *(int*)(p2_pdata + 532);
+	int allow = 1;
+
 	if (id == 318)
 	{
-		int p2_pdata = *(int*)(P2_PROC_DATA);
-		int flags = *(int*)(p2_pdata + 532);
-		if (flags & 0x4000)
+		int his_obj = *(int*)PLAYER2_OBJ;
+		int chrID = get_character_id(get_id_from_object(his_obj));
+
+		if (chrID == ONAGA)
 			return;
 
+		if (flags & 0x4000)
+			return;
 	}
 
 	reaction_xfer_him(id, a2, a3);
+
+	if (id == 318 && !(flags & 0x4000))
+		kitana_fanlift_voice();
 }
 
+
+int cache_loaded_aux_weapon(int a1, int obj)
+{
+	// fix for gun fire
+	// seems its impossible to access aux weapon object in mkd ps2
+	// so aux objs are cached for both players
+	// and then swapped for jax during FX call to make gun work
+	
+
+	int wep = load_weapon(a1, obj);
+
+	int id = get_id_from_object(obj);
+	int chrID = get_character_id(id);
+
+	if (chrID == JAX)
+		cached_aux_weapon[id] = wep;
+
+
+
+	return wep;
+}
+
+void pfxhandle_spawn_at_bid_next_aux_fix()
+{
+	int plyr_obj = *(int*)PLAYER_OBJ;
+	int id = get_id_from_object(plyr_obj);
+	int chrID = get_character_id(id);
+
+	int args = *(int*)(CURRENT_ARGS);
+	int arg2 = *(int*)(args + 8);
+
+	if (chrID == JAX)
+	{
+		// if a2 isnt player, it must be aux obj 
+		if (arg2 != plyr_obj)
+		{
+			*(int*)(args + 8) = cached_aux_weapon[id];
+		}
+	}
+
+
+
+	((void(*)())0x22EAF0)();
+
+}
+
+void pfxhandle_spawn_at_bid_next_bind_render_aux_fix()
+{
+	int plyr_obj = *(int*)PLAYER_OBJ;
+	int id = get_id_from_object(plyr_obj);
+	int chrID = get_character_id(id);
+
+	int args = *(int*)(CURRENT_ARGS);
+	int arg2 = *(int*)(args + 8);
+
+	if (chrID == JAX)
+	{
+		// if a2 isnt player, it must be aux obj 
+		if (arg2 != plyr_obj)
+		{
+			*(int*)(args + 8) = cached_aux_weapon[id];
+		}
+	}
+
+
+	((void(*)())0x22EA40)();
+}

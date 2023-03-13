@@ -33,13 +33,15 @@ struct mk_file_entry pselect_entry_table[PSELECT_FILES] = {
 	{"body_subzero_alt.sec"	,0, 1},
 	{"body_tanya_alt.sec"	,0, 1},
 	{"body_sonya_alt.sec"	,0, 1},
+	{"body_kitana_alt.sec"	,0, 1},
+	{"body_jax_alt.sec"	,0, 1},
 };
 
 // I:\ps2dvd\art\pselect.ssf
 struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[0]	,0,0 },
 
-		{&pselect_entry_table[1]	,0,3377408}, // pselect
+		{&pselect_entry_table[1]	,0,3603456}, // pselect
 		{&pselect_entry_table[2]	,0,1514624}, // bg
 		{&pselect_entry_table[3]	,0,1528960},  // pz
 		// ALT RENDERS
@@ -68,7 +70,8 @@ struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[26]	,0,67456},  // ALT
 		{&pselect_entry_table[27]	,0,67456},  // ALT
 		{&pselect_entry_table[28]	,0,67456},  // sonya_alt
-
+		{&pselect_entry_table[29]	,0,67456},  // KITANA_alt
+		{&pselect_entry_table[30]	,0,67456},  // jax_alt
 		{0,0,0}
 };
 

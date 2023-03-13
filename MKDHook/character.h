@@ -53,6 +53,7 @@ enum characters
 	SONYA,
 	// mku
 	KITANA,
+	JAX,
 	TOTAL_CHARACTERS
 };
 

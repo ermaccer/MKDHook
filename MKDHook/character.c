@@ -37,7 +37,7 @@ struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"SHUJINKO"	, 0x5A1FB0	, 0x5A1FB0	,"shujinko_13.mko"},
 	{"NOOB - SMOKE"	, 0x5A1490	, 0x5A1320	,"noobsmoke.mko"},
 	{"MONSTER"	, 0x59CB40	, 0x59CB40	,"freak.mko"},
-	{"ONAGA"	, 0x59C4D0	, 0x59C4D0	,"dragonking.mko"},
+	{"ONAGA"	, (int)&dragonking_file_table	,(int)&dragonking_file_table	,"dragonking.mko"},
 	{"JAX"	, 0x59FAA0	, 0x59FC10	,"mkda_jax.mko"},
 	{"RAIDEN"	, 0x5A0700	, 0x5A0700	,"mkda_rayden.mko"},
 	{"QUAN CHI"	, 0x5A0460	, 0x5A0460	,"mkda_quanchi.mko"},
@@ -55,7 +55,8 @@ struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	// new
 	{"SONYA"	,(int)&sonya_file_table	, (int)&sonya_alt_file_table	,"kira.mko"},
 	// mku
-	{"KITANA"	, (int)&kitana_file_table	, (int)&kitana_file_table	,"kitana.mko"},
+	{"KITANA"	, (int)&kitana_file_table	, (int)&kitana_alt_file_table	,"kitana.mko"},
+	{"JAX"	, (int)&jax_file_table	, (int)&jax_alt_file_table	,"jax.mko"},
 };
 
 void dump_char_table()
@@ -173,6 +174,8 @@ void init_character_tocs()
 	init_mkda_blaze_toc();
 	init_sonya_toc();
 	init_kitana_toc();
+	init_jax_toc();
+	init_dragonking_toc();
 }
 
 int hook_character_lock_status(int id, int param)

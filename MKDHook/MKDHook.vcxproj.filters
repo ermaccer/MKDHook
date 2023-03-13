@@ -19,6 +19,9 @@
     <Filter Include="source\mkd">
       <UniqueIdentifier>{f4bb26db-cff1-41bf-9daa-808c7d9a255f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\pcsx2">
+      <UniqueIdentifier>{e20e05ce-5447-4a12-bfb5-979a6dd40265}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -146,6 +149,27 @@
     </ClCompile>
     <ClCompile Include="misc\misc_anims.c">
       <Filter>source\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="sound_bank.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="misc\fatalityanims.c">
+      <Filter>source\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\jax.c">
+      <Filter>source\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="settings.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="pcsx2\rini.c">
+      <Filter>source\pcsx2</Filter>
+    </ClCompile>
+    <ClCompile Include="pcsx2\inireader.c">
+      <Filter>source\pcsx2</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\dragonking.c">
+      <Filter>source\characters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +307,27 @@
     </ClInclude>
     <ClInclude Include="misc\misc_anims.h">
       <Filter>source\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sound_bank.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="misc\fatalityanims.h">
+      <Filter>source\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\jax.h">
+      <Filter>source\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="settings.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="pcsx2\rini.h">
+      <Filter>source\pcsx2</Filter>
+    </ClInclude>
+    <ClInclude Include="pcsx2\inireader.h">
+      <Filter>source\pcsx2</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\dragonking.h">
+      <Filter>source\characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

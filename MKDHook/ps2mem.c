@@ -10,6 +10,11 @@ void patchInt(unsigned int addr, int data)
 	*(int*)(addr) = data;
 }
 
+void patchFloat(unsigned int addr, float data)
+{
+	*(float*)(addr) = data;
+}
+
 void makeJmp(unsigned int addr, void* func)
 {
 	*(int*)addr = (0x08000000 | (((unsigned int)(func) & 0x0FFFFFFC) >> 2));

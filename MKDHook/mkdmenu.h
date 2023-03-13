@@ -23,12 +23,14 @@ enum eMenuPages {
 	MENU_DEFAULT = -1,
 	MENU_PLAYER,
 	MENU_CAMERA,
+	MENU_SPEED,
 	MENU_MISC
 };
 
 enum eMenuDefault {
 	DEFAULT_PLAYER,
 	DEFAULT_CAMERA,
+	DEFAULT_SPEED,
 	DEFAULT_MISC,
 	TOTAL_MENU_DEFAULT
 };
@@ -41,10 +43,19 @@ enum eMenuPlayer {
 	TOTAL_PLAYER
 };
 
+enum eMenuSpeed {
+	SLOWMOTION,
+	FREEZE_WORLD,
+	RESET_SPEED,
+	TOTAL_SPEED
+};
+
 enum eMenuMisc {
 	KILL_HUD,
 	DISABLE_FAT_CAMERA,
 	ENABLE_FAT_CAMERA,
+	CHUB_MODE,
+	SKINNY_MODE,
 	TOTAL_MISC
 };
 
@@ -91,6 +102,7 @@ void Menu_KeyTriangle();
 void Menu_ProcessPlayer();
 void Menu_ProcessPlayerReverse();
 void Menu_ProcessMisc();
+void Menu_ProcessSpeed();
 void Menu_ProcessCamera();
 void Menu_ClearStrings();
 void Menu_Unset();
@@ -106,11 +118,16 @@ void Menu_Init_Vars();
 void Menu_K_Reset();
 void disable_fatality_camera();
 void enable_fatality_camera();
+void enable_chubbozo_mode();
+void enable_skinny_mode();
+void enable_bigheads();
 
 // funcs
 
 void update_player1_scale();
 void update_player2_scale();
+
+void test_sound();
 
 // konquest 
 void konquest_camera();

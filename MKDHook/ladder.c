@@ -35,13 +35,8 @@ short characters[] = {
 	DARRIUS,
 	SHUJINKO,
 	SONYA,
-	MONSTER,
-	MKDA_JAX,
-	MKDA_KUNG_LAO,
-	MKDA_CAGE,
-	MKDA_NITARA,
-	MKDA_SHANG_TSUNG,
-	MKDA_KITANA,
+	KITANA,
+	JAX
 };
 
 short backgrounds[] = {
@@ -154,4 +149,9 @@ int is_map_in_my_ladder(int id)
 	}
 
 	return result;
+}
+
+int get_current_ladder_pos()
+{
+	return *(int*)0x5D72D4;
 }

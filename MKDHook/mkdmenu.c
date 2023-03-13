@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include "mips.h"
 #include "ps2mem.h"
-
+#include "characters/kitana.h"
+#include "scripthook.h"
 
 CVector camPos;
 CVector camRot;
@@ -50,6 +51,7 @@ const char* menuNames[MENU_MAX_STRINGS] =
 {
 	"Player",
 	"Camera",
+	"Speed",
 	"Misc.",
 };
 
@@ -77,7 +79,16 @@ const char* menuNamesMisc[MENU_MAX_STRINGS] =
 {
 	"Kill HUD",
 	"Disable Fatality Camera",
-	"Enable Fatality Camera"
+	"Enable Fatality Camera",
+	"Chubbozo Mode",
+	"Skinny Mode",
+};
+
+const char* menuNamesSpeed[MENU_MAX_STRINGS] =
+{
+	"Slowmotion",
+	"Freeze World",
+	"Reset Speed",
 };
 
 struct Menu GetMenu()
@@ -130,6 +141,8 @@ void Menu_Draw()
 			str = TOTAL_MISC;
 		if (m_nCurrentMenuOpen == MENU_CAMERA)
 			str = TOTAL_CAMERA;
+		if (m_nCurrentMenuOpen == MENU_SPEED)
+			str = TOTAL_MISC;
 		for (int i = 0; i < str; i++)
 		{
 			if (m_nCurrentMenuOpen == MENU_DEFAULT)
@@ -174,6 +187,12 @@ void Menu_Draw()
 				update_string_obj(menuStrings[TOTAL_CAMERA + 1], 0, tmp);
 				update_string_obj(menuStrings[i], 0, menuNamesCamera[i]);
 			}
+			if (m_nCurrentMenuOpen == MENU_SPEED)
+			{
+				char tmp[256] = {};
+				update_string_obj(menuStrings[TOTAL_PLAYER + 1], 0, tmp);
+				update_string_obj(menuStrings[i], 0, menuNamesSpeed[i]);
+			}
 			if (m_nCurrentMenuOpen == MENU_MISC)
 			{
 				char tmp[256] = {};
@@ -213,6 +232,8 @@ void Menu_Process()
 	if (GetAsyncKeyState(71))
 		Menu_Toggle_FreeCam();
 
+	if (GetAsyncKeyState(67))
+		test_sound();
 
 	if (TheMenu.m_bActive)
 	{
@@ -239,7 +260,9 @@ void Menu_Process()
 			str = TOTAL_MISC;
 		if (m_nCurrentMenuOpen == MENU_CAMERA)
 			str = TOTAL_CAMERA;
-	
+		if (m_nCurrentMenuOpen == MENU_SPEED)
+			str = TOTAL_SPEED;
+
 		if (m_nCurrentPos < 0) m_nCurrentPos = str - 1;
 		if (m_nCurrentPos >= str) m_nCurrentPos = 0;
 	}
@@ -301,6 +324,8 @@ void Menu_KeyCross()
 		Menu_ProcessMisc();
 	if (m_nCurrentMenuOpen == MENU_CAMERA)
 		Menu_ProcessCamera();
+	if (m_nCurrentMenuOpen == MENU_SPEED)
+		Menu_ProcessSpeed();
 	}
 
 }
@@ -377,6 +402,33 @@ void Menu_ProcessMisc()
 		break;
 	case 2:
 		enable_fatality_camera();
+		break;
+	case 3:
+		enable_chubbozo_mode();
+		break;
+	case 4:
+		enable_skinny_mode();
+		break;
+	case 5:
+		enable_bigheads();
+		break;
+	default:
+		break;
+	}
+}
+
+void Menu_ProcessSpeed()
+{
+	switch (m_nCurrentPos)
+	{
+	case 0:
+		set_game_speed(0.5f);
+		break;
+	case 1:
+		set_game_speed(0.0f);
+		break;
+	case 2:
+		set_game_speed(1.0f);
 		break;
 	default:
 		break;
@@ -641,6 +693,45 @@ void enable_fatality_camera()
 	patchInt(0x26D9AC, jal(0x17CF00));
 }
 
+void enable_chubbozo_mode()
+{
+	player_info plr1 = *(player_info*)PLAYER1_INFO;
+	player_info plr2 = *(player_info*)PLAYER2_INFO;
+	if (plr1.pObject)
+		kitana_kod_stretcher(plr1.pObject, 1.2f);
+
+	if (plr2.pObject)
+		kitana_kod_stretcher(plr2.pObject, 1.2f);
+
+}
+
+void enable_skinny_mode()
+{
+	player_info plr1 = *(player_info*)PLAYER1_INFO;
+	player_info plr2 = *(player_info*)PLAYER2_INFO;
+	if (plr1.pObject)
+		kitana_kod_stretcher(plr1.pObject, -0.4f);
+
+	if (plr2.pObject)
+		kitana_kod_stretcher(plr2.pObject, -0.4f);
+}
+
+void enable_bigheads()
+{
+	player_info plr1 = *(player_info*)PLAYER1_INFO;
+	player_info plr2 = *(player_info*)PLAYER2_INFO;
+	if (plr1.pObject)
+	{
+		scale_bone(plr1.pObject, 17, 2.5f);
+
+	}
+	if (plr2.pObject)
+	{
+			scale_bone(plr1.pObject, 17, 2.5f);
+	}
+
+}
+
 void update_player1_scale()
 {
 	player_info plr1 = *(player_info*)PLAYER1_INFO;
@@ -679,6 +770,13 @@ void update_player2_scale()
 			}
 		}
 	}
+}
+void test_sound()
+{
+	if (get_game_tick() - hook_timer <= 15) return;
+	hook_timer = get_game_tick();
+
+	snd_req(debugVar[0]);
 }
 void konquest_camera()
 {

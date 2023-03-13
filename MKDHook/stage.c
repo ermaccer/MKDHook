@@ -248,7 +248,7 @@ char* hook_ladder_stage_name(int id)
 void init_stage_hook()
 {
 	static int val = 0;
-	// SELECT
+	// SELECT-
 	hook_stage_select();
 
 	// STAGE DATA
@@ -262,6 +262,10 @@ void init_stage_hook()
 	patchShort(0x16F07C, TOTAL_BACKGROUNDS);
 	patchShort(0x16F054, TOTAL_BACKGROUNDS);
 	patchShort(0x129884, TOTAL_BACKGROUNDS);
+
+	// fix end & fatality music
+	patchShort(0x129644, TOTAL_BACKGROUNDS);
+	patchShort(0x1294A4, TOTAL_BACKGROUNDS);
 
 	val = (int)&pStageTable[0];
 	patchInt(0x15A668, lui(v0, HIWORD(val)));

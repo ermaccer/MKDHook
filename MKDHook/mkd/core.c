@@ -45,9 +45,23 @@ int get_game_tick()
 	return *(int*)0x5D62AC;
 }
 
+void xfer_proc(int obj, int proc)
+{
+	((void(*)(int, int))0x12D260)(obj, proc);
+}
+
 void set_game_speed(float speed)
 {
 	*(float*)0x5D628C = speed;
+}
+
+int get_character_id(int plr)
+{
+	player_info plr1 = *(player_info*)PLAYER1_INFO;
+	player_info plr2 = *(player_info*)PLAYER2_INFO;
+	if (plr == 0) return plr1.characterID;
+	if (plr == 1) return plr2.characterID;
+	return -1;
 }
 
 int load_background(int id)

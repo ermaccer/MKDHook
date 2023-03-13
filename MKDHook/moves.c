@@ -61,6 +61,7 @@ int scan_table_1_jump_table[] = {
 	0x2028B4, //  MKDA_BLAZE,
 	SCAN1_UNIVERSAL_JUMP, //  UMKD_SONYA,
 	SCAN1_UNIVERSAL_JUMP, //  KITANA
+	SCAN1_UNIVERSAL_JUMP, // JAX
 };
 
 
@@ -110,6 +111,8 @@ int scan_table_2_jump_table[] = {
 	0x20239C, //  MKDA_MOKAP,
 	0x20239C, //  MKDA_BLAZE,
 	SCAN2_UNIVERSAL_JUMP, //  UMKD_SONYA,
+	SCAN2_UNIVERSAL_JUMP, //  KITANA
+	SCAN2_UNIVERSAL_JUMP, //  JAX
 };
 
 int scan_table_3_jump_table[] = {
@@ -159,6 +162,7 @@ int scan_table_3_jump_table[] = {
 	0x201F64, //  MKDA_BLAZE,
 	SCAN3_UNIVERSAL_JUMP, //  UMKD_SONYA,
 	SCAN3_UNIVERSAL_JUMP, //  KITANA
+	SCAN3_UNIVERSAL_JUMP, //  JAX
 };
 
 int scan_table_4_jump_table[] = {
@@ -207,6 +211,8 @@ int scan_table_4_jump_table[] = {
 	0x201B0C, //  MKDA_MOKAP,
 	0x201B0C, //  MKDA_BLAZE,
 	0x201B0C, //  UMKD_SONYA,
+	0x201B0C, //  KITANA,
+	SCAN4_UNIVERSAL_JUMP, //	JAX
 };
 
 
@@ -293,6 +299,9 @@ int swap_scan_table_1()
 		else
 			scan_action_set = (int)&scan_null;
 		break;
+	case JAX:
+		scan_action_set = (int)&scan_jax_1;
+		break;
 	default:
 		break;
 	}
@@ -316,6 +325,12 @@ int swap_scan_table_2()
 		break;
 	case MKDA_RAIDEN:
 		scan_action_set = (int)&scan_mkda_raiden_2;
+		break;
+	case KITANA:
+		scan_action_set = (int)&scan_kitana_2;
+		break;
+	case JAX:
+		scan_action_set = (int)&scan_jax_2;
 		break;
 	default:
 		break;
@@ -344,6 +359,9 @@ int swap_scan_table_3()
 	case KITANA:
 		scan_action_set = (int)&scan_kitana_3;
 		break;
+	case JAX:
+		scan_action_set = (int)&scan_jax_3;
+		break;
 	default:
 		break;
 	}
@@ -367,6 +385,9 @@ int swap_scan_table_4()
 		break;
 	case MKDA_RAIDEN:
 		scan_action_set = (int)&scan_mkda_raiden_4;
+		break;
+	case JAX:
+		scan_action_set = (int)&scan_jax_4;
 		break;
 	default:
 		break;

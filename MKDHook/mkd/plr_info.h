@@ -1724,10 +1724,7 @@ typedef struct {
 	char field_67D;
 	char field_67E;
 	char field_67F;
-	char field_680;
-	char field_681;
-	char field_682;
-	char field_683;
+	int  field_680;
 	char field_684;
 	char field_685;
 	char field_686;
@@ -1772,10 +1769,7 @@ typedef struct {
 	char field_6AD;
 	char field_6AE;
 	char field_6AF;
-	char field_6B0;
-	char field_6B1;
-	char field_6B2;
-	char field_6B3;
+	int  field_6B0;
 	char field_6B4;
 	char field_6B5;
 	char field_6B6;

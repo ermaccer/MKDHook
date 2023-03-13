@@ -4,6 +4,10 @@
 //  1 - [] 2 - /\ 3 - X 4 - O
 
 
+#define DO_FATALITY_ONE 0x202DA0
+#define DO_FATALITY_TWO 0x202CE0
+
+
 enum scan_enum {
 	MOVE_FORWARD = 0x80000001,
 	MOVE_BACKWARDS = 0x80000002,
@@ -45,6 +49,15 @@ struct scan_action_fatality {
 	int function;
 	unsigned int fdirections[8]; // -1 ends
 };
+
+struct scan_fatality {
+	// fatality part
+	float unkf;
+	int unk2f;
+	int function;
+	unsigned int fdirections[8]; // -1 ends
+};
+
 
 
 void init_moves_hook();
