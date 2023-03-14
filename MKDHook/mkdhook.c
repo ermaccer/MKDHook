@@ -184,14 +184,6 @@ void process_mkdhook()
 
 	}
 
-
-	// stage things
-	if (get_game_mode() == MODE_PUZZLE || get_game_mode() == MODE_CHESS)
-		restore_stage_luis();
-	else
-		hook_stage_select();
-	
-
  	if (get_game_state() == STATE_GAME)
 	{
 		Menu_Process();

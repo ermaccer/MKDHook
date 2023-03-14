@@ -185,41 +185,7 @@ void hook_stage_select()
 	int val = 0;
 	//if (!hook_changes)
 	{
-		short selectSize = sizeof(pStageSelectNormal) / sizeof(pStageSelectNormal[0]);
-		patchShort(0x191EAC, selectSize);
-		patchShort(0x192D7C, selectSize);
-		patchShort(0x192E50, selectSize);
-		patchShort(0x193180, selectSize);
-		patchShort(0x193070, selectSize);
-
-
-		val = (int)&pStageSelectNormal[0];
-
-
-		patchInt(0x191E10, lui(a0, HIWORD(val)));
-		patchInt(0x191E24, ori(a0, a0, LOWORD(val)));
-
-		patchInt(0x191EA0, lui(a0, HIWORD(val)));
-		patchInt(0x191EB4, ori(a0, a0, LOWORD(val)));
-
-		patchInt(0x191F30, lui(a0, HIWORD(val)));
-		patchInt(0x191F44, ori(a0, a0, LOWORD(val)));
-
-		patchInt(0x192D70, lui(a1, HIWORD(val)));
-		patchInt(0x192D84, ori(a1, a1, LOWORD(val)));
-
-
-		patchInt(0x192E4C, lui(s2, HIWORD(val)));
-		patchInt(0x192E58, ori(s2, s2, LOWORD(val)));
-
-
-		patchInt(0x193174, lui(s2, HIWORD(val)));
-		patchInt(0x193188, ori(s2, s2, LOWORD(val)));
-
-		// NAME
-		val += 4;
-		patchInt(0x19380C, lui(v0, HIWORD(val)));
-		patchInt(0x19380C + 4, ori(v0, v0, LOWORD(val)));
+		
 		//hook_changes = 1;
 		//reset_changes = 0;
 	}
@@ -248,15 +214,8 @@ char* hook_ladder_stage_name(int id)
 void init_stage_hook()
 {
 	static int val = 0;
-	// SELECT-
-	hook_stage_select();
 
-	// STAGE DATA
-
-	// toc
-	init_stage_tocs();
-
-	// code
+	// SELECT
 	patchShort(0x13DF28, TOTAL_BACKGROUNDS + 1);
 	patchShort(0x16F098, TOTAL_BACKGROUNDS);
 	patchShort(0x16F07C, TOTAL_BACKGROUNDS);
@@ -266,6 +225,44 @@ void init_stage_hook()
 	// fix end & fatality music
 	patchShort(0x129644, TOTAL_BACKGROUNDS);
 	patchShort(0x1294A4, TOTAL_BACKGROUNDS);
+
+	short selectSize = sizeof(pStageSelectNormal) / sizeof(pStageSelectNormal[0]);
+	patchShort(0x191EAC, selectSize);
+	patchShort(0x192D7C, selectSize);
+	patchShort(0x192E50, selectSize);
+	patchShort(0x193180, selectSize);
+	patchShort(0x193070, selectSize);
+
+
+	val = (int)&pStageSelectNormal[0];
+
+
+	patchInt(0x191E10, lui(a0, HIWORD(val)));
+	patchInt(0x191E24, ori(a0, a0, LOWORD(val)));
+
+	patchInt(0x191EA0, lui(a0, HIWORD(val)));
+	patchInt(0x191EB4, ori(a0, a0, LOWORD(val)));
+
+	patchInt(0x191F30, lui(a0, HIWORD(val)));
+	patchInt(0x191F44, ori(a0, a0, LOWORD(val)));
+
+	patchInt(0x192D70, lui(a1, HIWORD(val)));
+	patchInt(0x192D84, ori(a1, a1, LOWORD(val)));
+
+
+	patchInt(0x192E4C, lui(s2, HIWORD(val)));
+	patchInt(0x192E58, ori(s2, s2, LOWORD(val)));
+
+
+	patchInt(0x193174, lui(s2, HIWORD(val)));
+	patchInt(0x193188, ori(s2, s2, LOWORD(val)));
+
+	// NAME
+	val += 4;
+	patchInt(0x19380C, lui(v0, HIWORD(val)));
+	patchInt(0x19380C + 4, ori(v0, v0, LOWORD(val)));
+
+	// STAGE DATA
 
 	val = (int)&pStageTable[0];
 	patchInt(0x15A668, lui(v0, HIWORD(val)));
@@ -284,6 +281,9 @@ void init_stage_hook()
 	//patchInt(0x15A7E8, lui(v1, HIWORD(val)));
 	//patchInt(0x15A818, ori(v1, v1, LOWORD(val)));
 
+
+
+
 	static int unk2_fix[3];
 
 	// 15A820
@@ -293,6 +293,8 @@ void init_stage_hook()
 
 
 	patchInt(0x15A818, j((int)&unk2_fix[0]));
+
+
 
 	// lock status
 
@@ -313,7 +315,6 @@ void init_stage_hook()
 
 
 	// loading
-
 	makeJal(0x16F0B4, load_background_hook);
 	makeJal(0x382EB0, load_background_hook);
 	makeJal(0x383A90, load_background_hook);
@@ -324,27 +325,14 @@ void init_stage_hook()
 
 	// ladder name
 	makeJal(0x3E7DA8, hook_ladder_stage_name);
+
+
+	// toc
+	init_stage_tocs();
 }
 
 void init_stage_tocs()
 {
 	init_katakombs_toc();
 	init_acidbath_toc();
-}
-
-void restore_stage_luis()
-{
-	int val = 0x50;
-	//if (!reset_changes)
-	{
-		patchInt(0x191E10, lui(a0, 0x50));
-		patchInt(0x191EA0, lui(a0, 0x50));
-		patchInt(0x191F30, lui(a0, 0x50));
-		patchInt(0x192D70, lui(a1, 0x50));
-		patchInt(0x192E4C, lui(s2, 0x50));
-		patchInt(0x193174, lui(s2, 0x50));
-		//hook_changes = 0;
-		//reset_changes = 1;
-	}
-
 }

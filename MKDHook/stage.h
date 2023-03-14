@@ -77,6 +77,3 @@ char* hook_ladder_stage_name(int id);
 
 void init_stage_hook();
 void init_stage_tocs();
-
-
-void restore_stage_luis();
