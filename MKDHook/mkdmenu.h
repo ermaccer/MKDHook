@@ -3,6 +3,9 @@
 #include "mouse.h"
 #include "types.h"
 
+
+#define SOUNDDEBUG_KEY
+
 enum eMenuStringIDs
 {
 	MENU_BAR_0 = 38420,

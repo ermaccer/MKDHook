@@ -2,7 +2,7 @@
 #include "..\toc.h"
 
 #define MISC_ANIMS_FILES 3
-#define SCRIPT_REACTIONS_SIZE 40864
+#define SCRIPT_REACTIONS_SIZE 41760
 
 extern struct mk_toc_entry  misc_anims_file_table[MISC_ANIMS_FILES];
 

@@ -15,6 +15,7 @@
 #include "sound_bank.h"
 #include "misc/fatalityanims.h"
 #include "settings.h"
+#include "generic.h"
 
 int CompatibleCRCList[] = { 0x7C22850A };
 
@@ -30,7 +31,7 @@ void init()
 
    if (settings.no_intro)
    {
-       *(int*)0x197258 = 0;
+       *(int*)0x197258 = 0; //960000
        *(int*)0x196F58 = 0;
        makeJmp(0x197698, (void*)0x19776C);
    }
@@ -50,9 +51,10 @@ void init()
    init_reactions_hook();
    patch_misc_anims_toc();
    init_fatanims_hook();
+   init_generic();
 
 
-   _printf("MKDHook init!\n");
+   _printf("MKDHook init! %x %x %x\n", &debugVar[0], &sbank_data[55], &sbank_data[163]);
 }
 
 int main()

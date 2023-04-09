@@ -321,14 +321,17 @@ reaction_table_entry reaction_table[TOTAL_REACTIONS] = {
 	{TYPE_SCRIPT_FUNCTION, 57, 0, 1, 18},// 313
 //	MKU
 	{ TYPE_SCRIPT_FUNCTION , 22, 0, 0, 0x52 }, // 314
-	{ TYPE_REACTIONS_FUNCTION, 50, 5, 2, 0x1D2 }, // 315
+	// frost backflip
+	{ TYPE_REACTIONS_FUNCTION, 150, 5, 2, 0x1D2 }, // 315
 	{ TYPE_REACTIONS_FUNCTION, 80, 0, 0, 0x152 },// 316
 	// jax drop kick hit
 	{ TYPE_REACTIONS_FUNCTION, 148, 0, 0, 0x152 },// 317
     // fan lift
 	{ TYPE_REACTIONS_FUNCTION, 146, 3, 1, 0x18 },// 318
-	{ TYPE_REACTIONS_FUNCTION, 82, 0, 0, 0x152 },// 319
-	{ TYPE_REACTIONS_FUNCTION, 40, 5, 2, 0x102 }, // 320
+	// blaze step kick
+	{ TYPE_REACTIONS_FUNCTION, 151, 0, 0, 0x152 },// 319
+	// blaze charge
+	{ TYPE_REACTIONS_FUNCTION, 152, 5, 2, 0x102 }, // 320
 	// jax gun fire
 	{ TYPE_REACTIONS_FUNCTION, 149, 0, 2, 1 },// 321
 	// pretty kick hit 2
@@ -342,6 +345,8 @@ reaction_table_entry reaction_table[TOTAL_REACTIONS] = {
 	{ TYPE_TRANSFER, 0, 0, 0, 0 },// 329
 	{ TYPE_TRANSFER, 0, 0, 0, 0 },// 330
 // END OF MKU
+	// frost tongbei 2 NOTE: this replaces some unused reaction slot in MKU but i'd rather add it as new to not break anything
+	{ TYPE_REACTIONS_FUNCTION, 18, 5, 2, 0x201 }, // 331
 };
 
 int onaga_remap_table[TOTAL_REACTIONS] = {
@@ -664,8 +669,8 @@ int onaga_remap_table[TOTAL_REACTIONS] = {
 	-1, // 316
 	-1, // 317
 	278, // 318 (kitana fan lift)
-	-1, // 319
-	-1, // 320
+	279, // 319 (blaze grab)
+	279, // 320 (blaze charge)
 	278, // 321
 	279, // 322 ( kitana pretty kick hit 2)
 	-1, // 323

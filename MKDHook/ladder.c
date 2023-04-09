@@ -36,7 +36,9 @@ short characters[] = {
 	SHUJINKO,
 	SONYA,
 	KITANA,
-	JAX
+	JAX,
+	FROST,
+	BLAZE,
 };
 
 short backgrounds[] = {

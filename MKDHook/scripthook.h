@@ -3,16 +3,24 @@
 #include "mkdeception.h"
 #define ORIGINAL_COMMANDS_NUM 1699
 
+
+
 enum ECommands {
 	// U PORTS
 	mku_kitana_kod_stretcher = 1717,
+	mku_frost_start_iceblock = 1718,
+	mku_frost_start_icechunks = 1719,
 	mku_jax_grab_weapon = 1720,
 	mku_jax_pfx = 1721,
 	mku_kitana_pfx,
 	mku_kitana_pfx_destroy,
+	mku_unknown_1724,
+	mku_start_blaze_flaming_limbs = 1725,
+	mku_reset_blaze_flaming_limbs = 1726,
 	// new commands
 	_umkd_sonya_runtime = 2000,
 	jax_taunt = 2001,
+	freeze_victim = 2002,
 	TOTAL_COMMANDS = 2100
 };
 
@@ -33,6 +41,9 @@ void _kitana_kod_stretcher();
 void _jax_grab_aux_weapon();
 void _jax_do_ground_blast();
 void _jax_taunt();
+void _start_blaze_flaming_limbs();
+void _reset_blaze_flaming_limbs();
+void _freeze_victim();
 
 
 void mku_kitana_curl_fx();

@@ -232,8 +232,10 @@ void Menu_Process()
 	if (GetAsyncKeyState(71))
 		Menu_Toggle_FreeCam();
 
-	//if (GetAsyncKeyState(67))
-		//test_sound();
+#ifdef SOUNDDEBUG_KEY
+	if (GetAsyncKeyState(67))
+		test_sound();
+#endif
 
 	if (TheMenu.m_bActive)
 	{

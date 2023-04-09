@@ -13,6 +13,7 @@ mkd\screen.o \
 mkd\string.o \
 mkd\content.o \
 mkd\script.o \
+mkd\fx.o \
 ps2mem.o character.o mkdhook.o mkdmenu.o stage.o mouse.o mips.o ladder.o moves.o \
 stages\acidbath.o \
 stages\katakombs.o \
@@ -33,18 +34,24 @@ characters\sonya.o \
 characters\kitana.o \
 characters\jax.o \
 characters\dragonking.o \
+characters\frost.o \
+characters\blaze.o \
 characters\character_list.o \
 misc\pselect.o \
 misc\misc_anims.o \
 misc\fatalityanims.o \
 pcsx2\rini.o \
 pcsx2\inireader.o \
-settings.o
+settings.o \
+generic.o
+
+NEWLIB_NANO = 1
+KERNEL_NOPATCH = 1
 
 BASE_ADDRESS = 0x02020000
 EE_LINKFILE = linkfile
 
-EE_LDFLAGS = -Wl,--entry=init -Wl,-Map,../scripts/MKDHook.map -Wl,'--defsym=BASE_ADDRESS=$(BASE_ADDRESS)' -O3
+EE_LDFLAGS = -Wl,--entry=init -Wl,-Map,../scripts/MKDHook.map -Wl,'--defsym=BASE_ADDRESS=$(BASE_ADDRESS)' -O3 -nostartfiles
 
 all: $(EE_BIN)
 

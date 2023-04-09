@@ -54,6 +54,8 @@ enum characters
 	// mku
 	KITANA,
 	JAX,
+	FROST,
+	BLAZE,
 	TOTAL_CHARACTERS
 };
 

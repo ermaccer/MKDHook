@@ -7504,4 +7504,24 @@ sound_entry mk_sound_table[TOTAL_SOUNDS] =
 	{ 6, 144, -1, 1, 1.000000, 4, 1 }, // 7236
 	// jax wins
 	{ 6, 145, -1, 1, 1.000000, 4, 1 }, // 7237
+
+	// FROST 
+	{ BANK_C_ICEGIRL, 1, -1, 1, 1.0, 5, 1 }, // slide (7238)
+	{ BANK_C_ICEGIRL, 8, -1, 1, 1.0, 5, 1 }, // ground freeze (7239)
+	{ BANK_C_ICEGIRL, 12, -1, 1, 1.0, 5, 1 }, // fatality charge (7240)
+	{ BANK_C_ICEGIRL, 2, -1, 1, 1.0, 5, 1 }, // fatality blow up(7241)
+	{ BANK_C_ICEGIRL, 0, -1, 1, 1.0, 5, 1 }, // freeze(7242)
+	{ BANK_C_ICEGIRL, 7, -1, 1, 1.0, 5, 1 }, // fatality freeze(7243)
+
+	{ 6, 146, -1, 1, 1.000000, 4, 1 }, // frost select (7244)
+	{ 6, 147, -1, 1, 1.000000, 4, 1 }, // frost wins(7245)
+
+	// BLAZE
+	{ BANK_C_BLAZE, 0, -1, 1, 0.20f, 5, 1 }, // flame loop (7246)
+	{ BANK_C_BLAZE, 1, -1, 1, 1.0, 5, 1 }, // flame ball (7247)
+	{ BANK_C_BLAZE, 2, -1, 1, 1.0, 5, 1 }, // flame ball hit (7248)
+	{ BANK_C_BLAZE, 3, -1, 1, 1.0, 5, 1 }, // flame ball miss(7249)
+
+	{ 6, 148, -1, 1, 1.000000, 4, 1 }, // blaze select (7250)
+	{ 6, 149, -1, 1, 1.000000, 4, 1 }, // blaze wins(7251)
 };

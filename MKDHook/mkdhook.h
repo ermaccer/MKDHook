@@ -1,10 +1,11 @@
-#pragma once
+	#pragma once
 #include "mkdeception.h"
 #include "character.h"
 #include "sound.h"
 
 #define SELECT_SCREEN_SWAP_SOUND 7024
 #define SELECT_SCREEN_ALT_PAL_SOUND 7020
+
 
 enum ECurrentSelect {
 	Select_Default,

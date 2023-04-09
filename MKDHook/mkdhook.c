@@ -40,8 +40,8 @@ select_screen_entry pSelectTableNew[27] = {
 		{JAX,  SOUND_JAX_SELECT	, "HEAD_JAX"	, "HEAD_RANDOM"	, "BODY_JAX"	, "body_jax_alt.sec"	, "2"	, "MUAY THAI"	, "JUDO"	, "TONFA"},
 		{ONAGA,  SOUND_ONAGA_SELECT	, "HEAD_DRAGONKING"	, "HEAD_KOBRA_LOCKED"	, "BODY_RANDOM"	, "NULL"	,  "1"	, "DRAGON"	, ""	, ""},
 		{-1,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "NULL"	, "2"	, ""	, ""	, ""},
-		{-1,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "NULL"	, "2"	, ""	, ""	, ""},
-		{-1,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "NULL"	, "2"	, ""	, ""	, ""},
+		{FROST,  SOUND_FROST_SELECT	, "HEAD_FROST"	, "HEAD_RANDOM"	, "BODY_FROST"	, "body_frost_alt.sec"	, "2"	, "TONG BEI"	, "YUAN YANG"	, "ICE DAGGERS"},
+		{BLAZE,  SOUND_BLAZE_SELECT	, "HEAD_BLAZE"	, "HEAD_RANDOM"	, "BODY_BLAZE"	, "body_blaze_alt.sec"	, "3"	, "HAPKIDO"	, "JEET KUNE DO"	, "XING YI"},
 		{-1,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "NULL"	, "2"	, ""	, ""	, ""},
 
 		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},

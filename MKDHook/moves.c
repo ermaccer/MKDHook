@@ -62,6 +62,8 @@ int scan_table_1_jump_table[] = {
 	SCAN1_UNIVERSAL_JUMP, //  UMKD_SONYA,
 	SCAN1_UNIVERSAL_JUMP, //  KITANA
 	SCAN1_UNIVERSAL_JUMP, // JAX
+	SCAN1_UNIVERSAL_JUMP, //  FROST
+	SCAN1_UNIVERSAL_JUMP, //  BLAZE
 };
 
 
@@ -113,6 +115,8 @@ int scan_table_2_jump_table[] = {
 	SCAN2_UNIVERSAL_JUMP, //  UMKD_SONYA,
 	SCAN2_UNIVERSAL_JUMP, //  KITANA
 	SCAN2_UNIVERSAL_JUMP, //  JAX
+	0x20239C, //  FROST
+	SCAN2_UNIVERSAL_JUMP, //  BLAZE
 };
 
 int scan_table_3_jump_table[] = {
@@ -163,13 +167,15 @@ int scan_table_3_jump_table[] = {
 	SCAN3_UNIVERSAL_JUMP, //  UMKD_SONYA,
 	SCAN3_UNIVERSAL_JUMP, //  KITANA
 	SCAN3_UNIVERSAL_JUMP, //  JAX
+	SCAN3_UNIVERSAL_JUMP, //  FROST
+	SCAN3_UNIVERSAL_JUMP, //  BLAZE
 };
 
 int scan_table_4_jump_table[] = {
 	0x201B0C,	  //	SCORPION,
 	0x201B0C,	  //	BARAKA,
 	0x201B0C,	  //	NOOB,
-	0x201B0C, //	SUBZERO,
+	0x2019A0, //	SUBZERO,
 	0x201928, //	MILEENA,
 	0x201900, //	NIGHTWOLF,
 	0x2018A8, //	ERMAC,
@@ -213,6 +219,8 @@ int scan_table_4_jump_table[] = {
 	0x201B0C, //  UMKD_SONYA,
 	0x201B0C, //  KITANA,
 	SCAN4_UNIVERSAL_JUMP, //	JAX
+	SCAN4_UNIVERSAL_JUMP, //	FROST
+	0x201B0C, // BLAZE
 };
 
 
@@ -268,7 +276,7 @@ void init_moves_hook()
 int swap_scan_table_1()
 {
 	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
-	int p2_pdata = *(int*)(P2_PROC_DATA);
+	int p2_pdata = *(int*)(P2_PLAYER_DATA);
 	static int scan_action_set = 0;
 	switch (plyr_data->characterID)
 	{
@@ -302,6 +310,12 @@ int swap_scan_table_1()
 	case JAX:
 		scan_action_set = (int)&scan_jax_1;
 		break;
+	case FROST:
+		scan_action_set = (int)&scan_frost_1;
+		break;
+	case BLAZE:
+		scan_action_set = (int)&scan_blaze_1;
+		break;
 	default:
 		break;
 	}
@@ -332,6 +346,9 @@ int swap_scan_table_2()
 	case JAX:
 		scan_action_set = (int)&scan_jax_2;
 		break;
+	case BLAZE:
+		scan_action_set = (int)&scan_blaze_2;
+		break;
 	default:
 		break;
 	}
@@ -344,6 +361,7 @@ int swap_scan_table_2()
 int swap_scan_table_3()
 {
 	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
+	int p2_pdata = *(int*)(P2_PLAYER_DATA);
 	static int scan_action_set = 0;
 	switch (plyr_data->characterID)
 	{
@@ -361,6 +379,15 @@ int swap_scan_table_3()
 		break;
 	case JAX:
 		scan_action_set = (int)&scan_jax_3;
+		break;
+	case FROST:
+		if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
+			scan_action_set = (int)&scan_frost_3;
+		else
+			scan_action_set = (int)&scan_null;
+		break;
+	case BLAZE:
+		scan_action_set = (int)&scan_blaze_3;
 		break;
 	default:
 		break;
@@ -388,6 +415,9 @@ int swap_scan_table_4()
 		break;
 	case JAX:
 		scan_action_set = (int)&scan_jax_4;
+		break;
+	case FROST:
+		scan_action_set = (int)&scan_frost_4;
 		break;
 	default:
 		break;

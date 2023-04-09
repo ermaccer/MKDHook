@@ -56,7 +56,9 @@ struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"SONYA"	,(int)&sonya_file_table	, (int)&sonya_alt_file_table	,"kira.mko"},
 	// mku
 	{"KITANA"	, (int)&kitana_file_table	, (int)&kitana_alt_file_table	,"kitana.mko"},
-	{"JAX"	, (int)&jax_file_table	, (int)&jax_alt_file_table	,"jax.mko"},
+	{"JAX"	,	  (int)&jax_file_table	,	  (int)&jax_alt_file_table	,    "jax.mko"},
+	{"FROST"	, (int)&frost_file_table	,	  (int)&frost_alt_file_table	,    "frost.mko"},
+	{"BLAZE"	, (int)&blaze_file_table	, (int)&blaze_file_table		,"blaze.mko"},
 };
 
 void dump_char_table()
@@ -176,6 +178,8 @@ void init_character_tocs()
 	init_kitana_toc();
 	init_jax_toc();
 	init_dragonking_toc();
+	init_frost_toc();
+	init_blaze_toc();
 }
 
 int hook_character_lock_status(int id, int param)

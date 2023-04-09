@@ -56,6 +56,7 @@ struct mk_file_entry fatalityanims_entry_table[FATANIMS_FILES] = {
 	{"fat_anims_weaponkicks.sec", 0, 2},
 	{"fat_anims_kitana_kiss.sec", 0, 2},
 	{"fat_anims_jax1.sec", 0, 2},
+	{"fat_anims_frost1.sec", 0, 2},
 };
 
 // I:\ps2dvd\art\pselect.ssf
@@ -112,6 +113,7 @@ struct mk_toc_entry fatalityanims_file_table[FATANIMS_FILES + 1] = {
 	{&fatalityanims_entry_table[49], 0, 103936},
 	{&fatalityanims_entry_table[50], 0, 97792},
 	{&fatalityanims_entry_table[51], 0, 88064},
+	{&fatalityanims_entry_table[52], 0, 51328}, // frost
 
 	{0,0,0}
 };

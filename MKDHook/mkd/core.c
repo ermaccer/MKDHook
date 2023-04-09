@@ -64,6 +64,11 @@ int get_character_id(int plr)
 	return -1;
 }
 
+void delete_player(int id)
+{
+	((void(*)(int))0x131DF0)(id);
+}
+
 int load_background(int id)
 {
 	return ((int(*)(int))0x15A620)(id);

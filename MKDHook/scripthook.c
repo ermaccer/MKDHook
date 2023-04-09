@@ -1744,15 +1744,27 @@ void init_script_function_table()
 
 void init_script_custom_function_table()
 {
-	script_function_table[_umkd_sonya_runtime] = (int)&umkd_sonya_runtime;
+	// fixes
+
+	script_function_table[1470] = (int)&pfxhandle_spawn_at_bid_next_aux_fix;
+	script_function_table[1473] = (int)&pfxhandle_spawn_at_bid_next_bind_render_aux_fix;
+	script_function_table[1488] = (int)&fat_sz_start_iceblock;
+
+	// mku
+
 	script_function_table[mku_kitana_pfx] = (int)&mku_kitana_curl_fx;
 	script_function_table[mku_kitana_pfx_destroy] = (int)&_null;
 	script_function_table[mku_kitana_kod_stretcher] = (int)&_kitana_kod_stretcher;
+	script_function_table[mku_frost_start_iceblock] = (int)&fat_frost_start_iceblock;
+	script_function_table[mku_frost_start_icechunks] = (int)&fat_frost_start_icechunks;
 	script_function_table[mku_jax_grab_weapon] = (int)&_jax_grab_aux_weapon;
 	script_function_table[mku_jax_pfx] = (int)&_jax_do_ground_blast;
-	script_function_table[1470] = (int)&pfxhandle_spawn_at_bid_next_aux_fix;
-	script_function_table[1473] = (int)&pfxhandle_spawn_at_bid_next_bind_render_aux_fix;
+	script_function_table[mku_start_blaze_flaming_limbs] = (int)&_start_blaze_flaming_limbs;
+	script_function_table[mku_reset_blaze_flaming_limbs] = (int)&_reset_blaze_flaming_limbs;
+
+	// umkd
 	script_function_table[jax_taunt] = (int)&_jax_taunt;
+	script_function_table[freeze_victim] = (int)&_freeze_victim;
 }
 
 void dump_script_table()
@@ -1801,6 +1813,26 @@ void _jax_do_ground_blast()
 void _jax_taunt()
 {
 	random_jax_taunt();
+}
+
+void _start_blaze_flaming_limbs()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	start_blaze_flaming_limbs(*(int*)(args + 4));
+}
+
+void _reset_blaze_flaming_limbs()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	reset_blaze_flaming_limbs(*(int*)(args + 4));
+}
+
+void _freeze_victim()
+{
+	swap_active_proc();
+	freeze_player();
+	snd_req(SOUND_FROST_FREEZE);
+	swap_active_proc();
 }
 
 void mku_kitana_curl_fx()
@@ -1855,7 +1887,7 @@ void fix_kitana_fan_lift(int id, int a2, float a3)
 	// doesnt xfer if the lifted flag is set
 	// also an issue in real mku
 
-	int p2_pdata = *(int*)(P2_PROC_DATA);
+	int p2_pdata = *(int*)(P2_PLAYER_DATA);
 
 
 	int flags = *(int*)(p2_pdata + 532);

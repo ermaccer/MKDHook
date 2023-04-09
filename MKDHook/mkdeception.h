@@ -9,7 +9,7 @@
 #include "mkd/screen.h"
 #include "mkd/konquest.h"
 #include "mkd/script.h"
-
+#include "mkd/fx.h"
 
 // plr obj
 // 20 - visible

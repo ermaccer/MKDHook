@@ -10,7 +10,7 @@ typedef struct {
 #define PLAYER2_INFO   0x5E4460
 #define PLAYER_DATA    0x5D63A4 
 #define MISSION_INFO   0x642C08
-#define P2_PROC_DATA   0x5D6398
+#define P2_PLAYER_DATA   0x5D6398
 #define PLAYER2_OBJ    0x5D639C
 #define PLAYER_OBJ     0x5D63A0
 
@@ -62,6 +62,8 @@ void xfer_proc(int obj, int proc);
 void set_game_speed(float speed);
 
 int get_character_id(int plr);
+
+void delete_player(int id);
 
 
 // loaders

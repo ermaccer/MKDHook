@@ -7,6 +7,16 @@ int snd_req(int id)
 	return ((int(*)(int))0x12B2B0)(id);
 }
 
+int snd_req_vol(int id, float vol)
+{
+	return ((int(*)(int, float))0x12B1C0)(id, vol);
+}
+
+void snd_stop(int sound)
+{
+    ((void(*)(int))0x12AE20)(sound);
+}
+
 int create_mkproc_generic_nostack(int id, int a2, void* pFunc, int unk, int* result)
 {
 	return ((int(*)(int, int, void*, int, int*))0x12C4C0)(id, a2, pFunc, unk, result);
@@ -48,6 +58,16 @@ int get_cur_proc_pobj()
 
 
 	return pobj;
+}
+
+void freeze_player()
+{
+	((int(*)())0x1903B0)();
+}
+
+void init_ground_move()
+{
+	((int(*)())0x1F36D0)();
 }
 
 int plyr_aux_weapon_release(int a1)

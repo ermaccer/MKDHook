@@ -171,6 +171,18 @@
     <ClCompile Include="characters\dragonking.c">
       <Filter>source\characters</Filter>
     </ClCompile>
+    <ClCompile Include="characters\frost.c">
+      <Filter>source\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="generic.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\blaze.c">
+      <Filter>source\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="mkd\fx.c">
+      <Filter>source\mkd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ps2mem.h">
@@ -328,6 +340,18 @@
     </ClInclude>
     <ClInclude Include="characters\dragonking.h">
       <Filter>source\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\frost.h">
+      <Filter>source\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="generic.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\blaze.h">
+      <Filter>source\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="mkd\fx.h">
+      <Filter>source\mkd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -169,6 +169,8 @@ sbank_entry sbank_data[TOTAL_SOUND_BANKS] = {
 	{0, 0, 4, "pf_fat_lightning", 0, 0, 0, 0, 160 }, // 160
 	{0, 0, 5, "pf_fat_snake", 0, 0, 0, 0, 161 }, // 161
 	{0, 0, 6, "pf_fat_stomper", 0, 0, 0, 0, 162 }, // 162
+	{0, 0, 26, "c_icegirl", 0, 0, 0, 0, 163 }, //  163
+	{0, 0, 27, "c_blaze", 0, 0, 0, 0, 164 }, //  164
 };
 
 void init_sound_bank_hook()
@@ -176,11 +178,16 @@ void init_sound_bank_hook()
 	// num
 	patchShort(0x129C2C, TOTAL_SOUND_BANKS);
 	patchShort(0x129C8C, TOTAL_SOUND_BANKS);
+
 	patchShort(0x12A2E8, TOTAL_SOUND_BANKS);
 	patchShort(0x12A3AC, TOTAL_SOUND_BANKS);
+
 	patchShort(0x12A4E0, TOTAL_SOUND_BANKS);
+
 	patchShort(0x12A754, TOTAL_SOUND_BANKS);
+
 	patchShort(0x12A950, TOTAL_SOUND_BANKS);
+
 	patchShort(0x12AB70, TOTAL_SOUND_BANKS);
 
 

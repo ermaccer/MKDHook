@@ -1,10 +1,12 @@
 #pragma once
 // 163
-#define TOTAL_SOUND_BANKS 163
+#define TOTAL_SOUND_BANKS 163 + TOTAL_NEW_BANKS
 
 
 enum eNewBanks {
-	BANK_C_KITANA = 163
+	BANK_C_ICEGIRL = 163,
+	BANK_C_BLAZE = 164,
+	TOTAL_NEW_BANKS = 2
 };
 
 typedef struct

@@ -46,9 +46,11 @@
     <ClCompile Include="character.c" />
     <ClCompile Include="characters\ashrah.c" />
     <ClCompile Include="characters\baraka.c" />
+    <ClCompile Include="characters\blaze.c" />
     <ClCompile Include="characters\character_list.c" />
     <ClCompile Include="characters\dragonking.c" />
     <ClCompile Include="characters\ermac.c" />
+    <ClCompile Include="characters\frost.c" />
     <ClCompile Include="characters\jax.c" />
     <ClCompile Include="characters\kitana.c" />
     <ClCompile Include="characters\liukang.c" />
@@ -62,6 +64,7 @@
     <ClCompile Include="characters\smoke.c" />
     <ClCompile Include="characters\sonya.c" />
     <ClCompile Include="characters\subzero.c" />
+    <ClCompile Include="generic.c" />
     <ClCompile Include="ladder.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mips.c" />
@@ -73,6 +76,7 @@
     <ClCompile Include="mkd\camera.c" />
     <ClCompile Include="mkd\content.c" />
     <ClCompile Include="mkd\core.c" />
+    <ClCompile Include="mkd\fx.c" />
     <ClCompile Include="mkd\input.c" />
     <ClCompile Include="mkd\konquest.c" />
     <ClCompile Include="mkd\object.c" />
@@ -97,9 +101,11 @@
     <ClInclude Include="character.h" />
     <ClInclude Include="characters\ashrah.h" />
     <ClInclude Include="characters\baraka.h" />
+    <ClInclude Include="characters\blaze.h" />
     <ClInclude Include="characters\character_list.h" />
     <ClInclude Include="characters\dragonking.h" />
     <ClInclude Include="characters\ermac.h" />
+    <ClInclude Include="characters\frost.h" />
     <ClInclude Include="characters\jax.h" />
     <ClInclude Include="characters\kitana.h" />
     <ClInclude Include="characters\liukang.h" />
@@ -113,6 +119,7 @@
     <ClInclude Include="characters\smoke.h" />
     <ClInclude Include="characters\sonya.h" />
     <ClInclude Include="characters\subzero.h" />
+    <ClInclude Include="generic.h" />
     <ClInclude Include="ladder.h" />
     <ClInclude Include="mips.h" />
     <ClInclude Include="misc\fatalityanims.h" />
@@ -124,6 +131,7 @@
     <ClInclude Include="mkd\camera.h" />
     <ClInclude Include="mkd\content.h" />
     <ClInclude Include="mkd\core.h" />
+    <ClInclude Include="mkd\fx.h" />
     <ClInclude Include="mkd\input.h" />
     <ClInclude Include="mkd\konquest.h" />
     <ClInclude Include="mkd\object.h" />

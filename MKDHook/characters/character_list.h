@@ -22,5 +22,8 @@
 // mku ports
 #include "kitana.h"
 #include "jax.h"
+#include "frost.h"
+#include "blaze.h"
+
 
 extern struct scan_action scan_null;
