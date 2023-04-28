@@ -24,5 +24,6 @@ enum pad_button {
 
 int check_switch(int player, int button);
 void get_stick_pos(int player, int stick, float* x, float* y);
-
+void scan_switch_sequences(int* action);
+int was_button_pressed(int button);
 int my_joypad_state_5();

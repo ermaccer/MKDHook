@@ -6,7 +6,9 @@
 enum eNewBanks {
 	BANK_C_ICEGIRL = 163,
 	BANK_C_BLAZE = 164,
-	TOTAL_NEW_BANKS = 2
+	BANK_C_SHAO_KAHN = 165,
+	BANK_FIGHTER_KAHN = 166,
+	TOTAL_NEW_BANKS = 4
 };
 
 typedef struct

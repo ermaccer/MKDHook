@@ -16,6 +16,7 @@ select_screen_entry pSelectTable[27] = {
 	{SUBZERO	, 99	, "HEAD_SUBZERO"	, "HEAD_SCORPION"	, "BODY_SUBZERO"	, "body_subzero_alt.sec"	, "4"	, "SHOTOKAN"	, "DRAGON"	, "KORI BLADE"},
 	{HAVIK	, 82	, "HEAD_HAVIK"	, "HEAD_SKAB_LOCKED"	, "BODY_HAVIK"	, "body_havik_alt.sec"	, "5"	, "SNAKE"	, "TANG SOO DO"	, "MORNING STAR"},
 	{SINDEL	, 97	, "HEAD_SINDEL"	, "HEAD_SINDEL_LOCKED"	, "BODY_SINDEL"	, "body_sindel_alt.sec"	, "3"	, "ZHA CHUAN"	, "FU JOW PAI"	, "KWAN DO"},
+	
 	{RAIDEN	, 94	, "HEAD_RAIDEN"	, "HEAD_RAIDEN_LOCKED"	, "BODY_RAIDEN"	, "body_raiden_alt.sec"	, "4"	, "NAN CHUAN"	, "JUJUTSU"	, "STAFF"},
 	{LI_MEI	, 89	, "HEAD_LIMEI"	, "HEAD_LIMEI_LOCKED"	, "BODY_LIMEI"	, "body_limei_alt.sec"	, "2"	, "MI ZONG"	, "LUI HE BA FA"	, "KUNLUN DAO"},
 	{KABAL	, 85	, "HEAD_KABAL"	, "HEAD_KABAL_LOCKED"	, "BODY_KABAL"	, "body_kabal_alt.sec"	, "2"	, "SUN BIN"	, "GOJU RYU"	, "HOOK SWORDS"},
@@ -24,6 +25,7 @@ select_screen_entry pSelectTable[27] = {
 	{BORAICHO	, 78	, "HEAD_BORAICHO"	, "HEAD_SCORPION"	, "BODY_BORAICHO"	, "body_boraicho_alt.sec"	, "4"	, "SUMO"	, "DRUNKEN FIST"	, "JOJUTSU"},
 	{NOOBSMOKE	, 102	, "HEAD_SMOKENOOB"	, "HEAD_SMOKENOOB_LOCKED"	, "BODY_SMOKENOOB"	, "body_smokenoob_alt.sec"	, "5"	, "NOOB - MONKEY"	, "SMOKE - MI TZU"	, " "},
 	{TANYA	, 100	, "HEAD_TANYA"	, "HEAD_TANYA_LOCKED"	, "BODY_TANYA"	, "body_tanya_alt.sec"	, "5"	, "ZI RAN MEN"	, "YUE CHUAN"	, "KOBU JUTSU"},
+	
 	{SHUJINKO	, 96	, "HEAD_SHUJINKO"	, "HEAD_SHUJINKO_LOCKED"	, "BODY_SHUJINKO"	, "body_shujinko_alt.sec"	, "5"	, "MANTIS"	, "SHAOLIN FIST"	, "DAN TIEN DAO"},
 	{HOTARU	, 83	, "HEAD_HOTARU"	, "HEAD_HOTARU_LOCKED"	, "BODY_HOTARU"	, "body_hotaru_alt.sec"	, "1"	, "BA SHAN FAN"	, "PI GUA"	, "NAGINATA"},
 	{ASHRAH	, 76	, "HEAD_ASHRA"	, "HEAD_SCORPION"	, "BODY_ASHRAH"	, "body_ashrah_alt.sec"	, "5"	, "CHOU JAIO"	, "BA GUA"	, "KRISS"},
@@ -39,7 +41,7 @@ select_screen_entry pSelectTableNew[27] = {
 		{KITANA, SOUND_KITANA_SELECT, "HEAD_KITANA"	, "HEAD_RANDOM"	, "BODY_KITANA"	, "body_kitana_alt.sec"	, "4"	, "EAGLE CLAW"	, "BA GUA"	, "STEEL FAN"},
 		{JAX,  SOUND_JAX_SELECT	, "HEAD_JAX"	, "HEAD_RANDOM"	, "BODY_JAX"	, "body_jax_alt.sec"	, "2"	, "MUAY THAI"	, "JUDO"	, "TONFA"},
 		{ONAGA,  SOUND_ONAGA_SELECT	, "HEAD_DRAGONKING"	, "HEAD_KOBRA_LOCKED"	, "BODY_RANDOM"	, "NULL"	,  "1"	, "DRAGON"	, ""	, ""},
-		{-1,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "NULL"	, "2"	, ""	, ""	, ""},
+		{SHAO_KAHN, SOUND_SHAO_SELECT	, "HEAD_SHAO_KAHN"	, "HEAD_RANDOM"	, "BODY_SHAO_KAHN"	, "body_shaokahn_alt.sec"	, "2"	, "TAI TZU"	, "LUI HE"	, "WRATH HAMMER"},
 		{FROST,  SOUND_FROST_SELECT	, "HEAD_FROST"	, "HEAD_RANDOM"	, "BODY_FROST"	, "body_frost_alt.sec"	, "2"	, "TONG BEI"	, "YUAN YANG"	, "ICE DAGGERS"},
 		{BLAZE,  SOUND_BLAZE_SELECT	, "HEAD_BLAZE"	, "HEAD_RANDOM"	, "BODY_BLAZE"	, "body_blaze_alt.sec"	, "3"	, "HAPKIDO"	, "JEET KUNE DO"	, "XING YI"},
 		{-1,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "NULL"	, "2"	, ""	, ""	, ""},
@@ -52,6 +54,7 @@ select_screen_entry pSelectTableNew[27] = {
 		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+
 		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
@@ -60,6 +63,7 @@ select_screen_entry pSelectTableNew[27] = {
 		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+
 		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 };
 
@@ -158,6 +162,11 @@ void restore_select_screen()
 
 void hook_render()
 {
+	// unlock stuff
+	*(int*)0x5D4D08 = -1;
+	*(int*)0x5D4E10 = -1;
+	*(int*)0x5E47A8 = -1;
+
 	process_mkdhook();
 	render();
 }

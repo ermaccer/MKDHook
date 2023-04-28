@@ -171,6 +171,8 @@ sbank_entry sbank_data[TOTAL_SOUND_BANKS] = {
 	{0, 0, 6, "pf_fat_stomper", 0, 0, 0, 0, 162 }, // 162
 	{0, 0, 26, "c_icegirl", 0, 0, 0, 0, 163 }, //  163
 	{0, 0, 27, "c_blaze", 0, 0, 0, 0, 164 }, //  164
+	{0, 0, 28, "c_shao_kahn", 0, 0, 0, 0, 165 }, //  165
+	{0, 0, 26, "fighter_kahn", 0, 0, 0, 0, 166 }, // 166
 };
 
 void init_sound_bank_hook()

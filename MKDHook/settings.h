@@ -2,6 +2,7 @@
 typedef struct {
 	int no_intro;
 	int enable_npc_select;
+	int blaze_enable_fatalities;
 }SSETTINGS;
 
 

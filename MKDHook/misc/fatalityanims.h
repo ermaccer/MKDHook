@@ -1,7 +1,7 @@
 #pragma once
 #include "..\toc.h"
 
-#define FATANIMS_FILES 52 + 1
+#define FATANIMS_FILES 54 + 1
 
 
 extern struct mk_file_entry fatalityanims_entry_table[FATANIMS_FILES];

@@ -2,7 +2,7 @@
 #include "blaze.h"
 #include "..\mkdeception.h"
 #include "..\sound.h"
-
+#include "..\character.h"
 
 // flame ball
 struct scan_action scan_blaze_1 = {
@@ -85,7 +85,7 @@ struct mk_toc_entry blaze_file_table[BLAZE_FILES + 1] = {
 		{&blaze_entry_table[15] ,0,	   182144 },	// hapkido_anims.sec
 		{&blaze_entry_table[16] ,0,	   195328 },	// jeetkunedo_anims.sec
 		{&blaze_entry_table[17] ,0,	   162048 },	// xing_yi_anims.sec
-		{&blaze_entry_table[18] ,0,	   52352  },	// fat_anims_subzero2.sec
+		{&blaze_entry_table[18] ,0,	   52352  },	// pz_jax_anims.sec
 
 		{0,0,0}
 };
@@ -156,9 +156,12 @@ void reset_blaze_flaming_limbs(int id)
 		plr_info = (player_info*)(PLAYER2_INFO);
 
 	if (blaze_flaming_limbs_sound_handle[id])
+	{
 		snd_stop(blaze_flaming_limbs_sound_handle[id]);
+		blaze_flaming_limbs_sound_handle[id] = 0;
+	}
 
-	blaze_flaming_limbs_sound_handle[id] = 0;
+
 
 	for (int i = 0; i < 11; i++)
 	{
@@ -182,9 +185,17 @@ void blaze_reset_event()
 void blaze_destroy_event(int id)
 {
 	if (blaze_flaming_limbs_sound_handle[id])
+	{
 		snd_stop(blaze_flaming_limbs_sound_handle[id]);
+		blaze_flaming_limbs_sound_handle[id] = 0;
+	}
 
-	blaze_flaming_limbs_sound_handle[id] = 0;
+
 	for (int i = 0; i < 11; i++)
 		blaze_flaming_limbs_fx_handles[id][i] = 0;
+}
+
+void blaze_fatality_watch()
+{
+
 }

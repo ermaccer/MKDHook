@@ -39,6 +39,7 @@ short characters[] = {
 	JAX,
 	FROST,
 	BLAZE,
+	SHAO_KAHN
 };
 
 short backgrounds[] = {

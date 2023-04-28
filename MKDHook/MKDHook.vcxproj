@@ -61,6 +61,7 @@
     <ClCompile Include="characters\mkda_raiden.c" />
     <ClCompile Include="characters\noob.c" />
     <ClCompile Include="characters\scorpion.c" />
+    <ClCompile Include="characters\shaokahn.c" />
     <ClCompile Include="characters\smoke.c" />
     <ClCompile Include="characters\sonya.c" />
     <ClCompile Include="characters\subzero.c" />
@@ -96,6 +97,7 @@
     <ClCompile Include="stage.c" />
     <ClCompile Include="stages\acidbath.c" />
     <ClCompile Include="stages\katakombs.c" />
+    <ClCompile Include="voice.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character.h" />
@@ -116,6 +118,7 @@
     <ClInclude Include="characters\mkda_raiden.h" />
     <ClInclude Include="characters\noob.h" />
     <ClInclude Include="characters\scorpion.h" />
+    <ClInclude Include="characters\shaokahn.h" />
     <ClInclude Include="characters\smoke.h" />
     <ClInclude Include="characters\sonya.h" />
     <ClInclude Include="characters\subzero.h" />
@@ -154,6 +157,7 @@
     <ClInclude Include="stages\katakombs.h" />
     <ClInclude Include="toc.h" />
     <ClInclude Include="types.h" />
+    <ClInclude Include="voice.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />

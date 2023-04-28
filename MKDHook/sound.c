@@ -7487,15 +7487,15 @@ sound_entry mk_sound_table[TOTAL_SOUNDS] =
 	{ 6, 138, -1, 1, 1.000000, 4, 1 }, // 7228
 	// TEMP in annoucr till i figure out other mst sections
 	// kitana fanlift
-	{ 6, 139, -1, 1, 1.000000, 4, 1 }, // 7229
+	{ 6, 139, -1, 1, 1.000000, 5, 1 }, // 7229
 	// kitana fat kiss
-	{ 6, 140, -1, 1, 1.000000, 4, 1 }, // 7230
+	{ 6, 140, -1, 1, 1.000000, 5, 1 }, // 7230
 	// kitana fat stretch
-	{ 6, 141, -1, 1, 1.000000, 4, 1 }, // 7231
+	{ 6, 141, -1, 1, 1.000000, 5, 1 }, // 7231
 	// kitana fat unstretch
-	{ 6, 142, -1, 1, 1.000000, 4, 1 }, // 7232
+	{ 6, 142, -1, 1, 1.000000, 5, 1 }, // 7232
 	// kitana fat blow
-	{ 6, 143, -1, 1, 1.000000, 4, 1 }, // 7233
+	{ 6, 143, -1, 1, 1.000000, 5, 1 }, // 7233
 	// jax headstomp splat sound
 	{ 53, 33, -1, 1, 0.900000, 5, 1 }, // 7234
 	// jax gun
@@ -7524,4 +7524,198 @@ sound_entry mk_sound_table[TOTAL_SOUNDS] =
 
 	{ 6, 148, -1, 1, 1.000000, 4, 1 }, // blaze select (7250)
 	{ 6, 149, -1, 1, 1.000000, 4, 1 }, // blaze wins(7251)
+
+
+	// SHAO KAHN VOICE (91 sounds) BEGIN: 7252
+	// FREE SLOTS: 64, 65 - enough for no no
+	{ BANK_FIGHTER_KAHN, 90, -1, 1, 1.000000, 6, 1 }, // 7252
+	// quick
+	{ BANK_FIGHTER_KAHN, 0, -1, 1, 1.000000, 6, 1 },  // 0  
+	{ BANK_FIGHTER_KAHN, 1, -1, 1, 1.000000, 6, 1 },  // 1  
+	{ BANK_FIGHTER_KAHN, 2, -1, 1, 1.000000, 6, 1 },  // 2  
+	{ BANK_FIGHTER_KAHN, 3, -1, 1, 1.000000, 6, 1 },  // 3  
+	{ BANK_FIGHTER_KAHN, 4, -1, 1, 1.000000, 6, 1 },  // 4  
+	// long
+	{ BANK_FIGHTER_KAHN, 5, -1, 1, 1.000000, 6, 1 },  // 6  
+	{ BANK_FIGHTER_KAHN, 6, -1, 1, 1.000000, 6, 1 },  // 7  
+	{ BANK_FIGHTER_KAHN, 7, -1, 1, 1.000000, 6, 1 },  // 8  
+	{ BANK_FIGHTER_KAHN, 5, -1, 1, 1.000000, 6, 1 },  // 9  
+	// special
+	{ BANK_FIGHTER_KAHN, 8, -1, 1, 1.000000, 6, 1 }, // 10 
+	{ BANK_FIGHTER_KAHN, 9, -1, 1, 1.000000, 6, 1 }, // 11 
+	{ BANK_FIGHTER_KAHN, 10, -1, 1, 1.000000, 6, 1 }, // 12 
+	// hit face medium
+	{ BANK_FIGHTER_KAHN, 11, -1, 1, 1.000000, 6, 1 }, // 13 
+	{ BANK_FIGHTER_KAHN, 12, -1, 1, 1.000000, 6, 1 }, // 14 
+	{ BANK_FIGHTER_KAHN, 13, -1, 1, 1.000000, 6, 1 }, // 15 
+	{ BANK_FIGHTER_KAHN, 14, -1, 1, 1.000000, 6, 1 }, // 16 
+	{ BANK_FIGHTER_KAHN, 11, -1, 1, 1.000000, 6, 1 }, // 17 
+	// hit face hard
+	{ BANK_FIGHTER_KAHN, 15, -1, 1, 1.000000, 6, 1 }, // 18 
+	{ BANK_FIGHTER_KAHN, 16, -1, 1, 1.000000, 6, 1 }, // 19
+	{ BANK_FIGHTER_KAHN, 17, -1, 1, 1.000000, 6, 1 }, // 20 
+	{ BANK_FIGHTER_KAHN, 18, -1, 1, 1.000000, 6, 1 }, // 21 
+	// hit gut medium
+	{ BANK_FIGHTER_KAHN, 19, -1, 1, 1.000000, 6, 1 }, // 22 
+	{ BANK_FIGHTER_KAHN, 20, -1, 1, 1.000000, 6, 1 }, // 23 
+	{ BANK_FIGHTER_KAHN, 21, -1, 1, 1.000000, 6, 1 }, // 24 
+	// hit gut hard
+	{ BANK_FIGHTER_KAHN, 22, -1, 1, 1.000000, 6, 1 }, // 25 
+	{ BANK_FIGHTER_KAHN, 23, -1, 1, 1.000000, 6, 1 }, // 26 
+	{ BANK_FIGHTER_KAHN, 24, -1, 1, 1.000000, 6, 1 }, // 27 
+	// hit leg medium (also face for some reason)
+	{ BANK_FIGHTER_KAHN, 11, -1, 1, 1.000000, 6, 1 }, // 28 
+	{ BANK_FIGHTER_KAHN, 12, -1, 1, 1.000000, 6, 1 }, // 29 
+	{ BANK_FIGHTER_KAHN, 13, -1, 1, 1.000000, 6, 1 }, // 30 
+	{ BANK_FIGHTER_KAHN, 14, -1, 1, 1.000000, 6, 1 }, // 31 
+	// blasted
+	{ BANK_FIGHTER_KAHN, 25, -1, 1, 1.000000, 6, 1 }, // 32 
+	{ BANK_FIGHTER_KAHN, 26, -1, 1, 1.000000, 6, 1 }, // 33 
+	// stabbed
+	{ BANK_FIGHTER_KAHN, 27, -1, 1, 1.000000, 6, 1 }, // 34 
+	{ BANK_FIGHTER_KAHN, 28, -1, 1, 1.000000, 6, 1 }, // 35 
+	// body land med
+	{ BANK_FIGHTER_KAHN, 29, -1, 1, 1.000000, 6, 1 }, // 36 
+	{ BANK_FIGHTER_KAHN, 30, -1, 1, 1.000000, 6, 1 }, // 37 
+	// body land hard
+	{ BANK_FIGHTER_KAHN, 31, -1, 1, 1.000000, 6, 1 }, // 38 
+	{ BANK_FIGHTER_KAHN, 32, -1, 1, 1.000000, 6, 1 }, // 39 
+	// jump grunt
+	{ BANK_FIGHTER_KAHN, 33, -1, 1, 0.700000, 6, 1 }, // 40 
+	{ BANK_FIGHTER_KAHN, 34, -1, 1, 0.700000, 6, 1 }, // 41 
+	{ BANK_FIGHTER_KAHN, 34, -1, 1, 0.700000, 6, 1 }, // 42 
+	// jump land
+	{ BANK_FIGHTER_KAHN, 35, -1, 1, 1.000000, 6, 1 }, // 43 
+	{ BANK_FIGHTER_KAHN, 36, -1, 1, 1.000000, 6, 1 }, // 44 
+
+	{ BANK_FIGHTER_KAHN, 90, -1, 1, 1.000000, 6, 1 }, // 45  UNKNOWN SLOT
+
+	// grab
+	{ BANK_FIGHTER_KAHN, 37, -1, 1, 1.000000, 6, 1 }, // 46 
+	{ BANK_FIGHTER_KAHN, 38, -1, 1, 1.000000, 6, 1 }, // 47 
+	{ BANK_FIGHTER_KAHN, 38, -1, 1, 1.000000, 6, 1 }, // 48 
+	// im throwing
+	{ BANK_FIGHTER_KAHN, 39, -1, 1, 1.000000, 6, 1 }, // 49 
+	{ BANK_FIGHTER_KAHN, 40, -1, 1, 1.000000, 6, 1 }, // 50 
+	// being thrown
+	{ BANK_FIGHTER_KAHN, 41, -1, 1, 1.000000, 6, 1 }, // 51 
+	{ BANK_FIGHTER_KAHN, 42, -1, 1, 1.000000, 6, 1 }, // 52 
+	// tripped
+	{ BANK_FIGHTER_KAHN, 43, -1, 1, 1.000000, 6, 1 }, // 53 
+	{ BANK_FIGHTER_KAHN, 44, -1, 1, 1.000000, 6, 1 }, // 54 
+	{ BANK_FIGHTER_KAHN, 45, -1, 1, 1.000000, 6, 1 }, // 55 
+	{ BANK_FIGHTER_KAHN, 43, -1, 1, 1.000000, 6, 1 }, // 56 
+	// konquest ok voice
+	{ BANK_FIGHTER_KAHN, 90, -1, 1, 1.000000, 6, 1 }, // 57 
+	{ BANK_FIGHTER_KAHN, 90, -1, 1, 1.000000, 6, 1 }, // 58 
+	{ BANK_FIGHTER_KAHN, 90, -1, 1, 1.000000, 6, 1 }, // 59 
+	{ BANK_FIGHTER_KAHN, 90, -1, 1, 1.000000, 6, 1 }, // 60 
+	{ BANK_FIGHTER_KAHN, 90, -1, 1, 1.000000, 6, 1 }, // 61 
+	// konquest bad voice
+	{ BANK_FIGHTER_KAHN, 90, -1, 1, 1.000000, 6, 1 }, // 62 
+	{ BANK_FIGHTER_KAHN, 90, -1, 1, 1.000000, 6, 1 }, // 63 
+	{ BANK_FIGHTER_KAHN, 90, -1, 1, 1.000000, 6, 1 }, // 64 
+	{ BANK_FIGHTER_KAHN, 90, -1, 1, 1.000000, 6, 1 }, // 65 
+	{ BANK_FIGHTER_KAHN, 90, -1, 1, 1.000000, 6, 1 }, // 66 
+
+	// special
+	{ BANK_FIGHTER_KAHN, 46, -1, 1, 1.000000, 6, 1 }, // 67  // vomit slip sound
+	{ BANK_FIGHTER_KAHN, 47, -1, 1, 1.000000, 6, 1 }, // 68  // sindel screamer/kitana fan lift reac
+	{ BANK_FIGHTER_KAHN, 48, -1, 1, 1.000000, 6, 1 }, // 69  // fall down stage level scream
+	{ BANK_FIGHTER_KAHN, 49, -1, 1, 1.000000, 6, 1 }, // 70  // sky temple falling
+
+	// death scream
+	{ BANK_FIGHTER_KAHN, 50, -1, 1, 1.000000, 6, 1 }, // 71 
+	{ BANK_FIGHTER_KAHN, 51, -1, 1, 1.000000, 6, 1 }, // 72 
+	// cough
+	{ BANK_FIGHTER_KAHN, 52, -1, 1, 1.000000, 6, 1 }, // 73 
+	{ BANK_FIGHTER_KAHN, 53, -1, 1, 1.000000, 6, 1 }, // 74 
+	// FATALITY SOUNDS
+	{ BANK_FIGHTER_KAHN, 54, -1, 1, 1.000000, 6, 1 }, // 75 
+	{ BANK_FIGHTER_KAHN, 68, -1, 1, 1.000000, 6, 1 }, // 76 
+	{ BANK_FIGHTER_KAHN, 61, -1, 1, 1.000000, 6, 1 }, // 77 
+	{ BANK_FIGHTER_KAHN, 75, -1, 1, 1.000000, 6, 1 }, // 78 
+	{ BANK_FIGHTER_KAHN, 69, -1, 1, 1.000000, 6, 1 }, // 79 
+
+	// TODO: port from psp or gc but both have shitty audio so doesnt matter from where probably
+	{ BANK_FIGHTER_KAHN, 56, -1, 1, 1.000000, 6, 1 }, // 80 // no, no no
+	{ BANK_FIGHTER_KAHN, 67, -1, 1, 1.000000, 6, 1 }, // 81 // no but screaming
+
+	// limb ripped
+	{ BANK_FIGHTER_KAHN, 55, -1, 1, 1.000000, 6, 1 }, // 82 
+	{ BANK_FIGHTER_KAHN, 56, -1, 1, 1.000000, 6, 1 }, // 83 
+
+	{ BANK_FIGHTER_KAHN, 71, -1, 1, 1.000000, 6, 1 }, // 84 
+	{ BANK_FIGHTER_KAHN, 74, -1, 1, 1.000000, 6, 1 }, // 85  slippery running
+	{ BANK_FIGHTER_KAHN, 75, -1, 1, 1.000000, 6, 1 }, // 86 // death falling?
+	{ BANK_FIGHTER_KAHN, 76, -1, 1, 1.000000, 6, 1 }, // 87 
+
+	{ BANK_FIGHTER_KAHN, 57, -1, 1, 1.000000, 6, 1 }, // 88 // impale 1
+	{ BANK_FIGHTER_KAHN, 58, -1, 1, 1.000000, 6, 1 }, // 89 // impale 2
+
+	{ BANK_FIGHTER_KAHN, 77, -1, 1, 1.000000, 6, 1 }, // 90 long scream
+	{ BANK_FIGHTER_KAHN, 63, -1, 1, 1.000000, 6, 1 }, // 91 echo falling
+
+	{ 6, 150, -1, 1, 1.000000, 4, 1 }, // sk select (7344)
+	{ 6, 151, -1, 1, 1.000000, 4, 1 }, // sk wins(7345)
+
+	// SHAO KAHN specials start at 7346
+	{ BANK_C_SHAO_KAHN, 0, -1, 1, 1.000000,  5, 1 },  	  // KNEE
+	{ BANK_C_SHAO_KAHN, 1, -1, 1, 1.000000,  5, 1 },  // FIREBALL (7347)   
+	{ BANK_C_SHAO_KAHN, 2, -1, 1, 1.000000,  5, 1 },  // FIREBALL HIT(7348)   
+	{ BANK_C_SHAO_KAHN, 3, -1, 1, 1.000000,  5, 1 },  // FIREBALL BLOCKED (7349)
+	{ BANK_C_SHAO_KAHN, 4, -1, 1, 1.000000,  5, 1 },  // FORCE FIELD (7350)  
+	{ BANK_C_SHAO_KAHN, 5, -1, 1, 1.000000,  5, 1 },  // FORCE FIELD2 (7351) 
+	{ BANK_C_SHAO_KAHN, 6, -1, 1, 0.900000,  5, 1 },  // FORCE FIELD3 (7352)
+	{ BANK_C_SHAO_KAHN, 7, -1, 1, 1.000000,  5, 1 },  // GETUP (7353)
+	{ BANK_C_SHAO_KAHN, 8, -1, 1, 1.000000,  5, 1 },  // 8   
+	{ BANK_C_SHAO_KAHN, 9, -1, 1, 1.000000,  5, 1 },  // 9   
+	{ BANK_C_SHAO_KAHN, 10, -1, 1, 1.000000, 5, 1 }, // FATALITY BLOWUP (7357)
+	{ BANK_C_SHAO_KAHN, 11, -1, 1, 1.000000, 5, 1 }, // HAMMER SPIN (7358)  
+	{ BANK_C_SHAO_KAHN, 12, -1, 1, 1.000000, 5, 1 }, // PART FALL (7359)
+	{ BANK_C_SHAO_KAHN, 13, -1, 1, 1.000000, 5, 1 }, // 13  
+	{ BANK_C_SHAO_KAHN, 14, -1, 1, 1.000000, 5, 1 }, // 14  
+	{ BANK_C_SHAO_KAHN, 15, -1, 1, 1.000000, 5, 1 }, // 15  
+	{ BANK_C_SHAO_KAHN, 16, -1, 1, 1.000000, 5, 1 }, // 16  
+	{ BANK_C_SHAO_KAHN, 17, -1, 1, 1.000000, 5, 1 }, // 17  
+	{ BANK_C_SHAO_KAHN, 18, -1, 1, 1.000000, 5, 1 }, // 18  
+	{ BANK_C_SHAO_KAHN, 19, -1, 1, 1.000000, 5, 1 }, // 19  
+	{ BANK_C_SHAO_KAHN, 20, -1, 1, 1.000000, 5, 1 }, // HAMMER HK HEAD SPLAT (7366)
+	{ BANK_C_SHAO_KAHN, 21, -1, 1, 1.000000, 5, 1 }, // HARAKIRI (7367)  
+	{ BANK_C_SHAO_KAHN, 22, -1, 1, 1.000000, 5, 1 }, // 22  
+	{ BANK_C_SHAO_KAHN, 23, -1, 1, 1.000000, 5, 1 }, // 23  
+	{ BANK_C_SHAO_KAHN, 24, -1, 1, 1.000000, 5, 1 }, // 24  
+	{ BANK_C_SHAO_KAHN, 25, -1, 1, 1.000000, 5, 1 }, // 25  
+	{ BANK_C_SHAO_KAHN, 26, -1, 1, 1.000000, 5, 1 }, // 26  
+	{ BANK_C_SHAO_KAHN, 27, -1, 1, 1.000000, 5, 1 }, // 27  
+	{ BANK_C_SHAO_KAHN, 28, -1, 1, 1.000000, 5, 1 }, // 28  
+	{ BANK_C_SHAO_KAHN, 29, -1, 1, 1.000000, 5, 1 }, // 29  
+	{ BANK_C_SHAO_KAHN, 30, -1, 1, 1.000000, 5, 1 }, // 30  
+	{ BANK_C_SHAO_KAHN, 31, -1, 1, 1.000000, 5, 1 }, // 31  
+	{ BANK_C_SHAO_KAHN, 32, -1, 1, 1.000000, 5, 1 }, // 32  
+	{ BANK_C_SHAO_KAHN, 33, -1, 1, 1.000000, 5, 1 }, // 33  
+	{ BANK_C_SHAO_KAHN, 34, -1, 1, 1.000000, 5, 1 }, // 34  
+	{ BANK_C_SHAO_KAHN, 35, -1, 1, 1.000000, 5, 1 }, // 35  
+	{ BANK_C_SHAO_KAHN, 36, -1, 1, 1.000000, 5, 1 }, // 36  
+	{ BANK_C_SHAO_KAHN, 37, -1, 1, 1.000000, 5, 1 }, // 37  
+	{ BANK_C_SHAO_KAHN, 38, -1, 1, 1.000000, 5, 1 }, // 38  
+	{ BANK_C_SHAO_KAHN, 39, -1, 1, 1.000000, 5, 1 }, // 39  
+	{ BANK_C_SHAO_KAHN, 40, -1, 1, 0.700000, 5, 1 }, // 40  
+	{ BANK_C_SHAO_KAHN, 41, -1, 1, 0.700000, 5, 1 }, // 41  
+	{ BANK_C_SHAO_KAHN, 42, -1, 1, 0.700000, 5, 1 }, // 42  
+	{ BANK_C_SHAO_KAHN, 43, -1, 1, 1.000000, 5, 1 }, // 43  
+	{ BANK_C_SHAO_KAHN, 44, -1, 1, 1.000000, 5, 1 }, // 44  
+	{ BANK_C_SHAO_KAHN, 45, -1, 1, 1.000000, 5, 1 }, // 45  
+	{ BANK_C_SHAO_KAHN, 46, -1, 1, 1.000000, 5, 1 }, // 46  
+	{ BANK_C_SHAO_KAHN, 47, -1, 1, 1.000000, 5, 1 }, // 47  
+	{ BANK_C_SHAO_KAHN, 48, -1, 1, 1.000000, 5, 1 }, // 48  
+	{ BANK_C_SHAO_KAHN, 49, -1, 1, 1.000000, 5, 1 }, // 49  
+	{ BANK_C_SHAO_KAHN, 50, -1, 1, 1.000000, 5, 1 }, // FATALITY 2 GRUNT (7398)
+	{ BANK_C_SHAO_KAHN, 51, -1, 1, 1.000000, 5, 1 }, // FATALITY GRUNT (7397)
+	{ BANK_C_SHAO_KAHN, 52, -1, 1, 1.000000, 5, 1 }, // WINPOSE SCREAM (7398)
+	{ BANK_C_SHAO_KAHN, 53, -1, 1, 1.000000, 5, 1 }, // 53  
+	{ BANK_C_SHAO_KAHN, 54, -1, 1, 1.000000, 5, 1 }, // 54  
+	{ BANK_C_SHAO_KAHN, 55, -1, 1, 1.000000, 5, 1 }, // FATALITY END GRUNT (7401)
+	{ BANK_C_SHAO_KAHN, 56, -1, 1, 1.000000, 5, 1 }, // WIN LAUGHTER (7402)
+	{ BANK_C_SHAO_KAHN, 57, -1, 1, 1.000000, 5, 1 }, // 57  
 };

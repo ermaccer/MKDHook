@@ -1750,6 +1750,11 @@ void init_script_custom_function_table()
 	script_function_table[1473] = (int)&pfxhandle_spawn_at_bid_next_bind_render_aux_fix;
 	script_function_table[1488] = (int)&fat_sz_start_iceblock;
 
+	// gc
+
+	script_function_table[gc_get_taunts_performed] = (int)&get_taunts_performed;
+	script_function_table[gc_increment_taunts_performed] = (int)&increment_taunts_performed;
+
 	// mku
 
 	script_function_table[mku_kitana_pfx] = (int)&mku_kitana_curl_fx;
@@ -1765,6 +1770,7 @@ void init_script_custom_function_table()
 	// umkd
 	script_function_table[jax_taunt] = (int)&_jax_taunt;
 	script_function_table[freeze_victim] = (int)&_freeze_victim;
+	script_function_table[force_fatality_end] = (int)&_force_fatality_end;
 }
 
 void dump_script_table()
@@ -1833,6 +1839,11 @@ void _freeze_victim()
 	freeze_player();
 	snd_req(SOUND_FROST_FREEZE);
 	swap_active_proc();
+}
+
+void _force_fatality_end()
+{
+	*(int*)0x5D6500 = 1;
 }
 
 void mku_kitana_curl_fx()

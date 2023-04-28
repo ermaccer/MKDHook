@@ -9,5 +9,7 @@ void init_generic();
 void patch_freeze_reaction();
 void patch_freeze_sound();
 
+int fatality_lock();
+
 float hook_plyr_start_proc();
 void  hook_delete_player(int id);

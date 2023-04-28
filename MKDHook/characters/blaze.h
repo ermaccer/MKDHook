@@ -21,3 +21,5 @@ void reset_blaze_flaming_limbs(int id);
 
 void blaze_reset_event();
 void blaze_destroy_event(int id);
+
+void blaze_fatality_watch();

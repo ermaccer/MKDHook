@@ -12,6 +12,7 @@
 int snd_req(int id);
 int snd_req_vol(int id, float vol);
 void snd_stop(int sound);
+void set_music(int id);
 
 int create_mkproc_generic_nostack(int id, int a2, void* pFunc, int unk, int* result);
 int am_i_flipped();

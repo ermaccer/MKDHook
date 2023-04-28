@@ -2,7 +2,7 @@
 // UMKD SELECT
 #include "..\toc.h"
 
-#define PSELECT_FILES 32 + 1
+#define PSELECT_FILES 33 + 1
 
 
 extern struct mk_file_entry pselect_entry_table[PSELECT_FILES];

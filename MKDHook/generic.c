@@ -2,6 +2,8 @@
 #include "ps2mem.h"
 #include "mips.h"
 #include "characters/character_list.h"
+#include "stage.h"
+#include "settings.h"
 
 void init_generic()
 {
@@ -14,7 +16,8 @@ void init_generic()
 	makeJal(0x3C7250, hook_delete_player);
 	makeJal(0x3C7258, hook_delete_player);
 
-
+	makeJal(0x170218, fatality_lock);
+	makeJal(0x384674, fatality_lock);
 
 	int val = (int)&hook_plyr_start_proc;
 
@@ -59,6 +62,27 @@ void patch_freeze_sound()
 	// fix sound properly, in mku they added a sound call to mko but forgot about sound id in freeze function
 	// so when opponent is subzero and you freeze him, the freezing sound will play twice
 	snd_req(SOUND_FROST_FREEZE);
+}
+
+int fatality_lock()
+{
+	player_info* p1 = (player_info*)PLAYER1_INFO;
+	player_info* p2 = (player_info*)PLAYER2_INFO;
+
+	if (p1 && p2)
+	{
+		if (p1->characterID == BLAZE || p2->characterID == BLAZE)
+		{
+			if (!settings.blaze_enable_fatalities)
+			return 0;
+		}
+
+	}
+
+
+
+
+	return ((int(*)())0x16FCF0)();
 }
 
 float hook_plyr_start_proc()

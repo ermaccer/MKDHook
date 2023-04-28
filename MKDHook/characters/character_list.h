@@ -24,6 +24,8 @@
 #include "jax.h"
 #include "frost.h"
 #include "blaze.h"
+// mku/gc ports
+#include "shaokahn.h"
 
 
 extern struct scan_action scan_null;

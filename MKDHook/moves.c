@@ -64,6 +64,7 @@ int scan_table_1_jump_table[] = {
 	SCAN1_UNIVERSAL_JUMP, // JAX
 	SCAN1_UNIVERSAL_JUMP, //  FROST
 	SCAN1_UNIVERSAL_JUMP, //  BLAZE
+	SCAN1_UNIVERSAL_JUMP, //  SHAOKAHN
 };
 
 
@@ -117,6 +118,7 @@ int scan_table_2_jump_table[] = {
 	SCAN2_UNIVERSAL_JUMP, //  JAX
 	0x20239C, //  FROST
 	SCAN2_UNIVERSAL_JUMP, //  BLAZE
+	SCAN2_UNIVERSAL_JUMP, //  SHAOKAHN
 };
 
 int scan_table_3_jump_table[] = {
@@ -169,6 +171,7 @@ int scan_table_3_jump_table[] = {
 	SCAN3_UNIVERSAL_JUMP, //  JAX
 	SCAN3_UNIVERSAL_JUMP, //  FROST
 	SCAN3_UNIVERSAL_JUMP, //  BLAZE
+	SCAN3_UNIVERSAL_JUMP, //  SHAOKAHN
 };
 
 int scan_table_4_jump_table[] = {
@@ -221,6 +224,7 @@ int scan_table_4_jump_table[] = {
 	SCAN4_UNIVERSAL_JUMP, //	JAX
 	SCAN4_UNIVERSAL_JUMP, //	FROST
 	0x201B0C, // BLAZE
+	0x201B0C, // SHAOKAHN
 };
 
 
@@ -230,6 +234,7 @@ void init_moves_hook()
 	makeJal(0x202138, swap_scan_table_2);
 	makeJal(0x201D28, swap_scan_table_3);
 	makeJal(0x201860, swap_scan_table_4);
+	makeJal(0x20C4DC, do_harakiri_hook);
 
 
 	// SCAN 1 ([])
@@ -316,6 +321,9 @@ int swap_scan_table_1()
 	case BLAZE:
 		scan_action_set = (int)&scan_blaze_1;
 		break;
+	case SHAO_KAHN:
+		scan_action_set = (int)&scan_sk_1;
+		break;
 	default:
 		break;
 	}
@@ -348,6 +356,9 @@ int swap_scan_table_2()
 		break;
 	case BLAZE:
 		scan_action_set = (int)&scan_blaze_2;
+		break;
+	case SHAO_KAHN:
+		scan_action_set = (int)&scan_sk_2;
 		break;
 	default:
 		break;
@@ -389,6 +400,9 @@ int swap_scan_table_3()
 	case BLAZE:
 		scan_action_set = (int)&scan_blaze_3;
 		break;
+	case SHAO_KAHN:
+		scan_action_set = (int)&scan_sk_3;
+		break;
 	default:
 		break;
 	}
@@ -426,6 +440,20 @@ int swap_scan_table_4()
 	patchInt(0x2019A8, ori(a0, a0, LOWORD(scan_action_set)));
 
 	return my_joypad_state_5();
+}
+
+void do_harakiri_hook()
+{
+	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
+
+	int chrID = plyr_data->characterID;
+	if (chrID == SHAO_KAHN)
+	{
+		if (was_button_pressed(PAD_SQUARE))
+			scan_switch_sequences((int*)&scan_sk_suicide);
+	}
+	else
+		((void(*)())0x20C710)();
 }
 
 void dump_scan_table_1()

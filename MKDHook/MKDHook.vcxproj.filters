@@ -183,6 +183,12 @@
     <ClCompile Include="mkd\fx.c">
       <Filter>source\mkd</Filter>
     </ClCompile>
+    <ClCompile Include="characters\shaokahn.c">
+      <Filter>source\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="voice.c">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ps2mem.h">
@@ -352,6 +358,12 @@
     </ClInclude>
     <ClInclude Include="mkd\fx.h">
       <Filter>source\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\shaokahn.h">
+      <Filter>source\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="voice.h">
+      <Filter>source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

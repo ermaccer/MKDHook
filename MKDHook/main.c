@@ -16,6 +16,7 @@
 #include "misc/fatalityanims.h"
 #include "settings.h"
 #include "generic.h"
+#include "voice.h"
 
 int CompatibleCRCList[] = { 0x7C22850A };
 
@@ -52,9 +53,10 @@ void init()
    patch_misc_anims_toc();
    init_fatanims_hook();
    init_generic();
+   init_voice_hook();
 
 
-   _printf("MKDHook init! %x %x %x\n", &debugVar[0], &sbank_data[55], &sbank_data[163]);
+   _printf("MKDHook init! %x %x\n", &debugVar[0], &mk_sound_table[7327]);
 }
 
 int main()

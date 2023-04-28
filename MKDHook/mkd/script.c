@@ -17,6 +17,12 @@ void snd_stop(int sound)
     ((void(*)(int))0x12AE20)(sound);
 }
 
+void set_music(int id)
+{
+	((void(*)(int))0x3A4CE0)(id);
+
+}
+
 int create_mkproc_generic_nostack(int id, int a2, void* pFunc, int unk, int* result)
 {
 	return ((int(*)(int, int, void*, int, int*))0x12C4C0)(id, a2, pFunc, unk, result);

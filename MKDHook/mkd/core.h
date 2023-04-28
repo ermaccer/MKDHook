@@ -65,6 +65,7 @@ int get_character_id(int plr);
 
 void delete_player(int id);
 
+void set_fatality_available(int status);
 
 // loaders
 int load_background(int id);

@@ -10,5 +10,6 @@ void init_settings()
 	inireader.SetIniPath((char*)PluginData + sizeof(unsigned int), *(unsigned int*)PluginData);
 
 	settings.no_intro = inireader.ReadInteger("Settings", "SkipIntro", 0);
+	settings.blaze_enable_fatalities = inireader.ReadInteger("Settings", "BlazeEnableFatalities", 0);
 	_printf("Settings read!\n");
 }

@@ -56,6 +56,8 @@ enum characters
 	JAX,
 	FROST,
 	BLAZE,
+	// mku/gc
+	SHAO_KAHN,
 	TOTAL_CHARACTERS
 };
 

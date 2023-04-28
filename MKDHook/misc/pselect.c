@@ -37,13 +37,14 @@ struct mk_file_entry pselect_entry_table[PSELECT_FILES] = {
 	{"body_jax_alt.sec"	,0, 1},
 	{"body_frost_alt.sec"	,0, 1},
 	{"body_blaze_alt.sec"	,0, 1},
+	{"body_shaokahn_alt.sec"	,0, 1},
 };
 
 // I:\ps2dvd\art\pselect.ssf
 struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[0]	,0,0 },
 
-		{&pselect_entry_table[1]	,0,3749888}, // pselect
+		{&pselect_entry_table[1]	,0,3823104}, // pselect
 		{&pselect_entry_table[2]	,0,1514624}, // bg
 		{&pselect_entry_table[3]	,0,1528960},  // pz
 		// ALT RENDERS
@@ -75,6 +76,8 @@ struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[29]	,0,67456},  // KITANA_alt
 		{&pselect_entry_table[30]	,0,67456},  // jax_alt
 		{&pselect_entry_table[31]	,0,67456},  // FROST_alt
+		{&pselect_entry_table[32]	,0,67456},  // blaze_alt
+		{&pselect_entry_table[33]	,0,67456},  // shao_alt
 		{0,0,0}
 };
 

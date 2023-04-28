@@ -69,6 +69,11 @@ void delete_player(int id)
 	((void(*)(int))0x131DF0)(id);
 }
 
+void set_fatality_available(int status)
+{
+	*(int*)0x5D64FC = status;
+}
+
 int load_background(int id)
 {
 	return ((int(*)(int))0x15A620)(id);

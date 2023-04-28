@@ -36,6 +36,7 @@ characters\jax.o \
 characters\dragonking.o \
 characters\frost.o \
 characters\blaze.o \
+characters\shaokahn.o \
 characters\character_list.o \
 misc\pselect.o \
 misc\misc_anims.o \
@@ -43,7 +44,8 @@ misc\fatalityanims.o \
 pcsx2\rini.o \
 pcsx2\inireader.o \
 settings.o \
-generic.o
+generic.o \
+voice.o
 
 NEWLIB_NANO = 1
 KERNEL_NOPATCH = 1

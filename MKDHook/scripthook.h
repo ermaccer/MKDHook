@@ -17,10 +17,14 @@ enum ECommands {
 	mku_unknown_1724,
 	mku_start_blaze_flaming_limbs = 1725,
 	mku_reset_blaze_flaming_limbs = 1726,
+	// gc commands
+	gc_get_taunts_performed = 1900,
+	gc_increment_taunts_performed = 1901,
 	// new commands
 	_umkd_sonya_runtime = 2000,
 	jax_taunt = 2001,
 	freeze_victim = 2002,
+	force_fatality_end = 2003,
 	TOTAL_COMMANDS = 2100
 };
 
@@ -44,7 +48,7 @@ void _jax_taunt();
 void _start_blaze_flaming_limbs();
 void _reset_blaze_flaming_limbs();
 void _freeze_victim();
-
+void _force_fatality_end();
 
 void mku_kitana_curl_fx();
 void mku_kitana_curl_pos_fix(int obj, int id, CVector* pos);
