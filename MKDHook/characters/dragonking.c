@@ -50,7 +50,7 @@ struct mk_toc_entry dragonking_file_table[DRAGONKING_FILES + 1] = {
 void hook_xfer_to_intro(int obj, int proc)
 {
 	if (get_current_ladder_pos() == 7)
-		xfer_proc(obj, proc);
+		xfer_proc(obj, 0x2410D0);
 }
 
 void hook_wait_for_intro()
@@ -83,4 +83,11 @@ void init_dragonking_patches()
 	makeJal(0x170F18, hook_xfer_to_intro);
 	makeJal(0x170F48, hook_xfer_to_intro);
 	makeJal(0x170F20, hook_wait_for_intro);
+
+	// ps2 fix
+
+	NOP(0x170F10);
+	NOP(0x170F1C);
+	NOP(0x170F40);
+	NOP(0x170F4C);
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "build_config.h"
 
 struct stage_info_entry
 {
@@ -63,9 +64,13 @@ enum backgrounds {
 	TOTAL_BACKGROUNDS
 };
 
+#ifndef PS2_BUILD
 // from mkuhook
 void dump_stage_table(unsigned int addr);
 void dump_select_stable(unsigned int addr);
+#endif // !PS2_BUILD
+
+
 
 int hook_bgnd_locked(int id);
 

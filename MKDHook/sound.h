@@ -2,6 +2,7 @@
 #define TOTAL_SOUNDS 7224 + EXTRA_SOUNDS
 #define EXTRA_SOUNDS TOTAL_NEW_SOUNDS + (VOICE_AMOUNT * NEW_VOICES)
 #include "sound_bank.h"
+#include "build_config.h"
 
 typedef struct {
 	int field0;
@@ -102,13 +103,19 @@ enum eNewSounds {
 	SOUND_SHAO_55,
 	SOUND_SHAO_WIN_LAUGHTER,
 	SOUND_SHAO_57,
-	TOTAL_NEW_SOUNDS = 88,
+	SOUND_GORO_AMOUNT = 40,
+	SOUND_GORO_SELECT = 7536,
+	SOUND_GORO_WINS,
+	TOTAL_NEW_SOUNDS = 90 + SOUND_GORO_AMOUNT,
 	VOICE_AMOUNT = 92,
-	NEW_VOICES = 1
+	NEW_VOICES = 2
 };
 
 extern sound_entry mk_sound_table[TOTAL_SOUNDS];
 
 void init_sound_hook();
 
+#ifndef  PS2_BUILD
 void dump_sound_table();
+#endif // ! PS2_BUILD
+

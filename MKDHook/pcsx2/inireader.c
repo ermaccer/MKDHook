@@ -1,5 +1,6 @@
 #include "inireader.h"
 
+#ifndef  PS2_BUILD
 void SetIniPath(const char* szFileContent, size_t size)
 {
     inireader.iniBuf = szFileContent;
@@ -102,3 +103,4 @@ struct inireader_t inireader =
     .ReadBoolean = ReadBoolean,
     .ReadString = ReadString,
 };
+#endif

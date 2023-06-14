@@ -233,6 +233,7 @@ void init_sound_hook()
 	patchInt(0x12B9AC  + 4, ori(v0, v0, LOWORD(val)));
 }
 
+#ifndef  PS2_BUILD
 void dump_sound_table()
 {
 	int addr = 0x515CF0;
@@ -246,7 +247,7 @@ void dump_sound_table()
 		_printf(" # %3d\n", i);
 	}
 }
-
+#endif
 
 
 sound_entry mk_sound_table[TOTAL_SOUNDS] =
@@ -7718,4 +7719,181 @@ sound_entry mk_sound_table[TOTAL_SOUNDS] =
 	{ BANK_C_SHAO_KAHN, 55, -1, 1, 1.000000, 5, 1 }, // FATALITY END GRUNT (7401)
 	{ BANK_C_SHAO_KAHN, 56, -1, 1, 1.000000, 5, 1 }, // WIN LAUGHTER (7402)
 	{ BANK_C_SHAO_KAHN, 57, -1, 1, 1.000000, 5, 1 }, // 57  
+
+	// GORO VOICE (91 sounds) BEGIN: 7404
+
+	{ BANK_FIGHTER_GORO, 90, -1, 1, 1.000000, 6, 1 }, // 7404
+	// quick
+	{ BANK_FIGHTER_GORO, 0, -1, 1, 1.000000, 6, 1 },  // 0  
+	{ BANK_FIGHTER_GORO, 1, -1, 1, 1.000000, 6, 1 },  // 1  
+	{ BANK_FIGHTER_GORO, 2, -1, 1, 1.000000, 6, 1 },  // 2  
+	{ BANK_FIGHTER_GORO, 3, -1, 1, 1.000000, 6, 1 },  // 3  
+	{ BANK_FIGHTER_GORO, 4, -1, 1, 1.000000, 6, 1 },  // 4  
+	// long
+	{ BANK_FIGHTER_GORO, 5, -1, 1, 1.000000, 6, 1 },  // 6  
+	{ BANK_FIGHTER_GORO, 6, -1, 1, 1.000000, 6, 1 },  // 7  
+	{ BANK_FIGHTER_GORO, 7, -1, 1, 1.000000, 6, 1 },  // 8  
+	{ BANK_FIGHTER_GORO, 5, -1, 1, 1.000000, 6, 1 },  // 9  
+	// special
+	{ BANK_FIGHTER_GORO, 8, -1, 1, 1.000000, 6, 1 }, // 10 
+	{ BANK_FIGHTER_GORO, 9, -1, 1, 1.000000, 6, 1 }, // 11 
+	{ BANK_FIGHTER_GORO, 10, -1, 1, 1.000000, 6, 1 }, // 12 
+	// hit face medium
+	{ BANK_FIGHTER_GORO, 11, -1, 1, 1.000000, 6, 1 }, // 13 
+	{ BANK_FIGHTER_GORO, 12, -1, 1, 1.000000, 6, 1 }, // 14 
+	{ BANK_FIGHTER_GORO, 13, -1, 1, 1.000000, 6, 1 }, // 15 
+	{ BANK_FIGHTER_GORO, 14, -1, 1, 1.000000, 6, 1 }, // 16 
+	{ BANK_FIGHTER_GORO, 11, -1, 1, 1.000000, 6, 1 }, // 17 
+	// hit face hard
+	{ BANK_FIGHTER_GORO, 15, -1, 1, 1.000000, 6, 1 }, // 18 
+	{ BANK_FIGHTER_GORO, 16, -1, 1, 1.000000, 6, 1 }, // 19
+	{ BANK_FIGHTER_GORO, 17, -1, 1, 1.000000, 6, 1 }, // 20 
+	{ BANK_FIGHTER_GORO, 17, -1, 1, 1.000000, 6, 1 }, // 21 
+
+	// hit gut medium
+	{ BANK_FIGHTER_GORO, 18, -1, 1, 1.000000, 6, 1 }, // 22 
+	{ BANK_FIGHTER_GORO, 19, -1, 1, 1.000000, 6, 1 }, // 23 
+	{ BANK_FIGHTER_GORO, 18, -1, 1, 1.000000, 6, 1 }, // 24 
+
+	// hit gut hard
+	{ BANK_FIGHTER_GORO, 20, -1, 1, 1.000000, 6, 1 }, // 25 
+	{ BANK_FIGHTER_GORO, 21, -1, 1, 1.000000, 6, 1 }, // 26 
+	{ BANK_FIGHTER_GORO, 20, -1, 1, 1.000000, 6, 1 }, // 27 
+			
+	// hit leg medium (also face for some reason)
+	{ BANK_FIGHTER_GORO, 11, -1, 1, 1.000000, 6, 1 }, // 28 
+	{ BANK_FIGHTER_GORO, 12, -1, 1, 1.000000, 6, 1 }, // 29 
+	{ BANK_FIGHTER_GORO, 13, -1, 1, 1.000000, 6, 1 }, // 30 
+	{ BANK_FIGHTER_GORO, 14, -1, 1, 1.000000, 6, 1 }, // 31 
+	// blasted
+	{ BANK_FIGHTER_GORO, 25, -1, 1, 1.000000, 6, 1 }, // 32 
+	{ BANK_FIGHTER_GORO, 26, -1, 1, 1.000000, 6, 1 }, // 33 
+	// stabbed
+	{ BANK_FIGHTER_GORO, 27, -1, 1, 1.000000, 6, 1 }, // 34 
+	{ BANK_FIGHTER_GORO, 28, -1, 1, 1.000000, 6, 1 }, // 35 
+	// body land med
+	{ BANK_FIGHTER_GORO, 29, -1, 1, 1.000000, 6, 1 }, // 36 
+	{ BANK_FIGHTER_GORO, 30, -1, 1, 1.000000, 6, 1 }, // 37 
+	// body land hard
+	{ BANK_FIGHTER_GORO, 31, -1, 1, 1.000000, 6, 1 }, // 38 
+	{ BANK_FIGHTER_GORO, 32, -1, 1, 1.000000, 6, 1 }, // 39 
+	// jump grunt
+	{ BANK_FIGHTER_GORO, 33, -1, 1, 0.700000, 6, 1 }, // 40 
+	{ BANK_FIGHTER_GORO, 34, -1, 1, 0.700000, 6, 1 }, // 41 
+	{ BANK_FIGHTER_GORO, 34, -1, 1, 0.700000, 6, 1 }, // 42 
+	// jump land
+	{ BANK_FIGHTER_GORO, 35, -1, 1, 1.000000, 6, 1 }, // 43 
+	{ BANK_FIGHTER_GORO, 36, -1, 1, 1.000000, 6, 1 }, // 44 
+
+	{ BANK_FIGHTER_GORO, 90, -1, 1, 1.000000, 6, 1 }, // 45  UNKNOWN SLOT
+
+	// grab
+	{ BANK_FIGHTER_GORO, 37, -1, 1, 1.000000, 6, 1 }, // 46 
+	{ BANK_FIGHTER_GORO, 38, -1, 1, 1.000000, 6, 1 }, // 47 
+	{ BANK_FIGHTER_GORO, 38, -1, 1, 1.000000, 6, 1 }, // 48 
+	// im throwing
+	{ BANK_FIGHTER_GORO, 39, -1, 1, 1.000000, 6, 1 }, // 49 
+	{ BANK_FIGHTER_GORO, 40, -1, 1, 1.000000, 6, 1 }, // 50 
+	// being thrown
+	{ BANK_FIGHTER_GORO, 41, -1, 1, 1.000000, 6, 1 }, // 51 
+	{ BANK_FIGHTER_GORO, 42, -1, 1, 1.000000, 6, 1 }, // 52 
+	// tripped
+	{ BANK_FIGHTER_GORO, 43, -1, 1, 1.000000, 6, 1 }, // 53 
+	{ BANK_FIGHTER_GORO, 44, -1, 1, 1.000000, 6, 1 }, // 54 
+	{ BANK_FIGHTER_GORO, 45, -1, 1, 1.000000, 6, 1 }, // 55 
+	{ BANK_FIGHTER_GORO, 43, -1, 1, 1.000000, 6, 1 }, // 56 
+	// konquest ok voice
+	{ BANK_FIGHTER_GORO, 90, -1, 1, 1.000000, 6, 1 }, // 57 
+	{ BANK_FIGHTER_GORO, 90, -1, 1, 1.000000, 6, 1 }, // 58 
+	{ BANK_FIGHTER_GORO, 90, -1, 1, 1.000000, 6, 1 }, // 59 
+	{ BANK_FIGHTER_GORO, 90, -1, 1, 1.000000, 6, 1 }, // 60 
+	{ BANK_FIGHTER_GORO, 90, -1, 1, 1.000000, 6, 1 }, // 61 
+	// konquest bad voice
+	{ BANK_FIGHTER_GORO, 90, -1, 1, 1.000000, 6, 1 }, // 62 
+	{ BANK_FIGHTER_GORO, 90, -1, 1, 1.000000, 6, 1 }, // 63 
+	{ BANK_FIGHTER_GORO, 90, -1, 1, 1.000000, 6, 1 }, // 64 
+	{ BANK_FIGHTER_GORO, 90, -1, 1, 1.000000, 6, 1 }, // 65 
+	{ BANK_FIGHTER_GORO, 90, -1, 1, 1.000000, 6, 1 }, // 66 
+
+	// special
+	{ BANK_FIGHTER_GORO, 46, -1, 1, 1.000000, 6, 1 }, // 67  // vomit slip sound
+	{ BANK_FIGHTER_GORO, 47, -1, 1, 1.000000, 6, 1 }, // 68  // sindel screamer/kitana fan lift reac
+	{ BANK_FIGHTER_GORO, 48, -1, 1, 1.000000, 6, 1 }, // 69  // fall down stage level scream
+	{ BANK_FIGHTER_GORO, 49, -1, 1, 1.000000, 6, 1 }, // 70  // sky temple falling
+
+	// death scream
+	{ BANK_FIGHTER_GORO, 50, -1, 1, 1.000000, 6, 1 }, // 71 
+	{ BANK_FIGHTER_GORO, 51, -1, 1, 1.000000, 6, 1 }, // 72 
+	// cough
+	{ BANK_FIGHTER_GORO, 52, -1, 1, 1.000000, 6, 1 }, // 73 
+	{ BANK_FIGHTER_GORO, 53, -1, 1, 1.000000, 6, 1 }, // 74 
+	// FATALITY SOUNDS
+	{ BANK_FIGHTER_GORO, 54, -1, 1, 1.000000, 6, 1 }, // 75 
+	{ BANK_FIGHTER_GORO, 68, -1, 1, 1.000000, 6, 1 }, // 76 
+	{ BANK_FIGHTER_GORO, 70, -1, 1, 1.000000, 6, 1 }, // 77 
+	{ BANK_FIGHTER_GORO, 61, -1, 1, 1.000000, 6, 1 }, // 78 
+	{ BANK_FIGHTER_GORO, 72, -1, 1, 1.000000, 6, 1 }, // 79 
+
+	// TODO: port from psp or gc but both have shitty audio so doesnt matter from where probably
+	{ BANK_FIGHTER_GORO, 56, -1, 1, 1.000000, 6, 1 }, // 80 // no, no no
+	{ BANK_FIGHTER_GORO, 55, -1, 1, 1.000000, 6, 1 }, // 81 // no but screaming
+
+	// limb ripped
+	{ BANK_FIGHTER_GORO, 55, -1, 1, 1.000000, 6, 1 }, // 82 
+	{ BANK_FIGHTER_GORO, 56, -1, 1, 1.000000, 6, 1 }, // 83 
+
+	{ BANK_FIGHTER_GORO, 71, -1, 1, 1.000000, 6, 1 }, // 84 
+	{ BANK_FIGHTER_GORO, 74, -1, 1, 1.000000, 6, 1 }, // 85  slippery running
+	{ BANK_FIGHTER_GORO, 75, -1, 1, 1.000000, 6, 1 }, // 86 // death falling?
+	{ BANK_FIGHTER_GORO, 76, -1, 1, 1.000000, 6, 1 }, // 87 falling cliffs
+
+	{ BANK_FIGHTER_GORO, 57, -1, 1, 1.000000, 6, 1 }, // 88 // impale 1
+	{ BANK_FIGHTER_GORO, 58, -1, 1, 1.000000, 6, 1 }, // 89 // impale 2
+
+	{ BANK_FIGHTER_GORO, 77, -1, 1, 1.000000, 6, 1 }, // 90 long scream
+	{ BANK_FIGHTER_GORO, 63, -1, 1, 1.000000, 6, 1 }, // 91 echo falling
+	// GORO specials start at 7496
+	{ BANK_C_GORO, 0, -1, 1, 1.000000,  5, 1 }, // 
+	{ BANK_C_GORO, 1, -1, 1, 1.000000,  5, 1 }, // 
+	{ BANK_C_GORO, 2, -1, 1, 1.000000,  5, 1 }, // 
+	{ BANK_C_GORO, 3, -1, 1, 1.000000,  5, 1 }, // 
+	{ BANK_C_GORO, 4, -1, 1, 1.000000,  5, 1 }, // 
+	{ BANK_C_GORO, 5, -1, 1, 1.000000,  5, 1 }, // 
+	{ BANK_C_GORO, 6, -1, 1, 0.900000,  5, 1 }, // 
+	{ BANK_C_GORO, 7, -1, 1, 1.000000,  5, 1 }, // 
+	{ BANK_C_GORO, 8, -1, 1, 1.000000,  5, 1 }, // 
+	{ BANK_C_GORO, 9, -1, 1, 1.000000,  5, 1 }, // 
+	{ BANK_C_GORO, 10, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 11, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 12, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 13, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 14, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 15, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 16, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 17, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 18, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 19, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 20, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 21, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 22, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 23, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 24, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 25, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 26, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 27, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 28, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 29, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 30, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 31, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 32, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 33, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 34, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 35, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 36, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 37, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 38, -1, 1, 1.000000, 5, 1 }, // 
+	{ BANK_C_GORO, 39, -1, 1, 1.000000, 5, 1 }, // 
+
+	{ 6, 152, -1, 1, 1.000000, 4, 1 }, // goro select (7536)
+	{ 6, 153, -1, 1, 1.000000, 4, 1 }, // goro wins(7537)
 };

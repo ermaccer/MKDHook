@@ -173,6 +173,8 @@ sbank_entry sbank_data[TOTAL_SOUND_BANKS] = {
 	{0, 0, 27, "c_blaze", 0, 0, 0, 0, 164 }, //  164
 	{0, 0, 28, "c_shao_kahn", 0, 0, 0, 0, 165 }, //  165
 	{0, 0, 26, "fighter_kahn", 0, 0, 0, 0, 166 }, // 166
+	{0, 0, 29, "c_goro", 0, 0, 0, 0, 167 }, //  167
+	{0, 0, 27, "fighter_goro", 0, 0, 0, 0, 168 }, // 168
 };
 
 void init_sound_bank_hook()
@@ -334,6 +336,7 @@ void init_sound_bank_hook()
 	patchInt(0x12B45C, ori(v1, v1, LOWORD(val)));
 }
 
+#ifndef PS2_BUILD
 void dump_sound_bank_table()
 {
 	int addr = 0x4F9950;
@@ -348,3 +351,5 @@ void dump_sound_bank_table()
 		_printf(" # %3d\n", i);
 	}
 }
+#endif // PS2_BUILD
+

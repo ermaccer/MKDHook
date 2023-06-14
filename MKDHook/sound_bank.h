@@ -1,4 +1,5 @@
 #pragma once
+#include "build_config.h"
 // 163
 #define TOTAL_SOUND_BANKS 163 + TOTAL_NEW_BANKS
 
@@ -8,7 +9,9 @@ enum eNewBanks {
 	BANK_C_BLAZE = 164,
 	BANK_C_SHAO_KAHN = 165,
 	BANK_FIGHTER_KAHN = 166,
-	TOTAL_NEW_BANKS = 4
+	BANK_C_GORO = 167,
+	BANK_FIGHTER_GORO = 168,
+	TOTAL_NEW_BANKS = 6
 };
 
 typedef struct
@@ -28,4 +31,9 @@ typedef struct
 extern sbank_entry sbank_data[TOTAL_SOUND_BANKS];
 
 void init_sound_bank_hook();
+
+#ifndef PS2_BUILD
 void dump_sound_bank_table();
+#endif // !PS2_BUILD
+
+

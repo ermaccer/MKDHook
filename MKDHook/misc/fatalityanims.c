@@ -59,6 +59,8 @@ struct mk_file_entry fatalityanims_entry_table[FATANIMS_FILES] = {
 	{"fat_anims_frost1.sec", 0, 2},
 	{"fat_anims_shaokhan_golf.sec", 0, 2},
 	{"fat_anims_shaokhan_homerun.sec", 0, 2},
+	{"fat_anims_goro_stab.sec", 0, 2},
+	{"fat_anims_goro_stretch.sec", 0, 2},
 };
 
 // I:\ps2dvd\art\pselect.ssf
@@ -118,6 +120,8 @@ struct mk_toc_entry fatalityanims_file_table[FATANIMS_FILES + 1] = {
 	{&fatalityanims_entry_table[52], 0, 51328}, // frost
 	{&fatalityanims_entry_table[53], 0, 95232}, // sk golf
 	{&fatalityanims_entry_table[54], 0, 82560}, // sk homerun
+	{&fatalityanims_entry_table[55], 0, 131712}, // goro stab
+	{&fatalityanims_entry_table[56], 0, 203008}, // goro stretch
 	{0,0,0}
 };
 
@@ -140,17 +144,11 @@ void init_fatanims_toc()
 void init_fatanims_hook()
 {
 	init_fatanims_toc(); 
-	int val = (int)&fatalityanims_file_table[0];
 
-	patchInt(0x16D3F0, lui(a0, HIWORD(val)));
-	patchInt(0x16D3F0 + 4, ori(a0, a0, LOWORD(val)));
 
 	makeJal(0x16D400, load_new_fatanims);
 	makeJal(0x26E3B4, load_new_fatanims);
 	makeJal(0x26E5F4, load_new_fatanims);
-
-
-
 }
 
 void load_new_fatanims()

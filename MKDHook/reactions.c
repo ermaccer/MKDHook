@@ -683,6 +683,34 @@ int onaga_remap_table[TOTAL_REACTIONS] = {
 	-1, // 330
 };
 
+static int goro_lower_arms_atk[] = {
+	5,
+	8,
+	0xFFFFFFFF,
+	4,
+	7,
+	0
+};
+
+static int attack_region_list[] = {
+	0,
+	0x594580,
+	0x594590,
+	0x5945A0,
+	0x5945B0,
+	0x5945C0,
+	0x5945E0,
+	0x594600,
+	0x594620,
+	0x594640,
+	0x594660,
+	0x594690,
+	0x5946C0,
+	0x5946F0,
+	0x594718,
+	(int)&goro_lower_arms_atk[0]
+};
+
 void init_reactions_hook()
 {
 	int val;
@@ -760,8 +788,12 @@ void init_reactions_hook()
 	val = (int)&onaga_remap_table[0];
 	patchInt(0x2418E4, lui(v0, HIWORD(val)));
 	patchInt(0x2418F4, ori(v0, v0, LOWORD(val)));
-}
 
+	val = (int)&attack_region_list[0];
+	patchInt(0x19F674, lui(v0, HIWORD(val)));
+	patchInt(0x19F684, ori(v0, v0, LOWORD(val)));
+}
+#ifndef PS2_BUILD
 void dump_reactions_table()
 {
 	int addr = 0x595BD0;
@@ -817,3 +849,4 @@ void dump_onaga_remap_table()
 		_printf("#%3d\n", i);
 	}
 }
+#endif

@@ -20,6 +20,8 @@
   * @param size The size of the configuration buffer.
   * @return Returns an address to where the [parent] starts.
   */
+
+#ifndef PS2_BUILD
 static char* rini_seek_section(const char* parent, char* config_buf,
     unsigned size)
 {
@@ -421,3 +423,5 @@ int rini_get_key(const char* parent, const char* key, const char* config,
 
     return false;
 }
+
+#endif // !PS2_BUILD

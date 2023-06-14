@@ -2,10 +2,12 @@
 #include "character.h"
 #include "mkdmenu.h"
 #include "stage.h"
-
+#include "generic.h"
+#include "settings.h"
+#include "ps2mem.h"
 int  current_select = 0;
 int  select_timer = 0;
-int sound;
+int  sound = 0; 
 
 select_screen_entry pSelectTable[27] = {
 	{KENSHI	, 86	, "HEAD_KENSHI"	, "HEAD_KENSHI_LOCKED"	, "BODY_KENSHI"	, "body_kenshi_alt.sec"	, "4"	, "TAI CHI"	, "JUDO"	, "KATANA"},
@@ -44,29 +46,30 @@ select_screen_entry pSelectTableNew[27] = {
 		{SHAO_KAHN, SOUND_SHAO_SELECT	, "HEAD_SHAO_KAHN"	, "HEAD_RANDOM"	, "BODY_SHAO_KAHN"	, "body_shaokahn_alt.sec"	, "2"	, "TAI TZU"	, "LUI HE"	, "WRATH HAMMER"},
 		{FROST,  SOUND_FROST_SELECT	, "HEAD_FROST"	, "HEAD_RANDOM"	, "BODY_FROST"	, "body_frost_alt.sec"	, "2"	, "TONG BEI"	, "YUAN YANG"	, "ICE DAGGERS"},
 		{BLAZE,  SOUND_BLAZE_SELECT	, "HEAD_BLAZE"	, "HEAD_RANDOM"	, "BODY_BLAZE"	, "body_blaze_alt.sec"	, "3"	, "HAPKIDO"	, "JEET KUNE DO"	, "XING YI"},
-		{-1,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "NULL"	, "2"	, ""	, ""	, ""},
+		{GORO,  SOUND_GORO_SELECT	, "HEAD_GORO"	, "HEAD_RANDOM"	, "BODY_GORO"	, "body_goro_alt.sec"	, "3"	, "SHOKAN"	, "KUATAN"	, "DRAGON FANGS"},
+
+		{0,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 
 		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 };
 
+#ifndef PS2_BUILD
 select_screen_entry pSelectTableNPC[27] = {
 		{MONSTER, -1	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
 		{ONAGA,  13	, "HEAD_KOBRA_LOCKED"	, "HEAD_KOBRA_LOCKED"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	,  "1"	, "DRAGON"	, ""	, ""},
@@ -95,6 +98,9 @@ select_screen_entry pSelectTableNPC[27] = {
 		{MONSTER,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
 };
 
+#endif // !PS2_BUILD
+
+
 
 
 void init_mkdhook_vars()
@@ -117,15 +123,21 @@ void process_swap_select_screen()
 	snd_req(SELECT_SCREEN_SWAP_SOUND);
 	current_select++;
 
-	if (current_select > Select_NPC)
+	int maxSelect = Select_UMKD;
+#ifndef PS2_BUILD
+	if (settings.enable_npc_select)
+		maxSelect = Select_NPC;
+#endif
+
+	if (current_select > maxSelect)
 		current_select = Select_Default;
 
-	swap_select_screen();
+	swap_select_screen(1);
 }
 
-void swap_select_screen()
+void swap_select_screen(int refresh)
 {
-	int select_addr = 0x4FEF40;
+	static int select_addr = 0x4FEF40;
 	for (int i = 0; i < 24; i++)
 	{
 		int sel = (select_addr + (sizeof(select_screen_entry) * i));
@@ -135,12 +147,14 @@ void swap_select_screen()
 		if (current_select == Select_UMKD)
 			ent = pSelectTableNew[i];
 		
+#ifndef PS2_BUILD
 		if (current_select == Select_NPC)
 			ent = pSelectTableNPC[i];
+#endif // !PS2_BUILD
 
 		*(int*)(sel + 0) = ent.characterID;
 		*(int*)(sel + 4) = ent.soundID;
-		*(int*)(sel + 8) =  (int)&ent.headName[0];
+		*(int*)(sel + 8) = (int)&ent.headName[0];
 		*(int*)(sel + 12) = (int)&ent.headLockedName[0];
 		*(int*)(sel + 16) = (int)&ent.bodyName[0];
 		*(int*)(sel + 20) = (int)&ent.bodyArchiveName[0];
@@ -150,22 +164,28 @@ void swap_select_screen()
 		*(int*)(sel + 36) = (int)&ent.style3[0];
 	}
 
-	if (get_game_state() == STATE_SELECT)
+	if (get_game_state() == STATE_SELECT && refresh)
 		refresh_screen();
 }
 
 void restore_select_screen()
 {
 	current_select = Select_Default;
-	swap_select_screen();
+	swap_select_screen(0);
+}
+
+void pselect_init_hook()
+{
+	((void(*)())0x196270)();
+	restore_select_screen();
 }
 
 void hook_render()
 {
 	// unlock stuff
-	*(int*)0x5D4D08 = -1;
-	*(int*)0x5D4E10 = -1;
-	*(int*)0x5E47A8 = -1;
+	*(int*)(0x5D4D08) = -1;
+	*(int*)(0x5D4E10) = -1;
+	*(int*)(0x5E47A8) = -1;
 
 	process_mkdhook();
 	render();
@@ -177,7 +197,7 @@ void process_mkdhook()
 	{
 		if (get_game_state() == STATE_SELECT)
 		{
-			if (!(get_game_mode() == MODE_PUZZLE || get_game_mode() == MODE_CHESS))
+			if (!(get_game_mode() == MODE_PUZZLE))
 			{
 				if (check_switch(0, PAD_L3))
 					process_swap_select_screen();
@@ -186,13 +206,20 @@ void process_mkdhook()
 					process_swap_select_screen();
 			}
 		}
-		else
-		{
-			restore_select_screen();
-		}
+		// reducing amount of calls
+		//else
+		//{
+		//	restore_select_screen();
+		//}
 
 	}
 
+	if (get_game_state() == STATE_GAME)
+	{
+		update_characters();
+	}
+
+#ifndef PS2_BUILD
  	if (get_game_state() == STATE_GAME)
 	{
 		Menu_Process();
@@ -207,5 +234,6 @@ void process_mkdhook()
 	}
 	else
 		Menu_K_Reset();
+#endif
 
 }

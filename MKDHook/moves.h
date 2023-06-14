@@ -36,6 +36,25 @@ struct scan_action_dual {
 	
 };
 
+struct scan_action_dual_one_fatality {
+	int state;
+	unsigned int unk;
+	unsigned int functionId;
+	unsigned int directions[2]; // -1 ends
+
+	int state2;
+	int unk2;
+	unsigned int functionId2;
+	unsigned int directions2[2]; // -1 ends
+
+	// fatality part
+	float unkf;
+	int unk2f;
+	int function;
+	unsigned int fdirections[5];
+
+};
+
 struct scan_action_dual_fatality {
 	int state;
 	unsigned int unk;
@@ -113,8 +132,10 @@ int swap_scan_table_4();
 
 void do_harakiri_hook();
 
+#ifndef PS2_BUILD
 // dumpers 
 void dump_scan_table_1();
 void dump_scan_table_2();
 void dump_scan_table_3();
 void dump_scan_table_4();
+#endif

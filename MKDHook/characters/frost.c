@@ -74,8 +74,8 @@ struct mk_toc_entry frost_file_table[FROST_FILES + 1] = {
 
 		{&frost_entry_table[1]	,0,	   492032 },	// frost.sec
 		{&frost_entry_table[2]	,0,    492032 },	// frost_ap.sec
-		{&frost_entry_table[3]	,0,    34624  },	// frost.mko
-		{&frost_entry_table[4]	,0,    654720 },	// sh_frost.sec
+		{&frost_entry_table[3]	,0,    34688   },	// frost.mko
+		{&frost_entry_table[4]	,0,    542720 },	// sh_frost.sec
 		{&frost_entry_table[5]	,0,    10164  },	// fight_fx.mko
 		{&frost_entry_table[6]	,0,    21368  },	// blood_fx.mko
 		{&frost_entry_table[7]	,0,    23904  },	// frost_fx.mko
@@ -129,8 +129,8 @@ struct mk_toc_entry frost_alt_file_table[FROST_FILES + 1] = {
 
 		{&frost_alt_entry_table[1]	,0,	   485120 },	// frost_alt.sec
 		{&frost_alt_entry_table[2]	,0,    485120 },	// frost_alt_ap.sec
-		{&frost_alt_entry_table[3]	,0,    34624  },	// frost.mko
-		{&frost_alt_entry_table[4]	,0,    654720 },	// sh_frost.sec
+		{&frost_alt_entry_table[3]	,0,    34688   },	// frost.mko
+		{&frost_alt_entry_table[4]	,0,    542720 },	// sh_frost.sec
 		{&frost_alt_entry_table[5]	,0,    10164  },	// fight_fx.mko
 		{&frost_alt_entry_table[6]	,0,    21368  },	// blood_fx.mko
 		{&frost_alt_entry_table[7]	,0,    23904  },	// frost_fx.mko
@@ -203,5 +203,5 @@ void fat_frost_start_iceblock()
 
 void fat_frost_start_icechunks()
 {
-	call_script_function(1490);
+
 }

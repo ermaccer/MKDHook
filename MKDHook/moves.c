@@ -65,6 +65,7 @@ int scan_table_1_jump_table[] = {
 	SCAN1_UNIVERSAL_JUMP, //  FROST
 	SCAN1_UNIVERSAL_JUMP, //  BLAZE
 	SCAN1_UNIVERSAL_JUMP, //  SHAOKAHN
+	SCAN1_UNIVERSAL_JUMP, //  GORO
 };
 
 
@@ -119,6 +120,7 @@ int scan_table_2_jump_table[] = {
 	0x20239C, //  FROST
 	SCAN2_UNIVERSAL_JUMP, //  BLAZE
 	SCAN2_UNIVERSAL_JUMP, //  SHAOKAHN
+	SCAN2_UNIVERSAL_JUMP, //  GORO
 };
 
 int scan_table_3_jump_table[] = {
@@ -172,6 +174,7 @@ int scan_table_3_jump_table[] = {
 	SCAN3_UNIVERSAL_JUMP, //  FROST
 	SCAN3_UNIVERSAL_JUMP, //  BLAZE
 	SCAN3_UNIVERSAL_JUMP, //  SHAOKAHN
+	SCAN3_UNIVERSAL_JUMP, //  GORO
 };
 
 int scan_table_4_jump_table[] = {
@@ -225,6 +228,7 @@ int scan_table_4_jump_table[] = {
 	SCAN4_UNIVERSAL_JUMP, //	FROST
 	0x201B0C, // BLAZE
 	0x201B0C, // SHAOKAHN
+	0x201B0C, // GORO
 };
 
 
@@ -278,91 +282,111 @@ void init_moves_hook()
 
 }
 
+
+#pragma GCC push_options
+#pragma GCC optimize ("O3")
+
 int swap_scan_table_1()
 {
 	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
 	int p2_pdata = *(int*)(P2_PLAYER_DATA);
-	static int scan_action_set = 0;
-	switch (plyr_data->characterID)
+	static int scan_action_set = (int)&scan_null;
+	if (plyr_data)
 	{
-	case BARAKA:
-		scan_action_set = (int)&scan_baraka_1;
-		break;
-	case SMOKE:
-		scan_action_set = (int)&scan_smoke_1;
-		break;
-	case NOOB:
-		scan_action_set = (int)&scan_noob_1;
-		break;
-	case MKDA_KUNG_LAO:
-		scan_action_set = (int)&scan_mkda_kung_lao_1;
-		break;
-	case MKDA_RAIDEN:
-		scan_action_set = (int)&scan_mkda_raiden_1;
-		break;
-	case SONYA:
-		if (*(int*)(p2_pdata + 544) < 2)
-			scan_action_set = (int)&scan_sonya_1;
-		else
+		switch (plyr_data->characterID)
+		{
+		case BARAKA:
+			scan_action_set = (int)&scan_baraka_1;
+			break;
+		case SMOKE:
+			scan_action_set = (int)&scan_smoke_1;
+			break;
+		case NOOB:
+			scan_action_set = (int)&scan_noob_1;
+			break;
+		case MKDA_KUNG_LAO:
+			scan_action_set = (int)&scan_mkda_kung_lao_1;
+			break;
+		case MKDA_RAIDEN:
+			scan_action_set = (int)&scan_mkda_raiden_1;
+			break;
+		case SONYA:
+			if (*(int*)(p2_pdata + 544) < 2)
+				scan_action_set = (int)&scan_sonya_1;
+			else
+				scan_action_set = (int)&scan_null;
+			break;
+		case KITANA:
+			if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
+				scan_action_set = (int)&scan_kitana_1;
+			else
+				scan_action_set = (int)&scan_null;
+			break;
+		case JAX:
+			scan_action_set = (int)&scan_jax_1;
+			break;
+		case FROST:
+			scan_action_set = (int)&scan_frost_1;
+			break;
+		case BLAZE:
+			scan_action_set = (int)&scan_blaze_1;
+			break;
+		case SHAO_KAHN:
+			scan_action_set = (int)&scan_sk_1;
+			break;
+		case GORO:
+			scan_action_set = (int)&scan_goro_1;
+			break;
+		default:
 			scan_action_set = (int)&scan_null;
-		break;
-	case KITANA:
-		if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
-			scan_action_set = (int)&scan_kitana_1;
-		else
-			scan_action_set = (int)&scan_null;
-		break;
-	case JAX:
-		scan_action_set = (int)&scan_jax_1;
-		break;
-	case FROST:
-		scan_action_set = (int)&scan_frost_1;
-		break;
-	case BLAZE:
-		scan_action_set = (int)&scan_blaze_1;
-		break;
-	case SHAO_KAHN:
-		scan_action_set = (int)&scan_sk_1;
-		break;
-	default:
-		break;
-	}
-	patchInt(0x2026E8, lui(a0, HIWORD(scan_action_set)));
-	patchInt(0x2026F0, ori(a0, a0, LOWORD(scan_action_set)));
+			break;
+		}
+		patchInt(0x2026E8, lui(a0, HIWORD(scan_action_set)));
+		patchInt(0x2026F0, ori(a0, a0, LOWORD(scan_action_set)));
 
+	}
+	
 	return my_joypad_state_5();
 }
 
 int swap_scan_table_2()
 {
 	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
-	static int scan_action_set = 0;
-	switch (plyr_data->characterID)
+	static int scan_action_set = (int)&scan_null;
+	if (plyr_data)
 	{
-	case ERMAC:
-		scan_action_set = (int)&scan_ermac_2;
-		break;
-	case SONYA:
-		scan_action_set = (int)&scan_sonya_2;
-		break;
-	case MKDA_RAIDEN:
-		scan_action_set = (int)&scan_mkda_raiden_2;
-		break;
-	case KITANA:
-		scan_action_set = (int)&scan_kitana_2;
-		break;
-	case JAX:
-		scan_action_set = (int)&scan_jax_2;
-		break;
-	case BLAZE:
-		scan_action_set = (int)&scan_blaze_2;
-		break;
-	case SHAO_KAHN:
-		scan_action_set = (int)&scan_sk_2;
-		break;
-	default:
-		break;
+		switch (plyr_data->characterID)
+		{
+		case ERMAC:
+			scan_action_set = (int)&scan_ermac_2;
+			break;
+		case SONYA:
+			scan_action_set = (int)&scan_sonya_2;
+			break;
+		case MKDA_RAIDEN:
+			scan_action_set = (int)&scan_mkda_raiden_2;
+			break;
+		case KITANA:
+			scan_action_set = (int)&scan_kitana_2;
+			break;
+		case JAX:
+			scan_action_set = (int)&scan_jax_2;
+			break;
+		case BLAZE:
+			scan_action_set = (int)&scan_blaze_2;
+			break;
+		case SHAO_KAHN:
+			scan_action_set = (int)&scan_sk_2;
+			break;
+		case GORO:
+			scan_action_set = (int)&scan_goro_2;
+			break;
+		default:
+			scan_action_set = (int)&scan_null;
+			break;
+		}
 	}
+
 	patchInt(0x202190, lui(a0, HIWORD(scan_action_set)));
 	patchInt(0x202198, ori(a0, a0, LOWORD(scan_action_set)));
 
@@ -373,39 +397,51 @@ int swap_scan_table_3()
 {
 	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
 	int p2_pdata = *(int*)(P2_PLAYER_DATA);
-	static int scan_action_set = 0;
-	switch (plyr_data->characterID)
+	static int scan_action_set = (int)&scan_null;
+
+	if (plyr_data)
 	{
-	case ASHRAH:
-		scan_action_set = (int)&scan_ashrah_3;
-		break;
-	case MKDA_RAIDEN:
-		scan_action_set = (int)&scan_mkda_raiden_3;
-		break;
-	case SONYA:
-		scan_action_set = (int)&scan_sonya_3;
-		break;
-	case KITANA:
-		scan_action_set = (int)&scan_kitana_3;
-		break;
-	case JAX:
-		scan_action_set = (int)&scan_jax_3;
-		break;
-	case FROST:
-		if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
-			scan_action_set = (int)&scan_frost_3;
-		else
+		switch (plyr_data->characterID)
+		{
+		case ASHRAH:
+			scan_action_set = (int)&scan_ashrah_3;
+			break;
+		case MKDA_RAIDEN:
+			scan_action_set = (int)&scan_mkda_raiden_3;
+			break;
+		case SONYA:
+			scan_action_set = (int)&scan_sonya_3;
+			break;
+		case KITANA:
+			scan_action_set = (int)&scan_kitana_3;
+			break;
+		case JAX:
+			scan_action_set = (int)&scan_jax_3;
+			break;
+		case FROST:
+			if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
+				scan_action_set = (int)&scan_frost_3;
+			else
+				scan_action_set = (int)&scan_null;
+			break;
+		case BLAZE:
+			scan_action_set = (int)&scan_blaze_3;
+			break;
+		case SHAO_KAHN:
+			scan_action_set = (int)&scan_sk_3;
+			break;
+		case GORO:
+			if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
+				scan_action_set = (int)&scan_goro_3;
+			else
+				scan_action_set = (int)&scan_null;
+			break;
+		default:
 			scan_action_set = (int)&scan_null;
-		break;
-	case BLAZE:
-		scan_action_set = (int)&scan_blaze_3;
-		break;
-	case SHAO_KAHN:
-		scan_action_set = (int)&scan_sk_3;
-		break;
-	default:
-		break;
+			break;
+		}
 	}
+
 	patchInt(0x201E80, lui(a0, HIWORD(scan_action_set)));
 	patchInt(0x201E88, ori(a0, a0, LOWORD(scan_action_set)));
 
@@ -415,32 +451,39 @@ int swap_scan_table_3()
 int swap_scan_table_4()
 {
 	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
-	static int scan_action_set = 0;
-	switch (plyr_data->characterID)
-	{
-	case SUBZERO:
-		scan_action_set = (int)&scan_subzero_4;
-		break;
-	case SMOKE:
-		scan_action_set = (int)&scan_smoke_4;
-		break;
-	case MKDA_RAIDEN:
-		scan_action_set = (int)&scan_mkda_raiden_4;
-		break;
-	case JAX:
-		scan_action_set = (int)&scan_jax_4;
-		break;
-	case FROST:
-		scan_action_set = (int)&scan_frost_4;
-		break;
-	default:
-		break;
-	}
-	patchInt(0x2019A0, lui(a0, HIWORD(scan_action_set)));
-	patchInt(0x2019A8, ori(a0, a0, LOWORD(scan_action_set)));
+	static int scan_action_set = (int)&scan_null;
 
+	if (plyr_data)
+	{
+		switch (plyr_data->characterID)
+		{
+		case SUBZERO:
+			scan_action_set = (int)&scan_subzero_4;
+			break;
+		case SMOKE:
+			scan_action_set = (int)&scan_smoke_4;
+			break;
+		case MKDA_RAIDEN:
+			scan_action_set = (int)&scan_mkda_raiden_4;
+			break;
+		case JAX:
+			scan_action_set = (int)&scan_jax_4;
+			break;
+		case FROST:
+			scan_action_set = (int)&scan_frost_4;
+			break;
+		default:
+			scan_action_set = (int)&scan_null;
+			break;
+		}
+		patchInt(0x2019A0, lui(a0, HIWORD(scan_action_set)));
+		patchInt(0x2019A8, ori(a0, a0, LOWORD(scan_action_set)));
+
+	}
+	
 	return my_joypad_state_5();
 }
+#pragma GCC pop_options
 
 void do_harakiri_hook()
 {
@@ -452,10 +495,16 @@ void do_harakiri_hook()
 		if (was_button_pressed(PAD_SQUARE))
 			scan_switch_sequences((int*)&scan_sk_suicide);
 	}
+	else if (chrID == GORO)
+	{
+		if (was_button_pressed(PAD_CIRCLE))
+			scan_switch_sequences((int*)&scan_goro_suicide);
+	}
 	else
 		((void(*)())0x20C710)();
 }
 
+#ifndef PS2_BUILD
 void dump_scan_table_1()
 {
 	int select_addr = 0x595AD0;
@@ -499,3 +548,4 @@ void dump_scan_table_4()
 		_printf("0x%X,\n", jmp);
 	}
 }
+#endif

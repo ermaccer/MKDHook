@@ -60,8 +60,9 @@ struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"FROST"	, (int)&frost_file_table	,	  (int)&frost_alt_file_table	,    "frost.mko"},
 	{"BLAZE"	, (int)&blaze_file_table	, (int)&blaze_file_table		,"blaze.mko"},
 	{"SHAO KAHN"	, (int)&sk_file_table	, (int)&sk_alt_file_table	,"shaokahn.mko"},
+	{"GORO"	, (int)&goro_file_table	, (int)&goro_alt_file_table	,"goro.mko"},
 };
-
+#ifndef PS2_BUILD
 void dump_char_table()
 {
 	int select_addr = 0x4FB810;
@@ -77,6 +78,7 @@ void dump_char_table()
 		_printf(msgBuffer);
 	}
 }
+#endif
 
 void set_char_table()
 {
@@ -182,6 +184,7 @@ void init_character_tocs()
 	init_frost_toc();
 	init_blaze_toc();
 	init_sk_toc();
+	init_goro_toc();
 }
 
 int hook_character_lock_status(int id, int param)

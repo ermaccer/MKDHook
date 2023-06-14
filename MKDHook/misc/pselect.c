@@ -1,7 +1,7 @@
 #include "pselect.h"
 #include "..\mkdeception.h"
 #include "..\ps2mem.h"
-
+#include "..\mkdhook.h"
 
 struct mk_file_entry pselect_entry_table[PSELECT_FILES] = {
 	{"pselect.ssf"	,0, 4},
@@ -38,14 +38,15 @@ struct mk_file_entry pselect_entry_table[PSELECT_FILES] = {
 	{"body_frost_alt.sec"	,0, 1},
 	{"body_blaze_alt.sec"	,0, 1},
 	{"body_shaokahn_alt.sec"	,0, 1},
+	{"body_goro_alt.sec"	,0, 1},
 };
 
 // I:\ps2dvd\art\pselect.ssf
 struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[0]	,0,0 },
 
-		{&pselect_entry_table[1]	,0,3823104}, // pselect
-		{&pselect_entry_table[2]	,0,1514624}, // bg
+		{&pselect_entry_table[1]	,0,3896320}, // pselect
+		{&pselect_entry_table[2]	,0,1844992}, // bg
 		{&pselect_entry_table[3]	,0,1528960},  // pz
 		// ALT RENDERS
 		{&pselect_entry_table[4]	,0,67456},  // ALT
@@ -78,6 +79,7 @@ struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[31]	,0,67456},  // FROST_alt
 		{&pselect_entry_table[32]	,0,67456},  // blaze_alt
 		{&pselect_entry_table[33]	,0,67456},  // shao_alt
+		{&pselect_entry_table[34]	,0,67456},  // goro_alt
 		{0,0,0}
 };
 
@@ -105,6 +107,9 @@ void init_pselect_hook()
 	makeJal(0x1950F4, load_new_pselect);
 	makeJal(0x195514, load_new_pselect);
 	makeJal(0x195A74, load_new_pselect);
+
+	makeJal(0x19593C, pselect_init_hook);
+	makeJal(0x194F94, pselect_init_hook);
 }
 
 void load_new_pselect()

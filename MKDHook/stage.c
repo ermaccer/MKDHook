@@ -10,15 +10,12 @@
 
 #include "stages/acidbath.h"
 #include "stages/katakombs.h"
-
-// revert changes in other modes, somehow stage select corrupts random things
-int hook_changes = 0;
-int reset_changes = 0;
+#include "stages/darkprison.h"
 
 struct stage_info_entry pStageTable[] = {
 	{0x5A3770	, "beetlelair.mko"	, 18	,1,},
 	{0x5A3D90	, "courtyard.mko"	, 28	,9,},
-	{0x5A4220	, "darkprison.mko"	, 36	,1,},
+	{(int)&dkp_file_table[0]	, "darkprison.mko"	, 36	,1,},
 	{0x5A4450	, "deadpool.mko"	, 32	,9,},
 	{0x5A44D0	, "dka.mko"	, 38	,1,},
 	{0x5A45C0	, "dragonmountain.mko"	, 26	,1,},
@@ -38,7 +35,7 @@ struct stage_info_entry pStageTable[] = {
 	{0x5A6C10	, "slaughterhouse.mko"	, 20	,1,},
 	{0x5A6CF0	, "thepit.mko"	, 30	,9,},
 	{0x5A6DA0	, "yinyang.mko"	, 31	,1,},
-	{0x5A5520	, "ladder.mko"	, 0	,32,},
+	{(int)&ladder_file_table[0]	, "ladder.mko"	, 0	,32,},
 	{0x5A69B0	, "pz_ladder.mko"	, 0	,32,},
 	{0x5A53E0	, "krypt.mko"	, 0	,16,},
 	{0x5A4790	, "earth_1.mko"	, 0	,4,},
@@ -103,6 +100,24 @@ struct stage_select_entry pStageSelectNormal[] = {
 };
 
 
+struct stage_select_entry pStageSelectChess[] = {
+	{BGS_THEPIT	, "THE PIT"	,"BGS_THEPIT"	, 0	},
+	{BGS_PORTAL	, "PORTAL"	,"BGS_PORTAL"	, 0	},
+	{BGS_DEADPOOL	, "DEAD POOL"	,"BGS_DEADPOOL"	, 0	},
+	{BGS_COURTYARD	, "COURTYARD"	,"BGS_COURTYARD"	, 0	},
+	{BGS_LIVINGFOREST	, "LIVING FOREST"	,"BGS_FOREST"	, 0	},
+};
+
+struct stage_select_entry pStageSelectPuzzle[] = {
+	{BGS_BEETLELAIR	, "BEETLE LAIR"	,"PZ_BG_BEETLELAIR"	, 0	},
+	{BGS_KANGTOMB	, "LIU KANG'S TOMB"	,"PZ_BG_KANGTOMB"	, 0	},
+	{BGS_SLAUGHTERHOUSE	, "SLAUGHTERHOUSE"	,"PZ_BG_SLAUGHTERHOUSE"	, 0	},
+	{BGS_HELLSFOUNDRY	, "HELL'S FOUNDRY"	,"PZ_BG_HELLSFOUNDRY"	, 0	},
+	{BGS_YINYANG	, "YIN YANG ISLAND"	,"PZ_BG_YINYANG"	, 0	},
+	{BGS_SKYTEMPLE	, "SKY TEMPLE"	,"PZ_BG_SKYTEMPLE"	, 0	},
+};
+
+#ifndef PS2_BUILD
 void dump_stage_table(unsigned int addr)
 {
 	int stage_addr = 0x4FBFA0;
@@ -134,9 +149,12 @@ void dump_select_stable(unsigned int addr)
 		_printf(msgBuffer);
 	}
 }
+#endif // !PS2_BUILD
 
 int hook_bgnd_locked(int id)
 {
+	int select_mode = *(int*)0x5D676C;
+	if (!(select_mode == 2))
 	id = BGS_THEPIT;
 	return is_bgnd_locked(id);
 }
@@ -147,48 +165,42 @@ void play_kon_music()
 
 int load_background_hook(int id)
 {
-	int* cur_bgnd = (int*)0x5E4368;
 	konquest_mission_info* mission_info = (konquest_mission_info*)MISSION_INFO;
 
+	int newBgnd = -1;
 	if (id == BGS_EARTH_1_DOJO)
 	{
 		mission_info->field_14 = 65536;
-		*cur_bgnd = BGS_EARTH_1;
+		newBgnd = BGS_EARTH_1;
 	}
 	else if (id == BGS_NETHERREALM_DOJO)
 	{
 		mission_info->field_14 = 65536;
-		*cur_bgnd = BGS_NETHERREALM;
+		newBgnd = BGS_NETHERREALM;
 	}
 	else if (id == BGS_CHAOSREALM_DOJO)
 	{
 		mission_info->field_14 = 65536;
-		*cur_bgnd = BGS_CHAOSREALM;
+		newBgnd = BGS_CHAOSREALM;
 	}
 	else if (id == BGS_OUTWORLD_DOJO)
 	{
 		mission_info->field_14 = 65536;
-		*cur_bgnd = BGS_OUTWORLD;
+		newBgnd = BGS_OUTWORLD;
 	}
 	else if (id == BGS_ORDERREALM_DOJO)
 	{
 		mission_info->field_14 = 65536;
-		*cur_bgnd = BGS_ORDERREALM;
+		newBgnd = BGS_ORDERREALM;
 	}
-
+	if (newBgnd >= 0)
+		patchInt(CUR_BGND, newBgnd);
 
 	return load_background(id);
 }
 
 void hook_stage_select()
 {
-	int val = 0;
-	//if (!hook_changes)
-	{
-		
-		//hook_changes = 1;
-		//reset_changes = 0;
-	}
 }
 
 char* hook_ladder_stage_name(int id)
@@ -226,7 +238,7 @@ void init_stage_hook()
 	patchShort(0x129644, TOTAL_BACKGROUNDS);
 	patchShort(0x1294A4, TOTAL_BACKGROUNDS);
 
-	short selectSize = sizeof(pStageSelectNormal) / sizeof(pStageSelectNormal[0]);
+	static short selectSize = sizeof(pStageSelectNormal) / sizeof(pStageSelectNormal[0]);
 	patchShort(0x191EAC, selectSize);
 	patchShort(0x192D7C, selectSize);
 	patchShort(0x192E50, selectSize);
@@ -262,7 +274,70 @@ void init_stage_hook()
 	patchInt(0x19380C, lui(v0, HIWORD(val)));
 	patchInt(0x19380C + 4, ori(v0, v0, LOWORD(val)));
 
+
+	// CHESS (bg)
+
+	val = (int)&pStageSelectChess[0];
+
+	patchInt(0x191E08, lui(a0, HIWORD(val)));
+	patchInt(0x191E30, ori(a0, a0, LOWORD(val)));
+
+	patchInt(0x191E98, lui(a0, HIWORD(val)));
+	patchInt(0x191EC0, ori(a0, a0, LOWORD(val)));
+
+	patchInt(0x191F28, lui(a0, HIWORD(val)));
+	patchInt(0x191F50, ori(a0, a0, LOWORD(val)));
+
+	patchInt(0x192D68, lui(a1, HIWORD(val)));
+	patchInt(0x192D90, ori(a1, a1, LOWORD(val)));
+
+
+	patchInt(0x192E5C, lui(s2, HIWORD(val)));
+	patchInt(0x192E68, ori(s2, s2, LOWORD(val)));
+
+
+	patchInt(0x19316C, lui(s2, HIWORD(val)));
+	patchInt(0x193194, ori(s2, s2, LOWORD(val)));
+
+	// CHESS NAME
+	val += 4;
+	patchInt(0x193828, lui(v0, HIWORD(val)));
+	patchInt(0x193828 + 4, ori(v0, v0, LOWORD(val)));
+
+
+	// PUZZLE
+
+	val = (int)&pStageSelectPuzzle[0];
+
+	patchInt(0x191DFC, lui(a0, HIWORD(val)));
+	patchInt(0x191E38, ori(a0, a0, LOWORD(val)));
+
+	patchInt(0x191E8C, lui(a0, HIWORD(val)));
+	patchInt(0x191EC8, ori(a0, a0, LOWORD(val)));
+
+	patchInt(0x191F1C, lui(a0, HIWORD(val)));
+	patchInt(0x191F58, ori(a0, a0, LOWORD(val)));
+
+	patchInt(0x192D5C, lui(a1, HIWORD(val)));
+	patchInt(0x192D98, ori(a1, a1, LOWORD(val)));
+
+
+	patchInt(0x192E6C, lui(s2, HIWORD(val)));
+	patchInt(0x192E78, ori(s2, s2, LOWORD(val)));
+
+
+	patchInt(0x193198, lui(s2, HIWORD(val)));
+	patchInt(0x1931A0, ori(s2, s2, LOWORD(val)));
+
+	// PUZZLE NAME
+	val += 4;
+	patchInt(0x193844, lui(v0, HIWORD(val)));
+	patchInt(0x193844 + 4, ori(v0, v0, LOWORD(val)));
+
+
 	// STAGE DATA
+
+
 
 	val = (int)&pStageTable[0];
 	patchInt(0x15A668, lui(v0, HIWORD(val)));
@@ -283,20 +358,8 @@ void init_stage_hook()
 
 
 
-
-	static int unk2_fix[3];
-
-	// 15A820
-	unk2_fix[0] = lui(v1, HIWORD(val));
-	unk2_fix[1] = ori(v1, v1, LOWORD(val));
-	unk2_fix[2] = j(0x15A81C);
-
-
-	patchInt(0x15A818, j((int)&unk2_fix[0]));
-
-
-
 	// lock status
+
 
 	makeJal(0x13DFE8, hook_bgnd_locked);
 	makeJal(0x13E058, hook_bgnd_locked);
@@ -306,13 +369,6 @@ void init_stage_hook()
 	makeJal(0x3E7D5C, hook_bgnd_locked);
 	makeJal(0x3E840C, hook_bgnd_locked);
 	makeJal(0x3E857C, hook_bgnd_locked);
-
-	// music
-
-	//makeJal(0x16ED7C, play_kon_music);
-	//makeJal(0x3C722C, play_kon_music);
-	//makeJal(0x3F3638, play_kon_music);
-
 
 	// loading
 	makeJal(0x16F0B4, load_background_hook);
@@ -329,10 +385,12 @@ void init_stage_hook()
 
 	// toc
 	init_stage_tocs();
+
 }
 
 void init_stage_tocs()
 {
 	init_katakombs_toc();
 	init_acidbath_toc();
+	init_dkp_toc();
 }

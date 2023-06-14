@@ -51,6 +51,7 @@
     <ClCompile Include="characters\dragonking.c" />
     <ClCompile Include="characters\ermac.c" />
     <ClCompile Include="characters\frost.c" />
+    <ClCompile Include="characters\goro.c" />
     <ClCompile Include="characters\jax.c" />
     <ClCompile Include="characters\kitana.c" />
     <ClCompile Include="characters\liukang.c" />
@@ -65,6 +66,7 @@
     <ClCompile Include="characters\smoke.c" />
     <ClCompile Include="characters\sonya.c" />
     <ClCompile Include="characters\subzero.c" />
+    <ClCompile Include="chess.c" />
     <ClCompile Include="generic.c" />
     <ClCompile Include="ladder.c" />
     <ClCompile Include="main.c" />
@@ -89,6 +91,7 @@
     <ClCompile Include="pcsx2\inireader.c" />
     <ClCompile Include="pcsx2\rini.c" />
     <ClCompile Include="ps2mem.c" />
+    <ClCompile Include="qs.c" />
     <ClCompile Include="reactions.c" />
     <ClCompile Include="scripthook.c" />
     <ClCompile Include="settings.c" />
@@ -96,10 +99,12 @@
     <ClCompile Include="sound_bank.c" />
     <ClCompile Include="stage.c" />
     <ClCompile Include="stages\acidbath.c" />
+    <ClCompile Include="stages\darkprison.c" />
     <ClCompile Include="stages\katakombs.c" />
     <ClCompile Include="voice.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="build_config.h" />
     <ClInclude Include="character.h" />
     <ClInclude Include="characters\ashrah.h" />
     <ClInclude Include="characters\baraka.h" />
@@ -108,6 +113,7 @@
     <ClInclude Include="characters\dragonking.h" />
     <ClInclude Include="characters\ermac.h" />
     <ClInclude Include="characters\frost.h" />
+    <ClInclude Include="characters\goro.h" />
     <ClInclude Include="characters\jax.h" />
     <ClInclude Include="characters\kitana.h" />
     <ClInclude Include="characters\liukang.h" />
@@ -122,8 +128,10 @@
     <ClInclude Include="characters\smoke.h" />
     <ClInclude Include="characters\sonya.h" />
     <ClInclude Include="characters\subzero.h" />
+    <ClInclude Include="chess.h" />
     <ClInclude Include="generic.h" />
     <ClInclude Include="ladder.h" />
+    <ClInclude Include="linkfile_ps2" />
     <ClInclude Include="mips.h" />
     <ClInclude Include="misc\fatalityanims.h" />
     <ClInclude Include="misc\misc_anims.h" />
@@ -147,6 +155,7 @@
     <ClInclude Include="pcsx2\inireader.h" />
     <ClInclude Include="pcsx2\rini.h" />
     <ClInclude Include="ps2mem.h" />
+    <ClInclude Include="qs.h" />
     <ClInclude Include="reactions.h" />
     <ClInclude Include="scripthook.h" />
     <ClInclude Include="settings.h" />
@@ -154,6 +163,7 @@
     <ClInclude Include="sound_bank.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="stages\acidbath.h" />
+    <ClInclude Include="stages\darkprison.h" />
     <ClInclude Include="stages\katakombs.h" />
     <ClInclude Include="toc.h" />
     <ClInclude Include="types.h" />
@@ -161,6 +171,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
+    <None Include="eemakefile.eeglobal" />
+    <None Include="generic_asm.s" />
+    <None Include="linkfile" />
     <None Include="makefile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

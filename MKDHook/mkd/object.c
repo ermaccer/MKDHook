@@ -11,6 +11,11 @@ int insert_fgnd_mkobj(int obj)
 	return 	((int(*)(int))0x13D3E0)(obj);
 }
 
+void destroy_mkobj(int obj)
+{
+	((int(*)(int))0x13B130)(obj);
+}
+
 void get_matrix_right(int obj, CVector* mat)
 {
 	mat->x = *(float*)(*(int*)(obj + 36) + 0);
@@ -49,11 +54,11 @@ void scale_bone(int object, int id, float scale)
 
 int get_id_from_object(int obj)
 {
-	player_info plr1 = *(player_info*)PLAYER1_INFO;
-	player_info plr2 = *(player_info*)PLAYER2_INFO;
+	player_info* plr1 = (player_info*)PLAYER1_INFO;
+	player_info* plr2 = (player_info*)PLAYER2_INFO;
 
-	int p1_obj = plr1.pObject;
-	int p2_obj = plr2.pObject;
+	int p1_obj = plr1->pObject;
+	int p2_obj = plr2->pObject;
 
 	if (obj == p1_obj)
 		return 0;
@@ -72,4 +77,49 @@ void obj_set_color_for_all_materials(int obj, char* color)
 int load_weapon(int a1, int obj)
 {
 	return 	((int(*)(int, int))0x229960)(a1, obj);
+}
+
+int load_weapon_reflection(int a1, int obj)
+{
+	return 	((int(*)(int, int))0x229BD0)(a1, obj);
+}
+
+void load_moveset_weapons(moveset* mv, int obj)
+{
+	((void(*)(moveset*, int))0x133EE0)(mv, obj);
+}
+
+void obj_create_sobjs(int obj)
+{
+	((void(*)(int))0x139ED0)(obj);
+}
+
+int obj_first_sobj(int obj)
+{
+	return 	((int(*)(int))0x139610)(obj);
+}
+
+void sobj_set_priority(int obj, int value)
+{
+	((void(*)(int, int))0x13D600)(obj, value);
+}
+
+void plyr_obj_item_grab(int data, int a2, int a3, int model, int f1, int f2, int f3, int f4, int unk)
+{
+	((void(*)(int, int, int, int, int, int, int, int, int))0x228530)(data, a2, a3, model, f1, f2, f3, f4, unk);
+}
+
+void plyr_weapon_grab(int data, int obj)
+{
+	((void(*)(int, int))0x228530)(data, obj);
+}
+
+void plyr_weapon_show(int data, int unk, int entry)
+{
+	((void(*)(int, int, int))0x228B20)(data, unk, entry);
+}
+
+void plyr_weapon_hide(int data, int unk, int entry)
+{
+	((void(*)(int, int, int))0x228E50)(data, unk, entry);
 }

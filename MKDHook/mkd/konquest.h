@@ -77,3 +77,6 @@ typedef struct
 int get_monk();
 void konquest_hide_hud();
 int load_hero_model(int ptr);
+
+void add_npc(int npc);
+void set_monk_position(int ptr, float x, float y, float z);

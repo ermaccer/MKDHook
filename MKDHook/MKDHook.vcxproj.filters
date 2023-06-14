@@ -22,6 +22,15 @@
     <Filter Include="source\pcsx2">
       <UniqueIdentifier>{e20e05ce-5447-4a12-bfb5-979a6dd40265}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\characters\mku">
+      <UniqueIdentifier>{8d05892a-a14a-49b1-91a1-9c4b405ffd14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\characters\umkd">
+      <UniqueIdentifier>{8ef75b1e-8f9c-4a24-b26f-2f76c1019b52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\characters\mkd">
+      <UniqueIdentifier>{29adc650-0063-419d-9229-fec148a46c99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -57,50 +66,8 @@
     <ClCompile Include="character.c">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="characters\mkda_kano.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\mkda_mokap.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\mkda_blaze.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
     <ClCompile Include="moves.c">
       <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\subzero.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\smoke.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\liukang.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\scorpion.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\baraka.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\mkda_raiden.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\ashrah.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\ermac.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\noob.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\mkda_kung_lao.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\sonya.c">
-      <Filter>source\characters</Filter>
     </ClCompile>
     <ClCompile Include="characters\character_list.c">
       <Filter>source\characters</Filter>
@@ -138,9 +105,6 @@
     <ClCompile Include="scripthook.c">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="characters\kitana.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
     <ClCompile Include="sound.c">
       <Filter>source</Filter>
     </ClCompile>
@@ -156,9 +120,6 @@
     <ClCompile Include="misc\fatalityanims.c">
       <Filter>source\misc</Filter>
     </ClCompile>
-    <ClCompile Include="characters\jax.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
     <ClCompile Include="settings.c">
       <Filter>source</Filter>
     </ClCompile>
@@ -168,26 +129,86 @@
     <ClCompile Include="pcsx2\inireader.c">
       <Filter>source\pcsx2</Filter>
     </ClCompile>
-    <ClCompile Include="characters\dragonking.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\frost.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
     <ClCompile Include="generic.c">
       <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="characters\blaze.c">
-      <Filter>source\characters</Filter>
     </ClCompile>
     <ClCompile Include="mkd\fx.c">
       <Filter>source\mkd</Filter>
     </ClCompile>
-    <ClCompile Include="characters\shaokahn.c">
-      <Filter>source\characters</Filter>
-    </ClCompile>
     <ClCompile Include="voice.c">
       <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\frost.c">
+      <Filter>source\characters\mku</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\jax.c">
+      <Filter>source\characters\mku</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\kitana.c">
+      <Filter>source\characters\mku</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\blaze.c">
+      <Filter>source\characters\mku</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\shaokahn.c">
+      <Filter>source\characters\mku</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\goro.c">
+      <Filter>source\characters\mku</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\sonya.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\ashrah.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\baraka.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\dragonking.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\ermac.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\liukang.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\mkda_blaze.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\mkda_kano.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\mkda_kung_lao.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\mkda_mokap.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\mkda_raiden.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\noob.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\scorpion.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\smoke.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\subzero.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
+    <ClCompile Include="chess.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="qs.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="stages\darkprison.c">
+      <Filter>source\stages</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,52 +248,10 @@
     <ClInclude Include="character.h">
       <Filter>source</Filter>
     </ClInclude>
-    <ClInclude Include="characters\mkda_kano.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\mkda_mokap.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\mkda_blaze.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
     <ClInclude Include="moves.h">
       <Filter>source</Filter>
     </ClInclude>
-    <ClInclude Include="characters\subzero.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\smoke.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\liukang.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
     <ClInclude Include="characters\character_list.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\scorpion.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\baraka.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\mkda_raiden.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\ashrah.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\ermac.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\noob.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\mkda_kung_lao.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\sonya.h">
       <Filter>source\characters</Filter>
     </ClInclude>
     <ClInclude Include="misc\pselect.h">
@@ -314,9 +293,6 @@
     <ClInclude Include="scripthook.h">
       <Filter>source</Filter>
     </ClInclude>
-    <ClInclude Include="characters\kitana.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
     <ClInclude Include="sound.h">
       <Filter>source</Filter>
     </ClInclude>
@@ -332,9 +308,6 @@
     <ClInclude Include="misc\fatalityanims.h">
       <Filter>source\misc</Filter>
     </ClInclude>
-    <ClInclude Include="characters\jax.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
     <ClInclude Include="settings.h">
       <Filter>source</Filter>
     </ClInclude>
@@ -344,26 +317,92 @@
     <ClInclude Include="pcsx2\inireader.h">
       <Filter>source\pcsx2</Filter>
     </ClInclude>
-    <ClInclude Include="characters\dragonking.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\frost.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
     <ClInclude Include="generic.h">
       <Filter>source</Filter>
-    </ClInclude>
-    <ClInclude Include="characters\blaze.h">
-      <Filter>source\characters</Filter>
     </ClInclude>
     <ClInclude Include="mkd\fx.h">
       <Filter>source\mkd</Filter>
     </ClInclude>
-    <ClInclude Include="characters\shaokahn.h">
-      <Filter>source\characters</Filter>
-    </ClInclude>
     <ClInclude Include="voice.h">
       <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="linkfile_ps2">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="build_config.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\frost.h">
+      <Filter>source\characters\mku</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\jax.h">
+      <Filter>source\characters\mku</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\kitana.h">
+      <Filter>source\characters\mku</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\blaze.h">
+      <Filter>source\characters\mku</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\shaokahn.h">
+      <Filter>source\characters\mku</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\goro.h">
+      <Filter>source\characters\mku</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\sonya.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\ashrah.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\baraka.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\dragonking.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\ermac.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\liukang.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\mkda_blaze.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\mkda_kano.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\mkda_kung_lao.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\mkda_mokap.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\mkda_raiden.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\noob.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\scorpion.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\smoke.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\subzero.h">
+      <Filter>source\characters\mkd</Filter>
+    </ClInclude>
+    <ClInclude Include="chess.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="qs.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="stages\darkprison.h">
+      <Filter>source\stages</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -372,6 +411,15 @@
     </None>
     <None Include="..\README.md">
       <Filter>Resources</Filter>
+    </None>
+    <None Include="linkfile">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="eemakefile.eeglobal">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="generic_asm.s">
+      <Filter>source</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -2,9 +2,9 @@
 #include "mkdeception.h"
 #include "mouse.h"
 #include "types.h"
+#include "build_config.h"
 
-
-#define SOUNDDEBUG_KEY
+//#define SOUNDDEBUG_KEY
 
 enum eMenuStringIDs
 {
@@ -92,6 +92,7 @@ struct Menu {
 
 struct Menu GetMenu();
 
+#ifndef  PS2_BUILD
 int Menu_Init(int id, int font, char* text, int x, int y, int unk);
 void Menu_Draw();
 void Menu_Process();
@@ -136,4 +137,8 @@ void test_sound();
 void konquest_camera();
 void Konquest_Process_Cameras();
 
+
+
+
+#endif // ! PS2_BUILD
 

@@ -27,7 +27,6 @@ void init_ground_move();
 
 int plyr_aux_weapon_release(int a1);
 int plyr_aux_weapon_grab(int a1, int a2);
-int plyr_obj_item_grab(int a1, int a2, int a3, int a4);
 
 void pfx_bind_emitter_num_to_obj_bone(int pfx, int obj, int boneID, int pfxID);
 

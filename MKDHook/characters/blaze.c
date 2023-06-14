@@ -91,8 +91,8 @@ struct mk_toc_entry blaze_file_table[BLAZE_FILES + 1] = {
 };
 
 
-int blaze_flaming_limbs_fx_handles[2][11];
-int blaze_flaming_limbs_sound_handle[2];
+int blaze_flaming_limbs_fx_handles[2][11] = { 0 };
+int blaze_flaming_limbs_sound_handle[2] = { 0 };
 
 void init_blaze()
 {

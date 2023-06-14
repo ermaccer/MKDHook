@@ -25,11 +25,12 @@ static int voice_table[TOTAL_VOICES] = {
 	2721, // sebek
 	2813, // shuj
 	2997, // sindel
-	3089, //smoke noob
+	3089, // smoke noob
 	3365, // tanya
 	1709, // jkelly 
 	1341, // onaga
 	7252, // shao kahn
+	7404, // goro
 	0,
 };
 

@@ -26,6 +26,7 @@
 #include "blaze.h"
 // mku/gc ports
 #include "shaokahn.h"
+#include "goro.h"
 
 
 extern struct scan_action scan_null;

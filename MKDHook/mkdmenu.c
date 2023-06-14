@@ -5,6 +5,8 @@
 #include "characters/kitana.h"
 #include "scripthook.h"
 
+
+#ifndef PS2_BUILD
 CVector camPos;
 CVector camRot;
 
@@ -29,6 +31,7 @@ int m_bFreeCamera = 0;
 int m_bKonquestFPCam = 0;
 int m_bKonquestFPCamView = 0;
 int m_bFreezeWorld = 0;
+
 
 int menuAssoc[MENU_MAX_STRINGS * 2] =
 {
@@ -68,7 +71,7 @@ const char* menuNamesCamera[MENU_MAX_STRINGS] =
 	"First Person Camera",
 	"Third Person Camera",
 	"Set FOV to 72 (default)",
-	"Set FOV to 90",
+	"Set FOV to 80 (ws default)",
 	"Set FOV to 95",
 	"Set FOV to 110",
 	"Set FOV to 120",
@@ -235,6 +238,18 @@ void Menu_Process()
 #ifdef SOUNDDEBUG_KEY
 	if (GetAsyncKeyState(67))
 		test_sound();
+
+	if (GetAsyncKeyState(70))
+	{
+		player_info* plr1 = (player_info*)PLAYER1_INFO;
+		player_info* plr2 = (player_info*)PLAYER2_INFO;
+
+		if (plr1 && plr2)
+		{
+			plr1->life = 0.01f;
+			plr2->life = 0.01f;
+		}
+	}
 #endif
 
 	if (TheMenu.m_bActive)
@@ -452,7 +467,7 @@ void Menu_ProcessCamera()
 		cam_recalc_midpoint();
 		break;
 	case FOV_90:
-		setFov(90.0f);
+		setFov(80.0f);
 		cam_recalc_midpoint();
 		break;
 	case FOV_95:
@@ -547,12 +562,11 @@ void Menu_ProcessFreeCamera()
 
 			CVector rightMat;
 			CVector forwardMat;
-
 			get_matrix_right(camera, &rightMat);
 			get_matrix_forward(camera, &forwardMat);
 
 			if (GetAsyncKeyState(90))
-				camSpeed = 0.07f;
+				camSpeed = 0.035f;
 			else
 				camSpeed = 0.15f;
 
@@ -604,8 +618,6 @@ void Menu_ProcessFreeCamera()
 			set_cam_position(&camPos);
 			set_cam_rotation(&camRot);
 
-
-
 		}
 	}
 	else
@@ -641,6 +653,7 @@ void Menu_Toggle_KFP_Look()
 	hook_timer = get_game_tick();
 	m_bKonquestFPCamView = !m_bKonquestFPCamView;
 }
+
 
 void Menu_Toggle_KHud()
 {
@@ -824,3 +837,6 @@ void Konquest_Process_Cameras()
 
 	Menu_ProcessFreeCamera();
 }
+
+#endif // !PS2_BUILD
+

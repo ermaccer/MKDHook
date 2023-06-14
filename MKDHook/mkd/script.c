@@ -1,6 +1,6 @@
 #include "script.h"
 #include "..\scripthook.h"
-
+#include "..\types.h"
 
 int snd_req(int id)
 {
@@ -20,12 +20,6 @@ void snd_stop(int sound)
 void set_music(int id)
 {
 	((void(*)(int))0x3A4CE0)(id);
-
-}
-
-int create_mkproc_generic_nostack(int id, int a2, void* pFunc, int unk, int* result)
-{
-	return ((int(*)(int, int, void*, int, int*))0x12C4C0)(id, a2, pFunc, unk, result);
 }
 
 int am_i_flipped()
@@ -35,11 +29,11 @@ int am_i_flipped()
 
 int am_i_flipped_direct(int obj)
 {
-	int cache = *(int*)0x5D63A0;
-	*(int*)0x5D63A0 = obj;
-	int result = am_i_flipped();
-	*(int*)0x5D63A0 = cache;
-	return result;
+	// original method crashes on ps2
+	// so this is improved crashfree one
+
+	int flags = *(int*)(obj + 8);
+	return (flags >> 17) & 1;
 }
 
 void swap_active_proc()
@@ -84,11 +78,6 @@ int plyr_aux_weapon_release(int a1)
 int plyr_aux_weapon_grab(int a1, int a2)
 {
 	return ((int(*)(int, int))0x228430)(a1, a2);
-}
-
-int plyr_obj_item_grab(int a1, int a2, int a3, int a4)
-{
-	return ((int(*)(int, int, int ,int))0x228580)(a1, a2, a3, a4);
 }
 
 void pfx_bind_emitter_num_to_obj_bone(int pfx, int obj, int boneID, int pfxID)

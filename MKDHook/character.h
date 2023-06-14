@@ -1,5 +1,6 @@
 #pragma once
 #include "toc.h"
+#include "build_config.h"
 
 enum characters
 {
@@ -58,6 +59,8 @@ enum characters
 	BLAZE,
 	// mku/gc
 	SHAO_KAHN,
+	GORO,
+
 	TOTAL_CHARACTERS
 };
 
@@ -86,8 +89,9 @@ typedef struct {
 
 
 extern struct char_info_entry pCharTable[TOTAL_CHARACTERS];
-
+#ifndef PS2_BUILD
 void dump_char_table();
+#endif
 void set_char_table();
 
 void init_character_hook();

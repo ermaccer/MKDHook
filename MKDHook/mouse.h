@@ -1,4 +1,6 @@
 #pragma once
+#include "build_config.h"
+#ifndef PS2_BUILD
 enum KeyboardBufState
 {
     CurrentState,
@@ -23,7 +25,7 @@ struct CMouseControllerState
     float   X;
     float   Y;
 };
-
+#endif
 
 float GetMouseX();
 float GetMouseY();
