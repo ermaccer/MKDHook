@@ -25,8 +25,13 @@ void init_generic()
 	makeJal(0x3C7250, hook_delete_player);
 	makeJal(0x3C7258, hook_delete_player);
 
+
 	makeJal(0x170218, fatality_lock);
 	makeJal(0x384674, fatality_lock);
+
+	makeJal(0x22FA28, death_traps_lock);
+	makeJal(0x3E2108, death_traps_lock);
+	makeJal(0x3E24B4, death_traps_lock);
 
 	int val = (int)&hook_plyr_start_proc;
 
@@ -138,9 +143,7 @@ void goro_hide_weapon(int data, int unk)
 	{
 		plyr_weapon_hide(data, unk, (int)&goro_gauntlet_ll_p1);
 	}
-
 }
-
 
 void render_fgnd_mkobjs()
 {
@@ -162,10 +165,25 @@ int fatality_lock()
 
 	}
 
-
-
-
 	return ((int(*)())0x16FCF0)();
+}
+
+int death_traps_lock()
+{
+	player_info* p1 = (player_info*)PLAYER1_INFO;
+	player_info* p2 = (player_info*)PLAYER2_INFO;
+
+	int bgnd = *(int*)(CUR_BGND);
+	if (p1 && p2)
+	{
+		if (p1->characterID == BLAZE || p2->characterID == BLAZE)
+		{
+			if (bgnd == BGS_SKYTEMPLE || bgnd == BGS_LOWERMINES || bgnd == BGS_DARKPRISON)
+			return 0;
+		}
+	}
+
+	return ((int(*)())0x189A30)();
 }
 
 float hook_plyr_start_proc()

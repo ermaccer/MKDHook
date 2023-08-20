@@ -5,7 +5,6 @@
 #include "characters/kitana.h"
 #include "scripthook.h"
 
-
 #ifndef PS2_BUILD
 CVector camPos;
 CVector camRot;
@@ -224,6 +223,7 @@ void Menu_Draw()
 
 }
 
+
 void Menu_Process()
 {
 	if (check_switch(0, PAD_L3))
@@ -250,6 +250,66 @@ void Menu_Process()
 			plr2->life = 0.01f;
 		}
 	}
+
+	// FATALITY TESTER
+	if (GetAsyncKeyState(49))
+	{
+		player_info* plr1 = (player_info*)PLAYER1_INFO;
+		player_info* plr2 = (player_info*)PLAYER2_INFO;
+
+		if (plr1 && plr2)
+		{
+			*(int*)0x5D63A4 = plr1->pData;
+			*(int*)0x5D63A0 = plr1->pObject;
+			
+			*(int*)0x5D6398 = plr2->pData;
+			*(int*)0x5D639C = plr2->pObject;
+			*(int*)0x5D64FC = 1;
+
+			xfer_proc(plr1->vm_proc, DO_FATALITY_ONE);
+		}
+	}
+
+	if (GetAsyncKeyState(50))
+	{
+		player_info* plr1 = (player_info*)PLAYER1_INFO;
+		player_info* plr2 = (player_info*)PLAYER2_INFO;
+
+		if (plr1 && plr2)
+		{
+			*(int*)0x5D63A4 = plr1->pData;
+			*(int*)0x5D63A0 = plr1->pObject;
+
+			*(int*)0x5D6398 = plr2->pData;
+			*(int*)0x5D639C = plr2->pObject;
+			*(int*)0x5D64FC = 1;
+
+			xfer_proc(plr1->vm_proc, DO_FATALITY_TWO);
+		}
+	}
+
+
+	// MOVE TESTER
+	if (GetAsyncKeyState(51))
+	{
+		if (get_game_tick() - hook_timer <= 10) return;
+		hook_timer = get_game_tick();
+
+		player_info* plr1 = (player_info*)PLAYER1_INFO;
+		player_info* plr2 = (player_info*)PLAYER2_INFO;
+
+		if (plr1 && plr2)
+		{
+			int mko = ((int(*)(int))0x21B440)(plr1->vm_proc);
+			*(int*)(mko + 40) = debugVar[3];
+			// rx 2101b0
+			// p2 210120
+			// p1 210170
+			xfer_proc(plr1->vm_proc, 0x210170);
+		}
+	}
+
+
 #endif
 
 	if (TheMenu.m_bActive)

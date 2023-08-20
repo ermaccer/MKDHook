@@ -7896,4 +7896,29 @@ sound_entry mk_sound_table[TOTAL_SOUNDS] =
 
 	{ 6, 152, -1, 1, 1.000000, 4, 1 }, // goro select (7536)
 	{ 6, 153, -1, 1, 1.000000, 4, 1 }, // goro wins(7537)
+
+	// DRAHMIN
+	{ 6, 154, -1, 1, 1.000000, 4, 1 }, // drahmin select (7538)
+	{ 6, 155, -1, 1, 1.000000, 4, 1 }, // drahmin wins(7539)
+
+	{ BANK_C_DRAHMIN, 0, -1, 1, 0.65f, 5, 1 }, // flies (7540)
+	{ BANK_C_DRAHMIN, 1, -1, 1, 0.65f, 5, 1 }, // flies hit (7541)
+	{ BANK_C_DRAHMIN, 2, -1, 1, 0.65f, 5, 1 }, // gp (7542)
+	{ BANK_C_DRAHMIN, 3, -1, 1, 0.65f, 5, 1 }, // uppercut (7543)
+
+	// SAREENA
+	{ 6, 156, -1, 1, 1.000000, 4, 1 }, // sareena select (7544)
+	{ 6, 157, -1, 1, 1.000000, 4, 1 }, // sareena wins (7545)
+
+	{ BANK_C_QUANCHI, 0, -1, 1, 0.65f, 5, 1 }, // skull bash (7546)
+	{ BANK_C_QUANCHI, 1, -1, 1, 0.65f, 5, 1 }, // skull toss (7547)
+	{ BANK_C_QUANCHI, 2, -1, 1, 0.65f, 5, 1 }, // skull explode (7548)
+
+	// QUAN CHI
+
+	{ 6, 158, -1, 1, 1.000000, 4, 1 }, // quan select (7549)
+	{ 6, 159, -1, 1, 1.000000, 4, 1 }, // quan wins (7550)
+
+	{ BANK_C_QUANCHI, 3, -1, 1, 0.65f, 5, 1 }, // skull chomp (7551)
+	{ BANK_C_QUANCHI, 4, -1, 1, 0.65f, 5, 1 }, // skull teleport (7552)
 };

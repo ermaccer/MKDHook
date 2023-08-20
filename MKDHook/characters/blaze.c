@@ -68,8 +68,8 @@ struct mk_file_entry blaze_entry_table[BLAZE_FILES] = {
 struct mk_toc_entry blaze_file_table[BLAZE_FILES + 1] = {
 		{&blaze_entry_table[0]	,0,0 },
 
-		{&blaze_entry_table[1]	,0,	   351616 },	// blaze.sec
-		{&blaze_entry_table[2]	,0,    351616 },	// blaze_ap.sec
+		{&blaze_entry_table[1]	,0,	   351872 },	// blaze.sec
+		{&blaze_entry_table[2]	,0,    351872 },	// blaze_ap.sec
 		{&blaze_entry_table[3]	,0,    12928  },	// blaze.mko
 		{&blaze_entry_table[4]	,0,    209664 },	// sh_blaze.sec
 		{&blaze_entry_table[5]	,0,    10164  },	// fight_fx.mko

@@ -66,6 +66,9 @@ int scan_table_1_jump_table[] = {
 	SCAN1_UNIVERSAL_JUMP, //  BLAZE
 	SCAN1_UNIVERSAL_JUMP, //  SHAOKAHN
 	SCAN1_UNIVERSAL_JUMP, //  GORO
+	SCAN1_UNIVERSAL_JUMP, //  UMKD_DRAHMIN
+	SCAN1_UNIVERSAL_JUMP, //  UMKD_SAREENA
+	SCAN1_UNIVERSAL_JUMP, //  UMKD_QUANCHI
 };
 
 
@@ -121,6 +124,9 @@ int scan_table_2_jump_table[] = {
 	SCAN2_UNIVERSAL_JUMP, //  BLAZE
 	SCAN2_UNIVERSAL_JUMP, //  SHAOKAHN
 	SCAN2_UNIVERSAL_JUMP, //  GORO
+	SCAN2_UNIVERSAL_JUMP, //  UMKD_DRAHMIN
+	0x20239C, //  UMKD_SAREENA
+	0x20239C, //  UMKD_QUANCHI
 };
 
 int scan_table_3_jump_table[] = {
@@ -175,6 +181,9 @@ int scan_table_3_jump_table[] = {
 	SCAN3_UNIVERSAL_JUMP, //  BLAZE
 	SCAN3_UNIVERSAL_JUMP, //  SHAOKAHN
 	SCAN3_UNIVERSAL_JUMP, //  GORO
+	0x201F64, //  UMKD_DRAHMIN
+	0x201F64, //  UMKD_SAREENA
+	SCAN3_UNIVERSAL_JUMP, //  UMKD_QUAN
 };
 
 int scan_table_4_jump_table[] = {
@@ -229,6 +238,9 @@ int scan_table_4_jump_table[] = {
 	0x201B0C, // BLAZE
 	0x201B0C, // SHAOKAHN
 	0x201B0C, // GORO
+	SCAN4_UNIVERSAL_JUMP, //	UMKD_DRAHMIN
+	SCAN4_UNIVERSAL_JUMP, // UMKD_SAREENA
+	SCAN4_UNIVERSAL_JUMP, //  UMKD_QUAN
 };
 
 
@@ -337,6 +349,15 @@ int swap_scan_table_1()
 		case GORO:
 			scan_action_set = (int)&scan_goro_1;
 			break;
+		case DRAHMIN:
+			scan_action_set = (int)&scan_drahmin_1;
+			break;
+		case SAREENA:
+			scan_action_set = (int)&scan_sareena_1;
+			break;
+		case QUAN_CHI:
+			scan_action_set = (int)&scan_quan_1;
+			break;
 		default:
 			scan_action_set = (int)&scan_null;
 			break;
@@ -345,7 +366,7 @@ int swap_scan_table_1()
 		patchInt(0x2026F0, ori(a0, a0, LOWORD(scan_action_set)));
 
 	}
-	
+
 	return my_joypad_state_5();
 }
 
@@ -380,6 +401,9 @@ int swap_scan_table_2()
 			break;
 		case GORO:
 			scan_action_set = (int)&scan_goro_2;
+			break;
+		case DRAHMIN:
+			scan_action_set = (int)&scan_drahmin_2;
 			break;
 		default:
 			scan_action_set = (int)&scan_null;
@@ -436,6 +460,12 @@ int swap_scan_table_3()
 			else
 				scan_action_set = (int)&scan_null;
 			break;
+		case QUAN_CHI:
+			if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
+				scan_action_set = (int)&scan_quan_3;
+			else
+				scan_action_set = (int)&scan_null;
+			break;
 		default:
 			scan_action_set = (int)&scan_null;
 			break;
@@ -451,6 +481,7 @@ int swap_scan_table_3()
 int swap_scan_table_4()
 {
 	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
+	int p2_pdata = *(int*)(P2_PLAYER_DATA);
 	static int scan_action_set = (int)&scan_null;
 
 	if (plyr_data)
@@ -472,6 +503,18 @@ int swap_scan_table_4()
 		case FROST:
 			scan_action_set = (int)&scan_frost_4;
 			break;
+		case DRAHMIN:
+			if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
+				scan_action_set = (int)&scan_drahmin_4;
+			else
+				scan_action_set = (int)&scan_null;
+			break;
+		case SAREENA:
+			scan_action_set = (int)&scan_sareena_4;
+			break;
+		case QUAN_CHI:
+			scan_action_set = (int)&scan_quan_4;
+			break;
 		default:
 			scan_action_set = (int)&scan_null;
 			break;
@@ -480,7 +523,7 @@ int swap_scan_table_4()
 		patchInt(0x2019A8, ori(a0, a0, LOWORD(scan_action_set)));
 
 	}
-	
+
 	return my_joypad_state_5();
 }
 #pragma GCC pop_options

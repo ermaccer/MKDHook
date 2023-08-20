@@ -210,6 +210,15 @@
     <ClCompile Include="stages\darkprison.c">
       <Filter>source\stages</Filter>
     </ClCompile>
+    <ClCompile Include="characters\drahmin.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\sareena.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\quanchi.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ps2mem.h">
@@ -403,6 +412,15 @@
     </ClInclude>
     <ClInclude Include="stages\darkprison.h">
       <Filter>source\stages</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\drahmin.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\sareena.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\quanchi.h">
+      <Filter>source\characters\umkd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

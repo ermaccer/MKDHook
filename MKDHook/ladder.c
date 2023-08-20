@@ -4,6 +4,7 @@
 #include "ps2mem.h"
 #include "character.h"
 #include "mips.h"
+#include "scripthook.h"
 
 struct mk_file_entry ladder_entry_table[LADDER_FILES] = {
 	{"ladder.ssf"	,0, 4},
@@ -17,9 +18,9 @@ struct mk_file_entry ladder_entry_table[LADDER_FILES] = {
 struct mk_toc_entry ladder_file_table[LADDER_FILES + 1] = {
 		{&ladder_entry_table[0]	,0,0 },
 
-		{&ladder_entry_table[1]	,0,	   5217408 },	// ladder.sec
+		{&ladder_entry_table[1]	,0,	   1900800},	// ladder.sec
 		{&ladder_entry_table[2]	,0,    6688 },		// ladder.mko
-		{&ladder_entry_table[3]	,0,    47360  },	// arcade_ladder_anims.sec
+		{&ladder_entry_table[3]	,0,    47360},	// arcade_ladder_anims.sec
 
 		{0,0,0}
 };
@@ -61,7 +62,10 @@ short characters[] = {
 	FROST,
 	BLAZE,
 	SHAO_KAHN,
-	GORO
+	GORO,
+	DRAHMIN,
+	SAREENA,
+	QUAN_CHI
 };
 
 short backgrounds[] = {
@@ -90,37 +94,40 @@ short backgrounds[] = {
 };
 
 ladder_model_entry ladder_models[] = {
-	{NOOBSMOKE, "NOOBSMOKE"},
-	{DARRIUS, "CASSIUS"},
-	{RAIDEN, "RAIDEN"},
-	{DAIROU, "DAIROU"},
-	{JADE, "JADE"},
-	{KOBRA, "KOBRA"},
-	{KABAL, "KABAL"},
-	{KIRA, "KIRA"},
-	{LIU_KANG, "LIUKANG"},
-	{TANYA, "TANYA"},
-	{HAVIK, "SKAB"},
-	{HOTARU, "HOTARU"},
-	{MILEENA, "MILEENA"},
-	{NIGHTWOLF, "NIGHTWOLF"},
-	{BORAICHO, "BORAICHO"},
-	{BARAKA, "BARAKA"},
-	{SCORPION, "SCORPION"},
-	{SUBZERO, "SUBZERO"},
-	{ERMAC, "ERMAC"},
-	{KENSHI, "KENSHI"},
-	{SINDEL, "SINDEL"},
-	{ASHRAH, "ASHRAH"},
-	{LI_MEI, "LIMEI"},
+	{NOOBSMOKE, "kon_noob.sec"},
+	{DARRIUS, "kon_darrius.sec"},
+	{RAIDEN, "kon_raidenmk6.sec"},
+	{DAIROU, "kon_dairou.sec"},
+	{JADE, "kon_jade.sec"},
+	{KOBRA, "kon_kobra.sec"},
+	{KABAL, "kon_kabal.sec"},
+	{KIRA, "kon_kira.sec"},
+	{LIU_KANG, "kon_kang_dead.sec"},
+	{TANYA, "kon_tanya.sec"},
+	{HAVIK, "kon_havik.sec"},
+	{HOTARU, "kon_hotaru.sec"},
+	{MILEENA, "kon_mileena.sec"},
+	{NIGHTWOLF, "kon_nightwolf.sec"},
+	{BORAICHO, "kon_boraicho.sec"},
+	{BARAKA, "kon_baraka.sec"},
+	{SCORPION, "kon_scorpion.sec"},
+	{SUBZERO, "kon_subzero.sec"},
+	{ERMAC, "kon_ermac.sec"},
+	{KENSHI, "kon_kenshi.sec"},
+	{SINDEL, "kon_sindel.sec"},
+	{ASHRAH, "kon_ashrah.sec"},
+	{LI_MEI, "kon_limei.sec"},
 	{SHUJINKO, "SHUJINKO"},
-	{JAX, "JAX"},
-	{FROST, "FROST"},
-	{BLAZE, "BLAZE"},
-	{KITANA, "KITANA"},
-	{SHAO_KAHN, "SHAOK"},
-	{SONYA, "SONYA"},
-	{GORO, "GORO"},
+	{JAX, "kon_jax.sec"},
+	{FROST, "kon_frost.sec"},
+	{BLAZE, "kon_blaze.sec"},
+	{KITANA, "kon_kitana.sec"},
+	{SHAO_KAHN, "kon_shaok.sec"},
+	{SONYA, "kon_sonya.sec"},
+	{GORO, "kon_goro.sec"},
+	{DRAHMIN, "kon_drahmin.sec"},
+	{SAREENA, "kon_sareena.sec"},
+	{QUAN_CHI,"kon_quanchi.sec"},
 	{-1, ""},
 };
 
@@ -167,6 +174,9 @@ ladder_stage_entry ladder_stages[] = {
 void init_ladder_hook()
 {
 	makeJal(0x3E7CF8, hook_get_one_tower);
+	makeJal(0x3E82A8, ladder_load_npcs);
+	makeJal(0x3E9038, load_ladder_model);
+
 
 
 	int val;
@@ -208,10 +218,18 @@ void init_ladder_hook()
 		baseSize += (ladder_file_table[i].size + 2048 - 1) & -2048;
 	}
 
-	// allocate more ram to ladder
 
-	patchInt(0x5852B4, 5300000);
-	patchInt(0x584FF4, 5300000);
+	
+
+	static int newLadderLayout[] = {
+		0x6D,	LADDER_MAIN_BUFFER,		// main ladder buffer + smoke
+		0x6E,	LADDER_CHAR_BUFFER,		// ladder secs 
+		0xFFFFFFFF, 0
+	};
+
+
+	patchInt(0x5852B4, LADDER_MAIN_BUFFER + LADDER_CHAR_BUFFER);
+	patchInt(0x5852B0, (int)&newLadderLayout[0]);
 }
 
 int hook_get_one_tower(int max)
@@ -295,8 +313,37 @@ int is_map_in_my_ladder(int id)
 	return result;
 }
 
+void ladder_load_npcs()
+{
+	load_background_hook(BGS_LADDER);
+	load_ssf((struct mk_toc_entry*)0x5AC6E0);
+}
+
+int load_ladder_model(int slot, char* name, int id, int unk)
+{
+	int obj = 0;
+
+	if (name)
+	{
+		if (name[0] == 'k' && name[1] == 'o' && name[2] == 'n')
+		{
+			int sec = find_section_by_name(name);
+			int newSlot = 0x18006E;
+
+			if (sec)
+			{
+				add_art_section(newSlot, sec);
+				obj = load_named_model_from_slot(newSlot, "NPC", 0xC022, 0);
+			}
+		}
+		else
+			obj = load_named_model_from_slot(slot, name, 0xC022, 0);
+	}
+
+	return obj;
+}
+
 int get_current_ladder_pos()
 {
 	return *(int*)0x5D72D4;
 }
-

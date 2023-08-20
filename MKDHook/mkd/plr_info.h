@@ -411,10 +411,7 @@ typedef struct {
 	char field_D;
 	char field_E;
 	char field_F;
-	char field_10;
-	char field_11;
-	char field_12;
-	char field_13;
+	int  field_10;
 	char field_14;
 	char field_15;
 	char field_16;

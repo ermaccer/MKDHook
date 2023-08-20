@@ -13,7 +13,7 @@ enum ECurrentSelect {
 	Select_UMKD,
 	Select_NPC,
 };
-extern select_screen_entry pSelectTableNew[27];
+extern select_screen_entry pSelectTableNew[24];
 
 void init_mkdhook_vars();
 

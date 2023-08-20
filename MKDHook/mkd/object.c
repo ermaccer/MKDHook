@@ -16,6 +16,16 @@ void destroy_mkobj(int obj)
 	((int(*)(int))0x13B130)(obj);
 }
 
+void update_mkobj(int obj)
+{
+	((int(*)(int))0x13A9D0)(obj);
+}
+
+void obj_set_ang_vel(int obj, int vel)
+{
+	((int(*)(int, int))0x1362F0)(obj, vel);
+}
+
 void get_matrix_right(int obj, CVector* mat)
 {
 	mat->x = *(float*)(*(int*)(obj + 36) + 0);
@@ -102,6 +112,11 @@ int obj_first_sobj(int obj)
 void sobj_set_priority(int obj, int value)
 {
 	((void(*)(int, int))0x13D600)(obj, value);
+}
+
+int obj_sever_limb(int obj, int boneID, int unk, int unk2)
+{
+	return 	((int(*)(int, int, int ,int))0x13C3C0)(obj, boneID, unk, unk2);
 }
 
 void plyr_obj_item_grab(int data, int a2, int a3, int model, int f1, int f2, int f3, int f4, int unk)

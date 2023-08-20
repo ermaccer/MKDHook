@@ -130,6 +130,16 @@ void wait_for_slot_load(int slot)
 	((void(*)(int))0x1A4830)(slot);
 }
 
+int find_section_by_name(char* name)
+{
+	return ((int(*)(char*))0x266CA0)(name);
+}
+
+void add_art_section(int slot, int section)
+{
+	((int(*)(int, int))0x1A4430)(slot, section);
+}
+
 int create_mkproc_hand_anim(int id, void* pFunc, int* result)
 {
 	return ((int(*)(int, void*, int*))0x166540)(id, pFunc, result);

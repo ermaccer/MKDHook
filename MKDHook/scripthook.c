@@ -8,7 +8,7 @@
 #include "types.h"
 
 int script_function_table[TOTAL_COMMANDS] = { 0 };
-int debugVar[2] = { 0 };
+int debugVar[4] = { 0 };
 int cached_aux_weapon[2] = { 0 };
 
 void init_script_hook()
@@ -16,6 +16,8 @@ void init_script_hook()
 	int val = (int)&script_function_table;
 	debugVar[0] = 7233;
 	debugVar[1] = 3;
+	debugVar[2] = 0;
+	debugVar[3] = 19;
 	cached_aux_weapon[0] = 0;
 	cached_aux_weapon[1] = 0;
 
@@ -82,6 +84,9 @@ void init_script_custom_function_table()
 	script_function_table[jax_taunt] = (int)&_jax_taunt;
 	script_function_table[freeze_victim] = (int)&_freeze_victim;
 	script_function_table[force_fatality_end] = (int)&_force_fatality_end;
+	script_function_table[camera_setup_simple_rotation] = (int)&_camera_setup_simple_rotation;
+	script_function_table[start_da_fatality_cam] = (int)&_start_da_fatality_cam;
+	script_function_table[quan_teleport] = (int)&_quan_teleport;
 }
 
 #ifndef PS2_BUILD
@@ -172,6 +177,28 @@ void _reset_fake_bone_matcher()
 		);
 }
 
+void _camera_setup_simple_rotation()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	((void(*)(int, float))0x183030)(*(int*)(args + 8), *(float*)(args + 4));
+}
+
+void _start_da_fatality_cam()
+{
+	int args = *(int*)(CURRENT_ARGS);
+
+	int camFuncID = *(int*)(args + 4);
+
+	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
+
+	// set attacker
+	((void(*)(int))0x182A40)(*(int*)PLAYER_OBJ);
+	// set victim
+	((void(*)(int))0x182A20)(*(int*)PLAYER2_OBJ);
+	// run cam
+	((void(*)(int, int, int))0x181C30)(plyr_data->pScript, camFuncID, 0);
+}
+
 void mku_kitana_curl_fx()
 {
 	//asm volatile ("jal 0x22E870");
@@ -217,6 +244,19 @@ int mku_kitana_sfx_fix(int id)
 			id = SOUND_KITANA_FANLIFT;
 	}
 	return snd_req(id);
+}
+
+void _quan_teleport()
+{
+	int args = *(int*)(CURRENT_ARGS);
+
+	int obj = *(int*)(args + 4);
+	int dest = *(int*)(args + 8);
+
+	*(float*)(dest + 4) += 8.0f;
+
+	((void(*)(int, int))0x1363F0)(obj, dest);
+
 }
 
 void psp_reset_fake_bone_matcher(int obj, int a2, int a3, int a4, int a5, int a6, float flt)

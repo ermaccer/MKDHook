@@ -37,6 +37,9 @@ struct mk_file_entry chess_entry_table[CHESS_FILES] = {
 	{"mkc_kitana.sec",0,1},
 	{"mkc_blaze.sec",0,1},
 	{"mkc_sonya.sec",0,1},
+	{"mkc_drahmin.sec",0,1},
+	{"mkc_sareena.sec",0,1},
+	{"mkc_quan.sec",0,1},
 	{"board_game_config.mko",0,3},
 	{"boardgame_fx.mko",0,3},
 	{"boardgame_strings_eng.mko",0,3},
@@ -85,15 +88,18 @@ struct mk_toc_entry chess_file_table[CHESS_FILES + 1] = {
 		{&chess_entry_table[30], 0, 113408},    //	mkc_kitana.sec
 		{&chess_entry_table[31], 0, 109056},    //	mkc_blaze.sec
 		{&chess_entry_table[32], 0, 124544},    //	mkc_sonya.sec
-		{&chess_entry_table[33], 0, 32640 },    //	board_game_config.mko
-		{&chess_entry_table[34], 0, 22152 },    //	boardgame_fx.mko
-		{&chess_entry_table[35], 0, 1628  },    //	boardgame_strings_eng.mko
-		{&chess_entry_table[36], 0, 1792  },    //	boardgame_strings_spa.mko
-		{&chess_entry_table[37], 0, 1604  },    //	boardgame_strings_ger.mko
-		{&chess_entry_table[38], 0, 1732  },    //	boardgame_strings_fre.mko
-		{&chess_entry_table[39], 0, 1716  },    //	boardgame_strings_ita.mko
-		{&chess_entry_table[40], 0, 1628  },    //	boardgame_strings_eng_uk.mko
-		{&chess_entry_table[41], 0, 354432},    //	mk_chess_anims.sec
+		{&chess_entry_table[33], 0, 118528},    //	mkc_drahmin.sec
+		{&chess_entry_table[34], 0, 121344},    //	mkc_sareena.sec
+		{&chess_entry_table[35], 0, 118016},    //	mkc_quan.sec
+		{&chess_entry_table[36], 0, 32704 },    //	board_game_config.mko
+		{&chess_entry_table[37], 0, 22152 },    //	boardgame_fx.mko
+		{&chess_entry_table[38], 0, 1628  },    //	boardgame_strings_eng.mko
+		{&chess_entry_table[39], 0, 1792  },    //	boardgame_strings_spa.mko
+		{&chess_entry_table[40], 0, 1604  },    //	boardgame_strings_ger.mko
+		{&chess_entry_table[41], 0, 1732  },    //	boardgame_strings_fre.mko
+		{&chess_entry_table[42], 0, 1716  },    //	boardgame_strings_ita.mko
+		{&chess_entry_table[43], 0, 1628  },    //	boardgame_strings_eng_uk.mko
+		{&chess_entry_table[44], 0, 354432},    //	mk_chess_anims.sec
 
 
 		{0,0,0}

@@ -13,6 +13,8 @@ typedef struct {
 int mk_insert(int obj, int unk);
 int insert_fgnd_mkobj(int obj);
 void destroy_mkobj(int obj);
+void update_mkobj(int obj);
+void obj_set_ang_vel(int obj, int vel);
 
 void get_matrix_right(int obj, CVector* mat);
 void get_matrix_forward(int obj, CVector* mat);
@@ -30,6 +32,7 @@ void load_moveset_weapons(moveset* mv, int obj);
 void obj_create_sobjs(int obj);
 int obj_first_sobj(int obj);
 void sobj_set_priority(int obj, int value);
+int obj_sever_limb(int obj, int boneID, int unk, int unk2);
 
 void plyr_obj_item_grab(int data, int a2, int a3, int model, int f1, int f2, int f3, int f4, int unk);
 void plyr_weapon_grab(int data, int obj);

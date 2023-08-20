@@ -41,6 +41,9 @@ characters\frost.o \
 characters\blaze.o \
 characters\shaokahn.o \
 characters\goro.o \
+characters\drahmin.o \
+characters\sareena.o \
+characters\quanchi.o \
 characters\character_list.o \
 misc\pselect.o \
 misc\misc_anims.o \
@@ -50,7 +53,7 @@ sound_bank.o \
 pcsx2\rini.o \
 pcsx2\inireader.o \
 settings.o \
-qs.o
+qs.o \
 
 
 PS2_BUILD = 0

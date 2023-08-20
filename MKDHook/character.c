@@ -61,6 +61,10 @@ struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"BLAZE"	, (int)&blaze_file_table	, (int)&blaze_file_table		,"blaze.mko"},
 	{"SHAO KAHN"	, (int)&sk_file_table	, (int)&sk_alt_file_table	,"shaokahn.mko"},
 	{"GORO"	, (int)&goro_file_table	, (int)&goro_alt_file_table	,"goro.mko"},
+	// new
+	{"DRAHMIN"	,(int)&drahmin_file_table	, (int)&drahmin_alt_file_table	,"drahmin.mko"},
+	{"SAREENA"	,(int)&sareena_file_table	, (int)&sareena_alt_file_table	,"sareena.mko"},
+	{"QUAN CHI"	,(int)&quan_file_table	, (int)&quan_alt_file_table	,"quan.mko"},
 };
 #ifndef PS2_BUILD
 void dump_char_table()
@@ -93,62 +97,64 @@ void init_character_hook()
 	init_character_tocs();
 
 	static int val = 0;
-
+	
 	patchShort(0x1326B4, TOTAL_CHARACTERS);
 	patchShort(0x1326F0, TOTAL_CHARACTERS);
 	patchShort(0x130E08, TOTAL_CHARACTERS);
 	patchShort(0x131088, TOTAL_CHARACTERS);
 	patchShort(0x193880, TOTAL_CHARACTERS);
 	patchShort(0x40BEA4, TOTAL_CHARACTERS);
-
+	
 	val = (int)&pCharTable[0];
 	patchInt(0x16D3AC, lui(v0, HIWORD(val)));
 	patchInt(0x16D3AC + 4, ori(v0, v0, LOWORD(val)));
-
+	
 	patchInt(0x1938D8, lui(v0, HIWORD(val)));
 	patchInt(0x1938D8 + 4, ori(v0, v0, LOWORD(val)));
-
+	
 	patchInt(0x1A3ED0, lui(v1, HIWORD(val)));
 	patchInt(0x1A3ED8, ori(v1, v1, LOWORD(val)));
-
+	
 	patchInt(0x1A3FA4, lui(v1, HIWORD(val)));
 	patchInt(0x1A3FAC, ori(v1, v1, LOWORD(val)));
-
+	
 	patchInt(0x264EF4, lui(v1, HIWORD(val)));
 	patchInt(0x264EFC, ori(v1, v1, LOWORD(val)));
-
+	
 	patchInt(0x264F10, lui(v1, HIWORD(val)));
 	patchInt(0x264F18, ori(v1, v1, LOWORD(val)));
-
+	
 
 	patchInt(0x2E5EC8, lui(v0, HIWORD(val)));
 	patchInt(0x2E5EC8 + 4, ori(v0, v0, LOWORD(val)));
 
-	patchInt(0x3EB790, lui(v0, HIWORD(val)));
-	patchInt(0x3EB7A0, ori(v0, v0, LOWORD(val)));
+	// TODO: implement krypt names for new chars when new bios are in somehow
+	//patchInt(0x3EB790, lui(v0, HIWORD(val)));
+	//patchInt(0x3EB7A0, ori(v0, v0, LOWORD(val)));
+	//
 
 	patchInt(0x40BE8C, lui(v0, HIWORD(val)));
 	patchInt(0x40BE8C + 4, ori(v0, v0, LOWORD(val)));
-
+	
 	val += 4;
 	patchInt(0x130DEC, lui(v0, HIWORD(val)));
 	patchInt(0x130DF4, ori(v0, v0, LOWORD(val)));
-
+	
 	patchInt(0x132888, lui(v0, HIWORD(val)));
 	patchInt(0x132888 + 4, ori(v0, v0, LOWORD(val)));
-
+	
 	val += 4;
 	patchInt(0x130DD4, lui(v0, HIWORD(val)));
 	patchInt(0x130DDC, ori(v0, v0, LOWORD(val)));
-
+	
 	patchInt(0x132864, lui(v0, HIWORD(val)));
 	patchInt(0x132864 + 4, ori(v0, v0, LOWORD(val)));
-
-
+	
+	
 	val += 4;
 	patchInt(0x130E10, lui(v0, HIWORD(val)));
 	patchInt(0x130E34, ori(v0, v0, LOWORD(val)));
-
+	
 	patchInt(0x131098, lui(v0, HIWORD(val)));
 	patchInt(0x131098 + 4, ori(v0, v0, LOWORD(val)));
 
@@ -185,6 +191,9 @@ void init_character_tocs()
 	init_blaze_toc();
 	init_sk_toc();
 	init_goro_toc();
+	init_drahmin_toc();
+	init_sareena_toc();
+	init_quan_toc();
 }
 
 int hook_character_lock_status(int id, int param)

@@ -60,6 +60,10 @@ enum characters
 	// mku/gc
 	SHAO_KAHN,
 	GORO,
+	// new characters
+	DRAHMIN,
+	SAREENA,
+	QUAN_CHI,
 
 	TOTAL_CHARACTERS
 };

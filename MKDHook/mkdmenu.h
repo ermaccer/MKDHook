@@ -2,6 +2,7 @@
 #include "mkdeception.h"
 #include "mouse.h"
 #include "types.h"
+#include "characters/character_list.h"
 #include "build_config.h"
 
 //#define SOUNDDEBUG_KEY
@@ -83,6 +84,8 @@ enum eScaleValue {
 	TOTAL_SCALE_VALUES
 };
 
+extern CVector camPos;
+extern CVector camRot;
 
 struct Menu {
 	char m_bActive;

@@ -79,7 +79,8 @@ int load_named_model_from_slot(int slot, char* name, int id, int unk);
 int load_named_model_for_player(char* name, int plr, int id, int unk);
 void unload_section_slot(int slot);
 void wait_for_slot_load(int slot);
-
+int find_section_by_name(char* name);
+void add_art_section(int slot, int section);
 // procs
 
 int create_mkproc_hand_anim(int id, void* pFunc, int* result);

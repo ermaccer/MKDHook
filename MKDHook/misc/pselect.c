@@ -39,15 +39,18 @@ struct mk_file_entry pselect_entry_table[PSELECT_FILES] = {
 	{"body_blaze_alt.sec"	,0, 1},
 	{"body_shaokahn_alt.sec"	,0, 1},
 	{"body_goro_alt.sec"	,0, 1},
+	{"body_drahmin_alt.sec"	,0, 1},
+	{"body_quan_alt.sec"	,0, 1},
+	{"body_sareena_alt.sec"	,0, 1},
 };
 
 // I:\ps2dvd\art\pselect.ssf
 struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[0]	,0,0 },
 
-		{&pselect_entry_table[1]	,0,3896320}, // pselect
-		{&pselect_entry_table[2]	,0,1844992}, // bg
-		{&pselect_entry_table[3]	,0,1528960},  // pz
+		{&pselect_entry_table[1]	,0,4165632}, // pselect
+		{&pselect_entry_table[2]	,0,1948672}, // bg
+		{&pselect_entry_table[3]	,0,1528960}, // pz
 		// ALT RENDERS
 		{&pselect_entry_table[4]	,0,67456},  // ALT
 		{&pselect_entry_table[5]	,0,67456},  // ALT
@@ -80,6 +83,9 @@ struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[32]	,0,67456},  // blaze_alt
 		{&pselect_entry_table[33]	,0,67456},  // shao_alt
 		{&pselect_entry_table[34]	,0,67456},  // goro_alt
+		{&pselect_entry_table[35]	,0,67456},  // drahmin_alt
+		{&pselect_entry_table[36]	,0,67456},  // quan_alt
+		{&pselect_entry_table[37]	,0,67456},  // sareena_alt
 		{0,0,0}
 };
 
@@ -110,6 +116,20 @@ void init_pselect_hook()
 
 	makeJal(0x19593C, pselect_init_hook);
 	makeJal(0x194F94, pselect_init_hook);
+
+	// allocate more ram to pselect
+
+	// ART P1 BUFFER 67584
+	// ART P2 BUFFER 67584
+	// ART PSELECT  6676480 6,6MB -> 6,8MB
+
+	int pselRAM = 6935168;
+	int partRAM = 67584;
+
+	patchInt(0x58559C, pselRAM  + partRAM + partRAM);
+	patchInt(0x585014, pselRAM);
+	patchInt(0x58501C, partRAM);
+	patchInt(0x585024, partRAM);
 }
 
 void load_new_pselect()

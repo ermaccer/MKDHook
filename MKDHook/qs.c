@@ -20,7 +20,7 @@ void p_quickstart()
 	plr1->state = 1;
 	plr2->id = 1;
 	if (!(settings.qs_mode == MODE_PRACTICE))
-	plr2->state = 1;
+		plr2->state = 1;
 
 	*(int*)0x628F34 = 1;
 

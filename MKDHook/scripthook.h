@@ -30,12 +30,17 @@ enum ECommands {
 	jax_taunt = 2001,
 	freeze_victim = 2002,
 	force_fatality_end = 2003,
+	// removed in mkd
+	camera_setup_simple_rotation = 2004,
 
+	start_da_fatality_cam = 2005,
+	quan_teleport = 2006,
+	dummy_function = 2007,
 	TOTAL_COMMANDS = 2100
 };
 
 extern int script_function_table[TOTAL_COMMANDS];
-extern int debugVar[2];
+extern int debugVar[4];
 extern int cached_aux_weapon[2];
 
 void init_script_hook();
@@ -60,10 +65,12 @@ void _reset_blaze_flaming_limbs();
 void _freeze_victim();
 void _force_fatality_end();
 void _reset_fake_bone_matcher();
+void _camera_setup_simple_rotation();
+void _start_da_fatality_cam();
 void mku_kitana_curl_fx();
 void mku_kitana_curl_pos_fix(int obj, int id, CVector* pos);
 int mku_kitana_sfx_fix(int id);
-
+void _quan_teleport();
 
 void psp_reset_fake_bone_matcher(int obj, int a2, int a3, int a4, int a5, int a6, float flt);
 

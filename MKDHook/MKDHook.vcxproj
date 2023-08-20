@@ -49,6 +49,7 @@
     <ClCompile Include="characters\blaze.c" />
     <ClCompile Include="characters\character_list.c" />
     <ClCompile Include="characters\dragonking.c" />
+    <ClCompile Include="characters\drahmin.c" />
     <ClCompile Include="characters\ermac.c" />
     <ClCompile Include="characters\frost.c" />
     <ClCompile Include="characters\goro.c" />
@@ -61,6 +62,8 @@
     <ClCompile Include="characters\mkda_mokap.c" />
     <ClCompile Include="characters\mkda_raiden.c" />
     <ClCompile Include="characters\noob.c" />
+    <ClCompile Include="characters\quanchi.c" />
+    <ClCompile Include="characters\sareena.c" />
     <ClCompile Include="characters\scorpion.c" />
     <ClCompile Include="characters\shaokahn.c" />
     <ClCompile Include="characters\smoke.c" />
@@ -111,6 +114,7 @@
     <ClInclude Include="characters\blaze.h" />
     <ClInclude Include="characters\character_list.h" />
     <ClInclude Include="characters\dragonking.h" />
+    <ClInclude Include="characters\drahmin.h" />
     <ClInclude Include="characters\ermac.h" />
     <ClInclude Include="characters\frost.h" />
     <ClInclude Include="characters\goro.h" />
@@ -123,6 +127,8 @@
     <ClInclude Include="characters\mkda_mokap.h" />
     <ClInclude Include="characters\mkda_raiden.h" />
     <ClInclude Include="characters\noob.h" />
+    <ClInclude Include="characters\quanchi.h" />
+    <ClInclude Include="characters\sareena.h" />
     <ClInclude Include="characters\scorpion.h" />
     <ClInclude Include="characters\shaokahn.h" />
     <ClInclude Include="characters\smoke.h" />

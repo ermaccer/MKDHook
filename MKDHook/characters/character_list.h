@@ -15,10 +15,13 @@
 #include "noob.h"
 
 
-//tweaks
+// tweaks
 #include "dragonking.h"
 // all NEW!
 #include "sonya.h"
+#include "drahmin.h"
+#include "sareena.h"
+#include "quanchi.h"
 // mku ports
 #include "kitana.h"
 #include "jax.h"

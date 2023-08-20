@@ -9,7 +9,7 @@ int  current_select = 0;
 int  select_timer = 0;
 int  sound = 0; 
 
-select_screen_entry pSelectTable[27] = {
+select_screen_entry pSelectTable[24] = {
 	{KENSHI	, 86	, "HEAD_KENSHI"	, "HEAD_KENSHI_LOCKED"	, "BODY_KENSHI"	, "body_kenshi_alt.sec"	, "4"	, "TAI CHI"	, "JUDO"	, "KATANA"},
 	{JADE	, 84	, "HEAD_JADE"	, "HEAD_JADE_LOCKED"	, "BODY_JADE"	, "body_jade_alt.sec"	, "5"	, "FAN ZI"	, "KUO SHOU"	, "BOJUTSU"},
 	{SCORPION	, 95	, "HEAD_SCORPION"	, "HEAD_SCORPION"	, "BODY_SCORPION"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
@@ -38,7 +38,7 @@ select_screen_entry pSelectTable[27] = {
 	{LIU_KANG	, 90	, "HEAD_LIUKANG"	, "HEAD_LIUKANG_LOCKED"	, "BODY_LIUKANG"	, "body_liukang_alt.sec"	, "5"	, "JUN FAN"	, "PAO CHUI"	, "NUNCHAKU"},
 };
 
-select_screen_entry pSelectTableNew[27] = {
+select_screen_entry pSelectTableNew[24] = {
 		{SONYA,  SOUND_SONYA_SELECT	, "HEAD_SONYA"	, "HEAD_RANDOM"	, "BODY_SONYA"	, "body_sonya_alt.sec"	, "1"	, "KENPO"	, "TAE KWON DO"	, "KALI STICKS"},
 		{KITANA, SOUND_KITANA_SELECT, "HEAD_KITANA"	, "HEAD_RANDOM"	, "BODY_KITANA"	, "body_kitana_alt.sec"	, "4"	, "EAGLE CLAW"	, "BA GUA"	, "STEEL FAN"},
 		{JAX,  SOUND_JAX_SELECT	, "HEAD_JAX"	, "HEAD_RANDOM"	, "BODY_JAX"	, "body_jax_alt.sec"	, "2"	, "MUAY THAI"	, "JUDO"	, "TONFA"},
@@ -48,10 +48,18 @@ select_screen_entry pSelectTableNew[27] = {
 		{BLAZE,  SOUND_BLAZE_SELECT	, "HEAD_BLAZE"	, "HEAD_RANDOM"	, "BODY_BLAZE"	, "body_blaze_alt.sec"	, "3"	, "HAPKIDO"	, "JEET KUNE DO"	, "XING YI"},
 		{GORO,  SOUND_GORO_SELECT	, "HEAD_GORO"	, "HEAD_RANDOM"	, "BODY_GORO"	, "body_goro_alt.sec"	, "3"	, "SHOKAN"	, "KUATAN"	, "DRAGON FANGS"},
 
-		{0,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{0,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{0,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{DRAHMIN, SOUND_DRAHMIN_SELECT	, "HEAD_DRAHMIN"	, "HEAD_RANDOM"	, "BODY_DRAHMIN"	, "body_drahmin_alt.sec"	, "2"	, "HUNG GAR"	, "WRESTLING"	, "IRON CLUB"},
+		{SAREENA, SOUND_SAREENA_SELECT	, "HEAD_SAREENA"	, "HEAD_RANDOM"	, "BODY_SAREENA"	, "body_sareena_alt.sec"	, "3"	, "BAJI QUAN"	, "YUAN YANG"	, "DEMON FANG"},
+		{QUAN_CHI, SOUND_QUAN_SELECT	, "HEAD_QUAN"	, "HEAD_RANDOM"	, "BODY_QUAN"	, "body_quan_alt.sec"	, "4"	, "TANG SOO DO"	, "ESCRIMA"	, "BROADSWORDS"},
+
 		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		
+	    {0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+
 		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
@@ -59,18 +67,13 @@ select_screen_entry pSelectTableNew[27] = {
 		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 
-		{-1,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 
 };
 
 #ifndef PS2_BUILD
-select_screen_entry pSelectTableNPC[27] = {
+select_screen_entry pSelectTableNPC[24] = {
 		{MONSTER, -1	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "2"	, "HAPKIDO"	, "MOI FAH"	, "MUGAI RYU"},
 		{ONAGA,  13	, "HEAD_KOBRA_LOCKED"	, "HEAD_KOBRA_LOCKED"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	,  "1"	, "DRAGON"	, ""	, ""},
 		{SHUJINKO_13	, 96	, "HEAD_KOBRA_LOCKED"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, "5"	, "MANTIS"	, "SHAOLIN FIST"	, "DAN TIEN DAO"},

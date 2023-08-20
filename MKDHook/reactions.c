@@ -347,6 +347,20 @@ reaction_table_entry reaction_table[TOTAL_REACTIONS] = {
 // END OF MKU
 	// frost tongbei 2 NOTE: this replaces some unused reaction slot in MKU but i'd rather add it as new to not break anything
 	{ TYPE_REACTIONS_FUNCTION, 18, 5, 2, 0x201 }, // 331
+	// wrestling throws from mka
+	{ TYPE_REACTIONS_FUNCTION, 153, 0, 0, 0x52 }, // 332
+	{ TYPE_REACTIONS_FUNCTION, 154, 0, 0, 0x52 }, // 333
+	// wrestling foot throw
+	{ TYPE_REACTIONS_FUNCTION, 155, 5, 2, 0x201 }, // 334
+	{ TYPE_REACTIONS_FUNCTION, 156, 5, 2, 0x201 }, // 335
+	// sareena throw
+	{ TYPE_REACTIONS_FUNCTION, 157, 0, 0, 0x11 }, // 336
+	// quan stomp
+	{ TYPE_REACTIONS_FUNCTION, 158, 4, 2, 0x12 }, // 337
+	// quan skull
+	{ TYPE_REACTIONS_FUNCTION, 159, 0, 0, 1 }, // 338
+	// quan swords
+	{ TYPE_REACTIONS_FUNCTION, 160, 5, 1, 769 },//  339
 };
 
 int onaga_remap_table[TOTAL_REACTIONS] = {
@@ -681,6 +695,15 @@ int onaga_remap_table[TOTAL_REACTIONS] = {
 	-1, // 328
 	-1, // 329
 	-1, // 330
+	279, // 331
+	278, // 332
+	278, // 333
+	278, // 334
+	278, // 335
+	278, // 336
+	278, // 337
+	278, // 338
+	279, // 339
 };
 
 static int goro_lower_arms_atk[] = {
