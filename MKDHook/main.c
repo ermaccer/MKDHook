@@ -29,9 +29,9 @@ int version_hook(int id, int font, char* text, int x, int y, int unk)
 {
 
 #ifdef PS2_BUILD
-    static const char* versionText = "UMKD V4 BY ERMACCER (PS2)" ;
+    static const char* versionText = "UMKD V4.1 BY ERMACCER (PS2)" ;
 #else
-    static const char* versionText = "UMKD V4 BY ERMACCER ";
+    static const char* versionText = "UMKD V4.1 BY ERMACCER ";
 #endif // PS2_BUILD
 
     return string_left_xy(id, font, versionText, x - 350, y + 40, unk);

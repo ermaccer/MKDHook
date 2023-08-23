@@ -59,7 +59,7 @@ struct mk_toc_entry sareena_file_table[SAREENA_FILES + 1] = {
 		{&sareena_entry_table[1]	,0,	   585856 },	// sareena.sec
 		{&sareena_entry_table[2]	,0,    585856 },	// sareena_ap.sec
 		{&sareena_entry_table[3]	,0,    291200 },	// sh_sareena.sec
-		{&sareena_entry_table[4]	,0,    28704  },	// sareena.mko
+		{&sareena_entry_table[4]	,0,    28736  },	// sareena.mko
 		{&sareena_entry_table[5]	,0,    10164  },	// fight_fx.mko
 		{&sareena_entry_table[6]	,0,    21368  },	// blood_fx.mko
 		{&sareena_entry_table[7]	,0,    8192   },	// sareena_fx.mko
@@ -108,7 +108,7 @@ struct mk_toc_entry sareena_alt_file_table[SAREENA_FILES + 1] = {
 		{&sareena_alt_entry_table[1]	,0,	   574592 },	// sareena_alt.sec
 		{&sareena_alt_entry_table[2]	,0,    525440 },	// sareena_alt_ap.sec
 		{&sareena_alt_entry_table[3]	,0,    291200 },	// sh_sareena.sec
-		{&sareena_alt_entry_table[4]	,0,    28704  },	// sareena.mko
+		{&sareena_alt_entry_table[4]	,0,    28736  },	// sareena.mko
 		{&sareena_alt_entry_table[5]	,0,    10164  },	// fight_fx.mko
 		{&sareena_alt_entry_table[6]	,0,    21368  },	// blood_fx.mko
 		{&sareena_alt_entry_table[7]	,0,    8200   },	// sareena_fx.mko

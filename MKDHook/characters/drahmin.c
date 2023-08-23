@@ -19,7 +19,7 @@ struct scan_action_dual scan_drahmin_1 = {
 // clock
 struct scan_action scan_drahmin_2 = {
 	0,
-	0x300001E,
+	0x3000023,
 	13,
 	MOVE_FORWARD,
 	MOVE_FORWARD,
