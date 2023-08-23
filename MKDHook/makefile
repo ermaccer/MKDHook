@@ -56,7 +56,7 @@ settings.o \
 qs.o \
 
 
-PS2_BUILD = 1
+PS2_BUILD = 0
 
 NEWLIB_NANO = 1
 KERNEL_NOPATCH = 1
