@@ -18,7 +18,7 @@ struct mk_file_entry ladder_entry_table[LADDER_FILES] = {
 struct mk_toc_entry ladder_file_table[LADDER_FILES + 1] = {
 		{&ladder_entry_table[0]	,0,0 },
 
-		{&ladder_entry_table[1]	,0,	   1900800},	// ladder.sec
+		{&ladder_entry_table[1]	,0,	   1935360},	// ladder.sec
 		{&ladder_entry_table[2]	,0,    6688 },		// ladder.mko
 		{&ladder_entry_table[3]	,0,    47360},	// arcade_ladder_anims.sec
 
@@ -65,7 +65,10 @@ short characters[] = {
 	GORO,
 	DRAHMIN,
 	SAREENA,
-	QUAN_CHI
+	QUAN_CHI,
+	SHANG_TSUNG,
+	KUNG_LAO,
+	CAGE
 };
 
 short backgrounds[] = {
@@ -90,7 +93,8 @@ short backgrounds[] = {
 	BGS_SLAUGHTERHOUSE,
 	BGS_THEPIT,
 	BGS_YINYANG,
-	BGS_KATAKOMBS
+	BGS_KATAKOMBS,
+	BGS_ACIDBATH
 };
 
 ladder_model_entry ladder_models[] = {
@@ -128,6 +132,9 @@ ladder_model_entry ladder_models[] = {
 	{DRAHMIN, "kon_drahmin.sec"},
 	{SAREENA, "kon_sareena.sec"},
 	{QUAN_CHI,"kon_quanchi.sec"},
+	{SHANG_TSUNG, "kon_shangmk5.sec"},
+	{KUNG_LAO, "kon_kunglao.sec"},
+	{CAGE, "kon_cage.sec"},
 	{-1, ""},
 };
 
@@ -168,6 +175,7 @@ ladder_stage_entry ladder_stages[] = {
 	{0},
 	{0},
 	{BGS_KATAKOMBS, "LADDER_KATAKOMBS", 0x140, 0x49}, // 35
+	{BGS_ACIDBATH, "LADDER_ACIDBATH", 0x140, 0x49}, // 36
 
 };
 

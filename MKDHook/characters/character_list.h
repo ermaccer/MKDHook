@@ -22,6 +22,9 @@
 #include "drahmin.h"
 #include "sareena.h"
 #include "quanchi.h"
+#include "shangtsung.h"
+#include "kunglao.h"
+#include "cage.h"
 // mku ports
 #include "kitana.h"
 #include "jax.h"

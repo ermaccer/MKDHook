@@ -741,9 +741,9 @@ void setFov(float value)
 
 void Menu_Init_Vars()
 {
-	m_bFreeCamera = 0;
-	m_bKonquestFPCam = 0;
-	m_bKonquestFPCamView = 0;
+		m_bFreeCamera = 0;
+		m_bKonquestFPCam = 0;
+		m_bKonquestFPCamView = 0;
 }
 
 void Menu_K_Reset()
@@ -890,7 +890,6 @@ void Konquest_Process_Cameras()
 
 	if (check_switch(0, PAD_L3))
 		Menu_Toggle_KHud();
-
 
 	if (m_bKonquestFPCam)
 		konquest_camera();

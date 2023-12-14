@@ -1,6 +1,29 @@
 #include "object.h"
 
 
+int get_new_mkobj(int frameID)
+{
+	return 	((int(*)(int, int))0x13D1C0)(frameID, 0);
+}
+
+int check_item_obj(int obj)
+{
+	int ptr = 0;
+	if (obj)
+	{
+		ptr = *(int*)(obj);
+		if (ptr)
+		{
+			if (*(int*)(ptr + 4) != *(int*)(obj + 4))
+				ptr = 0;
+		}
+		else
+			ptr = 0;
+	}
+
+	return ptr;
+}
+
 int mk_insert(int obj, int unk)
 {
 	return 	((int(*)(int, int))0x12E2B0)(obj, unk);
@@ -9,6 +32,11 @@ int mk_insert(int obj, int unk)
 int insert_fgnd_mkobj(int obj)
 {
 	return 	((int(*)(int))0x13D3E0)(obj);
+}
+
+int insert_particle_mkobj(int obj)
+{
+	return 	((int(*)(int))0x13D3C0)(obj);
 }
 
 void destroy_mkobj(int obj)
@@ -21,9 +49,45 @@ void update_mkobj(int obj)
 	((int(*)(int))0x13A9D0)(obj);
 }
 
+void obj_set_pos(int obj, CVector* pos)
+{
+	((int(*)(int, CVector*))0x1363F0)(obj, pos);
+}
+
 void obj_set_ang_vel(int obj, int vel)
 {
 	((int(*)(int, int))0x1362F0)(obj, vel);
+}
+
+void obj_set_pos_vel(int obj, CVector* vel)
+{
+	((int(*)(int, CVector*))0x136350)(obj, vel);
+}
+
+void obj_set_gravity(int obj, float val)
+{
+	*(int*)(obj + 8) = *(int*)(obj + 8) & 0xFFFFFF7F | 0x80;
+	*(float*)(obj + 48) = val;
+}
+
+void set_obj_flag(int obj, int flag, int status)
+{
+	int newFlag = 0;
+	if (status)
+		newFlag = *(int*)(obj + 8) | (1 << flag);
+	else
+		newFlag = *(int*)(obj + 8) & ~(1 << flag);
+	*(int*)(obj + 8) = newFlag;
+}
+
+void obj_set_bone_collapse_flag(int obj, int id)
+{
+	((int(*)(int, int))0x1384D0)(obj, id);
+}
+
+void obj_clear_bone_collapse_flag(int obj, int id)
+{
+	((int(*)(int, int))0x138490)(obj, id);
 }
 
 void get_matrix_right(int obj, CVector* mat)
@@ -59,6 +123,20 @@ void scale_bone(int object, int id, float scale)
 		bone->scale.y = scale;
 		bone->scale.z = scale;
 	}
+}
+
+void collapse_bone(int object, int id, int status)
+{
+	int numBones = *(int*)(object + 76);
+	int skeleton = *(int*)(object + 72);
+
+	if (id > numBones)
+		return;
+
+	if (status)
+		obj_set_bone_collapse_flag(object, id);
+	else
+		obj_clear_bone_collapse_flag(object, id);
 }
 
 

@@ -42,14 +42,17 @@ struct mk_file_entry pselect_entry_table[PSELECT_FILES] = {
 	{"body_drahmin_alt.sec"	,0, 1},
 	{"body_quan_alt.sec"	,0, 1},
 	{"body_sareena_alt.sec"	,0, 1},
+	{"body_shang_alt.sec"	,0, 1},
+	{"body_kung_alt.sec"	,0, 1},
+	{"body_cage_alt.sec"	,0, 1},
 };
 
 // I:\ps2dvd\art\pselect.ssf
 struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[0]	,0,0 },
 
-		{&pselect_entry_table[1]	,0,4165632}, // pselect
-		{&pselect_entry_table[2]	,0,1948672}, // bg
+		{&pselect_entry_table[1]	,0,4402304}, // pselect
+		{&pselect_entry_table[2]	,0,1998848}, // bg
 		{&pselect_entry_table[3]	,0,1528960}, // pz
 		// ALT RENDERS
 		{&pselect_entry_table[4]	,0,67456},  // ALT
@@ -86,6 +89,9 @@ struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[35]	,0,67456},  // drahmin_alt
 		{&pselect_entry_table[36]	,0,67456},  // quan_alt
 		{&pselect_entry_table[37]	,0,67456},  // sareena_alt
+		{&pselect_entry_table[38]	,0,67456},  // shang_alt
+		{&pselect_entry_table[39]	,0,67456},  // kung_alt
+		{&pselect_entry_table[40]	,0,67456},  // cage_alt
 		{0,0,0}
 };
 
@@ -119,17 +125,19 @@ void init_pselect_hook()
 
 	// allocate more ram to pselect
 
-	// ART P1 BUFFER 67584
-	// ART P2 BUFFER 67584
-	// ART PSELECT  6676480 6,6MB -> 6,8MB
 
-	int pselRAM = 6935168;
+	int pselRAM = 7135168;
 	int partRAM = 67584;
 
-	patchInt(0x58559C, pselRAM  + partRAM + partRAM);
-	patchInt(0x585014, pselRAM);
-	patchInt(0x58501C, partRAM);
-	patchInt(0x585024, partRAM);
+	static int newPselectLayout[] = {
+		0x6A,	PSELECT_MAIN_BUFFER,	// main buffer
+		0x6B,	PSELECT_P1_BUFFER,		// p1 alt art
+		0x6C,	PSELECT_P2_BUFFER,		// p2 alt art 
+		0xFFFFFFFF, 0
+	};
+
+	patchInt(0x58559C, PSELECT_MAIN_BUFFER + PSELECT_P1_BUFFER + PSELECT_P2_BUFFER);
+	patchInt(0x585598, (int)&newPselectLayout[0]);
 }
 
 void load_new_pselect()

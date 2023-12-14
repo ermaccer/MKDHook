@@ -65,6 +65,9 @@ struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"DRAHMIN"	,(int)&drahmin_file_table	, (int)&drahmin_alt_file_table	,"drahmin.mko"},
 	{"SAREENA"	,(int)&sareena_file_table	, (int)&sareena_alt_file_table	,"sareena.mko"},
 	{"QUAN CHI"	,(int)&quan_file_table	, (int)&quan_alt_file_table	,"quan.mko"},
+	{"SHANG TSUNG"	, (int)&shang_file_table	, (int)&shang_alt_file_table	,"shangtsung.mko"},
+	{"KUNG LAO"	, (int)&kunglao_file_table	, (int)&kunglao_alt_file_table	,"kunglao.mko"},
+	{"CAGE"	, (int)&cage_file_table	, (int)&cage_alt_file_table	,"cage.mko"},
 };
 #ifndef PS2_BUILD
 void dump_char_table()
@@ -194,6 +197,9 @@ void init_character_tocs()
 	init_drahmin_toc();
 	init_sareena_toc();
 	init_quan_toc();
+	init_shang_toc();
+	init_kunglao_toc();
+	init_cage_toc();
 }
 
 int hook_character_lock_status(int id, int param)

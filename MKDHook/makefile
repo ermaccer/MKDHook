@@ -44,6 +44,9 @@ characters\goro.o \
 characters\drahmin.o \
 characters\sareena.o \
 characters\quanchi.o \
+characters\shangtsung.o \
+characters\kunglao.o \
+characters\cage.o \
 characters\character_list.o \
 misc\pselect.o \
 misc\misc_anims.o \

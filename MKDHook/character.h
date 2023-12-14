@@ -64,6 +64,9 @@ enum characters
 	DRAHMIN,
 	SAREENA,
 	QUAN_CHI,
+	SHANG_TSUNG,
+	KUNG_LAO,
+	CAGE,
 
 	TOTAL_CHARACTERS
 };

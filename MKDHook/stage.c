@@ -50,6 +50,7 @@ struct stage_info_entry pStageTable[] = {
 	{0x5A60C0	, "nexus_nis.mko"	, 0	,0,},
 	// new
 	{(int)&katakombs_file_table[0]	, "katakombs.mko"	, 0	,0,},
+	{(int)&acidbath_file_table[0]	, "acidbath.mko"	, 0	,0,},
 	// clones for dojo
 	{0x5A4790	, "earth_1.mko"	, 0	,0,},
 	{0x5A5AC0	, "netherrealm_1.mko"	, 0	,4,},
@@ -84,6 +85,7 @@ struct stage_select_entry pStageSelectNormal[] = {
 	{BGS_NEXUS_ARENA	, "NEXUS ARENA"	,"BGS_NEXUS"	, 1	},
 	// NEW
 	{BGS_KATAKOMBS,	"KATAKOMBS", "BGS_KATAKOMBS"	, 0},
+	{BGS_ACIDBATH,	"ACIDBATH", "BGS_ACIDBATH"	, 0},
 	// KONQUEST DOJOS
 	{BGS_EARTH_1_DOJO,	"EARTH DOJO", "BGS_EARTHDOJO"	, 0},
 	{BGS_NETHERREALM_DOJO,	"NETHERREALM DOJO", "BGS_NETHERDOJO"	, 0},
@@ -216,6 +218,7 @@ char* hook_ladder_stage_name(int id)
 		switch (stage_id)
 		{
 		case BGS_KATAKOMBS: return "KATAKOMBS";
+		case BGS_ACIDBATH: return "ACIDBATH";
 		default:
 			return "TODONAME";
 			break;

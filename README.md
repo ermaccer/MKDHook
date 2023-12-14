@@ -1,6 +1,13 @@
-# MKDHook
 
-Read more:
+<p align="center"><img src=https://i.imgur.com/Hjf4Gsg.png></p>
+
+<p align="center">MKDHook - base framework for all code changes in UMKD</p>
+
+
+
+
+
+### Previous standalone version:
 https://ermaccer.github.io/posts/mkdhook/
 
 # Building

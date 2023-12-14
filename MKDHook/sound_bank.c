@@ -177,6 +177,9 @@ sbank_entry sbank_data[TOTAL_SOUND_BANKS] = {
 	{0, 0, 27, "fighter_goro", 0, 0, 0, 0, 168 }, // 168
 	{0, 0, 30, "c_drahmin", 0, 0, 0, 0, 169 }, //  169
 	{0, 0, 31, "c_quanchi", 0, 0, 0, 0, 170 }, //  170
+	{0, 0, 32, "c_shangtsung", 0, 0, 0, 0, 171 }, //  171
+	{0, 0, 33, "c_kunglao", 0, 0, 0, 0, 172 }, //  172
+	{0, 0, 34, "c_cage", 0, 0, 0, 0, 173 }, //  173
 };
 
 void init_sound_bank_hook()

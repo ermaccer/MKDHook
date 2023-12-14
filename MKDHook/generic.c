@@ -157,10 +157,15 @@ int fatality_lock()
 
 	if (p1 && p2)
 	{
+		if (p1->characterID == KUNG_LAO && p1->life == 0.0f && p1->flags & 1)
+			kunglao_fatality_hide_hat(0, p1->pObject);
+		if (p2->characterID == KUNG_LAO && p2->life == 0.0f && p2->flags & 1)
+			kunglao_fatality_hide_hat(1, p2->pObject);
+
 		if (p1->characterID == BLAZE || p2->characterID == BLAZE)
 		{
 			if (!settings.blaze_enable_fatalities)
-			return 0;
+				return 0;
 		}
 
 	}
@@ -189,6 +194,7 @@ int death_traps_lock()
 float hook_plyr_start_proc()
 {
 	blaze_reset_event();
+	shangtsung_reset_event();
 	return ((float(*)())0x1315D0)();
 }
 

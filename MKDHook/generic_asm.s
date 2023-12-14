@@ -5,7 +5,6 @@
 .globl freeze_reaction_patchP2
 
 
-
 plyr_weapon_grab_direct:
 	addiu   $sp, -32
     
@@ -25,8 +24,6 @@ plyr_weapon_grab_direct:
 	jr      $ra
 	addiu   $sp, 32
 
-
-	
 
 # for some reason on ps2 frost freeze functions are delayed
 
@@ -51,5 +48,3 @@ freeze_reaction_patchP2:
 
 	1:
 	j		0x216070
-
-

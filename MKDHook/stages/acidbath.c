@@ -9,8 +9,8 @@ struct mk_file_entry acidbath_entry_table[ACIDBATH_FILES] = {
 
 struct mk_toc_entry acidbath_file_table[ACIDBATH_FILES + 1] = {
 		{&acidbath_entry_table[0]	,0,0 },
-		{&acidbath_entry_table[1]	,0,1638124},
-		{&acidbath_entry_table[2]	,0,2176},
+		{&acidbath_entry_table[1]	,0,1636736},
+		{&acidbath_entry_table[2]	,0,1344},
 		{0,0,0}
 };
 

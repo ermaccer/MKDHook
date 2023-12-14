@@ -13,6 +13,7 @@ extern void freeze_reaction_patch();
 extern void freeze_reaction_patchP2();
 
 extern void plyr_weapon_grab_direct(int data, int obj);
+extern void obj_set_rotation_from_target(int obj, CVector* target);
 
 void patch_weapon_grab(int data, int obj);
 void patch_weapon_show(int data, int unk, int entry);

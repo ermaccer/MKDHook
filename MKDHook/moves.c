@@ -69,6 +69,9 @@ int scan_table_1_jump_table[] = {
 	SCAN1_UNIVERSAL_JUMP, //  UMKD_DRAHMIN
 	SCAN1_UNIVERSAL_JUMP, //  UMKD_SAREENA
 	SCAN1_UNIVERSAL_JUMP, //  UMKD_QUANCHI
+	SCAN1_UNIVERSAL_JUMP, //  UMKD_SHANGTSUNG
+	SCAN1_UNIVERSAL_JUMP, //  UMKD_KUNGLAO
+	SCAN1_UNIVERSAL_JUMP, //  UMKD_CAGE
 };
 
 
@@ -127,6 +130,9 @@ int scan_table_2_jump_table[] = {
 	SCAN2_UNIVERSAL_JUMP, //  UMKD_DRAHMIN
 	0x20239C, //  UMKD_SAREENA
 	0x20239C, //  UMKD_QUANCHI
+	SCAN2_UNIVERSAL_JUMP, //  UMKD_SHANGTSUNG
+	0x20239C, //  UMKD_KUNGLAO
+	0x20239C, //  UMKD_CAGE
 };
 
 int scan_table_3_jump_table[] = {
@@ -184,6 +190,9 @@ int scan_table_3_jump_table[] = {
 	0x201F64, //  UMKD_DRAHMIN
 	0x201F64, //  UMKD_SAREENA
 	SCAN3_UNIVERSAL_JUMP, //  UMKD_QUAN
+	SCAN3_UNIVERSAL_JUMP, //  UMKD_SHANGTSUNG
+	SCAN3_UNIVERSAL_JUMP, //	UMKD_KUNGLAO,
+	SCAN3_UNIVERSAL_JUMP, //	UMKD_CAGE
 };
 
 int scan_table_4_jump_table[] = {
@@ -241,6 +250,9 @@ int scan_table_4_jump_table[] = {
 	SCAN4_UNIVERSAL_JUMP, //	UMKD_DRAHMIN
 	SCAN4_UNIVERSAL_JUMP, // UMKD_SAREENA
 	SCAN4_UNIVERSAL_JUMP, //  UMKD_QUAN
+	0x201B0C, //  UMKD_SHANGTSUNG
+	SCAN4_UNIVERSAL_JUMP, //	UMKD_KUNGLAO,
+	SCAN4_UNIVERSAL_JUMP, //	UMKD_CAGE
 };
 
 
@@ -358,6 +370,15 @@ int swap_scan_table_1()
 		case QUAN_CHI:
 			scan_action_set = (int)&scan_quan_1;
 			break;
+		case SHANG_TSUNG:
+			scan_action_set = (int)&scan_shang_1;
+			break;
+		case KUNG_LAO:
+			scan_action_set = (int)&scan_kunglao_1;
+			break;
+		case CAGE:
+			scan_action_set = (int)&scan_cage_1;
+			break;
 		default:
 			scan_action_set = (int)&scan_null;
 			break;
@@ -404,6 +425,9 @@ int swap_scan_table_2()
 			break;
 		case DRAHMIN:
 			scan_action_set = (int)&scan_drahmin_2;
+			break;
+		case SHANG_TSUNG:
+			scan_action_set = (int)&scan_shang_2;
 			break;
 		default:
 			scan_action_set = (int)&scan_null;
@@ -466,6 +490,15 @@ int swap_scan_table_3()
 			else
 				scan_action_set = (int)&scan_null;
 			break;
+		case SHANG_TSUNG:
+			scan_action_set = (int)&scan_shang_3;
+			break;
+		case KUNG_LAO:
+			scan_action_set = (int)&scan_kunglao_3;
+			break;
+		case CAGE:
+			scan_action_set = (int)&scan_cage_3;
+			break;
 		default:
 			scan_action_set = (int)&scan_null;
 			break;
@@ -514,6 +547,12 @@ int swap_scan_table_4()
 			break;
 		case QUAN_CHI:
 			scan_action_set = (int)&scan_quan_4;
+			break;
+		case KUNG_LAO:
+			scan_action_set = (int)&scan_kunglao_4;
+			break;
+		case CAGE:
+			scan_action_set = (int)&scan_cage_4;
 			break;
 		default:
 			scan_action_set = (int)&scan_null;

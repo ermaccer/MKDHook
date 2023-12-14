@@ -29,14 +29,24 @@ int version_hook(int id, int font, char* text, int x, int y, int unk)
 {
 
 #ifdef PS2_BUILD
-    static const char* versionText = "UMKD V4.1 BY ERMACCER (PS2)" ;
+    static const char* versionText = "UMKD V5 BY ERMACCER (PS2)" ;
 #else
-    static const char* versionText = "UMKD V4.1 BY ERMACCER ";
+    static const char* versionText = "UMKD V5 BY ERMACCER ";
 #endif // PS2_BUILD
 
     return string_left_xy(id, font, versionText, x - 350, y + 40, unk);
 }
 
+void null() {}
+#ifndef PS2_BUILD
+void konquest_hook_draw_distance()
+{
+    ((void(*)())0x308B50)();
+    int konquest_pdata = *(int*)(0x5D6F40);
+    int level_info = *(int*)(konquest_pdata + 40);
+    *(float*)(level_info + 56) *= 2.0f;
+}
+#endif 
 
 void init()
 {
@@ -78,8 +88,15 @@ void init()
    makeJal(0x15C1D4, version_hook);
    makeJal(0x15C1F8, version_hook);
 
+
 #ifndef PS2_BUILD
-   _printf("MKDHook init! Debug var ptr: %X\n", &debugVar);
+   if (settings.extended_konquest_draw_distance)
+      makeJal(0x309280, konquest_hook_draw_distance);
+#endif
+
+
+#ifndef PS2_BUILD
+   _printf("MKDHook init! Debug var ptr: %X %X\n", &debugVar, &shang_emitter_particle_handle[0][0]);
 
     if (settings.enable_quick_start)
         makeJmp(0x240220, p_quickstart);

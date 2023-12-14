@@ -10,17 +10,29 @@ typedef struct {
 
 }bone_data;
 
+
+int get_new_mkobj(int frameID);
+int check_item_obj(int obj);
+
 int mk_insert(int obj, int unk);
 int insert_fgnd_mkobj(int obj);
+int insert_particle_mkobj(int obj);
 void destroy_mkobj(int obj);
 void update_mkobj(int obj);
+void obj_set_pos(int obj, CVector* pos);
 void obj_set_ang_vel(int obj, int vel);
+void obj_set_pos_vel(int obj, CVector* vel);
+void obj_set_gravity(int obj, float val);
+void set_obj_flag(int obj, int flag, int status);
+void obj_set_bone_collapse_flag(int obj, int id);
+void obj_clear_bone_collapse_flag(int obj, int id);
 
 void get_matrix_right(int obj, CVector* mat);
 void get_matrix_forward(int obj, CVector* mat);
 void get_bone_pos(int obj, int id, CVector* pos);
 
 void scale_bone(int object, int id, float scale);
+void collapse_bone(int object, int id, int status);
 
 int get_id_from_object(int obj);
 void obj_set_color_for_all_materials(int obj, char* color);

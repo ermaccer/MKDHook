@@ -216,8 +216,9 @@ void get_taunts_performed()
 {
 	int args = *(int*)(CURRENT_ARGS);
 	int result = randu(3);
-	int* ac = (int*)ACTIVE_SCRIPT;
-	ac[11] = result;
+
+	int script = *(int*)(ACTIVE_SCRIPT);
+	*(int*)(script + 44) = result;
 }
 
 void increment_taunts_performed()

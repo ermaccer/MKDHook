@@ -219,6 +219,15 @@
     <ClCompile Include="characters\quanchi.c">
       <Filter>source\characters\umkd</Filter>
     </ClCompile>
+    <ClCompile Include="characters\shangtsung.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\kunglao.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\cage.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ps2mem.h">
@@ -420,6 +429,15 @@
       <Filter>source\characters\umkd</Filter>
     </ClInclude>
     <ClInclude Include="characters\quanchi.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\shangtsung.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\kunglao.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\cage.h">
       <Filter>source\characters\umkd</Filter>
     </ClInclude>
   </ItemGroup>

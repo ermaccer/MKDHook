@@ -85,6 +85,17 @@ void pfx_bind_emitter_num_to_obj_bone(int pfx, int obj, int boneID, int pfxID)
 	((void(*)(int, int, int, int))0x217480)(pfx, obj, boneID, pfxID);
 }
 
+int get_new_emitter_obj(int frameID)
+{
+	int obj = get_new_mkobj(frameID);
+	if (obj)
+	{
+		set_obj_flag(obj, 1, 1);
+		insert_particle_mkobj(obj);
+	}
+	return obj;
+}
+
 void set_arg_num(int num)
 {
 	int* arg = (int*)CURRENT_ARGS;

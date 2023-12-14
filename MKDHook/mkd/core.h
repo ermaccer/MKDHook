@@ -62,6 +62,7 @@ int get_game_tick();
 void xfer_proc(int obj, int proc);
 
 void set_game_speed(float speed);
+float get_game_speed();
 
 int get_character_id(int plr);
 
@@ -72,12 +73,14 @@ void set_fatality_available(int status);
 // loaders
 int load_background(int id);
 void load_ssf(struct mk_toc_entry* table);
-void load_art_section_by_name(int slot, char* name);
+int load_art_section_by_name(int slot, char* name);
 void load_art_section(int slot, int ptr);
 void add_art_section_by_name_async(int slot, char* name);
 int load_named_model_from_slot(int slot, char* name, int id, int unk);
 int load_named_model_for_player(char* name, int plr, int id, int unk);
+int load_named_texture_from_slot(int slot, char* name);
 void unload_section_slot(int slot);
+void unload_section_slot_file(int slot, int file);
 void wait_for_slot_load(int slot);
 int find_section_by_name(char* name);
 void add_art_section(int slot, int section);

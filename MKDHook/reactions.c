@@ -361,6 +361,17 @@ reaction_table_entry reaction_table[TOTAL_REACTIONS] = {
 	{ TYPE_REACTIONS_FUNCTION, 159, 0, 0, 1 }, // 338
 	// quan swords
 	{ TYPE_REACTIONS_FUNCTION, 160, 5, 1, 769 },//  339
+	// shang soul steal
+	{ TYPE_REACTIONS_FUNCTION, 27, 0, 0, 1 },//  340
+	// shang balls
+	{ TYPE_REACTIONS_FUNCTION, 18, 0, 0, 1 },//  341
+	// step kick throw
+	{ TYPE_FUNCTION_CALL, 0x2123B0, 5, 2, 834 },//  342
+	// cage throw
+	{ TYPE_REACTIONS_FUNCTION, 162, 0, 0, 0x11 }, // 343
+	{ TYPE_REACTIONS_FUNCTION, 163, 0, 0, 0x11 }, // 344
+	// drahmin projectile
+	{ TYPE_FUNCTION_CALL, 0x215260, 0, 0, 1 },//  345
 };
 
 int onaga_remap_table[TOTAL_REACTIONS] = {
@@ -704,6 +715,12 @@ int onaga_remap_table[TOTAL_REACTIONS] = {
 	278, // 337
 	278, // 338
 	279, // 339
+	278, // 340
+	278, // 341
+	278, // 342
+	278, // 343
+	278, // 344
+	278, // 345
 };
 
 static int goro_lower_arms_atk[] = {

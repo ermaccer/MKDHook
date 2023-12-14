@@ -57,6 +57,7 @@ void init_script_custom_function_table()
 	script_function_table[1470] = (int)&pfxhandle_spawn_at_bid_next_aux_fix;
 	script_function_table[1473] = (int)&pfxhandle_spawn_at_bid_next_bind_render_aux_fix;
 	script_function_table[1488] = (int)&fat_sz_start_iceblock;
+	script_function_table[obj_bone_collapse_set] = (int)&_obj_bone_collapse_set;
 
 	// gc
 
@@ -87,6 +88,12 @@ void init_script_custom_function_table()
 	script_function_table[camera_setup_simple_rotation] = (int)&_camera_setup_simple_rotation;
 	script_function_table[start_da_fatality_cam] = (int)&_start_da_fatality_cam;
 	script_function_table[quan_teleport] = (int)&_quan_teleport;
+	script_function_table[start_shang_balls] = (int)&_start_shang_balls;
+	script_function_table[script_shang_explode_ball] = (int)&_shang_explode_ball;
+	script_function_table[hide_aux_weapon] = (int)&_hide_aux_weapon;
+	script_function_table[show_aux_weapon] = (int)&_show_aux_weapon;
+	script_function_table[set_active_projectile_ball_effect] = (int)&_set_active_projectile_ball_effect;
+	script_function_table[am_i_alt_costume] = (int)&_am_i_alt_costume;
 }
 
 #ifndef PS2_BUILD
@@ -259,6 +266,132 @@ void _quan_teleport()
 
 }
 
+void _start_shang_balls()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	int plrNum = *(int*)(args + 4);
+	int ballsType = *(int*)(args + 8);
+	start_shangtsung_balls(plrNum, ballsType);
+}
+
+void _shang_explode_ball()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	int plrNum = *(int*)(args + 4);
+	shang_explode_ball(plrNum);
+}
+
+void _set_active_add_ang_z()
+{
+	//int args = *(int*)(CURRENT_ARGS);
+	//float newAngle = *(float*)(args + 4);
+	//
+	//int proj_obj = 0;
+	//int proj_pdata = *(int*)0x5D724C;
+	//
+	//if (proj_pdata)
+	//{
+	//	proj_obj = *(int*)(proj_pdata + 40);
+	//	if (*(int*)(proj_pdata + 40))
+	//	{
+	//		if (*(int*)(proj_obj + 4) != *(int*)(proj_pdata + 44))
+	//			proj_obj = 0LL;
+	//	}
+	//	else
+	//		proj_obj = 0LL;
+	//
+	//	if (proj_obj)
+	//		*(float*)(proj_obj + 216) = 0.0000059921122 * (float)((int)(float)(166886.09 * (float)(*(float*)(proj_obj + 216) + newAngle)) & 0xFFFFF);
+	//}
+
+
+}
+
+void _set_active_projectile_ball_effect()
+{	
+	int args = *(int*)(CURRENT_ARGS);
+	float startHeight = *(float*)(args + 4);
+	float gravityValue = *(float*)(args + 8);
+
+	int proj_obj = 0;
+	int proj_pdata = *(int*)0x5D724C;
+	
+	if (proj_pdata)
+	{
+		proj_obj = *(int*)(proj_pdata + 40);
+		if (*(int*)(proj_pdata + 40))
+		{
+			if (*(int*)(proj_obj + 4) != *(int*)(proj_pdata + 44))
+				proj_obj = 0LL;
+		}
+		else
+			proj_obj = 0LL;
+	
+		if (proj_obj)
+		{
+			CVector curVelocity = *(CVector*)(proj_obj + 176);
+			curVelocity.y = startHeight;
+
+			obj_set_pos_vel(proj_obj, &curVelocity);
+			obj_set_gravity(proj_obj, gravityValue);
+		}
+	}
+}
+
+void _hide_aux_weapon()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	int plrNum = *(int*)(args + 4);
+
+	int auxWeapon = cached_aux_weapon[plrNum];
+
+	if (auxWeapon)
+		set_obj_flag(auxWeapon, 18, 1);
+}
+
+void _show_aux_weapon()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	int plrNum = *(int*)(args + 4);
+
+	int auxWeapon = cached_aux_weapon[plrNum];
+
+	if (auxWeapon)
+		set_obj_flag(auxWeapon, 18, 0);
+}
+
+void _obj_bone_collapse_set()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	int playerID = *(int*)(args + 4);
+	int boneID = *(int*)(args + 8);
+	int status = *(int*)(args + 12);
+
+	player_info* info = (player_info*)PLAYER1_INFO;
+	if (playerID == 1)
+		info = (player_info*)PLAYER2_INFO;
+	collapse_bone(info->pObject, boneID, status);
+}
+
+void _am_i_alt_costume()
+{
+	int playerData = *(int*)PLAYER_DATA;
+	int script = *(int*)(ACTIVE_SCRIPT);
+	int result = 1;
+
+	if (playerData)
+	{
+		player_info* info = (player_info*)(*(int*)(playerData + 24));
+		if (info)
+		{
+			if (info->flags & 1)
+				result = 0;
+		}
+	}
+
+	*(int*)(script + 44) = result;
+}
+
 void psp_reset_fake_bone_matcher(int obj, int a2, int a3, int a4, int a5, int a6, float flt)
 {
 	int v7; 
@@ -392,11 +525,14 @@ int cache_loaded_aux_weapon(int a1, int obj)
 	int id = get_id_from_object(obj);
 	int chrID = get_character_id(id);
 
-	if (chrID == JAX)
+	player_info* info = (player_info*)PLAYER1_INFO;
+	if (id == 1)
+		info = (player_info*)PLAYER2_INFO;
+	if (chrID == JAX || chrID == KUNG_LAO)
+	{
 		cached_aux_weapon[id] = wep;
-
-
-
+	}
+		
 	return wep;
 }
 

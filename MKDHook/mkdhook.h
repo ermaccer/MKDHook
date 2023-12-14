@@ -15,6 +15,7 @@ enum ECurrentSelect {
 };
 extern select_screen_entry pSelectTableNew[24];
 
+
 void init_mkdhook_vars();
 
 void process_swap_select_screen();
@@ -23,5 +24,4 @@ void swap_select_screen(int refresh);
 void restore_select_screen();
 void pselect_init_hook();
 void hook_render();
-
 void process_mkdhook();

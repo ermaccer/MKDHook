@@ -55,6 +55,7 @@ enum backgrounds {
 	BGS_NEXUS_NIS,
 	// new
 	BGS_KATAKOMBS,
+	BGS_ACIDBATH,
 	// fake clones
 	BGS_EARTH_1_DOJO,
 	BGS_NETHERREALM_DOJO,

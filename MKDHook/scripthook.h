@@ -25,6 +25,12 @@ enum ECommands {
 	gc_set_flipped_bones = 1902,
 	gc_start_goro_arms_fixup = 1903,
 	reset_fake_bone_matcher = 1904,
+	// semi native new commands
+	obj_bone_collapse_set = 1905,
+	hide_aux_weapon = 1906,
+	show_aux_weapon = 1907,
+	set_active_projectile_ball_effect = 1908,
+	am_i_alt_costume = 1909,
 	// new commands
 	_umkd_sonya_runtime = 2000,
 	jax_taunt = 2001,
@@ -36,6 +42,8 @@ enum ECommands {
 	start_da_fatality_cam = 2005,
 	quan_teleport = 2006,
 	dummy_function = 2007,
+	start_shang_balls = 2008,
+	script_shang_explode_ball = 2009,
 	TOTAL_COMMANDS = 2100
 };
 
@@ -71,7 +79,14 @@ void mku_kitana_curl_fx();
 void mku_kitana_curl_pos_fix(int obj, int id, CVector* pos);
 int mku_kitana_sfx_fix(int id);
 void _quan_teleport();
-
+void _start_shang_balls();
+void _shang_explode_ball();
+void _set_active_add_ang_z();
+void _set_active_projectile_ball_effect();
+void _hide_aux_weapon();
+void _show_aux_weapon();
+void _obj_bone_collapse_set();
+void _am_i_alt_costume();
 void psp_reset_fake_bone_matcher(int obj, int a2, int a3, int a4, int a5, int a6, float flt);
 
 

@@ -1,5 +1,6 @@
 #include "core.h"
 #include "..\ps2mem.h"
+#include "script.h"
 void _printf(char* format, ...)
 {
 	((void(*)(const char*, ...))0x1E7CF0)(format);
@@ -65,6 +66,11 @@ void set_game_speed(float speed)
 	patchFloat(0x5D628C, speed);
 }
 
+float get_game_speed()
+{
+	return *(float*)(0x5D628C);
+}
+
 int get_character_id(int plr)
 {
 	player_info* plr1 = (player_info*)PLAYER1_INFO;
@@ -95,9 +101,9 @@ void load_ssf(struct mk_toc_entry* table)
 
 }
 
-void load_art_section_by_name(int slot, char* name)
+int load_art_section_by_name(int slot, char* name)
 {
-	((int(*)(int, char*))0x1A4250)(slot, name);
+	return ((int(*)(int, char*))0x1A4250)(slot, name);
 }
 
 void load_art_section(int slot, int ptr)
@@ -120,9 +126,19 @@ int load_named_model_for_player(char* name, int plr, int id, int unk)
 	return ((int(*)(char*, int, int, int))0x36C730)(name, plr, id, unk);
 }
 
+int load_named_texture_from_slot(int slot, char* name)
+{
+	return ((int(*)(int, char*))0x36D260)(slot, name);
+}
+
 void unload_section_slot(int slot)
 {
 	((void(*)(int))0x1A5150)(slot);
+}
+
+void unload_section_slot_file(int slot, int file)
+{
+	((void(*)(int, int))0x1A4DF0)(slot, file);
 }
 
 void wait_for_slot_load(int slot)
@@ -145,9 +161,19 @@ int create_mkproc_hand_anim(int id, void* pFunc, int* result)
 	return ((int(*)(int, void*, int*))0x166540)(id, pFunc, result);
 }
 
+int find_mkproc_pid(int id)
+{
+	return ((int(*)(int))0x12D280)(id);
+}
+
 int create_mkproc_generic_nostack(int id, int a2, void* pFunc, int unk, int* result)
 {
 	return ((int(*)(int, int, void*, int, int*))0x12C4C0)(id, a2, pFunc, unk, result);
+}
+
+void destroy_mkprocs_pid(int id)
+{
+	((void(*)(int))0x12D330)(id);
 }
 
 void mk_insert_no_own(int obj, int proc)

@@ -7484,7 +7484,7 @@ sound_entry mk_sound_table[TOTAL_SOUNDS] =
 	{ 6, 136, -1, 1, 1.000000, 4, 1 }, // 7226
 	// kitana wins
 	{ 6, 137, -1, 1, 1.000000, 4, 1 }, // 7227
-	// onaga select
+	// onaga select	
 	{ 6, 138, -1, 1, 1.000000, 4, 1 }, // 7228
 	// TEMP in annoucr till i figure out other mst sections
 	// kitana fanlift
@@ -7921,4 +7921,36 @@ sound_entry mk_sound_table[TOTAL_SOUNDS] =
 
 	{ BANK_C_QUANCHI, 3, -1, 1, 0.65f, 5, 1 }, // skull chomp (7551)
 	{ BANK_C_QUANCHI, 4, -1, 1, 0.65f, 5, 1 }, // skull teleport (7552)
+
+	// SHANG TSUNG
+	{ BANK_C_SHANGTSUNG, 1, -1, 1, 0.800000, 5, 1 }, // flame ball (7553)
+	{ BANK_C_SHANGTSUNG, 2, -1, 1, 0.800000, 5, 1 }, // flame ball hit (7554)
+	{ BANK_C_SHANGTSUNG, 3, -1, 1, 0.800000, 5, 1 }, // flame ball miss(7555)
+	{ BANK_C_SHANGTSUNG, 4, -1, 1, 0.800000, 5, 1 }, // soul steal (7556)
+	{ BANK_C_SHANGTSUNG, 5, -1, 1, 0.600000, 5, 1 }, // soul steal hit (7557)
+
+
+	{ 6, 160, -1, 1, 1.000000, 4, 1 }, // shang select (7558)
+	{ 6, 161, -1, 1, 1.000000, 4, 1 }, // shang wins (7559)
+
+	// KUNG LAO
+	{ BANK_C_KUNGLAO, 0, -1, 1, 0.800000, 5, 1 }, // hat throw (7560)
+	{ BANK_C_KUNGLAO, 1, -1, 1, 0.800000, 5, 1 }, // hat hit (7561)
+	{ BANK_C_KUNGLAO, 2, -1, 1, 0.800000, 5, 1 }, // hat miss(7562)
+	{ BANK_C_KUNGLAO, 3, -1, 1, 0.250000, 5, 1 }, // spin (7563)
+
+
+	{ 6, 162, -1, 1, 1.000000, 4, 1 }, // kunglao select (7564)
+	{ 6, 163, -1, 1, 1.000000, 4, 1 }, // kunglao wins (7565)
+
+
+	// CAGE
+	{ BANK_C_CAGE, 0, -1, 1, 0.800000, 5, 1 }, // ball throw (7566)
+	{ BANK_C_CAGE, 1, -1, 1, 0.800000, 5, 1 }, // ball hit (7567)
+	{ BANK_C_CAGE, 2, -1, 1, 0.800000, 5, 1 }, // ball miss(7568)
+	{ BANK_C_CAGE, 3, -1, 1, 0.650000, 5, 1 }, // shadow kick (7569)
+
+
+	{ 6, 164, -1, 1, 1.000000, 4, 1 }, // cage select (7570)
+	{ 6, 165, -1, 1, 1.000000, 4, 1 }, // cage wins (7571)
 };
