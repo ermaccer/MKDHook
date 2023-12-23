@@ -77,7 +77,7 @@ struct mk_toc_entry kunglao_file_table[KUNGLAO_FILES + 1] = {
 		{&kunglao_entry_table[9]	,0,    10112  },	// style_mantis.sec 
 		{&kunglao_entry_table[10]	,0,	   15776  },	// shaolin_fist.mko           
 		{&kunglao_entry_table[11]	,0,    10112  },	// style_shaolin_fist.sec     
-		{&kunglao_entry_table[12]	,0,	   16064  },	// broadsword.mko        
+		{&kunglao_entry_table[12]	,0,	   16032  },	// broadsword.mko        
 		{&kunglao_entry_table[13]	,0,	   10112  },	// style_broadsword.sec    
 		{&kunglao_entry_table[14]	,0,	   77440  },	// kunglao_anims.sec  
 		{&kunglao_entry_table[15]	,0,	   179584 },	// mantis_anims.sec 
@@ -126,7 +126,7 @@ struct mk_toc_entry kunglao_alt_file_table[KUNGLAO_FILES + 1] = {
 		{&kunglao_alt_entry_table[9]	,0,    10112  },	// style_mantis.sec 
 		{&kunglao_alt_entry_table[10]	,0,	   15776  },	// shaolin_fist.mko           
 		{&kunglao_alt_entry_table[11]	,0,    10112  },	// style_shaolin_fist.sec     
-		{&kunglao_alt_entry_table[12]	,0,	   16064  },	// broadsword.mko        
+		{&kunglao_alt_entry_table[12]	,0,	   16032  },	// broadsword.mko        
 		{&kunglao_alt_entry_table[13]	,0,	   10112  },	// style_broadsword.sec    
 		{&kunglao_alt_entry_table[14]	,0,	   77440  },	// kunglao_alt_anims.sec  
 		{&kunglao_alt_entry_table[15]	,0,	   179584 },	// mantis_anims.sec 

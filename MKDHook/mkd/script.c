@@ -96,54 +96,14 @@ int get_new_emitter_obj(int frameID)
 	return obj;
 }
 
-void set_arg_num(int num)
+void execute_rx_cleanup(int pData)
 {
-	int* arg = (int*)CURRENT_ARGS;
-	arg[0] = num;
-}
-
-void push_arg(int id, int data)
-{
-	int* arg = (int*)CURRENT_ARGS;
-	arg[id + 1] = data;
-}
-
-void push_argf(int id, float data)
-{
-	int* arg = (int*)CURRENT_ARGS;
-	arg[id + 1] = data;
-}
-
-int get_arg(int id)
-{
-	int* arg = (int*)CURRENT_ARGS;
-	return arg[id + 1];
-}
-
-void call_script_function(int id)
-{
-	((void(*)())script_function_table[id])();
+	((int(*)(int))0x20D760)(pData);
 }
 
 void reaction_xfer_him(int id, int a2, float a3)
 {
 	((void(*)(int, int, float))0x20E9D0)(id, a2, a3);
-}
-
-void sleep(int time)
-{
-	set_arg_num(1);
-	push_arg(0, time);
-	call_script_function(0);
-}
-
-void blend_to_ani(int anim, int unk, float unk2)
-{
-	set_arg_num(3);
-	push_arg(0, anim);
-	push_arg(1, unk);
-	push_argf(2, unk2);
-	call_script_function(13);
 }
 
 void force_away(int a1, int a2)

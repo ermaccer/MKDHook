@@ -29,5 +29,6 @@ int death_traps_lock();
 
 float hook_plyr_start_proc();
 void  hook_delete_player(int id);
+void  hook_reset_fight();
 
 void update_characters();

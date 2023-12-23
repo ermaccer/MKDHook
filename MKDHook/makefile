@@ -12,7 +12,7 @@ mkd\string.o \
 mkd\content.o \
 mkd\script.o \
 mkd\fx.o \
-ps2mem.o character.o mkdhook.o mkdmenu.o stage.o mouse.o mips.o ladder.o moves.o \
+ps2mem.o character.o mkdhook.o mkdmenu.o stage.o mouse.o mips.o ladder.o moves.o network.o \
 generic.o \
 generic_asm.o \
 voice.o \
@@ -59,7 +59,7 @@ settings.o \
 qs.o \
 
 
-PS2_BUILD = 0
+PS2_BUILD = 1
 
 NEWLIB_NANO = 1
 KERNEL_NOPATCH = 1

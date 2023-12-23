@@ -7937,7 +7937,7 @@ sound_entry mk_sound_table[TOTAL_SOUNDS] =
 	{ BANK_C_KUNGLAO, 0, -1, 1, 0.800000, 5, 1 }, // hat throw (7560)
 	{ BANK_C_KUNGLAO, 1, -1, 1, 0.800000, 5, 1 }, // hat hit (7561)
 	{ BANK_C_KUNGLAO, 2, -1, 1, 0.800000, 5, 1 }, // hat miss(7562)
-	{ BANK_C_KUNGLAO, 3, -1, 1, 0.250000, 5, 1 }, // spin (7563)
+	{ BANK_C_KUNGLAO, 3, -1, 1, 1.050000, 5, 1 }, // spin (7563)
 
 
 	{ 6, 162, -1, 1, 1.000000, 4, 1 }, // kunglao select (7564)

@@ -6,9 +6,6 @@
 #define SCRIPT_OBJ 0x627A14
 
 
-//SOUNDS
-// 14 - screaming
-// 21 - choking
 int snd_req(int id);
 int snd_req_vol(int id, float vol);
 void snd_stop(int sound);
@@ -35,18 +32,8 @@ void pfx_bind_emitter_num_to_obj_bone(int pfx, int obj, int boneID, int pfxID);
 
 int get_new_emitter_obj(int frameID);
 
-
-// script funcs
-
-void set_arg_num(int num);
-void push_arg(int id, int data);
-void push_argf(int id, float data);
-int  get_arg(int id);
-void call_script_function(int id);
-
+void execute_rx_cleanup(int pData);
 void reaction_xfer_him(int id, int a2, float a3);
-
-void sleep(int time);
-void blend_to_ani(int anim, int unk, float unk2);
+// script funcs
 void force_away(int a1, int a2);
 

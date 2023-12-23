@@ -20,6 +20,7 @@
 #include "chess.h"
 #include "build_config.h"
 #include "qs.h"
+#include "network.h"
 
 #ifndef PS2_BUILD
 int CompatibleCRCList[] = { 0x7C22850A };
@@ -29,9 +30,9 @@ int version_hook(int id, int font, char* text, int x, int y, int unk)
 {
 
 #ifdef PS2_BUILD
-    static const char* versionText = "UMKD V5 BY ERMACCER (PS2)" ;
+    static const char* versionText = "UMKD V5.1 BY ERMACCER (PS2)" ;
 #else
-    static const char* versionText = "UMKD V5 BY ERMACCER ";
+    static const char* versionText = "UMKD V5.1 BY ERMACCER ";
 #endif // PS2_BUILD
 
     return string_left_xy(id, font, versionText, x - 350, y + 40, unk);
@@ -84,6 +85,7 @@ void init()
    init_generic();
    init_voice_hook();
    init_chess_hook();
+   init_network_hook();
 
    makeJal(0x15C1D4, version_hook);
    makeJal(0x15C1F8, version_hook);
@@ -96,7 +98,7 @@ void init()
 
 
 #ifndef PS2_BUILD
-   _printf("MKDHook init! Debug var ptr: %X %X\n", &debugVar, &shang_emitter_particle_handle[0][0]);
+   _printf("MKDHook init! Debug var ptr: %X\n", &debugVar);
 
     if (settings.enable_quick_start)
         makeJmp(0x240220, p_quickstart);

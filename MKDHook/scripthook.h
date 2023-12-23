@@ -90,6 +90,8 @@ void _am_i_alt_costume();
 void psp_reset_fake_bone_matcher(int obj, int a2, int a3, int a4, int a5, int a6, float flt);
 
 
+void aux_weapon_set_hidden(int id, int status);
+
 // hooks
 
 void fix_kitana_fan_lift(int id, int a2, float a3);

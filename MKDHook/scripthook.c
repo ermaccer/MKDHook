@@ -118,8 +118,7 @@ void _null()
 
 void umkd_sonya_runtime()
 {
-	blend_to_ani(403, 3, 0.2f);
-	sleep(5000);
+
 }
 
 void _kitana_kod_stretcher()
@@ -345,8 +344,7 @@ void _hide_aux_weapon()
 
 	int auxWeapon = cached_aux_weapon[plrNum];
 
-	if (auxWeapon)
-		set_obj_flag(auxWeapon, 18, 1);
+	aux_weapon_set_hidden(plrNum, 1);
 }
 
 void _show_aux_weapon()
@@ -354,10 +352,7 @@ void _show_aux_weapon()
 	int args = *(int*)(CURRENT_ARGS);
 	int plrNum = *(int*)(args + 4);
 
-	int auxWeapon = cached_aux_weapon[plrNum];
-
-	if (auxWeapon)
-		set_obj_flag(auxWeapon, 18, 0);
+	aux_weapon_set_hidden(plrNum, 0);
 }
 
 void _obj_bone_collapse_set()
@@ -460,6 +455,14 @@ void psp_reset_fake_bone_matcher(int obj, int a2, int a3, int a4, int a5, int a6
 			}
 		}
 	}
+}
+
+void aux_weapon_set_hidden(int id, int status)
+{
+	int auxWeapon = cached_aux_weapon[id];
+
+	if (auxWeapon)
+		set_obj_flag(auxWeapon, 18, status);
 }
 
 

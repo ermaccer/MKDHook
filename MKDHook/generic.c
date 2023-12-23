@@ -4,6 +4,7 @@
 #include "characters/character_list.h"
 #include "stage.h"
 #include "settings.h"
+#include "scripthook.h"
 
 void init_generic()
 {

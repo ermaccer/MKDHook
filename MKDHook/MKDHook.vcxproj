@@ -94,6 +94,7 @@
     <ClCompile Include="mkd\string.c" />
     <ClCompile Include="mouse.c" />
     <ClCompile Include="moves.c" />
+    <ClCompile Include="network.c" />
     <ClCompile Include="pcsx2\inireader.c" />
     <ClCompile Include="pcsx2\rini.c" />
     <ClCompile Include="ps2mem.c" />
@@ -164,6 +165,7 @@
     <ClInclude Include="mkd\string.h" />
     <ClInclude Include="mouse.h" />
     <ClInclude Include="moves.h" />
+    <ClInclude Include="network.h" />
     <ClInclude Include="pcsx2\inireader.h" />
     <ClInclude Include="pcsx2\rini.h" />
     <ClInclude Include="ps2mem.h" />
