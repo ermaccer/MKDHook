@@ -55,5 +55,6 @@ void process_select_screen_packet(packet_select_screen_data* data)
         p1->flags = data->p1_flags;
     }
 
-    *(int*)(CUR_BGND) = data->background;
+    if (myID == 0)
+        *(int*)(CUR_BGND) = data->background;
 }
