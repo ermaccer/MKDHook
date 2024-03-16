@@ -18,6 +18,7 @@ extern void obj_set_rotation_from_target(int obj, CVector* target);
 void patch_weapon_grab(int data, int obj);
 void patch_weapon_show(int data, int unk, int entry);
 void patch_weapon_hide(int data, int unk, int entry);
+void patch_lightning_sound(int id);
 
 void goro_grab_weapon(int data);
 void goro_show_weapon(int data, int unk);
@@ -31,4 +32,5 @@ float hook_plyr_start_proc();
 void  hook_delete_player(int id);
 void  hook_reset_fight();
 
+void update_character(player_info* info);
 void update_characters();

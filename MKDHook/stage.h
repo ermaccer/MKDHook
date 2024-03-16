@@ -80,6 +80,8 @@ int load_background_hook(int id);
 void hook_stage_select();
 char* hook_ladder_stage_name(int id);
 
+int is_music_not_allowed(int id);
+void konquest_stage_setup_music();
 
 void init_stage_hook();
 void init_stage_tocs();

@@ -7,6 +7,10 @@ typedef struct {
 	int flags;
 	char _pad[88];
 	CVector scale;
+	char __pad[20];
+
+	// quat!
+	float rotation[4];
 
 }bone_data;
 
@@ -33,6 +37,7 @@ void get_bone_pos(int obj, int id, CVector* pos);
 
 void scale_bone(int object, int id, float scale);
 void collapse_bone(int object, int id, int status);
+bone_data* get_bone(int object, int id);
 
 int get_id_from_object(int obj);
 void obj_set_color_for_all_materials(int obj, char* color);
@@ -50,3 +55,8 @@ void plyr_obj_item_grab(int data, int a2, int a3, int model, int f1, int f2, int
 void plyr_weapon_grab(int data, int obj);
 void plyr_weapon_show(int data, int unk, int entry);
 void plyr_weapon_hide(int data, int unk, int entry);
+
+void quat_to_matrix(int matrix, int quat);
+void vector_to_matrix(CVector* vector, int matrix);
+void matrix_mult_matrix(int dst, int src, int mult);
+void matrix_to_quat(int matrix, int quat);

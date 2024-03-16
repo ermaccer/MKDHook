@@ -45,6 +45,9 @@ struct mk_file_entry chess_entry_table[CHESS_FILES] = {
 	{"mkc_shang.sec",0,1},
 	{"mkc_kung.sec",0,1},
 	{"mkc_cage.sec",0,1},
+	{"mkc_sektor.sec",0,1},
+	{"mkc_rain.sec",0,1},
+	{"mkc_nitara.sec",0,1},
 	{"board_game_config.mko",0,3},
 	{"boardgame_fx.mko",0,3},
 	{"boardgame_strings_eng.mko",0,3},
@@ -99,15 +102,18 @@ struct mk_toc_entry chess_file_table[CHESS_FILES + 1] = {
 		{&chess_entry_table[36], 0, 128512},    //	mkc_shang.sec
 		{&chess_entry_table[37], 0, 127104},    //	mkc_kung.sec
 		{&chess_entry_table[38], 0, 126848},    //	mkc_cage.sec
-		{&chess_entry_table[39], 0, 32768 },    //	board_game_config.mko
-		{&chess_entry_table[40], 0, 22152 },    //	boardgame_fx.mko
-		{&chess_entry_table[41], 0, 1628  },    //	boardgame_strings_eng.mko
-		{&chess_entry_table[42], 0, 1792  },    //	boardgame_strings_spa.mko
-		{&chess_entry_table[43], 0, 1604  },    //	boardgame_strings_ger.mko
-		{&chess_entry_table[44], 0, 1732  },    //	boardgame_strings_fre.mko
-		{&chess_entry_table[45], 0, 1716  },    //	boardgame_strings_ita.mko
-		{&chess_entry_table[46], 0, 1628  },    //	boardgame_strings_eng_uk.mko
-		{&chess_entry_table[47], 0, 354432},    //	mk_chess_anims.sec
+		{&chess_entry_table[39], 0, 146688},    //	mkc_sektor.sec
+		{&chess_entry_table[40], 0, 113408},    //	mkc_rain.sec
+		{&chess_entry_table[41], 0, 135168},    //	mkc_nitara.sec
+		{&chess_entry_table[42], 0, 32832 },    //	board_game_config.mko
+		{&chess_entry_table[43], 0, 22152 },    //	boardgame_fx.mko
+		{&chess_entry_table[44], 0, 1628  },    //	boardgame_strings_eng.mko
+		{&chess_entry_table[45], 0, 1792  },    //	boardgame_strings_spa.mko
+		{&chess_entry_table[46], 0, 1604  },    //	boardgame_strings_ger.mko
+		{&chess_entry_table[47], 0, 1732  },    //	boardgame_strings_fre.mko
+		{&chess_entry_table[48], 0, 1716  },    //	boardgame_strings_ita.mko
+		{&chess_entry_table[49], 0, 1628  },    //	boardgame_strings_eng_uk.mko
+		{&chess_entry_table[50], 0, 354432},    //	mk_chess_anims.sec
 
 
 		{0,0,0}
@@ -120,7 +126,7 @@ static int chess_characters[CHESS_PIECES] = {
 	TANYA, LIU_KANG, KIRA, KABAL, KOBRA, JADE, DAIROU, 
 	RAIDEN, DARRIUS, SHUJINKO, NOOBSMOKE, SHAO_KAHN, GORO,
 	FROST, KITANA, JAX, BLAZE, SONYA, DRAHMIN, SAREENA, QUAN_CHI,
-	SHANG_TSUNG, KUNG_LAO, CAGE
+	SHANG_TSUNG, KUNG_LAO, CAGE, SEKTOR, RAIN, NITARA
 };
 
 void init_chess_hook()

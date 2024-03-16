@@ -21,6 +21,7 @@
 #include "build_config.h"
 #include "qs.h"
 #include "network.h"
+#include "practice.h"
 
 #ifndef PS2_BUILD
 int CompatibleCRCList[] = { 0x7C22850A };
@@ -30,9 +31,9 @@ int version_hook(int id, int font, char* text, int x, int y, int unk)
 {
 
 #ifdef PS2_BUILD
-    static const char* versionText = "UMKD V5.1 BY ERMACCER (PS2)" ;
+    static const char* versionText = "UMKD V6 BY ERMACCER (PS2)" ;
 #else
-    static const char* versionText = "UMKD V5.1 BY ERMACCER ";
+    static const char* versionText = "UMKD V6 BY ERMACCER ";
 #endif // PS2_BUILD
 
     return string_left_xy(id, font, versionText, x - 350, y + 40, unk);
@@ -47,7 +48,9 @@ void konquest_hook_draw_distance()
     int level_info = *(int*)(konquest_pdata + 40);
     *(float*)(level_info + 56) *= 2.0f;
 }
-#endif 
+
+int return7() { return 7; }
+#endif
 
 void init()
 {
@@ -86,12 +89,15 @@ void init()
    init_voice_hook();
    init_chess_hook();
    init_network_hook();
+   init_practice_hook();
 
    makeJal(0x15C1D4, version_hook);
    makeJal(0x15C1F8, version_hook);
 
-
 #ifndef PS2_BUILD
+   if (settings.maximum_ai_diff)
+       makeJal(0x24F990, return7);
+
    if (settings.extended_konquest_draw_distance)
       makeJal(0x309280, konquest_hook_draw_distance);
 #endif

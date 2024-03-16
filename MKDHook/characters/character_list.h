@@ -25,6 +25,9 @@
 #include "shangtsung.h"
 #include "kunglao.h"
 #include "cage.h"
+#include "sektor.h"
+#include "rain.h"
+#include "nitara.h"
 // mku ports
 #include "kitana.h"
 #include "jax.h"

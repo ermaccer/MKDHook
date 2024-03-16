@@ -7953,4 +7953,31 @@ sound_entry mk_sound_table[TOTAL_SOUNDS] =
 
 	{ 6, 164, -1, 1, 1.000000, 4, 1 }, // cage select (7570)
 	{ 6, 165, -1, 1, 1.000000, 4, 1 }, // cage wins (7571)
+
+	// RAIN
+	{ BANK_C_RAIN, 1, -1, 1, 0.800000, 5, 1 }, // ball throw (7572)
+	{ BANK_C_RAIN, 0, -1, 1, 0.800000, 5, 1 }, // ball hit (7573)
+	{ BANK_C_RAIN, 2, -1, 1, 0.800000, 5, 1 }, // burst throw (7574)
+	{ BANK_C_RAIN, 3, -1, 1, 0.550000, 5, 1 }, // burst hit (7575)
+	{ BANK_C_RAIN, 4, -1, 1, 0.800000, 5, 1 }, // lightning (7576)
+
+	{ 6, 166, -1, 1, 1.000000, 4, 1 }, // rain select (7577)
+	{ 6, 167, -1, 1, 1.000000, 4, 1 }, // rain wins (7578)
+
+	// NITARA
+	{ BANK_C_NITARA, 0, -1, 1, 0.800000, 5, 1 }, // spit (7579)
+	{ BANK_C_NITARA, 1, -1, 1, 0.800000, 5, 1 }, // spit hit (7580)
+	{ BANK_C_NITARA, 2, -1, 1, 0.800000, 5, 1 }, // spit block (7581)
+	{ BANK_C_NITARA, 3, -1, 1, 0.750000, 5, 1 }, // throw (7582)
+
+	{ 6, 168, -1, 1, 1.000000, 4, 1 }, // nitara select (7583)
+	{ 6, 169, -1, 1, 1.000000, 4, 1 }, // nitara wins (7584)
+
+	{ BANK_C_SEKTOR, 0, -1, 1, 0.800000, 5, 1 }, // sektor door open (7585) 
+	{ BANK_C_SEKTOR, 1, -1, 1, 0.800000, 5, 1 }, // sektor flame (7586)
+	{ BANK_C_SEKTOR, 2, -1, 1, 0.800000, 5, 1 }, // sektor rocket (7587)
+	{ BANK_C_SEKTOR, 3, -1, 1, 0.800000, 5, 1 }, // sektor rocket explosion (7588)
+
+	{ 6, 170, -1, 1, 1.000000, 4, 1 }, // sektor select (7589)
+	{ 6, 171, -1, 1, 1.000000, 4, 1 }, // sektor wins (7590)
 };

@@ -67,6 +67,9 @@ enum characters
 	SHANG_TSUNG,
 	KUNG_LAO,
 	CAGE,
+	SEKTOR,
+	RAIN,
+	NITARA,
 
 	TOTAL_CHARACTERS
 };

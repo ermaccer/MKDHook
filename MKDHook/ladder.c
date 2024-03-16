@@ -68,7 +68,10 @@ short characters[] = {
 	QUAN_CHI,
 	SHANG_TSUNG,
 	KUNG_LAO,
-	CAGE
+	CAGE,
+	SEKTOR,
+	RAIN,
+	NITARA
 };
 
 short backgrounds[] = {
@@ -135,6 +138,9 @@ ladder_model_entry ladder_models[] = {
 	{SHANG_TSUNG, "kon_shangmk5.sec"},
 	{KUNG_LAO, "kon_kunglao.sec"},
 	{CAGE, "kon_cage.sec"},
+	{SEKTOR, "kon_sektor.sec"},
+	{RAIN, "kon_rain.sec"},
+	{NITARA, "kon_nitara.sec"},
 	{-1, ""},
 };
 

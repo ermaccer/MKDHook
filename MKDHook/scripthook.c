@@ -94,6 +94,9 @@ void init_script_custom_function_table()
 	script_function_table[show_aux_weapon] = (int)&_show_aux_weapon;
 	script_function_table[set_active_projectile_ball_effect] = (int)&_set_active_projectile_ball_effect;
 	script_function_table[am_i_alt_costume] = (int)&_am_i_alt_costume;
+	script_function_table[rain_teleport_kick] = (int)&_rain_teleport_kick;
+	script_function_table[set_robot_voice] = (int)&_set_robot_voice;
+	script_function_table[script_sektor_set_chest_status] = (int)&_sektor_set_chest_status;
 }
 
 #ifndef PS2_BUILD
@@ -385,6 +388,29 @@ void _am_i_alt_costume()
 	}
 
 	*(int*)(script + 44) = result;
+}
+
+void _rain_teleport_kick()
+{
+	//swap_active_proc();
+	((void(*)())0x1FF4F0)();
+	//swap_active_proc();
+}
+
+void _set_robot_voice()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	int plrNum = *(int*)(args + 4);
+	int status = *(int*)(args + 8);
+	((void(*)(int, int))0x12B800)(plrNum, status);
+}
+
+void _sektor_set_chest_status()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	int plrNum = *(int*)(args + 4);
+	int status = *(int*)(args + 8);
+	sektor_set_chest_status(plrNum, status);
 }
 
 void psp_reset_fake_bone_matcher(int obj, int a2, int a3, int a4, int a5, int a6, float flt)

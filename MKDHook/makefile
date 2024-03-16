@@ -20,6 +20,7 @@ chess.o \
 stages\acidbath.o \
 stages\katakombs.o \
 stages\darkprison.o \
+stages\teststage.o \
 characters\mkda_kano.o \
 characters\mkda_mokap.o \
 characters\mkda_blaze.o \
@@ -47,10 +48,14 @@ characters\quanchi.o \
 characters\shangtsung.o \
 characters\kunglao.o \
 characters\cage.o \
+characters\rain.o \
+characters\nitara.o \
+characters\sektor.o \
 characters\character_list.o \
 misc\pselect.o \
 misc\misc_anims.o \
 misc\fatalityanims.o \
+practice.o \
 sound.o \
 sound_bank.o \
 pcsx2\rini.o \

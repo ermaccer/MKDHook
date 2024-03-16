@@ -72,6 +72,9 @@ int scan_table_1_jump_table[] = {
 	SCAN1_UNIVERSAL_JUMP, //  UMKD_SHANGTSUNG
 	SCAN1_UNIVERSAL_JUMP, //  UMKD_KUNGLAO
 	SCAN1_UNIVERSAL_JUMP, //  UMKD_CAGE
+	SCAN1_UNIVERSAL_JUMP, //  UMKD_SEKTOR
+	SCAN1_UNIVERSAL_JUMP, //  UMKD_RAIN
+	0x2028B4, //  UMKD_NITARA
 };
 
 
@@ -133,6 +136,9 @@ int scan_table_2_jump_table[] = {
 	SCAN2_UNIVERSAL_JUMP, //  UMKD_SHANGTSUNG
 	0x20239C, //  UMKD_KUNGLAO
 	0x20239C, //  UMKD_CAGE
+	0x20239C, //  UMKD_SEKTOR
+	SCAN2_UNIVERSAL_JUMP, //  UMKD_RAIN
+	SCAN2_UNIVERSAL_JUMP, //  UMKD_NITARA
 };
 
 int scan_table_3_jump_table[] = {
@@ -193,6 +199,9 @@ int scan_table_3_jump_table[] = {
 	SCAN3_UNIVERSAL_JUMP, //  UMKD_SHANGTSUNG
 	SCAN3_UNIVERSAL_JUMP, //	UMKD_KUNGLAO,
 	SCAN3_UNIVERSAL_JUMP, //	UMKD_CAGE
+	SCAN3_UNIVERSAL_JUMP, //  UMKD_SEKTOR
+	SCAN3_UNIVERSAL_JUMP, //  UMKD_RAIN
+	SCAN3_UNIVERSAL_JUMP, //  UMKD_NITARA
 };
 
 int scan_table_4_jump_table[] = {
@@ -253,6 +262,9 @@ int scan_table_4_jump_table[] = {
 	0x201B0C, //  UMKD_SHANGTSUNG
 	SCAN4_UNIVERSAL_JUMP, //	UMKD_KUNGLAO,
 	SCAN4_UNIVERSAL_JUMP, //	UMKD_CAGE
+	SCAN4_UNIVERSAL_JUMP, //  UMKD_SEKTOR
+	0x201B0C, // UMKD_RAIN
+	SCAN4_UNIVERSAL_JUMP, // UMKD_NITARA
 };
 
 
@@ -379,6 +391,12 @@ int swap_scan_table_1()
 		case CAGE:
 			scan_action_set = (int)&scan_cage_1;
 			break;
+		case RAIN:
+			scan_action_set = (int)&scan_rain_1;
+			break;
+		case SEKTOR:
+			scan_action_set = (int)&scan_sektor_1;
+			break;
 		default:
 			scan_action_set = (int)&scan_null;
 			break;
@@ -394,6 +412,7 @@ int swap_scan_table_1()
 int swap_scan_table_2()
 {
 	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
+	int p2_pdata = *(int*)(P2_PLAYER_DATA);
 	static int scan_action_set = (int)&scan_null;
 	if (plyr_data)
 	{
@@ -428,6 +447,15 @@ int swap_scan_table_2()
 			break;
 		case SHANG_TSUNG:
 			scan_action_set = (int)&scan_shang_2;
+			break;
+		case RAIN:
+			if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
+				scan_action_set = (int)&scan_rain_2;
+			else
+				scan_action_set = (int)&scan_null;
+			break;
+		case NITARA:
+			scan_action_set = (int)&scan_nitara_2;
 			break;
 		default:
 			scan_action_set = (int)&scan_null;
@@ -499,6 +527,15 @@ int swap_scan_table_3()
 		case CAGE:
 			scan_action_set = (int)&scan_cage_3;
 			break;
+		case RAIN:
+			scan_action_set = (int)&scan_rain_3;
+			break;
+		case NITARA:
+			scan_action_set = (int)&scan_nitara_3;
+			break;
+		case SEKTOR:
+			scan_action_set = (int)&scan_sektor_3;
+			break;
 		default:
 			scan_action_set = (int)&scan_null;
 			break;
@@ -553,6 +590,12 @@ int swap_scan_table_4()
 			break;
 		case CAGE:
 			scan_action_set = (int)&scan_cage_4;
+			break;
+		case NITARA:
+			scan_action_set = (int)&scan_nitara_4;
+			break;
+		case SEKTOR:
+			scan_action_set = (int)&scan_sektor_4;
 			break;
 		default:
 			scan_action_set = (int)&scan_null;

@@ -12,6 +12,8 @@ void init_generic()
 	makeJmp(0x215D90, freeze_reaction_patch);
 	makeJmp(0x215DA0, freeze_reaction_patchP2);
 
+	makeJal(0x25D03C, patch_lightning_sound);
+
 	makeJal(0x206968, patch_weapon_grab);
 	makeJal(0x2069DC, patch_weapon_show);
 	makeJal(0x2066E4, patch_weapon_hide);
@@ -108,6 +110,23 @@ void patch_weapon_hide(int data, int unk, int entry)
 	}
 }
 
+void patch_lightning_sound(int id)
+{
+	int apdata = *(int*)AP_DATA;
+	int procID = *(int*)(apdata + 8);
+	int plrID = 0;
+
+	if (*(int*)(*(int*)(apdata + 20) + 4))
+		plrID = 1;
+
+	int chrID = get_character_id(plrID);
+
+	if (chrID == RAIN)
+		snd_req(7576);
+	else
+		snd_req(686);
+}
+
 void goro_grab_weapon(int data)
 {
 	if (*(int*)(data + 432) == 1)
@@ -196,6 +215,7 @@ float hook_plyr_start_proc()
 {
 	blaze_reset_event();
 	shangtsung_reset_event();
+	sektor_reset_event();
 	return ((float(*)())0x1315D0)();
 }
 
@@ -216,13 +236,32 @@ void hook_delete_player(int id)
 	delete_player(id);
 }
 
+void update_character(player_info* info)
+{
+	if (!info)
+		return;
+	if (!info->pObject)
+		return;
+
+	switch (info->characterID)
+	{
+	case GORO:
+		goro_arms_bone_copy(info->pObject);
+		break;
+	case SEKTOR:
+		sektor_update_chest(info->id, info->pObject, info->flags);
+		break;
+	default:
+		break;
+	}
+
+}
+
 void update_characters()
 {
 	player_info* p1 = (player_info*)(PLAYER1_INFO);
 	player_info* p2 = (player_info*)(PLAYER2_INFO);
 
-	if (p1->pObject && p1->characterID == GORO)
-		goro_arms_bone_copy(p1->pObject);
-	if (p2->pObject && p2->characterID == GORO)
-		goro_arms_bone_copy(p2->pObject);
+	update_character(p1);
+	update_character(p2);
 }

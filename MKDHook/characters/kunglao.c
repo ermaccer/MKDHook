@@ -68,7 +68,7 @@ struct mk_toc_entry kunglao_file_table[KUNGLAO_FILES + 1] = {
 
 		{&kunglao_entry_table[1]	,0,	   471424 },	// kunglao.sec        
 		{&kunglao_entry_table[2]	,0,    471424 },	// kunglao_ap.sec     
-		{&kunglao_entry_table[3]	,0,    29664  },	// kunglao.mko        
+		{&kunglao_entry_table[3]	,0,    29568  },	// kunglao.mko        
 		{&kunglao_entry_table[4]	,0,    274816 },	// sh_kunglao.sec     
 		{&kunglao_entry_table[5]	,0,    10164  },	// fight_fx.mko       
 		{&kunglao_entry_table[6]	,0,    21368  },	// blood_fx.mko       
@@ -117,7 +117,7 @@ struct mk_toc_entry kunglao_alt_file_table[KUNGLAO_FILES + 1] = {
 
 		{&kunglao_alt_entry_table[1]	,0,	   524032 },	// kunglao_alt.sec        
 		{&kunglao_alt_entry_table[2]	,0,    524032 },	// kunglao_alt_ap.sec     
-		{&kunglao_alt_entry_table[3]	,0,    29664  },	// kunglao.mko        
+		{&kunglao_alt_entry_table[3]	,0,    29568  },	// kunglao.mko        
 		{&kunglao_alt_entry_table[4]	,0,    274816 },	// sh_kunglao.sec     
 		{&kunglao_alt_entry_table[5]	,0,    10164  },	// fight_fx.mko       
 		{&kunglao_alt_entry_table[6]	,0,    21368  },	// blood_fx.mko       

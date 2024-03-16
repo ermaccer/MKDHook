@@ -246,7 +246,7 @@ void Menu_Process()
 
 		if (plr1 && plr2)
 		{
-			plr1->life = 0.01f;
+			//plr1->life = 0.01f;
 			plr2->life = 0.01f;
 		}
 	}

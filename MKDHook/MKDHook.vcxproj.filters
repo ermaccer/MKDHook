@@ -231,6 +231,21 @@
     <ClCompile Include="network.c">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="characters\rain.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
+    <ClCompile Include="stages\teststage.c">
+      <Filter>source\stages</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\nitara.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\sektor.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
+    <ClCompile Include="practice.c">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ps2mem.h">
@@ -444,6 +459,21 @@
       <Filter>source\characters\umkd</Filter>
     </ClInclude>
     <ClInclude Include="network.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\rain.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="stages\teststage.h">
+      <Filter>source\stages</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\nitara.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\sektor.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="practice.h">
       <Filter>source</Filter>
     </ClInclude>
   </ItemGroup>

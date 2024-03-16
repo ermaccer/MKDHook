@@ -366,12 +366,18 @@ reaction_table_entry reaction_table[TOTAL_REACTIONS] = {
 	// shang balls
 	{ TYPE_REACTIONS_FUNCTION, 18, 0, 0, 1 },//  341
 	// step kick throw
-	{ TYPE_FUNCTION_CALL, 0x2123B0, 5, 2, 834 },//  342
+	{ TYPE_FUNCTION_CALL, 0x2123B0, 0, 0, 0x11 },//  342
 	// cage throw
 	{ TYPE_REACTIONS_FUNCTION, 162, 0, 0, 0x11 }, // 343
 	{ TYPE_REACTIONS_FUNCTION, 163, 0, 0, 0x11 }, // 344
 	// drahmin projectile
 	{ TYPE_FUNCTION_CALL, 0x215260, 0, 0, 1 },//  345
+	// rain bolt
+	{ TYPE_REACTIONS_FUNCTION, 164, 0, 0,  0x11 },//  346
+	// rain kick
+	{ TYPE_REACTIONS_FUNCTION, 165, 5, 0, 978 },//  347
+	// nitara/sektor/quan throw reaction
+	{ TYPE_REACTIONS_FUNCTION, 72, 0, 0, 0x11 },//  348
 };
 
 int onaga_remap_table[TOTAL_REACTIONS] = {
@@ -721,6 +727,9 @@ int onaga_remap_table[TOTAL_REACTIONS] = {
 	278, // 343
 	278, // 344
 	278, // 345
+	278, // 346
+	278, // 347
+	278, // 348
 };
 
 static int goro_lower_arms_atk[] = {

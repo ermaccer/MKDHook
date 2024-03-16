@@ -8,6 +8,7 @@ typedef struct {
 	int enable_quick_start;
 	int qs_mode;
 	int extended_konquest_draw_distance;
+	int maximum_ai_diff;
 }SSETTINGS;
 
 

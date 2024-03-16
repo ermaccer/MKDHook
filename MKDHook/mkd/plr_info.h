@@ -827,10 +827,7 @@ typedef struct {
 	char field_1B9;
 	char field_1BA;
 	char field_1BB;
-	char field_1BC;
-	char field_1BD;
-	char field_1BE;
-	char field_1BF;
+	int field_1BC;
 	char field_1C0;
 	char field_1C1;
 	char field_1C2;
@@ -1091,10 +1088,7 @@ typedef struct {
 	char field_2C1;
 	char field_2C2;
 	char field_2C3;
-	char field_2C4;
-	char field_2C5;
-	char field_2C6;
-	char field_2C7;
+	int lastHitLevel;
 	char field_2C8;
 	char field_2C9;
 	char field_2CA;

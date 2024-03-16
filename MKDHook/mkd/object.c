@@ -139,6 +139,25 @@ void collapse_bone(int object, int id, int status)
 		obj_clear_bone_collapse_flag(object, id);
 }
 
+bone_data* get_bone(int object, int id)
+{
+	if (!object)
+		return 0;
+	int skeleton = *(int*)(object + 72);
+	
+	if (!skeleton)
+		return 0;
+
+	int bone_ptr = *(int*)(skeleton + (4 * id));
+	
+	if (!bone_ptr)
+		return 0;
+
+	bone_data* bone = (bone_data*)(bone_ptr);
+
+	return bone;
+}
+
 
 int get_id_from_object(int obj)
 {
@@ -215,4 +234,24 @@ void plyr_weapon_show(int data, int unk, int entry)
 void plyr_weapon_hide(int data, int unk, int entry)
 {
 	((void(*)(int, int, int))0x228E50)(data, unk, entry);
+}
+
+void quat_to_matrix(int matrix, int quat)
+{
+	((void(*)(int, int))0x160070)(matrix, quat);
+}
+
+void vector_to_matrix(CVector* vector, int matrix)
+{
+	((void(*)(CVector*, int))0x1603F0)(vector, matrix);
+}
+
+void matrix_mult_matrix(int dst, int src, int mult)
+{
+	((void(*)(int, int, int))0x15F8A0)(dst, src, mult);
+}
+
+void matrix_to_quat(int matrix, int quat)
+{
+	((void(*)(int, int))0x160180)(quat, matrix);
 }

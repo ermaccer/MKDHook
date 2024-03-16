@@ -45,14 +45,17 @@ struct mk_file_entry pselect_entry_table[PSELECT_FILES] = {
 	{"body_shang_alt.sec"	,0, 1},
 	{"body_kung_alt.sec"	,0, 1},
 	{"body_cage_alt.sec"	,0, 1},
+	{"body_random_alt.sec"	,0, 1},
+	{"body_sektor_alt.sec"	,0, 1},
+	{"body_nitara_alt.sec"	,0, 1},
 };
 
 // I:\ps2dvd\art\pselect.ssf
 struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[0]	,0,0 },
 
-		{&pselect_entry_table[1]	,0,4402304}, // pselect
-		{&pselect_entry_table[2]	,0,1998848}, // bg
+		{&pselect_entry_table[1]	,0,4537344}, // pselect
+		{&pselect_entry_table[2]	,0,2086144}, // bg
 		{&pselect_entry_table[3]	,0,1528960}, // pz
 		// ALT RENDERS
 		{&pselect_entry_table[4]	,0,67456},  // ALT
@@ -92,6 +95,9 @@ struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[38]	,0,67456},  // shang_alt
 		{&pselect_entry_table[39]	,0,67456},  // kung_alt
 		{&pselect_entry_table[40]	,0,67456},  // cage_alt
+		{&pselect_entry_table[41]	,0,67456},  // random_alt
+		{&pselect_entry_table[42]	,0,67456},  // sektor_alt
+		{&pselect_entry_table[43]	,0,67456},  // nitara_alt
 		{0,0,0}
 };
 

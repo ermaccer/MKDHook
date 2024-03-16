@@ -63,10 +63,13 @@
     <ClCompile Include="characters\mkda_kung_lao.c" />
     <ClCompile Include="characters\mkda_mokap.c" />
     <ClCompile Include="characters\mkda_raiden.c" />
+    <ClCompile Include="characters\nitara.c" />
     <ClCompile Include="characters\noob.c" />
     <ClCompile Include="characters\quanchi.c" />
+    <ClCompile Include="characters\rain.c" />
     <ClCompile Include="characters\sareena.c" />
     <ClCompile Include="characters\scorpion.c" />
+    <ClCompile Include="characters\sektor.c" />
     <ClCompile Include="characters\shangtsung.c" />
     <ClCompile Include="characters\shaokahn.c" />
     <ClCompile Include="characters\smoke.c" />
@@ -97,6 +100,7 @@
     <ClCompile Include="network.c" />
     <ClCompile Include="pcsx2\inireader.c" />
     <ClCompile Include="pcsx2\rini.c" />
+    <ClCompile Include="practice.c" />
     <ClCompile Include="ps2mem.c" />
     <ClCompile Include="qs.c" />
     <ClCompile Include="reactions.c" />
@@ -108,6 +112,7 @@
     <ClCompile Include="stages\acidbath.c" />
     <ClCompile Include="stages\darkprison.c" />
     <ClCompile Include="stages\katakombs.c" />
+    <ClCompile Include="stages\teststage.c" />
     <ClCompile Include="voice.c" />
   </ItemGroup>
   <ItemGroup>
@@ -132,10 +137,13 @@
     <ClInclude Include="characters\mkda_kung_lao.h" />
     <ClInclude Include="characters\mkda_mokap.h" />
     <ClInclude Include="characters\mkda_raiden.h" />
+    <ClInclude Include="characters\nitara.h" />
     <ClInclude Include="characters\noob.h" />
     <ClInclude Include="characters\quanchi.h" />
+    <ClInclude Include="characters\rain.h" />
     <ClInclude Include="characters\sareena.h" />
     <ClInclude Include="characters\scorpion.h" />
+    <ClInclude Include="characters\sektor.h" />
     <ClInclude Include="characters\shangtsung.h" />
     <ClInclude Include="characters\shaokahn.h" />
     <ClInclude Include="characters\smoke.h" />
@@ -168,6 +176,7 @@
     <ClInclude Include="network.h" />
     <ClInclude Include="pcsx2\inireader.h" />
     <ClInclude Include="pcsx2\rini.h" />
+    <ClInclude Include="practice.h" />
     <ClInclude Include="ps2mem.h" />
     <ClInclude Include="qs.h" />
     <ClInclude Include="reactions.h" />
@@ -179,6 +188,7 @@
     <ClInclude Include="stages\acidbath.h" />
     <ClInclude Include="stages\darkprison.h" />
     <ClInclude Include="stages\katakombs.h" />
+    <ClInclude Include="stages\teststage.h" />
     <ClInclude Include="toc.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="voice.h" />

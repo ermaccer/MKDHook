@@ -446,11 +446,6 @@ void p_shangtsung_explode_balls(int plrID, int obj, int obj2, int hit)
 		resume_effect_at_obj_bid(obj, 0, shang_emitter_fx_handle[plrID][SHANG_FX_EXPLOSION], 1, 0);
 	}
 
-
-
-
-
-
 }
 
 

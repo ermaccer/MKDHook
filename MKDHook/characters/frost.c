@@ -74,17 +74,17 @@ struct mk_toc_entry frost_file_table[FROST_FILES + 1] = {
 
 		{&frost_entry_table[1]	,0,	   492032 },	// frost.sec
 		{&frost_entry_table[2]	,0,    492032 },	// frost_ap.sec
-		{&frost_entry_table[3]	,0,    34688   },	// frost.mko
+		{&frost_entry_table[3]	,0,    34688  },	// frost.mko
 		{&frost_entry_table[4]	,0,    542720 },	// sh_frost.sec
 		{&frost_entry_table[5]	,0,    10164  },	// fight_fx.mko
 		{&frost_entry_table[6]	,0,    21368  },	// blood_fx.mko
 		{&frost_entry_table[7]	,0,    23904  },	// frost_fx.mko
 		{&frost_entry_table[8]  ,0,	   14112  },	// tongbei.mko
-		{&frost_entry_table[9]	,0,    10112   },	// style_tongbei.sec
+		{&frost_entry_table[9]	,0,    10112  },	// style_tongbei.sec
 		{&frost_entry_table[10] ,0,	   12128  },	// yuanyang.mko
-		{&frost_entry_table[11] ,0,    10112   },	// style_yuan_yang.sec
+		{&frost_entry_table[11] ,0,    10112  },	// style_yuan_yang.sec
 		{&frost_entry_table[12] ,0,	   11104  },	// daggers.mko
-		{&frost_entry_table[13] ,0,	   10112   },	// style_daggers.sec
+		{&frost_entry_table[13] ,0,	   10112  },	// style_daggers.sec
 		{&frost_entry_table[14] ,0,	   58112  },	// frost_anims.sec
 		{&frost_entry_table[15] ,0,	   151808 },	// tongbei_anims.sec
 		{&frost_entry_table[16] ,0,	   167680 },	// yuanyang_anims.sec
@@ -129,17 +129,17 @@ struct mk_toc_entry frost_alt_file_table[FROST_FILES + 1] = {
 
 		{&frost_alt_entry_table[1]	,0,	   485120 },	// frost_alt.sec
 		{&frost_alt_entry_table[2]	,0,    485120 },	// frost_alt_ap.sec
-		{&frost_alt_entry_table[3]	,0,    34688   },	// frost.mko
+		{&frost_alt_entry_table[3]	,0,    34688  },	// frost.mko
 		{&frost_alt_entry_table[4]	,0,    542720 },	// sh_frost.sec
 		{&frost_alt_entry_table[5]	,0,    10164  },	// fight_fx.mko
 		{&frost_alt_entry_table[6]	,0,    21368  },	// blood_fx.mko
 		{&frost_alt_entry_table[7]	,0,    23904  },	// frost_fx.mko
 		{&frost_alt_entry_table[8]  ,0,	   14112  },	// tongbei.mko
-		{&frost_alt_entry_table[9]	,0,    10112   },	// style_tongbei.sec
+		{&frost_alt_entry_table[9]	,0,    10112  },	// style_tongbei.sec
 		{&frost_alt_entry_table[10] ,0,	   12128  },	// yuanyang.mko
-		{&frost_alt_entry_table[11] ,0,    10112   },	// style_yuan_yang.sec
+		{&frost_alt_entry_table[11] ,0,    10112  },	// style_yuan_yang.sec
 		{&frost_alt_entry_table[12] ,0,	   11104  },	// daggers.mko
-		{&frost_alt_entry_table[13] ,0,	   10112   },	// style_daggers.sec
+		{&frost_alt_entry_table[13] ,0,	   10112  },	// style_daggers.sec
 		{&frost_alt_entry_table[14] ,0,	   58112  },	// frost_alt_anims.sec
 		{&frost_alt_entry_table[15] ,0,	   151808 },	// tongbei_anims.sec
 		{&frost_alt_entry_table[16] ,0,	   167680 },	// yuanyang_anims.sec

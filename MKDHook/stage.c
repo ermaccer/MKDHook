@@ -11,6 +11,7 @@
 #include "stages/acidbath.h"
 #include "stages/katakombs.h"
 #include "stages/darkprison.h"
+#include "stages/teststage.h"
 
 struct stage_info_entry pStageTable[] = {
 	{0x5A3770	, "beetlelair.mko"	, 18	,1,},
@@ -226,6 +227,62 @@ char* hook_ladder_stage_name(int id)
 	}
 }
 
+int not_allowed_music_list[] = {
+	-1, 0,
+	4626, 4629,6109, 6112, 5586, 5589,
+	6895, 6898, 6507, 6510
+};
+
+int edenia_music_list[] = {
+	3868, 3869, 3870
+};
+
+int is_music_not_allowed(int id)
+{
+	int result = 0;
+	for (int i = 0; i < sizeof(not_allowed_music_list) / sizeof(int); i++)
+	{
+		if (not_allowed_music_list[i] == id)
+			result = 1;
+	}
+
+	return result;
+}
+
+void konquest_stage_setup_music()
+{
+	((void(*)())0x3C3BF0)();
+
+	int currentBgnd = *(int*)CUR_BGND;
+
+	if (!(currentBgnd >= BGS_EARTH_1 && currentBgnd <= BGS_EDENIA))
+		return;
+
+	if (get_game_mode() == MODE_KONQUEST || get_game_mode() == MODE_8)
+		return;
+
+	int stage_mko_data = *(int*)0x5E435C;
+
+	if (stage_mko_data)
+	{
+		int bgnd_music = ((int(*)(const char*))0x21A230)("bgnd_music");
+		if (bgnd_music)
+		{
+			int music_id = -1;
+
+			int music_choice = randu(3);
+			int music_offset = 4 * music_choice;
+			music_id = *(int*)(bgnd_music + music_offset);
+
+			*(int*)(stage_mko_data + 0x48) = music_id;
+			*(int*)(stage_mko_data + 0x48 + 4) = music_id;
+			*(int*)(stage_mko_data + 0x48 + 8) = music_id;
+			*(int*)(stage_mko_data + 0x48 + 12) = music_id;
+			*(int*)(stage_mko_data + 0x48 + 16) = music_id;
+		}
+	}
+}
+
 void init_stage_hook()
 {
 	static int val = 0;
@@ -385,6 +442,9 @@ void init_stage_hook()
 	// ladder name
 	makeJal(0x3E7DA8, hook_ladder_stage_name);
 
+
+	// konquest music
+	makeJal(0x15A6BC, konquest_stage_setup_music);
 
 	// toc
 	init_stage_tocs();

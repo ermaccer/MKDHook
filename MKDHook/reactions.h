@@ -4,7 +4,7 @@
 #define TOTAL_REACTIONS 314 + EXTRA_REACTIONS
 // mku added 17 new reactions
 
-#define UMKD_REACTIONS 15
+#define UMKD_REACTIONS 18
 #define EXTRA_REACTIONS 17 + UMKD_REACTIONS
 
 

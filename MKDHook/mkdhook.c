@@ -42,33 +42,35 @@ select_screen_entry pSelectTableNew[24] = {
 		{SONYA,  SOUND_SONYA_SELECT	, "HEAD_SONYA"	, "HEAD_RANDOM"	, "BODY_SONYA"	, "body_sonya_alt.sec"	, "1"	, "KENPO"	, "TAE KWON DO"	, "KALI STICKS"},
 		{KITANA, SOUND_KITANA_SELECT, "HEAD_KITANA"	, "HEAD_RANDOM"	, "BODY_KITANA"	, "body_kitana_alt.sec"	, "4"	, "EAGLE CLAW"	, "BA GUA"	, "STEEL FAN"},
 		{JAX,  SOUND_JAX_SELECT	, "HEAD_JAX"	, "HEAD_RANDOM"	, "BODY_JAX"	, "body_jax_alt.sec"	, "2"	, "MUAY THAI"	, "JUDO"	, "TONFA"},
+		
 		{ONAGA,  SOUND_ONAGA_SELECT	, "HEAD_DRAGONKING"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "NULL"	,  "1"	, "DRAGON"	, ""	, ""},
 		{SHAO_KAHN, SOUND_SHAO_SELECT	, "HEAD_SHAO_KAHN"	, "HEAD_RANDOM"	, "BODY_SHAO_KAHN"	, "body_shaokahn_alt.sec"	, "2"	, "TAI TZU"	, "LUI HE"	, "WRATH HAMMER"},
-		{FROST,  SOUND_FROST_SELECT	, "HEAD_FROST"	, "HEAD_RANDOM"	, "BODY_FROST"	, "body_frost_alt.sec"	, "2"	, "TONG BEI"	, "YUAN YANG"	, "ICE DAGGERS"},
+		{FROST,  SOUND_FROST_SELECT	, "HEAD_FROST"	, "HEAD_RANDOM"	, "BODY_FROST"	, "body_frost_alt.sec"	, "2"	, "TONG BEI"	, "YUAN YANG"	, "DAGGERS"},
+		
 		{BLAZE,  SOUND_BLAZE_SELECT	, "HEAD_BLAZE"	, "HEAD_RANDOM"	, "BODY_BLAZE"	, "body_blaze_alt.sec"	, "3"	, "HAPKIDO"	, "JEET KUNE DO"	, "XING YI"},
 		{GORO,  SOUND_GORO_SELECT	, "HEAD_GORO"	, "HEAD_RANDOM"	, "BODY_GORO"	, "body_goro_alt.sec"	, "3"	, "SHOKAN"	, "KUATAN"	, "DRAGON FANGS"},
-
 		{DRAHMIN, SOUND_DRAHMIN_SELECT	, "HEAD_DRAHMIN"	, "HEAD_RANDOM"	, "BODY_DRAHMIN"	, "body_drahmin_alt.sec"	, "2"	, "HUNG GAR"	, "WRESTLING"	, "IRON CLUB"},
+		
 		{SAREENA, SOUND_SAREENA_SELECT	, "HEAD_SAREENA"	, "HEAD_RANDOM"	, "BODY_SAREENA"	, "body_sareena_alt.sec"	, "3"	, "BAJI QUAN"	, "YUAN YANG"	, "DEMON FANG"},
 		{KUNG_LAO, SOUND_KUNG_LAO_SELECT	, "HEAD_KUNG_LAO"	, "HEAD_RANDOM"	, "BODY_KUNGLAO"	, "body_kung_alt.sec"	,	"2", "MANTIS"	, "SHAOLIN FIST"	, "BROADSWORD"},
-
 		{QUAN_CHI, SOUND_QUAN_SELECT	, "HEAD_QUAN"	, "HEAD_RANDOM"	, "BODY_QUAN"	, "body_quan_alt.sec"	, "4"	, "TANG SOO DO"	, "ESCRIMA"	, "BROADSWORDS"},
+		
 		{SHANG_TSUNG, SOUND_SHANG_TSUNG_SELECT	, "HEAD_SHANG_TSUNG"	, "HEAD_RANDOM"	, "BODY_SHANGTSUNG"	, "body_shang_alt.sec"	, "3"	, "SNAKE"	, "CRANE"	, "STRAIGHT SWORD"},
 		{CAGE,  SOUND_CAGE_SELECT	, "HEAD_CAGE"	, "HEAD_RANDOM"	, "BODY_CAGE"	, "body_cage_alt.sec",	"3", "SHORIN RYU"	, "JEET KUNE DO"	, "NUNCHAKU"},
+		{SEKTOR, SOUND_SEKTOR_SELECT	, "HEAD_SEKTOR"	, "HEAD_RANDOM"	, "BODY_SEKTOR"	, "body_sektor_alt.sec"	, "2"	, "NINJITSU"	, "SHUAI CHIAO"	, "PULSEBLADES"},
 
-		{SCORPION,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, ""	, ""	, ""	, ""},
-		{SCORPION,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_scorpion_alt.sec"	, ""	, ""	, ""	, ""},
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{NITARA,  SOUND_NITARA_SELECT	, "HEAD_NITARA"	, "HEAD_RANDOM"	, "BODY_NITARA"	, "body_nitara_alt.sec"	, "3"	, "LEOPARD"	, "FU JOW PAI"	, "KAMA"},
+		{RAIN, SOUND_RAIN_SELECT	, "HEAD_RAIN"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_random_alt.sec"	, "3"	, "YUE CHUAN"	, "NAN CHUAN"	, "STORM SWORD"},	
 		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},	
 		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 
 		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+
 
 };
 

@@ -18,10 +18,12 @@ void init_settings()
 	settings.enable_quick_start = inireader.ReadInteger("Settings", "QuickStart", 0);
 	settings.qs_mode = inireader.ReadInteger("Settings", "QSMODE", 1);
 	settings.extended_konquest_draw_distance = inireader.ReadInteger("Settings", "ExtendedKonquestDrawDistance", 0);
+	settings.maximum_ai_diff = inireader.ReadInteger("Settings", "MaximumAIDifficulty", 0);
 
 	_printf("Settings read!\n");
 #else
 	settings.no_intro = 0;
 	settings.blaze_enable_fatalities = 0;
+	settings.maximum_ai_diff = 0;
 #endif
 }
