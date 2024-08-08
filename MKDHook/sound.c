@@ -7973,6 +7973,8 @@ sound_entry mk_sound_table[TOTAL_SOUNDS] =
 	{ 6, 168, -1, 1, 1.000000, 4, 1 }, // nitara select (7583)
 	{ 6, 169, -1, 1, 1.000000, 4, 1 }, // nitara wins (7584)
 
+	// CYRAX & SEKTOR
+
 	{ BANK_C_SEKTOR, 0, -1, 1, 0.800000, 5, 1 }, // sektor door open (7585) 
 	{ BANK_C_SEKTOR, 1, -1, 1, 0.800000, 5, 1 }, // sektor flame (7586)
 	{ BANK_C_SEKTOR, 2, -1, 1, 0.800000, 5, 1 }, // sektor rocket (7587)
@@ -7980,4 +7982,37 @@ sound_entry mk_sound_table[TOTAL_SOUNDS] =
 
 	{ 6, 170, -1, 1, 1.000000, 4, 1 }, // sektor select (7589)
 	{ 6, 171, -1, 1, 1.000000, 4, 1 }, // sektor wins (7590)
+
+	{ BANK_C_SEKTOR, 5, -1, 1, 0.800000, 5, 1 }, // cyrax bomb 1 (7591) 
+	{ BANK_C_SEKTOR, 6, -1, 1, 0.800000, 5, 1 }, // cyrax bomb 2 (7592)
+	{ BANK_C_SEKTOR, 7, -1, 1, 0.800000, 5, 1 }, // cyrax bomb 3 (7593)
+	{ BANK_C_SEKTOR, 8, -1, 1, 0.800000, 5, 1 }, // cyrax spin kick (7594)
+	{ BANK_C_SEKTOR, 9, -1, 1, 0.800000, 5, 1 }, // cyrax cutter start (7595)
+	{ BANK_C_SEKTOR, 10, -1, 1, 0.800000, 5, 1 }, // cyrax cutter spin (7596)
+	{ BANK_C_SEKTOR, 11, -1, 1, 0.800000, 5, 1 }, // cyrax cutter hit (7597)
+	{ BANK_C_SEKTOR, 12, -1, 1, 0.800000, 5, 1 }, // cyrax cutter block (7598)
+	{ BANK_C_SEKTOR, 13, -1, 1, 0.800000, 5, 1 }, // cyrax cutter end (7599)
+
+	{ 6, 172, -1, 1, 1.000000, 4, 1 }, // cyrax select (7600)
+	{ 6, 173, -1, 1, 1.000000, 4, 1 }, // cyrax wins (7601)
+
+	// REIKO
+	{ BANK_C_REIKO, 0, -1, 1, 0.800000, 5, 1 }, // reiko shuriken (7602)
+	{ BANK_C_REIKO, 1, -1, 1, 0.800000, 5, 1 }, // reiko shuriken hit (7603)
+	{ BANK_C_REIKO, 2, -1, 1, 0.800000, 5, 1 }, // reiko circle teleport (7604)
+	{ BANK_C_REIKO, 3, -1, 1, 0.800000, 5, 1 }, // reiko teleport (7605)
+	{ BANK_C_REIKO, 4, -1, 1, 0.800000, 5, 1 }, // reiko spinkick (7606)
+
+	{ 6, 174, -1, 1, 1.000000, 4, 1 }, // reiko select (7607)
+	{ 6, 175, -1, 1, 1.000000, 4, 1 }, // reiko wins (7608)
+
+	// TREMOR
+	{ BANK_C_TREMOR, 0, -1, 1, 0.800000, 5, 1 }, // tremor gp (7609)
+	{ BANK_C_TREMOR, 1, -1, 1, 0.650000, 5, 1 }, // tremor charge (7610)
+	{ BANK_C_TREMOR, 2, -1, 1, 0.800000, 5, 1 }, // tremor rock break (7611)
+	{ BANK_C_TREMOR, 3, -1, 1, 0.800000, 5, 1 }, // tremor rock fly (7612)
+	{ BANK_C_TREMOR, 4, -1, 1, 0.800000, 5, 1 }, // tremor rock launch (7613)
+
+	{ 6, 176, -1, 1, 1.000000, 4, 1 }, // tremor select (7614)
+	{ 6, 177, -1, 1, 1.000000, 4, 1 }, // tremor wins (7615)
 };

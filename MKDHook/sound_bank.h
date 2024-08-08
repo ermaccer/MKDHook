@@ -19,7 +19,9 @@ enum eNewBanks {
 	BANK_C_RAIN	 = 174,
 	BANK_C_NITARA = 175,
 	BANK_C_SEKTOR = 176,
-	TOTAL_NEW_BANKS = 14
+	BANK_C_REIKO = 177,
+	BANK_C_TREMOR = 178,
+	TOTAL_NEW_BANKS = 16
 };
 
 typedef struct

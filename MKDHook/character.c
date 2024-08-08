@@ -58,7 +58,7 @@ struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"KITANA"	, (int)&kitana_file_table	, (int)&kitana_alt_file_table	,"kitana.mko"},
 	{"JAX"	,	  (int)&jax_file_table	,	  (int)&jax_alt_file_table	,    "jax.mko"},
 	{"FROST"	, (int)&frost_file_table	,	  (int)&frost_alt_file_table	,    "frost.mko"},
-	{"BLAZE"	, (int)&blaze_file_table	, (int)&blaze_file_table		,"blaze.mko"},
+	{"BLAZE"	, (int)&blaze_file_table	, (int)&blaze_alt_file_table		,"blaze.mko"},
 	{"SHAO KAHN"	, (int)&sk_file_table	, (int)&sk_alt_file_table	,"shaokahn.mko"},
 	{"GORO"	, (int)&goro_file_table	, (int)&goro_alt_file_table	,"goro.mko"},
 	// new
@@ -71,8 +71,60 @@ struct char_info_entry pCharTable[TOTAL_CHARACTERS] = {
 	{"SEKTOR"	, (int)&sektor_file_table	, (int)&sektor_alt_file_table	,"sektor.mko"},
 	{"RAIN"	, (int)&rain_file_table	, (int)&rain_alt_file_table	,"rain.mko"},
 	{"NITARA"	, (int)&nitara_file_table	, (int)&nitara_alt_file_table	,"nitara.mko"},
-
+	{"TREMOR"	, (int)&tremor_file_table	, (int)&tremor_file_table	,"tremor.mko"},
+	{"CYRAX"	, (int)&cyrax_file_table	, (int)&cyrax_alt_file_table	,"cyrax.mko"},
+	{"REIKO"	, (int)&reiko_file_table	, (int)&reiko_alt_file_table	,"reiko.mko"},
+	{"RAIN"	, (int)&rain2_file_table	, (int)&rain2_file_table	,"rain.mko"},
+	{"SCORPION"	, (int)&scorpion2_file_table	, (int)&scorpion2_file_table	,"scorpion.mko"},
+	{"SUB-ZERO"	, (int)&subzero2_file_table	, (int)&subzero2_alt_file_table	,"subzero.mko"},
+	{"ERMAC"	, (int)&ermac2_file_table	, (int)&ermac2_file_table	,"ermac.mko"},
+	{"RAIDEN"	, (int)&raiden2_file_table	, (int)&raiden2_file_table	,"raiden.mko"},
 };
+
+
+// TODO: figure out what those floats do
+character_timers pTimerTable[CHARACTER_TIMERS + 1] = {
+	{ASHRAH, 825.0, 400.0, 350.0, 120.0, 60.0, 120.0, 5.0, 80.0},
+	{BARAKA, 590.0, 370.0, 400.0, 120.0, 60.0, 120.0, 5.0, 120.0},
+	{BORAICHO, 1100.0, 1030.0, 350.0, 120.0, 60.0, 120.0, 5.0, 120.0},
+	{DARRIUS, 550.0, 500.0, 400.0, 120.0, 60.0, 120.0, 5.0, 70.0},
+	{DAIROU, 630.0, 600.0, 250.0, 120.0, 60.0, 120.0, 5.0, 70.0},
+	{ERMAC, 700.0, 650.0, 580.0, 120.0, 60.0, 120.0, 5.0, 90.0},
+	{HOTARU, 465.0, 560.0, 430.0, 120.0, 60.0, 120.0, 5.0, 80.0},
+	{JADE, 500.0, 550.0, 330.0, 120.0, 60.0, 120.0, 5.0, 70.0},
+	{KABAL, 500.0, 500.0, 330.0, 150.0, 60.0, 120.0, 5.0, 140.0},
+	{KENSHI, 780.0, 650.0, 600.0, 120.0, 60.0, 120.0, 5.0, 80.0},
+	{KIRA, 700.0, 400.0, 360.0, 120.0, 60.0, 120.0, 5.0, 100.0},
+	{KOBRA, 770.0, 430.0, 500.0, 120.0, 60.0, 120.0, 5.0, 135.0},
+	{LI_MEI, 740.0, 430.0, 350.0, 120.0, 60.0, 120.0, 5.0, 50.0},
+	{LIU_KANG, 490.0, 760.0, 400.0, 120.0, 60.0, 120.0, 5.0, 120.0},
+	{MILEENA, 830.0, 570.0, 400.0, 120.0, 60.0, 120.0, 5.0, 120.0},
+	{NIGHTWOLF, 550.0, 500.0, 450.0, 120.0, 60.0, 120.0, 5.0, 60.0},
+	{NOOBSMOKE, 550.0, 930.0, 380.0, 160.0, 60.0, 120.0, 5.0, 120.0},
+	{RAIDEN, 370.0, 390.0, 330.0, 120.0, 60.0, 120.0, 5.0, 120.0},
+	{SCORPION, 370.0, 850.0, 350.0, 150.0, 60.0, 120.0, 5.0, 140.0},
+	{SHUJINKO, 760.0, 580.0, 550.0, 160.0, 60.0, 120.0, 5.0, 110.0},
+	{SINDEL, 420.0, 600.0, 250.0, 120.0, 60.0, 120.0, 5.0, 120.0},
+	{HAVIK, 650.0, 690.0, 390.0, 120.0, 60.0, 120.0, 5.0, 70.0},
+	{SUBZERO, 700.0, 860.0, 330.0, 150.0, 60.0, 120.0, 5.0, 40.0},
+	{TANYA, 530.0, 560.0, 550.0, 120.0, 60.0, 120.0, 5.0, 70.0},
+	
+	// mku timers
+	{KITANA, 1100.0, 1100.0, 330.0, 120.0, 60.0, 120.0, 5.0, 70.0},
+	{GORO, 592.0, 600.0, 495.0, 120.0, 60.0, 120.0, 5.0, 140.0},
+	{SHAO_KAHN, 454.0, 702.0, 518.0, 120.0, 60.0, 120.0, 5.0, 140.0},
+	{FROST, 700.0, 700.0, 330.0, 150.0, 60.0, 120.0, 5.0, 40.0},
+	{JAX, 500.0, 550.0, 330.0, 120.0, 60.0, 120.0, 5.0, 120.0},
+
+	// umkd new timers
+	{SCORPION2, 370.0, 850.0, 350.0, 150.0, 60.0, 120.0, 5.0, 140.0},
+	{SUBZERO2, 700.0, 860.0, 330.0, 150.0, 60.0, 120.0, 5.0, 40.0},
+	{ERMAC2, 700.0, 650.0, 580.0, 120.0, 60.0, 120.0, 5.0, 90.0},
+	{RAIDEN2, 370.0, 390.0, 330.0, 120.0, 60.0, 120.0, 5.0, 120.0},
+
+	{-1, 1500.0, 1500.0, 1500.0, 120.0, 60.0, 120.0, 5.0, 140.0}
+};
+
 #ifndef PS2_BUILD
 void dump_char_table()
 {
@@ -112,58 +164,113 @@ void init_character_hook()
 	patchShort(0x193880, TOTAL_CHARACTERS);
 	patchShort(0x40BEA4, TOTAL_CHARACTERS);
 	
-	val = (int)&pCharTable[0];
-	patchInt(0x16D3AC, lui(v0, HIWORD(val)));
-	patchInt(0x16D3AC + 4, ori(v0, v0, LOWORD(val)));
+	{
+		val = (int)&pCharTable[0];
+		patchInt(0x16D3AC, lui(v0, HIWORD(val)));
+		patchInt(0x16D3AC + 4, ori(v0, v0, LOWORD(val)));
+
+		patchInt(0x1938D8, lui(v0, HIWORD(val)));
+		patchInt(0x1938D8 + 4, ori(v0, v0, LOWORD(val)));
+
+		patchInt(0x1A3ED0, lui(v1, HIWORD(val)));
+		patchInt(0x1A3ED8, ori(v1, v1, LOWORD(val)));
+
+		patchInt(0x1A3FA4, lui(v1, HIWORD(val)));
+		patchInt(0x1A3FAC, ori(v1, v1, LOWORD(val)));
+
+		patchInt(0x264EF4, lui(v1, HIWORD(val)));
+		patchInt(0x264EFC, ori(v1, v1, LOWORD(val)));
+
+		patchInt(0x264F10, lui(v1, HIWORD(val)));
+		patchInt(0x264F18, ori(v1, v1, LOWORD(val)));
+
+
+		patchInt(0x2E5EC8, lui(v0, HIWORD(val)));
+		patchInt(0x2E5EC8 + 4, ori(v0, v0, LOWORD(val)));
+
+		// TODO: implement krypt names for new chars when new bios are in somehow
+		//patchInt(0x3EB790, lui(v0, HIWORD(val)));
+		//patchInt(0x3EB7A0, ori(v0, v0, LOWORD(val)));
+		//
+
+		patchInt(0x40BE8C, lui(v0, HIWORD(val)));
+		patchInt(0x40BE8C + 4, ori(v0, v0, LOWORD(val)));
+
+		val += 4;
+		patchInt(0x130DEC, lui(v0, HIWORD(val)));
+		patchInt(0x130DF4, ori(v0, v0, LOWORD(val)));
+
+		patchInt(0x132888, lui(v0, HIWORD(val)));
+		patchInt(0x132888 + 4, ori(v0, v0, LOWORD(val)));
+
+		val += 4;
+		patchInt(0x130DD4, lui(v0, HIWORD(val)));
+		patchInt(0x130DDC, ori(v0, v0, LOWORD(val)));
+
+		patchInt(0x132864, lui(v0, HIWORD(val)));
+		patchInt(0x132864 + 4, ori(v0, v0, LOWORD(val)));
+
+
+		val += 4;
+		patchInt(0x130E10, lui(v0, HIWORD(val)));
+		patchInt(0x130E34, ori(v0, v0, LOWORD(val)));
+
+		patchInt(0x131098, lui(v0, HIWORD(val)));
+		patchInt(0x131098 + 4, ori(v0, v0, LOWORD(val)));
+
+	}
 	
-	patchInt(0x1938D8, lui(v0, HIWORD(val)));
-	patchInt(0x1938D8 + 4, ori(v0, v0, LOWORD(val)));
-	
-	patchInt(0x1A3ED0, lui(v1, HIWORD(val)));
-	patchInt(0x1A3ED8, ori(v1, v1, LOWORD(val)));
-	
-	patchInt(0x1A3FA4, lui(v1, HIWORD(val)));
-	patchInt(0x1A3FAC, ori(v1, v1, LOWORD(val)));
-	
-	patchInt(0x264EF4, lui(v1, HIWORD(val)));
-	patchInt(0x264EFC, ori(v1, v1, LOWORD(val)));
-	
-	patchInt(0x264F10, lui(v1, HIWORD(val)));
-	patchInt(0x264F18, ori(v1, v1, LOWORD(val)));
+	{
+		val = (int)&pTimerTable[0];
+		patchInt(0x16CC94, lui(v0, HIWORD(val)));
+		patchInt(0x16CC94 + 4, ori(v0, v0, LOWORD(val)));
+
+		patchInt(0x16CCA8, lui(a0, HIWORD(val)));
+		patchInt(0x16CCA8 + 4, ori(a0, a0, LOWORD(val)));
+
+		patchInt(0x170328, lui(a1, HIWORD(val)));
+		patchInt(0x17032C, ori(a1, a1, LOWORD(val)));
+
+		patchInt(0x17033C, lui(a0, HIWORD(val)));
+		patchInt(0x17033C + 4, ori(a0, a0, LOWORD(val)));
+
+		patchInt(0x1703B4, lui(a1, HIWORD(val)));
+		patchInt(0x1703B4 + 4, ori(a1, a1, LOWORD(val)));
+
+		val += 4;
+		patchInt(0x17036C, lui(v0, HIWORD(val)));
+		patchInt(0x170374, ori(v0, v0, LOWORD(val)));
+		
+		val += 4;
+		patchInt(0x17038C, lui(v0, HIWORD(val)));
+		patchInt(0x170394, ori(v0, v0, LOWORD(val)));
+
+		val += 4;
+		patchInt(0x1703E0, lui(v0, HIWORD(val)));
+		patchInt(0x1703E8, ori(v0, v0, LOWORD(val)));
+
+		val += 4;
+		patchInt(0x16CCE0, lui(a0, HIWORD(val)));
+		patchInt(0x16CCE8, ori(a0, a0, LOWORD(val)));
+
+		val += 4;
+		patchInt(0x16CCF0, lui(v0, HIWORD(val)));
+		patchInt(0x16CCF8, ori(v0, v0, LOWORD(val)));
+
+		val += 4;
+		patchInt(0x16D33C, lui(a0, HIWORD(val)));
+		patchInt(0x16D34C, ori(a0, a0, LOWORD(val)));
+
+		val += 4;
+		patchInt(0x16D344, lui(v1, HIWORD(val)));
+		patchInt(0x16D354, ori(v1, v1, LOWORD(val)));
+
+		val += 4;
+		patchInt(0x16D350, lui(v0, HIWORD(val)));
+		patchInt(0x16D358, ori(v0, v0, LOWORD(val)));
+	}
 	
 
-	patchInt(0x2E5EC8, lui(v0, HIWORD(val)));
-	patchInt(0x2E5EC8 + 4, ori(v0, v0, LOWORD(val)));
-
-	// TODO: implement krypt names for new chars when new bios are in somehow
-	//patchInt(0x3EB790, lui(v0, HIWORD(val)));
-	//patchInt(0x3EB7A0, ori(v0, v0, LOWORD(val)));
-	//
-
-	patchInt(0x40BE8C, lui(v0, HIWORD(val)));
-	patchInt(0x40BE8C + 4, ori(v0, v0, LOWORD(val)));
-	
-	val += 4;
-	patchInt(0x130DEC, lui(v0, HIWORD(val)));
-	patchInt(0x130DF4, ori(v0, v0, LOWORD(val)));
-	
-	patchInt(0x132888, lui(v0, HIWORD(val)));
-	patchInt(0x132888 + 4, ori(v0, v0, LOWORD(val)));
-	
-	val += 4;
-	patchInt(0x130DD4, lui(v0, HIWORD(val)));
-	patchInt(0x130DDC, ori(v0, v0, LOWORD(val)));
-	
-	patchInt(0x132864, lui(v0, HIWORD(val)));
-	patchInt(0x132864 + 4, ori(v0, v0, LOWORD(val)));
-	
-	
-	val += 4;
-	patchInt(0x130E10, lui(v0, HIWORD(val)));
-	patchInt(0x130E34, ori(v0, v0, LOWORD(val)));
-	
-	patchInt(0x131098, lui(v0, HIWORD(val)));
-	patchInt(0x131098 + 4, ori(v0, v0, LOWORD(val)));
 
 	makeJal(0x132750, hook_character_lock_status);
 	makeJal(0x1340E8, hook_character_lock_status);
@@ -187,6 +294,10 @@ void init_character_hook()
 
 void init_character_tocs()
 {
+	init_scorpion_toc();
+	init_subzero_toc();
+	init_ermac_toc();
+	init_raiden_toc();
 	init_mkda_kano_toc();
 	init_mkda_mokap_toc();
 	init_mkda_blaze_toc();
@@ -207,6 +318,9 @@ void init_character_tocs()
 	init_sektor_toc();
 	init_rain_toc();
 	init_nitara_toc();
+	init_tremor_toc();
+	init_cyrax_toc();
+	init_reiko_toc();
 }
 
 int hook_character_lock_status(int id, int param)

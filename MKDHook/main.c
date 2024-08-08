@@ -22,6 +22,8 @@
 #include "qs.h"
 #include "network.h"
 #include "practice.h"
+#include "misc/konquest_npc.h"
+
 
 #ifndef PS2_BUILD
 int CompatibleCRCList[] = { 0x7C22850A };
@@ -29,11 +31,10 @@ int CompatibleCRCList[] = { 0x7C22850A };
 
 int version_hook(int id, int font, char* text, int x, int y, int unk)
 {
-
 #ifdef PS2_BUILD
-    static const char* versionText = "UMKD V6 BY ERMACCER (PS2)" ;
+    static const char* versionText = "UMKD V7 BY ERMACCER (PS2)" ;
 #else
-    static const char* versionText = "UMKD V6 BY ERMACCER ";
+    static const char* versionText = "UMKD V7 BY ERMACCER ";
 #endif // PS2_BUILD
 
     return string_left_xy(id, font, versionText, x - 350, y + 40, unk);
@@ -90,9 +91,11 @@ void init()
    init_chess_hook();
    init_network_hook();
    init_practice_hook();
+   init_kon_npc_hook();
 
    makeJal(0x15C1D4, version_hook);
    makeJal(0x15C1F8, version_hook);
+
 
 #ifndef PS2_BUILD
    if (settings.maximum_ai_diff)
@@ -105,7 +108,6 @@ void init()
 
 #ifndef PS2_BUILD
    _printf("MKDHook init! Debug var ptr: %X\n", &debugVar);
-
     if (settings.enable_quick_start)
         makeJmp(0x240220, p_quickstart);
 #endif

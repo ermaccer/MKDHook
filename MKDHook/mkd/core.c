@@ -131,6 +131,11 @@ int load_named_texture_from_slot(int slot, char* name)
 	return ((int(*)(int, char*))0x36D260)(slot, name);
 }
 
+int load_named_2dobj_from_slot(int slot, int id, char* name, int unk, int x, int y, int unk2)
+{
+	return ((int(*)(int, int, char*, int, int, int, int))0x179690)(slot, id, name,unk, x, y,unk2);
+}
+
 void unload_section_slot(int slot)
 {
 	((void(*)(int))0x1A5150)(slot);

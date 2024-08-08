@@ -5,6 +5,7 @@
 #include "character.h"
 #include "mips.h"
 #include "scripthook.h"
+#include ".\misc\konquest_npc.h"
 
 struct mk_file_entry ladder_entry_table[LADDER_FILES] = {
 	{"ladder.ssf"	,0, 4},
@@ -71,7 +72,10 @@ short characters[] = {
 	CAGE,
 	SEKTOR,
 	RAIN,
-	NITARA
+	NITARA,
+	TREMOR,
+	CYRAX,
+	REIKO
 };
 
 short backgrounds[] = {
@@ -141,6 +145,9 @@ ladder_model_entry ladder_models[] = {
 	{SEKTOR, "kon_sektor.sec"},
 	{RAIN, "kon_rain.sec"},
 	{NITARA, "kon_nitara.sec"},
+	{TREMOR, "kon_tremor.sec"},
+	{CYRAX, "kon_cyrax.sec"},
+	{REIKO, "kon_reiko.sec"},
 	{-1, ""},
 };
 
@@ -330,7 +337,7 @@ int is_map_in_my_ladder(int id)
 void ladder_load_npcs()
 {
 	load_background_hook(BGS_LADDER);
-	load_ssf((struct mk_toc_entry*)0x5AC6E0);
+	load_new_kon_npc();
 }
 
 int load_ladder_model(int slot, char* name, int id, int unk)

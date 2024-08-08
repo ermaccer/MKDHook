@@ -327,7 +327,7 @@ reaction_table_entry reaction_table[TOTAL_REACTIONS] = {
 	// jax drop kick hit
 	{ TYPE_REACTIONS_FUNCTION, 148, 0, 0, 0x152 },// 317
     // fan lift
-	{ TYPE_REACTIONS_FUNCTION, 146, 3, 1, 0x18 },// 318
+	{ TYPE_REACTIONS_FUNCTION, 146, 3, 1, 18 },// 318
 	// blaze step kick
 	{ TYPE_REACTIONS_FUNCTION, 151, 0, 0, 0x152 },// 319
 	// blaze charge
@@ -378,6 +378,23 @@ reaction_table_entry reaction_table[TOTAL_REACTIONS] = {
 	{ TYPE_REACTIONS_FUNCTION, 165, 5, 0, 978 },//  347
 	// nitara/sektor/quan throw reaction
 	{ TYPE_REACTIONS_FUNCTION, 72, 0, 0, 0x11 },//  348
+	// cyrax bomb
+	{ TYPE_REACTIONS_FUNCTION, 106, 3, 0, 18 },// 349
+	// cyrax throw
+	{ TYPE_REACTIONS_FUNCTION, 167, 0, 0, 0x52 },// 350
+	// sambo throw
+	{ TYPE_REACTIONS_FUNCTION, 166, 0, 0, 0x52 },// 351
+	// noob tele throw 
+	{ TYPE_REACTIONS_FUNCTION, 168, 0, 0, 0x52 },// 352
+	// reiko throw 1
+	{ TYPE_REACTIONS_FUNCTION, 169, 0, 0, 0x52 },// 353
+	// reiko throw 2
+	{ TYPE_REACTIONS_FUNCTION, 57, 0, 0, 0x52 },// 354
+	// new tremor throw
+	{ TYPE_SCRIPT_FUNCTION, 24, 0, 0, 0x11 },// 355
+	{ TYPE_SCRIPT_FUNCTION, 25, 0, 0, 0x11},// 356
+	// kitana fan throw
+	{ TYPE_FUNCTION_CALL, 0x2152E0,  0, 0, 1 },//  357
 };
 
 int onaga_remap_table[TOTAL_REACTIONS] = {
@@ -730,6 +747,15 @@ int onaga_remap_table[TOTAL_REACTIONS] = {
 	278, // 346
 	278, // 347
 	278, // 348
+	278, // 349
+	278, // 350
+	278, // 351
+	278, // 352
+	278, // 353
+	278, // 354
+	278, // 355
+	278, // 356
+	278, // 357
 };
 
 static int goro_lower_arms_atk[] = {

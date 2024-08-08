@@ -68,10 +68,10 @@ struct mk_file_entry blaze_entry_table[BLAZE_FILES] = {
 struct mk_toc_entry blaze_file_table[BLAZE_FILES + 1] = {
 		{&blaze_entry_table[0]	,0,0 },
 
-		{&blaze_entry_table[1]	,0,	   351872 },	// blaze.sec
-		{&blaze_entry_table[2]	,0,    351872 },	// blaze_ap.sec
-		{&blaze_entry_table[3]	,0,    12928  },	// blaze.mko
-		{&blaze_entry_table[4]	,0,    209664 },	// sh_blaze.sec
+		{&blaze_entry_table[1]	,0,	   351744 },	// blaze.sec
+		{&blaze_entry_table[2]	,0,    351744 },	// blaze_ap.sec
+		{&blaze_entry_table[3]	,0,    15392  },	// blaze.mko
+		{&blaze_entry_table[4]	,0,    207360 },	// sh_blaze.sec
 		{&blaze_entry_table[5]	,0,    10164  },	// fight_fx.mko
 		{&blaze_entry_table[6]	,0,    21368  },	// blood_fx.mko
 		{&blaze_entry_table[7]	,0,    6112   },	// blaze_fx.mko
@@ -81,11 +81,59 @@ struct mk_toc_entry blaze_file_table[BLAZE_FILES + 1] = {
 		{&blaze_entry_table[11] ,0,    10112  },	// style_jeet_kun_do.sec
 		{&blaze_entry_table[12] ,0,	   14816  },	// xing_yi.mko
 		{&blaze_entry_table[13] ,0,	   10112  },	// style_xing_yi.sec
-		{&blaze_entry_table[14] ,0,	   39552  },	// blaze_anims.sec
+		{&blaze_entry_table[14] ,0,	   70656  },	// blaze_anims.sec
 		{&blaze_entry_table[15] ,0,	   182144 },	// hapkido_anims.sec
 		{&blaze_entry_table[16] ,0,	   195328 },	// jeetkunedo_anims.sec
 		{&blaze_entry_table[17] ,0,	   162048 },	// xing_yi_anims.sec
 		{&blaze_entry_table[18] ,0,	   52352  },	// pz_jax_anims.sec
+
+		{0,0,0}
+};
+
+struct mk_file_entry blaze_alt_entry_table[BLAZE_FILES] = {
+	{"blaze_alt.ssf"	,0, 4},
+
+	{"blaze_alt.sec",0, 1},
+	{"blaze_alt_ap.sec",0, 1},
+	{"blaze.mko",0, 3},
+	{"sh_blaze.sec",0, 1},
+	{"fight_fx.mko",0,3},
+	{"blood_fx.mko",0,3},
+	{"blaze_fx.mko",0,3},
+	{"hapkido.mko",0, 3},
+	{"style_hapkido.sec",0,1},
+	{"jeetkunedo.mko",0, 3},
+	{"style_jeet_kun_do.sec",0,1},
+	{"xing_yi.mko",0, 3},
+	{"style_xing_yi.sec",0,1},
+	{"blaze_alt_anims.sec",0, 2},
+	{"hapkido_anims.sec",0,2},
+	{"jeetkunedo_anims.sec",0,2},
+	{"xing_yi_anims.sec",0, 2},
+	{"pz_jax_anims.sec",0,2},
+};
+// I:\ps2dvd\art\blaze_alt.ssf
+struct mk_toc_entry blaze_alt_file_table[BLAZE_FILES + 1] = {
+		{&blaze_alt_entry_table[0]	,0,0 },
+
+		{&blaze_alt_entry_table[1]	,0,	   342400 },	// blaze_alt.sec
+		{&blaze_alt_entry_table[2]	,0,    342400 },	// blaze_alt_ap.sec
+		{&blaze_alt_entry_table[3]	,0,    15392  },	// blaze.mko
+		{&blaze_alt_entry_table[4]	,0,    207360 },	// sh_blaze.sec
+		{&blaze_alt_entry_table[5]	,0,    10164  },	// fight_fx.mko
+		{&blaze_alt_entry_table[6]	,0,    21368  },	// blood_fx.mko
+		{&blaze_alt_entry_table[7]	,0,    6112   },	// blaze_fx.mko
+		{&blaze_alt_entry_table[8]  ,0,	   16480  },	// hapkido.mko
+		{&blaze_alt_entry_table[9]	,0,    10112  },	// style_hapkido.sec
+		{&blaze_alt_entry_table[10] ,0,	   14592  },	// jeetkunedo.mko
+		{&blaze_alt_entry_table[11] ,0,    10112  },	// style_jeet_kun_do.sec
+		{&blaze_alt_entry_table[12] ,0,	   14816  },	// xing_yi.mko
+		{&blaze_alt_entry_table[13] ,0,	   10112  },	// style_xing_yi.sec
+		{&blaze_alt_entry_table[14] ,0,	   63616  },	// blaze_alt_anims.sec
+		{&blaze_alt_entry_table[15] ,0,	   182144 },	// hapkido_anims.sec
+		{&blaze_alt_entry_table[16] ,0,	   195328 },	// jeetkunedo_anims.sec
+		{&blaze_alt_entry_table[17] ,0,	   162048 },	// xing_yi_anims.sec
+		{&blaze_alt_entry_table[18] ,0,	   52352  },	// pz_jax_anims.sec
 
 		{0,0,0}
 };
@@ -123,6 +171,21 @@ void init_blaze_toc()
 		blaze_file_table[i].previousSize = baseSize;
 		baseSize += (blaze_file_table[i].size + 2048 - 1) & -2048;
 	}
+
+	baseSize = 2048;
+
+	for (int i = 0; i < BLAZE_FILES; i++)
+	{
+		blaze_alt_entry_table[i].belong = &blaze_alt_file_table[0];
+	}
+
+
+	for (int i = 1; i < BLAZE_FILES; i++)
+	{
+		blaze_alt_file_table[i].previousSize = baseSize;
+		baseSize += (blaze_alt_file_table[i].size + 2048 - 1) & -2048;
+	}
+
 }
 
 void start_blaze_flaming_limbs(int id)

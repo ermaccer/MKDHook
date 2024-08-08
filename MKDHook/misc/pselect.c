@@ -48,14 +48,15 @@ struct mk_file_entry pselect_entry_table[PSELECT_FILES] = {
 	{"body_random_alt.sec"	,0, 1},
 	{"body_sektor_alt.sec"	,0, 1},
 	{"body_nitara_alt.sec"	,0, 1},
+	{"body_cyrax_alt.sec"	,0, 1},
 };
 
 // I:\ps2dvd\art\pselect.ssf
 struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[0]	,0,0 },
 
-		{&pselect_entry_table[1]	,0,4537344}, // pselect
-		{&pselect_entry_table[2]	,0,2086144}, // bg
+		{&pselect_entry_table[1]	,0,4536960}, // pselect
+		{&pselect_entry_table[2]	,0,2138112}, // bg
 		{&pselect_entry_table[3]	,0,1528960}, // pz
 		// ALT RENDERS
 		{&pselect_entry_table[4]	,0,67456},  // ALT
@@ -98,6 +99,7 @@ struct mk_toc_entry pselect_file_table[PSELECT_FILES + 1] = {
 		{&pselect_entry_table[41]	,0,67456},  // random_alt
 		{&pselect_entry_table[42]	,0,67456},  // sektor_alt
 		{&pselect_entry_table[43]	,0,67456},  // nitara_alt
+		{&pselect_entry_table[44]	,0,67456},  // cyrax_alt
 		{0,0,0}
 };
 
@@ -129,11 +131,9 @@ void init_pselect_hook()
 	makeJal(0x19593C, pselect_init_hook);
 	makeJal(0x194F94, pselect_init_hook);
 
+	makeJal(0x195AFC, pselect_start_text_proc);
+
 	// allocate more ram to pselect
-
-
-	int pselRAM = 7135168;
-	int partRAM = 67584;
 
 	static int newPselectLayout[] = {
 		0x6A,	PSELECT_MAIN_BUFFER,	// main buffer
@@ -142,7 +142,9 @@ void init_pselect_hook()
 		0xFFFFFFFF, 0
 	};
 
-	patchInt(0x58559C, PSELECT_MAIN_BUFFER + PSELECT_P1_BUFFER + PSELECT_P2_BUFFER);
+	int totalMemSize = PSELECT_MAIN_BUFFER + PSELECT_P1_BUFFER + PSELECT_P2_BUFFER;
+
+	patchInt(0x58559C, totalMemSize);
 	patchInt(0x585598, (int)&newPselectLayout[0]);
 }
 

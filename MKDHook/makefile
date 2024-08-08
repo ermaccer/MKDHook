@@ -37,6 +37,7 @@ characters\noob.o \
 characters\sonya.o \
 characters\kitana.o \
 characters\jax.o \
+characters\raiden.o \
 characters\dragonking.o \
 characters\frost.o \
 characters\blaze.o \
@@ -51,10 +52,14 @@ characters\cage.o \
 characters\rain.o \
 characters\nitara.o \
 characters\sektor.o \
+characters\cyrax.o \
+characters\reiko.o \
+characters\tremor.o \
 characters\character_list.o \
 misc\pselect.o \
 misc\misc_anims.o \
 misc\fatalityanims.o \
+misc\konquest_npc.o \
 practice.o \
 sound.o \
 sound_bank.o \

@@ -1,17 +1,24 @@
 #include "kitana.h"
 #include "..\mkdeception.h"
 
-// fan lift
-struct scan_action scan_kitana_1 = {
+
+// fan lift & fan throw
+struct scan_action_dual scan_kitana_1 = {
 	4621,
 	0x300001E,
-	6,
+	27,
 	MOVE_BACKWARDS,
 	MOVE_FORWARD,
+
+	16925,
+	0x3000019,
+	20,
+	MOVE_DOWN,
+	MOVE_FORWARD,
+
 	-1,
-	0,
-	0
 };
+
 
 
 
@@ -31,7 +38,7 @@ struct scan_fatality scan_kitana_2 = {
 struct scan_action scan_kitana_3 = {
 	0,
 	0x3000019,
-	9,
+	26,
 	MOVE_UP,
 	-1,
 	0,
@@ -39,7 +46,17 @@ struct scan_action scan_kitana_3 = {
 	0
 };
 
-
+// teleport
+struct scan_action scan_kitana_4 = {
+	16936,
+	0x3000019,
+	30,
+	MOVE_BACKWARDS,
+	MOVE_FORWARD,
+	-1,
+	0,
+	0
+};
 
 
 
@@ -61,7 +78,6 @@ struct mk_file_entry kitana_entry_table[KITANA_FILES] = {
 	{"style_steel_fan.sec",0,1},
 	{"kitana_anims.sec",0, 2},
 	{"fat_anims_kitana_kiss.sec",0,2},
-	{"fat_anims_kickspin.sec",0,2},
 	{"eagleclaw_anims.sec",0, 2},
 	{"k_bagua_anims.sec",0, 2},
 	{"steelfan_anims.sec",0,2},
@@ -72,26 +88,25 @@ struct mk_file_entry kitana_entry_table[KITANA_FILES] = {
 struct mk_toc_entry kitana_file_table[KITANA_FILES + 1] = {
 		{&kitana_entry_table[0]	,0,0 },
 
-		{&kitana_entry_table[1]	,0,	   521984 },	// kitana.sec
-		{&kitana_entry_table[2]	,0,    521984 },	// kitana_ap.sec
-		{&kitana_entry_table[3]	,0,    32928  },	// kitana.mko
-		{&kitana_entry_table[4]	,0,    266880 },	// sh_kitana.sec
+		{&kitana_entry_table[1]	,0,	   521600 },	// kitana.sec
+		{&kitana_entry_table[2]	,0,    521600 },	// kitana_ap.sec
+		{&kitana_entry_table[3]	,0,    58848  },	// kitana.mko
+		{&kitana_entry_table[4]	,0,    328064 },	// sh_kitana.sec
 		{&kitana_entry_table[5]	,0,    10164  },	// fight_fx.mko
 		{&kitana_entry_table[6]	,0,    21368  },	// blood_fx.mko
-		{&kitana_entry_table[7]	,0,    10580  },	// kitana_fx.mko
+		{&kitana_entry_table[7]	,0,    10592  },	// kitana_fx.mko
 		{&kitana_entry_table[8] ,0,	   16608  },	// eagleclaw.mko
 		{&kitana_entry_table[9]	,0,    10112  },	// style_eagle_claw.sec
 		{&kitana_entry_table[10],0,	   13056  },	// k_bagua.mko
 		{&kitana_entry_table[11],0,    6016   },	// style_k_bagua.sec
 		{&kitana_entry_table[12],0,	   12000  },	// steelfan.mko
 		{&kitana_entry_table[13],0,	   10112  },	// style_steel_fan.sec
-		{&kitana_entry_table[14],0,	   58624  },	// kitana_anims.sec
+		{&kitana_entry_table[14],0,	   87936  },	// kitana_anims.sec
 		{&kitana_entry_table[15],0,	   97792  },	// fat_anims_kitana_kiss.sec
-		{&kitana_entry_table[16],0,	   59264  },	// fat_anims_kickspin.sec
-		{&kitana_entry_table[17],0,	   166016 },	// eagleclaw_anims.sec
-		{&kitana_entry_table[18],0,	   179840 },	// k_bagua_anims.sec
-		{&kitana_entry_table[19],0,	   247424 },	// steelfan_anims.sec
-		{&kitana_entry_table[20],0,	   52352  },	// pz_jax_anims.sec
+		{&kitana_entry_table[16],0,	   166016 },	// eagleclaw_anims.sec
+		{&kitana_entry_table[17],0,	   179840 },	// k_bagua_anims.sec
+		{&kitana_entry_table[18],0,	   247424 },	// steelfan_anims.sec
+		{&kitana_entry_table[19],0,	   52352  },	// pz_jax_anims.sec
 
 		{0,0,0}
 };
@@ -115,7 +130,6 @@ struct mk_file_entry kitana_alt_entry_table[KITANA_FILES] = {
 	{"style_steel_fan.sec",0,1},
 	{"kitana_alt_anims.sec",0, 2},
 	{"fat_anims_kitana_kiss.sec",0,2},
-	{"fat_anims_kickspin.sec",0,2},
 	{"eagleclaw_anims.sec",0, 2},
 	{"k_bagua_anims.sec",0, 2},
 	{"steelfan_anims.sec",0,2},
@@ -127,25 +141,24 @@ struct mk_toc_entry kitana_alt_file_table[KITANA_FILES + 1] = {
 		{&kitana_alt_entry_table[0]	,0,0 },
 
 		{&kitana_alt_entry_table[1]	,0,	   497280 },	// kitana_alt.sec
-		{&kitana_alt_entry_table[2]	,0,	   497280 },	// kitana_alt_ap.sec
-		{&kitana_alt_entry_table[3]	,0,    32928  },	// kitana.mko
-		{&kitana_alt_entry_table[4]	,0,    266880 },	// sh_kitana.sec
+		{&kitana_alt_entry_table[2]	,0,    497280 },	// kitana_alt_ap.sec
+		{&kitana_alt_entry_table[3]	,0,    58848  },	// kitana.mko
+		{&kitana_alt_entry_table[4]	,0,    328064 },	// sh_kitana.sec
 		{&kitana_alt_entry_table[5]	,0,    10164  },	// fight_fx.mko
 		{&kitana_alt_entry_table[6]	,0,    21368  },	// blood_fx.mko
-		{&kitana_alt_entry_table[7]	,0,    10580  },	// kitana_fx.mko
+		{&kitana_alt_entry_table[7]	,0,    10592  },	// kitana_fx.mko
 		{&kitana_alt_entry_table[8] ,0,	   16608  },	// eagleclaw.mko
 		{&kitana_alt_entry_table[9]	,0,    10112  },	// style_eagle_claw.sec
 		{&kitana_alt_entry_table[10],0,	   13056  },	// k_bagua.mko
 		{&kitana_alt_entry_table[11],0,    6016   },	// style_k_bagua.sec
 		{&kitana_alt_entry_table[12],0,	   12000  },	// steelfan.mko
 		{&kitana_alt_entry_table[13],0,	   10112  },	// style_steel_fan.sec
-		{&kitana_alt_entry_table[14],0,	   58624  },	// kitana_alt_anims.sec
+		{&kitana_alt_entry_table[14],0,	   93184  },	// kitana_alt_anims.sec
 		{&kitana_alt_entry_table[15],0,	   97792  },	// fat_anims_kitana_kiss.sec
-		{&kitana_alt_entry_table[16],0,	   59264  },	// fat_anims_kickspin.sec
-		{&kitana_alt_entry_table[17],0,	   166016 },	// eagleclaw_anims.sec
-		{&kitana_alt_entry_table[18],0,	   179840 },	// k_bagua_anims.sec
-		{&kitana_alt_entry_table[19],0,	   247424 },	// steelfan_anims.sec
-		{&kitana_alt_entry_table[20],0,	   52352  },	// pz_jax_anims.sec
+		{&kitana_alt_entry_table[16],0,	   166016 },	// eagleclaw_anims.sec
+		{&kitana_alt_entry_table[17],0,	   179840 },	// k_bagua_anims.sec
+		{&kitana_alt_entry_table[18],0,	   247424 },	// steelfan_anims.sec
+		{&kitana_alt_entry_table[19],0,	   52352  },	// pz_jax_anims.sec
 
 		{0,0,0}
 };
@@ -253,6 +266,8 @@ void kitana_kod_stretcher(int object, float scale)
 
 void kitana_fanlift_voice()
 {
+	return;
+
 	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
 	//plyr_data = (player_data*)plyr_data->field_10;
 

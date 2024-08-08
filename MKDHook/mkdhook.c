@@ -4,10 +4,29 @@
 #include "stage.h"
 #include "generic.h"
 #include "settings.h"
+#include "network.h"
 #include "ps2mem.h"
+#include "scripthook.h"
 int  current_select = 0;
 int  select_timer = 0;
 int  sound = 0; 
+
+int pselect_extra_text[2] = {};
+int pselect_alternate_palette_toggle[2] = {};
+int pselect_toggle_timer[2] = {};
+int pselect_text_x[2] = {};
+int pselect_text_y[2] = {};
+int pselect_extra_costume_text[24] = {};
+int pselect_extra_costume_toggle[24] = {};
+int pselect_toggle_extra_timer[2] = {};
+
+swap_entry pSwapTable[SELECT_SCREEN_EXTRA_NUM] = {
+	{RAIN2, RAIN},
+	{SCORPION2, SCORPION},
+	{SUBZERO2, SUBZERO},
+	{ERMAC2, ERMAC},
+	{RAIDEN2, RAIDEN},
+};
 
 select_screen_entry pSelectTable[24] = {
 	{KENSHI	, 86	, "HEAD_KENSHI"	, "HEAD_RANDOM"	, "BODY_KENSHI"	, "body_kenshi_alt.sec"	, "4"	, "TAI CHI"	, "JUDO"	, "KATANA"},
@@ -59,19 +78,17 @@ select_screen_entry pSelectTableNew[24] = {
 		{CAGE,  SOUND_CAGE_SELECT	, "HEAD_CAGE"	, "HEAD_RANDOM"	, "BODY_CAGE"	, "body_cage_alt.sec",	"3", "SHORIN RYU"	, "JEET KUNE DO"	, "NUNCHAKU"},
 		{SEKTOR, SOUND_SEKTOR_SELECT	, "HEAD_SEKTOR"	, "HEAD_RANDOM"	, "BODY_SEKTOR"	, "body_sektor_alt.sec"	, "2"	, "NINJITSU"	, "SHUAI CHIAO"	, "PULSEBLADES"},
 
-		{NITARA,  SOUND_NITARA_SELECT	, "HEAD_NITARA"	, "HEAD_RANDOM"	, "BODY_NITARA"	, "body_nitara_alt.sec"	, "3"	, "LEOPARD"	, "FU JOW PAI"	, "KAMA"},
+		{CYRAX,  SOUND_CYRAX_SELECT	, "HEAD_CYRAX"	,"HEAD_RANDOM"	, "BODY_CYRAX"	, "body_cyrax_alt.sec"	, "3"	, "NINJITSU"	, "SAMBO"	, "PULSEBLADE"},
+		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 		{RAIN, SOUND_RAIN_SELECT	, "HEAD_RAIN"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_random_alt.sec"	, "3"	, "YUE CHUAN"	, "NAN CHUAN"	, "STORM SWORD"},	
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},	
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{NITARA,  SOUND_NITARA_SELECT	, "HEAD_NITARA"	, "HEAD_RANDOM"	, "BODY_NITARA"	, "body_nitara_alt.sec"	, "3"	, "LEOPARD"	, "FU JOW PAI"	, "KAMA"},
+		{0,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, ""	, "NULL"	, ""	, ""	, ""	, ""},
+		{0,  -1	, "HEAD_RANDOM"	, "HEAD_RANDOM"	, ""	, "NULL"	, ""	, ""	, ""	, ""},
 
+		{REIKO,  SOUND_REIKO_SELECT	,  "HEAD_REIKO"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_random_alt.sec"	, "4"	, "MIAN CHUAN"	, "SILAT"	, "CLUB"},
+		{TREMOR,  SOUND_TREMOR_SELECT	, "HEAD_TREMOR"	, "HEAD_RANDOM"	, "BODY_RANDOM"	, "body_random_alt.sec"	, "2"	, "WRESTLING"	, "SUN BIN"	, "ROCK ARMS"},
 		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-		{0,  -1	, ""	, ""	, ""	, "NULL"	, ""	, ""	, ""	, ""},
-
-
 };
 
 #ifndef PS2_BUILD
@@ -144,6 +161,8 @@ void swap_select_screen(int refresh)
 	static int select_addr = 0x4FEF40;
 	for (int i = 0; i < 24; i++)
 	{
+		pselect_extra_costume_toggle[i] = 0;
+
 		int sel = (select_addr + (sizeof(select_screen_entry) * i));
 
 		select_screen_entry ent = pSelectTable[i];
@@ -166,6 +185,8 @@ void swap_select_screen(int refresh)
 		*(int*)(sel + 28) = (int)&ent.style1[0];
 		*(int*)(sel + 32) = (int)&ent.style2[0];
 		*(int*)(sel + 36) = (int)&ent.style3[0];
+
+
 	}
 
 	if (get_game_state() == STATE_SELECT && refresh)
@@ -182,6 +203,40 @@ void pselect_init_hook()
 {
 	((void(*)())0x196270)();
 	restore_select_screen();
+}
+
+void pselect_start_text_proc()
+{
+	((void(*)())0x16B0F0)();
+
+	int network_player_flags = *(int*)(NETWORK_PLAYER_FLAGS);
+
+	if (network_player_flags == 0)
+	{
+		((void(*)(int))0x175CF0)(SELECT_SCREEN_ALT_PAL_FONT);
+
+		pselect_extra_text[0] = 0;
+		pselect_extra_text[1] = 0;
+		pselect_alternate_palette_toggle[0] = 0;
+		pselect_alternate_palette_toggle[1] = 0;
+
+		pselect_text_x[0] = 0;
+		pselect_text_x[1] = 0;
+		pselect_text_y[0] = 0;
+		pselect_text_y[1] = 0;
+
+		for (int i = 0; i < 24; i++)
+		{
+			pselect_extra_costume_text[i] = 0;
+			pselect_extra_costume_toggle[i] = 0;
+		}
+
+		int procResult = 0;
+
+		if (create_mkproc_generic_nostack(8353, 30, &p_select_new_text_proc, 12, &procResult))
+			*(int*)(procResult + 8) = 0;
+	}
+
 }
 
 void hook_render()
@@ -238,4 +293,239 @@ void process_mkdhook()
 		Menu_K_Reset();
 #endif
 
+}
+
+void set_slot_character_id(int slot, int id)
+{
+	static int select_addr = 0x4FEF40;
+
+	int sel = (select_addr + (sizeof(select_screen_entry) * slot));
+	*(int*)(sel + 0) = id;
+}
+
+int get_slot_character_id(int slot)
+{
+	static int select_addr = 0x4FEF40;
+
+	int sel = (select_addr + (sizeof(select_screen_entry) * slot));
+	return *(int*)(sel + 0);
+}
+
+float p_select_new_text_proc()
+{
+	float result = 0.0f;
+	static int alpha = 254;
+	static int go_up = 0;
+	player_info* p1 = (player_info*)PLAYER1_INFO;
+	player_info* p2 = (player_info*)PLAYER2_INFO;
+
+
+	p_select_create_text();
+
+	p_select_toggle_alternate_palette(p1);
+	p_select_toggle_alternate_palette(p2);
+
+
+	if (go_up)
+		alpha += 4;
+	else
+		alpha -= 4;
+
+
+	if (alpha < 185)
+	{
+		go_up = 1;
+		alpha = 186;
+	}
+	if (alpha > 254)
+	{
+		alpha = 253;
+		go_up = 0;
+	}
+
+	p_select_update_text(0, alpha);
+	p_select_update_text(1, alpha);
+
+
+
+
+	result = 1.0f;
+
+	return result;
+}
+
+void p_select_toggle_alternate_palette(player_info* info)
+{
+	if (info->state == 1)
+	{
+		if (check_switch(info->id, PAD_CIRCLE))
+		{
+			p_select_process_toggle(info->id);
+		}
+		if (check_switch(info->id, PAD_SQUARE))
+		{
+			int slot = *(int*)0x5D6764;
+			if (info->id == 1)
+				slot = *(int*)0x5D6760;
+			p_select_process_extra_toggle(info->id, slot);
+		}
+	}
+
+	if (!(get_game_mode() == MODE_PRACTICE))
+	{
+		if (info->state == 2)
+			pselect_text_y[info->id] = 215;
+		else
+			pselect_text_y[info->id] = 208;
+	}
+	else
+		pselect_text_y[info->id] = 208;
+}
+
+void p_select_process_toggle(int id)
+{
+	if (get_game_tick() - pselect_toggle_timer[id] <= 15) return;
+	pselect_toggle_timer[id] = get_game_tick();
+	pselect_alternate_palette_toggle[id] ^= 1;
+	snd_req(SELECT_SCREEN_ALT_PAL_SOUND);
+}
+
+void p_select_process_extra_toggle(int id, int slot)
+{
+	if (get_game_tick() - pselect_toggle_extra_timer[id] <= 15) return;
+	pselect_toggle_extra_timer[id] = get_game_tick();
+
+	int characterID = get_slot_character_id(slot);
+
+	if (is_extra_swap_allowed(characterID))
+	{
+		pselect_extra_costume_toggle[slot] ^= 1;
+		snd_req(SELECT_SCREEN_EXTRA_SOUND);
+		set_extra_character_remap(slot, characterID);
+	}
+
+
+}
+
+void p_select_create_text()
+{
+	if (!pselect_extra_text[0])
+	{
+		pselect_text_x[0] = 120;
+		if (*(int*)0x5D6C80)
+			pselect_text_x[0] = 150;
+
+		pselect_extra_text[0] = string_left_xy(1001, SELECT_SCREEN_ALT_PAL_FONT, "ALTERNATE PALETTE", pselect_text_x[0], pselect_text_y[0], 1);
+		pfx_2d_obj_set_alpha_by_id(1001, 0);
+
+	}
+
+	if (!pselect_extra_text[1])
+	{
+		pselect_text_x[1] = 350;
+		if (*(int*)0x5D6C80)
+			pselect_text_x[1] = 380;
+
+		pselect_extra_text[1] = string_left_xy(1002, SELECT_SCREEN_ALT_PAL_FONT, "ALTERNATE PALETTE", pselect_text_x[1], pselect_text_y[1], 1);
+		pfx_2d_obj_set_alpha_by_id(1002, 0);
+	}
+
+	for (int i = 0; i < 24; i++)
+	{
+		if (!pselect_extra_costume_text[i])
+		{
+			pselect_extra_costume_text[i] = string_left_xy(1010 + i, SELECT_SCREEN_ALT_PAL_FONT, "+", 0, 0, 1);
+			pfx_2d_obj_set_size(pselect_extra_costume_text[i], 2.0f, 2.0f);
+			pfx_2d_obj_set_alpha_by_id(1010 + i, 0);
+		}
+	}
+
+
+
+}
+
+void p_select_update_text(int id, int alpha)
+{
+	player_info* p1 = (player_info*)PLAYER1_INFO;
+	player_info* p2 = (player_info*)PLAYER2_INFO;
+
+
+	for (int i = 0; i < 24; i++)
+	{
+		if (pselect_extra_costume_toggle[i])
+		{
+			pfx_2d_obj_set_alpha_by_id(1010 + i, 255);
+		}
+		else
+			pfx_2d_obj_set_alpha_by_id(1010 + i, 0);
+
+		int offset = 96;
+		if (*(int*)0x5D6C80)
+			offset = 128;
+		int row = i / 8;
+		int column = i - (row * 8);
+
+		int x = offset + (column * 68 - column);
+		int y = 120 - (row * 50);
+
+		pfx_2d_obj_set_pos(pselect_extra_costume_text[i], x, y);
+	}
+
+
+
+	int textID = 1001;
+	if (id == 1)
+		textID = 1002;
+	if (pselect_alternate_palette_toggle[id])
+	{
+		pfx_2d_obj_set_rgb(pselect_extra_text[id], 45, alpha, 255);
+		pfx_2d_obj_set_alpha_by_id(textID, 255);
+	}
+	else
+		pfx_2d_obj_set_alpha_by_id(textID, 0);
+
+	pfx_2d_obj_set_pos(pselect_extra_text[id], pselect_text_x[id], pselect_text_y[id]);
+}
+
+int is_extra_swap_allowed(int id)
+{
+	for (int i = 0; i < SELECT_SCREEN_EXTRA_NUM; i++)
+	{
+		if (pSwapTable[i].sourceCharacter == id || pSwapTable[i].swapCharacter == id)
+			return 1;
+	}
+
+	return 0;
+}
+
+int find_extra_swap_entry(int id)
+{
+	for (int i = 0; i < SELECT_SCREEN_EXTRA_NUM; i++)
+	{
+		if (pSwapTable[i].sourceCharacter == id || pSwapTable[i].swapCharacter == id)
+			return i;
+	}
+
+	return -1;
+}
+
+void set_extra_character_remap(int slot, int id)
+{
+	int swapID = find_extra_swap_entry(id);
+
+	if (swapID == -1)
+		return;
+
+	int currentID = get_slot_character_id(slot);
+	int newID = id;
+
+	swap_entry* swap = &pSwapTable[swapID];
+
+	if (currentID == swap->sourceCharacter)
+		newID = swap->swapCharacter;
+	else
+		newID = swap->sourceCharacter;
+
+	set_slot_character_id(slot, newID);
+	refresh_screen();
 }

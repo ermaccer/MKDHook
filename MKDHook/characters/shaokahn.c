@@ -107,7 +107,7 @@ struct mk_toc_entry sk_file_table[SK_FILES + 1] = {
 		{&sk_entry_table[1]	,0,	   470144 },	// shaokahn.sec
 		{&sk_entry_table[2]	,0,    470144 },	// shaokahn_ap.sec
 		{&sk_entry_table[3]	,0,    48512  },	// shaokahn.mko
-		{&sk_entry_table[4]	,0,    321920 },	// sh_shaokahn.sec
+		{&sk_entry_table[4]	,0,    309632 },	// sh_shaokahn.sec
 		{&sk_entry_table[5]	,0,    10164  },	// fight_fx.mko
 		{&sk_entry_table[6]	,0,    21368  },	// blood_fx.mko
 		{&sk_entry_table[7]	,0,    12352  },	// shaokahn_fx.mko
@@ -117,7 +117,7 @@ struct mk_toc_entry sk_file_table[SK_FILES + 1] = {
 		{&sk_entry_table[11],0,    10112   },	// style_shk_2.sec
 		{&sk_entry_table[12],0,	   10688  },	// shk_ham.mko
 		{&sk_entry_table[13],0,	   10112   },	// style_shk_ham.sec
-		{&sk_entry_table[14],0,	   142080 },	// shaokahn_anims.sec
+		{&sk_entry_table[14],0,	   144896 },	// shaokahn_anims.sec
 		{&sk_entry_table[15],0,	   95232  },	// fat_anims_shaokhan_golf.sec
 		{&sk_entry_table[16],0,	   82560  },	// fat_anims_shaokhan_homerun.sec
 		{&sk_entry_table[17],0,	   157484 },	// shk_1_anims.sec
@@ -160,7 +160,7 @@ struct mk_toc_entry sk_alt_file_table[SK_FILES + 1] = {
 		{&sk_alt_entry_table[1]	,0,	   493696 },	// shaokahn_alt.sec
 		{&sk_alt_entry_table[2]	,0,    493696 },	// shaokahn_alt_ap.sec
 		{&sk_alt_entry_table[3]	,0,    48512  },	// shaokahn.mko
-		{&sk_alt_entry_table[4]	,0,    321920 },	// sh_shaokahn.sec
+		{&sk_alt_entry_table[4]	,0,    309632 },	// sh_shaokahn.sec
 		{&sk_alt_entry_table[5]	,0,    10164  },	// fight_fx.mko
 		{&sk_alt_entry_table[6]	,0,    21368  },	// blood_fx.mko
 		{&sk_alt_entry_table[7]	,0,    12352  },	// shaokahn_fx.mko
@@ -170,7 +170,7 @@ struct mk_toc_entry sk_alt_file_table[SK_FILES + 1] = {
 		{&sk_alt_entry_table[11],0,    10112   },	// style_shk_2.sec
 		{&sk_alt_entry_table[12],0,	   10688  },	// shk_ham.mko
 		{&sk_alt_entry_table[13],0,	   10112   },	// style_shk_ham.sec
-		{&sk_alt_entry_table[14],0,	   142080 },	// shaokahn_alt_anims.sec
+		{&sk_alt_entry_table[14],0,	   144896 },	// shaokahn_alt_anims.sec
 		{&sk_alt_entry_table[15],0,	   95232  },	// fat_anims_shaokhan_golf.sec
 		{&sk_alt_entry_table[16],0,	   82560  },	// fat_anims_shaokhan_homerun.sec
 		{&sk_alt_entry_table[17],0,	   157484 },	// shk_1_anims.sec

@@ -49,6 +49,7 @@
     <ClCompile Include="characters\blaze.c" />
     <ClCompile Include="characters\cage.c" />
     <ClCompile Include="characters\character_list.c" />
+    <ClCompile Include="characters\cyrax.c" />
     <ClCompile Include="characters\dragonking.c" />
     <ClCompile Include="characters\drahmin.c" />
     <ClCompile Include="characters\ermac.c" />
@@ -66,7 +67,9 @@
     <ClCompile Include="characters\nitara.c" />
     <ClCompile Include="characters\noob.c" />
     <ClCompile Include="characters\quanchi.c" />
+    <ClCompile Include="characters\raiden.c" />
     <ClCompile Include="characters\rain.c" />
+    <ClCompile Include="characters\reiko.c" />
     <ClCompile Include="characters\sareena.c" />
     <ClCompile Include="characters\scorpion.c" />
     <ClCompile Include="characters\sektor.c" />
@@ -75,12 +78,14 @@
     <ClCompile Include="characters\smoke.c" />
     <ClCompile Include="characters\sonya.c" />
     <ClCompile Include="characters\subzero.c" />
+    <ClCompile Include="characters\tremor.c" />
     <ClCompile Include="chess.c" />
     <ClCompile Include="generic.c" />
     <ClCompile Include="ladder.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mips.c" />
     <ClCompile Include="misc\fatalityanims.c" />
+    <ClCompile Include="misc\konquest_npc.c" />
     <ClCompile Include="misc\misc_anims.c" />
     <ClCompile Include="misc\pselect.c" />
     <ClCompile Include="mkdhook.c" />
@@ -123,6 +128,7 @@
     <ClInclude Include="characters\blaze.h" />
     <ClInclude Include="characters\cage.h" />
     <ClInclude Include="characters\character_list.h" />
+    <ClInclude Include="characters\cyrax.h" />
     <ClInclude Include="characters\dragonking.h" />
     <ClInclude Include="characters\drahmin.h" />
     <ClInclude Include="characters\ermac.h" />
@@ -140,7 +146,9 @@
     <ClInclude Include="characters\nitara.h" />
     <ClInclude Include="characters\noob.h" />
     <ClInclude Include="characters\quanchi.h" />
+    <ClInclude Include="characters\raiden.h" />
     <ClInclude Include="characters\rain.h" />
+    <ClInclude Include="characters\reiko.h" />
     <ClInclude Include="characters\sareena.h" />
     <ClInclude Include="characters\scorpion.h" />
     <ClInclude Include="characters\sektor.h" />
@@ -149,12 +157,14 @@
     <ClInclude Include="characters\smoke.h" />
     <ClInclude Include="characters\sonya.h" />
     <ClInclude Include="characters\subzero.h" />
+    <ClInclude Include="characters\tremor.h" />
     <ClInclude Include="chess.h" />
     <ClInclude Include="generic.h" />
     <ClInclude Include="ladder.h" />
     <ClInclude Include="linkfile_ps2" />
     <ClInclude Include="mips.h" />
     <ClInclude Include="misc\fatalityanims.h" />
+    <ClInclude Include="misc\konquest_npc.h" />
     <ClInclude Include="misc\misc_anims.h" />
     <ClInclude Include="misc\pselect.h" />
     <ClInclude Include="mkdeception.h" />

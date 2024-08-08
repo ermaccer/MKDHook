@@ -3,7 +3,7 @@
 #include "..\toc.h"
 #include "..\moves.h"
 
-#define NUM_STRETCHBONES 14
+#define NUM_STRETCHBONES 19
 
 typedef struct {
 	int boneID;
@@ -12,7 +12,7 @@ typedef struct {
 	float z;
 }kitana_bone_stretcher_entry;
 
-#define KITANA_FILES 21
+#define KITANA_FILES 20
 
 extern struct mk_file_entry kitana_entry_table[KITANA_FILES];
 extern struct mk_toc_entry kitana_file_table[KITANA_FILES + 1];
@@ -22,9 +22,10 @@ extern struct mk_toc_entry kitana_alt_file_table[KITANA_FILES + 1];
 
 extern kitana_bone_stretcher_entry kitana_bone_stretchers[NUM_STRETCHBONES];
 
-extern struct scan_action scan_kitana_1;
+extern struct scan_action_dual scan_kitana_1;
 extern struct scan_fatality scan_kitana_2;
 extern struct scan_action scan_kitana_3;
+extern struct scan_action scan_kitana_4;
 
 void init_kitana_toc();
 

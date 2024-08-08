@@ -79,6 +79,7 @@ void add_art_section_by_name_async(int slot, char* name);
 int load_named_model_from_slot(int slot, char* name, int id, int unk);
 int load_named_model_for_player(char* name, int plr, int id, int unk);
 int load_named_texture_from_slot(int slot, char* name);
+int load_named_2dobj_from_slot(int slot, int id, char* name, int unk, int x, int y, int unk2);
 void unload_section_slot(int slot);
 void unload_section_slot_file(int slot, int file);
 void wait_for_slot_load(int slot);

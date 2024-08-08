@@ -9,7 +9,7 @@
 
 
 
-#define PSELECT_FILES 43 + 1
+#define PSELECT_FILES 44 + 1
 
 
 extern struct mk_file_entry pselect_entry_table[PSELECT_FILES];

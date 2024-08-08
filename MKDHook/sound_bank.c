@@ -183,6 +183,8 @@ sbank_entry sbank_data[TOTAL_SOUND_BANKS] = {
 	{0, 0, 35, "c_rain", 0, 0, 0, 0, 174 }, //  174
 	{0, 0, 36, "c_nitara", 0, 0, 0, 0, 175 }, //  175
 	{0, 0, 37, "c_sektor", 0, 0, 0, 0, 176 }, //  176
+	{0, 0, 38, "c_reiko", 0, 0, 0, 0, 177 }, //  177
+	{0, 0, 39, "c_tremor", 0, 0, 0, 0, 178 }, //  178
 };
 
 void init_sound_bank_hook()

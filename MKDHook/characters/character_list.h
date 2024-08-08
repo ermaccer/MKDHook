@@ -13,6 +13,7 @@
 #include "ashrah.h"
 #include "ermac.h"
 #include "noob.h"
+#include "raiden.h"
 
 
 // tweaks
@@ -28,6 +29,9 @@
 #include "sektor.h"
 #include "rain.h"
 #include "nitara.h"
+#include "tremor.h"
+#include "cyrax.h"
+#include "reiko.h"
 // mku ports
 #include "kitana.h"
 #include "jax.h"

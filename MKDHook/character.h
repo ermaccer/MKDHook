@@ -2,6 +2,8 @@
 #include "toc.h"
 #include "build_config.h"
 
+#define CHARACTER_TIMERS 33
+
 enum characters
 {
 	SCORPION,
@@ -70,7 +72,14 @@ enum characters
 	SEKTOR,
 	RAIN,
 	NITARA,
-
+	TREMOR,
+	CYRAX,
+	REIKO,
+	RAIN2,
+	SCORPION2,
+	SUBZERO2,
+	ERMAC2,
+	RAIDEN2,
 	TOTAL_CHARACTERS
 };
 
@@ -96,9 +105,22 @@ typedef struct {
 	char* style3;
 }select_screen_entry;
 
+typedef struct {
+	int ID;
+	float t1;
+	float t2;
+	float t3;
+	float t4;
+	float t5;
+	float t6;
+	float t7;
+	float t8;
+}character_timers;
+
 
 
 extern struct char_info_entry pCharTable[TOTAL_CHARACTERS];
+extern character_timers pTimerTable[CHARACTER_TIMERS + 1];
 #ifndef PS2_BUILD
 void dump_char_table();
 #endif

@@ -5,12 +5,23 @@
 #include "stage.h"
 #include "settings.h"
 #include "scripthook.h"
+#include "mkdhook.h"
 
 void init_generic()
 {
 	//makeJal(0x215D7C, patch_freeze_reaction);
 	makeJmp(0x215D90, freeze_reaction_patch);
 	makeJmp(0x215DA0, freeze_reaction_patchP2);
+	
+	makeJmp(0x3CFD68, cyrax_bomb_hack_check);
+
+	makeJmp(0x13BA88, eye_gore_check);
+	makeJmp(0x13C7A8, eye_gore2_check);
+	makeJmp(0x27D94C, eye_gore3_check);
+
+	makeJmp(0x25E010, scorpion_spear_launch_hack);
+	makeJmp(0x25DD40, scorpion_spear_victory_hack);
+	makeJal(0x25FB34, scorpion_spear_detach_hack);
 
 	makeJal(0x25D03C, patch_lightning_sound);
 
@@ -36,6 +47,22 @@ void init_generic()
 	makeJal(0x3E2108, death_traps_lock);
 	makeJal(0x3E24B4, death_traps_lock);
 
+	makeJal(0x134040, create_player_hook);
+	makeJal(0x134058, create_player_hook);
+	makeJal(0x3E87DC, create_player_hook);
+	makeJal(0x3E8E68, create_player_hook);
+
+	makeJal(0x134174, set_palettes_hook);
+	makeJal(0x194254, set_palettes_hook);
+	makeJal(0x2D8584, set_palettes_hook);
+	makeJal(0x2D87FC, set_palettes_hook);
+	makeJal(0x38B650, set_palettes_hook);
+	makeJal(0x3E8554, set_palettes_hook);
+
+	// bomb hack
+	makeJal(0x3CFA90, cyrax_adjust_bomb_position_hack);
+	makeJal(0x3D0440, cyrax_ground_projectile_override_safe);
+
 	int val = (int)&hook_plyr_start_proc;
 
 	patchInt(0x13406C, lui(a1, HIWORD(val)));
@@ -43,9 +70,22 @@ void init_generic()
 
 	patchInt(0x134080, lui(a1, HIWORD(val)));
 	patchInt(0x13408C, ori(a1, a1, LOWORD(val)));
-	
 
+	// bomb hack
 
+	//val = (int)&cyrax_ground_projectile_override;
+	//
+	//patchInt(0x3CFADC, lui(a0, HIWORD(val)));
+	//patchInt(0x3CFAF0, ori(a0, a0, LOWORD(val)));
+	//
+	//patchInt(0x3CFB04, lui(a0, HIWORD(val)));
+	//patchInt(0x3CFB18, ori(a0, a0, LOWORD(val)));
+	//
+	//patchInt(0x3CFB2C, lui(a0, HIWORD(val)));
+	//patchInt(0x3CFB3C, ori(a0, a0, LOWORD(val)));
+	//
+	//patchInt(0x3CFD24, lui(a0, HIWORD(val)));
+	//patchInt(0x3CFD38, ori(a0, a0, LOWORD(val)));
 }
 
 void patch_freeze_reaction()
@@ -77,6 +117,67 @@ void patch_freeze_sound()
 	snd_req(SOUND_FROST_FREEZE);
 }
 
+
+void scorpion_spear_detach_hack(int data, int obj)
+{
+	player_data* plr_data = (player_data*)data;
+	int id = plr_data->characterID;
+	if (id == SCORPION2)
+	{
+		*(int*)(obj + 92) = ((int(*)(int, int))0x21A6F0)(plr_data->pScript, 24);
+	}
+	plyr_aux_weapon_grab(data, obj);
+}
+
+void create_player_hook(int id, player_info* info)
+{
+	cached_aux_weapon[id] = 0;
+
+	if (info->state == 1 || info->state == 2)
+	{
+		if (pselect_alternate_palette_toggle[id])
+			info->flags |= 2;
+	}
+
+
+	((void(*)(int, player_info*))0x1326B0)(id, info);
+}
+
+void set_palettes_hook(player_info* info)
+{
+	((void(*)(player_info*))0x193E70)(info);
+
+	player_info* plr1 = (player_info*)PLAYER1_INFO;
+	player_info* plr2 = (player_info*)PLAYER2_INFO;
+
+	player_info* enemy = plr1;
+	if (info->id == 0)
+		enemy = plr2;
+
+	int my_toggle = pselect_alternate_palette_toggle[info->id];
+	int his_toggle = pselect_alternate_palette_toggle[enemy->id];
+
+	if (!my_toggle && !his_toggle)
+		return;
+
+	if (my_toggle && his_toggle)
+	{
+		info->flags |= 2;
+		enemy->flags |= 2;
+	}
+
+	if (my_toggle && !his_toggle)
+	{
+		if (enemy->flags & 2)
+			enemy->flags &= ~2;
+	}
+
+	if (!my_toggle && his_toggle)
+	{
+		if (info->flags & 2)
+			info->flags &= ~2;
+	}
+}
 
 void patch_weapon_grab(int data, int obj)
 {
@@ -121,7 +222,7 @@ void patch_lightning_sound(int id)
 
 	int chrID = get_character_id(plrID);
 
-	if (chrID == RAIN)
+	if (chrID == RAIN || chrID == RAIN2)
 		snd_req(7576);
 	else
 		snd_req(686);
@@ -216,6 +317,7 @@ float hook_plyr_start_proc()
 	blaze_reset_event();
 	shangtsung_reset_event();
 	sektor_reset_event();
+	cyrax_reset_event();
 	return ((float(*)())0x1315D0)();
 }
 
@@ -250,6 +352,10 @@ void update_character(player_info* info)
 		break;
 	case SEKTOR:
 		sektor_update_chest(info->id, info->pObject, info->flags);
+		break;
+	case CYRAX:
+		sektor_update_chest(info->id, info->pObject, 0);
+		cyrax_update_cutter(info->id, info->pObject);
 		break;
 	default:
 		break;

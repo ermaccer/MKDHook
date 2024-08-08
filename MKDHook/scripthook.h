@@ -32,6 +32,7 @@ enum ECommands {
 	set_active_projectile_ball_effect = 1908,
 	am_i_alt_costume = 1909,
 	set_robot_voice = 1910,
+	am_i_in_weapon = 1911,
 	// new commands
 	_umkd_sonya_runtime = 2000,
 	jax_taunt = 2001,
@@ -47,6 +48,9 @@ enum ECommands {
 	script_shang_explode_ball = 2009,
 	rain_teleport_kick = 2010,
 	script_sektor_set_chest_status = 2011,
+	cyrax_start_bomb = 2012,
+	script_cyrax_set_cutter_status = 2013,
+	script_reiko_teleport = 2014,
 	TOTAL_COMMANDS = 2100
 };
 
@@ -93,6 +97,12 @@ void _am_i_alt_costume();
 void _rain_teleport_kick();
 void _set_robot_voice();
 void _sektor_set_chest_status();
+void _am_i_in_weapon();
+void _cyrax_start_bomb();
+void _cyrax_set_cutter_status();
+void _reiko_teleport();
+void _sindel_screamer_sound_react();
+
 void psp_reset_fake_bone_matcher(int obj, int a2, int a3, int a4, int a5, int a6, float flt);
 
 

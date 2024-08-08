@@ -8,6 +8,9 @@
 extern struct mk_file_entry blaze_entry_table[BLAZE_FILES];
 extern struct mk_toc_entry blaze_file_table[BLAZE_FILES + 1];
 
+extern struct mk_file_entry blaze_alt_entry_table[BLAZE_FILES];
+extern struct mk_toc_entry blaze_alt_file_table[BLAZE_FILES + 1];
+
 extern struct scan_action scan_blaze_1;
 extern struct scan_action scan_blaze_2;
 extern struct scan_action scan_blaze_3;

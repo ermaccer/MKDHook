@@ -3,7 +3,7 @@
 #include "..\ps2mem.h"
 
 struct  mk_toc_entry  misc_anims_file_table[MISC_ANIMS_FILES] = {
-		{0	,0,45568},
+		{0	,0,46240},
 		{0 	,0,35456},
 		{0	,0,919296},
 };

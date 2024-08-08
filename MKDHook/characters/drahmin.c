@@ -77,7 +77,7 @@ struct mk_toc_entry drahmin_file_table[DRAHMIN_FILES + 1] = {
 		{&drahmin_entry_table[7]	,0,    8032   },	// drahmin_fx.mko
 		{&drahmin_entry_table[8] 	,0,	   11808  },	// dhunggar.mko
 		{&drahmin_entry_table[9]	,0,    10112  },	// style_dhunggar.sec
-		{&drahmin_entry_table[10]	,0,	   11776  },	// wrestling.mko
+		{&drahmin_entry_table[10]	,0,	   11712  },	// wrestling.mko
 		{&drahmin_entry_table[11]	,0,    10112  },	// style_wrestling.sec
 		{&drahmin_entry_table[12]	,0,	   12416  },	// iron_club.mko
 		{&drahmin_entry_table[13]	,0,	   10112  },	// style_iron_club.sec
@@ -128,7 +128,7 @@ struct mk_toc_entry drahmin_alt_file_table[DRAHMIN_FILES + 1] = {
 		{&drahmin_alt_entry_table[7]	,0,    8032   },	// drahmin_fx.mko
 		{&drahmin_alt_entry_table[8] 	,0,	   11808  },	// dhunggar.mko
 		{&drahmin_alt_entry_table[9]	,0,    10112  },	// style_dhunggar.sec
-		{&drahmin_alt_entry_table[10]	,0,	   11776  },	// wrestling.mko
+		{&drahmin_alt_entry_table[10]	,0,	   11712  },	// wrestling.mko
 		{&drahmin_alt_entry_table[11]	,0,    10112  },	// style_wrestling.sec
 		{&drahmin_alt_entry_table[12]	,0,	   12416  },	// iron_club.mko
 		{&drahmin_alt_entry_table[13]	,0,	   10112  },	// style_iron_club.sec

@@ -75,6 +75,14 @@ int scan_table_1_jump_table[] = {
 	SCAN1_UNIVERSAL_JUMP, //  UMKD_SEKTOR
 	SCAN1_UNIVERSAL_JUMP, //  UMKD_RAIN
 	0x2028B4, //  UMKD_NITARA
+	0x2028B4, //  UMKD_TREMOR
+	SCAN1_UNIVERSAL_JUMP, //  UMKD_CYRAX
+	SCAN1_UNIVERSAL_JUMP, //  UMKD_REIKO
+	SCAN1_UNIVERSAL_JUMP, //  UMKD_RAIN2
+	0x2025B8,	 //		UMKD_SCORPION2,
+	0x202730,	 // 	UMKD_SUBZERO2
+	0x20269C,	 // 	UMKD_ERMAC2,
+	0x202800,	 // 	UMKD_RAIDEN2,
 };
 
 
@@ -139,6 +147,14 @@ int scan_table_2_jump_table[] = {
 	0x20239C, //  UMKD_SEKTOR
 	SCAN2_UNIVERSAL_JUMP, //  UMKD_RAIN
 	SCAN2_UNIVERSAL_JUMP, //  UMKD_NITARA
+	SCAN2_UNIVERSAL_JUMP, //  UMKD_TREMOR
+	0x20239C, //  UMKD_CYRAX
+	0x20239C, //  UMKD_REIKO
+	SCAN2_UNIVERSAL_JUMP, //  UMKD_RAIN2
+	0x2021CC, //	 UMKD_SCORPION2
+	0x202258, // 	UMKD_SUBZERO2,
+	SCAN2_UNIVERSAL_JUMP, // 	UMKD_ERMAC2,
+	0x202354, // 	UMKD_RAIDEN2,
 };
 
 int scan_table_3_jump_table[] = {
@@ -202,6 +218,14 @@ int scan_table_3_jump_table[] = {
 	SCAN3_UNIVERSAL_JUMP, //  UMKD_SEKTOR
 	SCAN3_UNIVERSAL_JUMP, //  UMKD_RAIN
 	SCAN3_UNIVERSAL_JUMP, //  UMKD_NITARA
+	SCAN3_UNIVERSAL_JUMP, //  UMKD_TREMOR
+	SCAN3_UNIVERSAL_JUMP, //  UMKD_CYRAX
+	SCAN3_UNIVERSAL_JUMP, //  UMKD_REIKO
+	SCAN3_UNIVERSAL_JUMP, //  UMKD_RAIN2
+	0x201DE0, //    UMKD_SCORPION2,
+	0x201DBC, // 	UMKD_SUBZERO2,
+	0x201D6C, // 	UMKD_ERMAC2,
+	0x201EA8, // 	UMKD_RAIDEN2,
 };
 
 int scan_table_4_jump_table[] = {
@@ -250,7 +274,7 @@ int scan_table_4_jump_table[] = {
 	0x201B0C, //  MKDA_MOKAP,
 	0x201B0C, //  MKDA_BLAZE,
 	0x201B0C, //  UMKD_SONYA,
-	0x201B0C, //  KITANA,
+	SCAN4_UNIVERSAL_JUMP, //  KITANA,
 	SCAN4_UNIVERSAL_JUMP, //	JAX
 	SCAN4_UNIVERSAL_JUMP, //	FROST
 	0x201B0C, // BLAZE
@@ -265,6 +289,14 @@ int scan_table_4_jump_table[] = {
 	SCAN4_UNIVERSAL_JUMP, //  UMKD_SEKTOR
 	0x201B0C, // UMKD_RAIN
 	SCAN4_UNIVERSAL_JUMP, // UMKD_NITARA
+	SCAN4_UNIVERSAL_JUMP, // UMKD_TREMOR
+	SCAN4_UNIVERSAL_JUMP, // UMKD_CYRAX
+	SCAN4_UNIVERSAL_JUMP, // UMKD_REIKO
+	0x201B0C, // UMKD_RAIN2
+	0x201B0C,	  //	UMKD_SCORPION2
+	SCAN4_UNIVERSAL_JUMP, //	UMKD_SUBZERO2,
+	0x2018A8, //	UMKD_ERMAC2,
+	0x201A10, //	UMKD_RAIDEN2,
 };
 
 
@@ -392,10 +424,17 @@ int swap_scan_table_1()
 			scan_action_set = (int)&scan_cage_1;
 			break;
 		case RAIN:
+		case RAIN2:
 			scan_action_set = (int)&scan_rain_1;
 			break;
 		case SEKTOR:
 			scan_action_set = (int)&scan_sektor_1;
+			break;
+		case CYRAX:
+			scan_action_set = (int)&scan_cyrax_1;
+			break;
+		case REIKO:
+			scan_action_set = (int)&scan_reiko_1;
 			break;
 		default:
 			scan_action_set = (int)&scan_null;
@@ -419,6 +458,7 @@ int swap_scan_table_2()
 		switch (plyr_data->characterID)
 		{
 		case ERMAC:
+		case ERMAC2:
 			scan_action_set = (int)&scan_ermac_2;
 			break;
 		case SONYA:
@@ -449,6 +489,7 @@ int swap_scan_table_2()
 			scan_action_set = (int)&scan_shang_2;
 			break;
 		case RAIN:
+		case RAIN2:
 			if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
 				scan_action_set = (int)&scan_rain_2;
 			else
@@ -456,6 +497,12 @@ int swap_scan_table_2()
 			break;
 		case NITARA:
 			scan_action_set = (int)&scan_nitara_2;
+			break;
+		case TREMOR:
+			if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
+				scan_action_set = (int)&scan_tremor_2;
+			else
+				scan_action_set = (int)&scan_null;
 			break;
 		default:
 			scan_action_set = (int)&scan_null;
@@ -528,13 +575,26 @@ int swap_scan_table_3()
 			scan_action_set = (int)&scan_cage_3;
 			break;
 		case RAIN:
+		case RAIN2:
 			scan_action_set = (int)&scan_rain_3;
 			break;
 		case NITARA:
 			scan_action_set = (int)&scan_nitara_3;
 			break;
 		case SEKTOR:
-			scan_action_set = (int)&scan_sektor_3;
+			if ((*(int*)(p2_pdata + 532) & 0x400) == 0)
+				scan_action_set = (int)&scan_sektor_3;
+			else
+				scan_action_set = (int)&scan_null;
+			break;
+		case TREMOR:
+			scan_action_set = (int)&scan_tremor_3;
+			break;
+		case CYRAX:
+			scan_action_set = (int)&scan_cyrax_3;
+			break;
+		case REIKO:
+			scan_action_set = (int)&scan_reiko_3;
 			break;
 		default:
 			scan_action_set = (int)&scan_null;
@@ -559,6 +619,7 @@ int swap_scan_table_4()
 		switch (plyr_data->characterID)
 		{
 		case SUBZERO:
+		case SUBZERO2:
 			scan_action_set = (int)&scan_subzero_4;
 			break;
 		case SMOKE:
@@ -597,6 +658,18 @@ int swap_scan_table_4()
 		case SEKTOR:
 			scan_action_set = (int)&scan_sektor_4;
 			break;
+		case KITANA:
+			scan_action_set = (int)&scan_kitana_4;
+			break;
+		case TREMOR:
+			scan_action_set = (int)&scan_tremor_4;
+			break;
+		case CYRAX:
+			scan_action_set = (int)&scan_cyrax_4;
+			break;
+		case REIKO:
+			scan_action_set = (int)&scan_reiko_4;
+			break;
 		default:
 			scan_action_set = (int)&scan_null;
 			break;
@@ -624,6 +697,26 @@ void do_harakiri_hook()
 	{
 		if (was_button_pressed(PAD_CIRCLE))
 			scan_switch_sequences((int*)&scan_goro_suicide);
+	}
+	else if (chrID == SCORPION2)
+	{
+		if (was_button_pressed(PAD_SQUARE))
+			scan_switch_sequences((int*)0x501710);
+	}
+	else if (chrID == ERMAC2)
+	{
+		if (was_button_pressed(PAD_CROSS))
+			scan_switch_sequences((int*)0x501790);
+	}
+	else if (chrID == SUBZERO2)
+	{
+		if (was_button_pressed(PAD_TRIANGLE))
+			scan_switch_sequences((int*)0x501750);
+	}
+	else if (chrID == RAIDEN2)
+	{
+		if (was_button_pressed(PAD_SQUARE))
+			scan_switch_sequences((int*)0x501950);
 	}
 	else
 		((void(*)())0x20C710)();

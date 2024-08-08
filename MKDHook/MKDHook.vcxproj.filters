@@ -246,6 +246,21 @@
     <ClCompile Include="practice.c">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="characters\cyrax.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\reiko.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\tremor.c">
+      <Filter>source\characters\umkd</Filter>
+    </ClCompile>
+    <ClCompile Include="misc\konquest_npc.c">
+      <Filter>source\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="characters\raiden.c">
+      <Filter>source\characters\mkd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ps2mem.h">
@@ -475,6 +490,21 @@
     </ClInclude>
     <ClInclude Include="practice.h">
       <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\cyrax.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\reiko.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\tremor.h">
+      <Filter>source\characters\umkd</Filter>
+    </ClInclude>
+    <ClInclude Include="misc\konquest_npc.h">
+      <Filter>source\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="characters\raiden.h">
+      <Filter>source\characters\mkd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

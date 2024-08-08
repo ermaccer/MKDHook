@@ -14,8 +14,8 @@ int cached_aux_weapon[2] = { 0 };
 void init_script_hook()
 {
 	int val = (int)&script_function_table;
-	debugVar[0] = 7233;
-	debugVar[1] = 3;
+	debugVar[0] = 0;
+	debugVar[1] = 0;
 	debugVar[2] = 0;
 	debugVar[3] = 19;
 	cached_aux_weapon[0] = 0;
@@ -57,6 +57,7 @@ void init_script_custom_function_table()
 	script_function_table[1470] = (int)&pfxhandle_spawn_at_bid_next_aux_fix;
 	script_function_table[1473] = (int)&pfxhandle_spawn_at_bid_next_bind_render_aux_fix;
 	script_function_table[1488] = (int)&fat_sz_start_iceblock;
+	script_function_table[1487] = (int)&_sindel_screamer_sound_react;
 	script_function_table[obj_bone_collapse_set] = (int)&_obj_bone_collapse_set;
 
 	// gc
@@ -94,9 +95,13 @@ void init_script_custom_function_table()
 	script_function_table[show_aux_weapon] = (int)&_show_aux_weapon;
 	script_function_table[set_active_projectile_ball_effect] = (int)&_set_active_projectile_ball_effect;
 	script_function_table[am_i_alt_costume] = (int)&_am_i_alt_costume;
+	script_function_table[am_i_in_weapon] = (int)&_am_i_in_weapon;
 	script_function_table[rain_teleport_kick] = (int)&_rain_teleport_kick;
 	script_function_table[set_robot_voice] = (int)&_set_robot_voice;
 	script_function_table[script_sektor_set_chest_status] = (int)&_sektor_set_chest_status;
+	script_function_table[cyrax_start_bomb] = (int)&_cyrax_start_bomb;
+	script_function_table[script_cyrax_set_cutter_status] = (int)&_cyrax_set_cutter_status;
+	script_function_table[script_reiko_teleport] = (int)&_reiko_teleport;
 }
 
 #ifndef PS2_BUILD
@@ -170,7 +175,7 @@ void _freeze_victim()
 
 void _force_fatality_end()
 {
-	patchInt(0x5D6500, 1);
+	//patchInt(0x5D6500, 1);
 }
 
 void _reset_fake_bone_matcher()
@@ -413,6 +418,64 @@ void _sektor_set_chest_status()
 	sektor_set_chest_status(plrNum, status);
 }
 
+void _am_i_in_weapon()
+{
+	int playerData = *(int*)PLAYER_DATA;
+	int script = *(int*)(ACTIVE_SCRIPT);
+	int result = 0;
+
+	if (playerData)
+	{
+		// cur style->description check
+		int is_weapon  = ((int(*)(int))0x2096A0)(*(int*)(playerData + 0x2DC));
+		if (is_weapon)
+		{
+			result = 1;
+		}
+	}
+
+	*(int*)(script + 44) = result;
+}
+
+void _cyrax_start_bomb()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	int plrNum = *(int*)(args + 4);
+
+	start_cyrax_bomb(plrNum);
+}
+
+void _cyrax_set_cutter_status()
+{
+	int args = *(int*)(CURRENT_ARGS);
+	int plrNum = *(int*)(args + 4);
+	int status = *(int*)(args + 8);
+	cyrax_set_cutter_status(plrNum, status);
+}
+
+void _reiko_teleport()
+{
+	reiko_teleport();
+}
+
+void _sindel_screamer_sound_react()
+{
+	player_data* plyr_data = *(player_data**)(PLAYER_DATA);
+
+	if (plyr_data)
+	{
+		int id = *(int*)(plyr_data->field_10 + 428);
+		if (id == SINDEL || id == KITANA)
+		{
+			int snd = ((int(*)(int))0x12B7D0)(68);
+			plyr_data->field_6B0 = snd;
+		}
+
+	}
+
+
+}
+
 void psp_reset_fake_bone_matcher(int obj, int a2, int a3, int a4, int a5, int a6, float flt)
 {
 	int v7; 
@@ -557,7 +620,7 @@ int cache_loaded_aux_weapon(int a1, int obj)
 	player_info* info = (player_info*)PLAYER1_INFO;
 	if (id == 1)
 		info = (player_info*)PLAYER2_INFO;
-	if (chrID == JAX || chrID == KUNG_LAO)
+	if (chrID == JAX || chrID == KUNG_LAO || chrID == CYRAX)
 	{
 		cached_aux_weapon[id] = wep;
 	}
